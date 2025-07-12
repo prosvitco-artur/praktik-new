@@ -134,3 +134,24 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+/**
+ * Flush rewrite rules on theme activation.
+ *
+ * @return void
+ */
+add_action('after_switch_theme', function () {
+    flush_rewrite_rules();
+});
+
+/**
+ * Flush rewrite rules on theme activation and deactivation.
+ *
+ * @return void
+ */
+add_action('init', function () {
+    if (get_option('praktik_flush_rewrite') !== 'done') {
+        flush_rewrite_rules();
+        update_option('praktik_flush_rewrite', 'done');
+    }
+});

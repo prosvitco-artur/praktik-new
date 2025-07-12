@@ -1,3 +1,81 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Custom styles for property cards */
+.property-card {
+  transition: all 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-2px);
+}
+
+.property-image img {
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image img {
+  transform: scale(1.05);
+}
+
+/* Property grid responsive */
+@media (max-width: 768px) {
+  .property-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Header and Footer styles */
+.banner {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile menu animations */
+.mobile-menu {
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu.hidden {
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Footer link hover effects */
+.footer-link {
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Social media icons hover */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+}
+
+/* Contact info icons */
+.contact-icon {
+  transition: color 0.3s ease;
+}
+
+.contact-info:hover .contact-icon {
+  color: #3b82f6;
+}
