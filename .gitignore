@@ -14,8 +14,8 @@ wp-content/*
 wp-content/plugins/*
 
 wp-content/themes/*
-!wp-content/themes/blocksy-child/
+!wp-content/themes/praktik/
 
 .idea/
 .DS_Store
-wp-content/themes/blocksy-child/*-backup*.pot*
+wp-content/themes/praktik/*-backup*.pot*
