@@ -1,0 +1,35 @@
+name: praktik-new
+recipe: wordpress
+config:
+  webroot: .
+  services:
+    pma:
+      type: phpmyadmin
+      portforward: false
+      hosts:
+        - database
+
+
+# name: justpack
+# recipe: wordpress
+# config:
+#   php: "8.2"
+#   via: apache:2.4
+#   webroot: .
+#   database: mariadb:10.4
+#   xdebug: false
+#   services:
+#     pma:
+#       type: phpmyadmin
+#       portforward: false
+#       hosts:
+#         - database
+#     mailhog:
+#       type: mailhog
+#   tooling:
+#     install-plugins:
+#       service: appserver
+#       cmd: ./install-plugins.sh
+# proxy:
+#   mailhog:
+#     - mail.justpack.lndo.site
