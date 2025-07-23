@@ -27,6 +27,15 @@ add_action('enqueue_block_editor_assets', function () {
 }, 100);
 
 /**
+ * Register the admin assets.
+ *
+ * @return void
+ */
+add_action('admin_enqueue_scripts', function () {
+    bundle('admin')->enqueue();
+}, 100);
+
+/**
  * Register the initial theme setup.
  *
  * @return void
