@@ -16,6 +16,8 @@ wp-content/plugins/*
 wp-content/themes/*
 !wp-content/themes/praktik/
 
+!ROADMAP.md
+
 .idea/
 .DS_Store
 wp-content/themes/blocksy-child/*-backup*.pot*

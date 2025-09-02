@@ -1,1 +1,0 @@
-@include('partials.content-single-property') 
