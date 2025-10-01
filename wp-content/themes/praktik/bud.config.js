@@ -34,7 +34,7 @@ export default async (app) => {
      * Proxy origin (`WP_HOME`)
      * @see {@link https://bud.js.org/docs/bud.proxy/}
      */
-    .proxy('http://example.test')
+    .proxy('https://praktik-new.lndo.site')
 
     /**
      * Development origin
@@ -46,7 +46,7 @@ export default async (app) => {
      * URI of the `public` directory
      * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
      */
-    .setPublicPath('/app/themes/sage/public/')
+    .setPublicPath('/app/themes/praktik/public/')
 
     /**
      * Generate WordPress `theme.json`
@@ -75,7 +75,7 @@ export default async (app) => {
       },
       spacing: {
         padding: true,
-        units: ['px', '%', 'em', 'rem', 'vw', 'vh'],
+        units: ['px', '%', 'em', 'vw', 'vh'],
       },
       typography: {
         customFontSize: false,
