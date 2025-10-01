@@ -1,3 +1,84 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Custom Styles */
+@layer components {
+  /* Header Styles */
+  .banner {
+    @apply bg-white shadow-sm;
+  }
+
+  /* Mobile Menu Styles */
+  .mobile-menu-overlay {
+    backdrop-filter: blur(2px);
+  }
+
+  .mobile-menu-panel {
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-submenu {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Desktop Navigation */
+  .nav-primary .nav {
+    @apply list-none p-0 m-0;
+  }
+
+  .nav-primary .nav li {
+    @apply relative;
+  }
+
+  .nav-primary .nav a {
+    @apply text-p1 text-neutral-900 hover:text-primary-600 transition-colors no-underline;
+  }
+
+  .nav-primary .nav .current-menu-item > a,
+  .nav-primary .nav .current_page_item > a {
+    @apply text-primary-600 font-medium;
+  }
+
+  /* Mobile Menu Navigation */
+  .mobile-nav-menu {
+    @apply list-none p-0 m-0;
+  }
+
+  .mobile-menu-item {
+    @apply border-b border-neutral-100 last:border-b-0;
+  }
+
+  .mobile-menu-link {
+    @apply w-full text-left;
+  }
+
+  .mobile-submenu .mobile-menu-item {
+    @apply border-b-0;
+  }
+
+  .mobile-submenu .mobile-menu-link {
+    @apply text-neutral-700 text-p2;
+  }
+
+  .mobile-menu-item.current-menu-item > .mobile-menu-link,
+  .mobile-menu-item.current_page_item > .mobile-menu-link {
+    @apply text-primary-600;
+  }
+
+  /* Add spacing for fixed header */
+  body {
+    @apply pt-[60px];
+  }
+}

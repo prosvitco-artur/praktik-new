@@ -3,6 +3,20 @@ module.exports = {
   content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
   theme: {
     extend: {
+      spacing: {
+        '60px': '60px',
+        '32px': '32px',
+        '24px': '24px',
+        '20px': '20px',
+        '16px': '16px',
+        '12px': '12px',
+        '8px': '8px',
+        '4px': '4px',
+        '120px': '120px',
+      },
+      borderRadius: {
+        '16px': '16px',
+      },
       colors: {
         // Brand Colors
         primary: {
