@@ -1,9 +1,9 @@
 <header class="banner fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
   <div class="container mx-auto px-16px">
     <div class="flex items-center h-60px">
-      {{-- Logo --}}
+      
       <a class="brand flex items-center flex-shrink-0" href="{{ home_url('/') }}">
-        <img src="{{ asset('images/logo.svg') }}" alt="{!! $siteName !!}" class="h-32px" />
+         {!! wp_get_attachment_image(get_theme_mod('custom_logo'), 'full') !!}
       </a>
 
       {{-- Desktop Navigation - Centered --}}
@@ -12,7 +12,7 @@
           {!! wp_nav_menu([
             'theme_location' => 'primary_navigation', 
             'container' => false,
-            'menu_class' => 'nav flex gap-32px items-center', 
+            'menu_class' => 'nav flex gap-32px items-center justify-center',
             'walker' => new \App\View\Components\DesktopMenuWalker(),
             'echo' => false
           ]) !!}

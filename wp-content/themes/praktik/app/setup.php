@@ -82,6 +82,19 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
 
     /**
+     * Enable custom logo support.
+     *
+     * @link https://developer.wordpress.org/themes/functionality/custom-logo/
+     */
+    add_theme_support('custom-logo', [
+        'height'      => 60,
+        'width'       => 200,
+        'flex-height' => true,
+        'flex-width'  => true,
+        'header-text' => ['site-title', 'site-description'],
+    ]);
+
+    /**
      * Enable responsive embed support.
      *
      * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#responsive-embedded-content
@@ -133,4 +146,18 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer',
     ] + $config);
+});
+
+add_action('customize_register', function ($wp_customize) {
+    $wp_customize->add_setting('footer_logo', [
+        'default' => '',
+        'sanitize_callback' => 'absint',
+    ]);
+
+    $wp_customize->add_control(new \WP_Customize_Media_Control($wp_customize, 'footer_logo', [
+        'label' => __('Footer Logo', 'sage'),
+        'section' => 'title_tagline',
+        'mime_type' => 'image',
+        'priority' => 9,
+    ]));
 });

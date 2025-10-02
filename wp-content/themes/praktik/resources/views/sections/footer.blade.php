@@ -2,13 +2,15 @@
   <div class="footer-container">
     <div class="footer-logo-section">
       <div class="footer-logo">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 28V4H12V28H8ZM20 28V4H24V28H20ZM8 8H24V12H8V8Z" fill="white"/>
-        </svg>
-        <div class="logo-text">
-          <div class="logo-title">Практик</div>
-          <div class="logo-subtitle">Нерухомість</div>
-        </div>
+        @php
+          $footer_logo_id = get_theme_mod('footer_logo');
+        @endphp
+        
+        @if($footer_logo_id)
+          <a href="{{ home_url() }}">
+            {!! wp_get_attachment_image($footer_logo_id, 'full', false, ['alt' => get_bloginfo('name'), 'class' => 'footer-logo-image']) !!}
+          </a>
+        @endif
       </div>
       <div class="footer-links">
         <a href="/privacy-policy" class="footer-link">Політика конфіденційності</a>

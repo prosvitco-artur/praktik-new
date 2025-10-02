@@ -27,6 +27,27 @@
     @apply bg-white shadow-sm;
   }
 
+  /* Logo Styles */
+  .logo-component {
+    @apply transition-opacity duration-200 hover:opacity-80;
+  }
+
+  .logo-component img {
+    @apply object-contain;
+  }
+
+  .logo-text {
+    @apply flex flex-col;
+  }
+
+  .logo-title {
+    @apply font-semibold leading-tight;
+  }
+
+  .logo-subtitle {
+    @apply leading-tight;
+  }
+
   /* Mobile Menu Styles */
   .mobile-menu-overlay {
     backdrop-filter: blur(2px);
@@ -61,12 +82,12 @@
   }
 
   .nav-primary .nav a {
-    @apply text-p1 text-neutral-900 hover:text-primary-600 transition-colors no-underline;
+    @apply text-p1 text-neutral-900 hover:font-bold transition-colors no-underline;
   }
 
   .nav-primary .nav .current-menu-item > a,
   .nav-primary .nav .current_page_item > a {
-    @apply text-primary-600 font-medium;
+    @apply font-bold;
   }
 
   /* Dropdown Menu Styles - CSS Only */
@@ -107,12 +128,12 @@
   }
 
   .dropdown-link:hover {
-    @apply text-primary-600 bg-neutral-50;
+    @apply bg-neutral-50;
   }
 
   .dropdown-menu .current-menu-item > .dropdown-link,
   .dropdown-menu .current_page_item > .dropdown-link {
-    @apply text-primary-600 bg-primary-50;
+    @apply bg-primary-50;
   }
 
   /* Enhanced CSS-only hover with smooth transitions */
@@ -191,8 +212,16 @@
     @apply hidden;
   }
 
+  .footer-logo {
+    @apply flex items-center gap-2;
+  }
+
+  .footer-logo-image {
+    @apply max-h-[60px] w-auto object-contain;
+  }
+
   .footer-links-mobile {
-    @apply flex flex-row items-center justify-center gap-4 text-sm text-center;
+    @apply flex flex-col items-center justify-center gap-4 text-sm text-center;
   }
 
   .social-icons {
@@ -212,7 +241,7 @@
   }
 
   .chat-bot-button {
-    @apply bg-[#4A69B4] hover:bg-[#5A7BC4] text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium text-sm;
+    @apply bg-[#4A69B4] hover:bg-[#5A7BC4] text-white px-6 py-3 rounded-[100px] flex items-center gap-3 transition-colors font-medium text-sm;
   }
 
   .robot-icon {
@@ -250,28 +279,13 @@
       @apply flex flex-col gap-4 order-1;
     }
 
-    .footer-logo {
-      @apply flex items-center gap-3;
-    }
-
-    .logo-text {
-      @apply flex flex-col;
-    }
-
-    .logo-title {
-      @apply text-lg font-semibold leading-tight;
-    }
-
-    .logo-subtitle {
-      @apply text-sm text-gray-300 leading-tight;
-    }
 
     .footer-links {
       @apply flex-row gap-4 justify-start items-start text-left;
     }
 
     .footer-cta {
-      @apply items-end text-right order-3;
+      @apply items-start text-left order-3;
     }
 
     .social-icons {
