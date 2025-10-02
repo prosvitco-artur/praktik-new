@@ -12,7 +12,6 @@ class Post extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.page-header',
         'partials.content',
         'partials.content-*',
     ];
@@ -36,9 +35,6 @@ class Post extends Composer
      */
     public function title()
     {
-        if ($this->view->name() !== 'partials.page-header') {
-            return get_the_title();
-        }
 
         if (is_home()) {
             if ($home = get_option('page_for_posts', true)) {

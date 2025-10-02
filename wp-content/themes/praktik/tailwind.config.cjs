@@ -1,6 +1,9 @@
 // https://tailwindcss.com/docs/configuration
 module.exports = {
   content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
+  safelist: [
+    'h-screen',
+  ],
   theme: {
     extend: {
       spacing: {
