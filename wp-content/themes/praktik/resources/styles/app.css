@@ -81,4 +81,118 @@
   body {
     @apply pt-[60px];
   }
+
+  /* Footer Styles */
+  .footer {
+    @apply bg-[#283570] text-white py-8 px-4;
+  }
+
+  .footer-container {
+    @apply max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8;
+  }
+
+  .footer-left {
+    @apply flex flex-col items-center lg:items-start gap-4;
+  }
+
+  .footer-logo {
+    @apply flex items-center gap-3;
+  }
+
+  .logo-text {
+    @apply flex flex-col;
+  }
+
+  .logo-title {
+    @apply text-lg font-semibold leading-tight;
+  }
+
+  .logo-subtitle {
+    @apply text-sm text-gray-300 leading-tight;
+  }
+
+  .footer-links {
+    @apply flex flex-col sm:flex-row gap-4 text-sm;
+  }
+
+  .footer-link {
+    @apply text-white hover:text-gray-300 transition-colors no-underline;
+  }
+
+  .footer-center {
+    @apply flex justify-center;
+  }
+
+  .social-icons {
+    @apply flex gap-3;
+  }
+
+  .social-icon {
+    @apply w-10 h-10 bg-[#4A69B4] rounded-full flex items-center justify-center text-white hover:bg-[#5A7BC4] transition-colors;
+  }
+
+  .footer-right {
+    @apply flex flex-col items-center lg:items-end gap-3 text-center lg:text-right;
+  }
+
+  .footer-text {
+    @apply text-sm text-gray-300;
+  }
+
+  .chat-bot-button {
+    @apply bg-[#4A69B4] hover:bg-[#5A7BC4] text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium;
+  }
+
+  .robot-icon {
+    @apply text-lg;
+  }
+
+  .button-text {
+    @apply text-sm;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 1024px) {
+    .footer-container {
+      @apply gap-6;
+    }
+    
+    .footer-left {
+      @apply order-1;
+    }
+    
+    .footer-center {
+      @apply order-2;
+    }
+    
+    .footer-right {
+      @apply order-3;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer {
+      @apply py-6 px-4;
+    }
+    
+    .footer-container {
+      @apply gap-4;
+    }
+    
+    .footer-links {
+      @apply flex-col gap-2 text-center;
+    }
+    
+    .social-icons {
+      @apply gap-2;
+    }
+    
+    .social-icon {
+      @apply w-8 h-8;
+    }
+    
+    .chat-bot-button {
+      @apply px-4 py-2 text-xs;
+    }
+  }
 }
