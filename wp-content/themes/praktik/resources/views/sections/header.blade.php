@@ -1,22 +1,38 @@
 <header class="banner fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
   <div class="container mx-auto px-16px">
-    <div class="flex items-center justify-between h-60px">
+    <div class="flex items-center h-60px">
       {{-- Logo --}}
-      <a class="brand flex items-center" href="{{ home_url('/') }}">
+      <a class="brand flex items-center flex-shrink-0" href="{{ home_url('/') }}">
         <img src="{{ asset('images/logo.svg') }}" alt="{!! $siteName !!}" class="h-32px" />
       </a>
 
-      {{-- Desktop Navigation --}}
+      {{-- Desktop Navigation - Centered --}}
       @if (has_nav_menu('primary_navigation'))
-        <nav class="nav-primary hidden lg:block" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
-          {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav flex gap-32px items-center', 'echo' => false]) !!}
+        <nav class="nav-primary hidden lg:block flex-1 flex justify-center" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+          {!! wp_nav_menu([
+            'theme_location' => 'primary_navigation', 
+            'container' => false,
+            'menu_class' => 'nav flex gap-32px items-center', 
+            'walker' => new \App\View\Components\DesktopMenuWalker(),
+            'echo' => false
+          ]) !!}
         </nav>
       @endif
+
+      {{-- Desktop Bookmark Icon --}}
+      <div class="hidden lg:flex items-center gap-2 flex-shrink-0">
+        <button class="bookmark-button flex items-center gap-2 p-2 hover:bg-neutral-50 rounded-lg transition-colors" aria-label="Закладки">
+          <svg class="w-20px h-20px text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+          </svg>
+          <span class="bookmark-count text-sm font-medium text-neutral-900">0</span>
+        </button>
+      </div>
 
       {{-- Mobile Menu Toggle --}}
       <button 
         type="button"
-        class="mobile-menu-toggle lg:hidden p-8px -mr-8px"
+        class="mobile-menu-toggle lg:hidden p-8px -mr-8px ml-auto"
         aria-label="Відкрити меню"
         aria-expanded="false"
         data-mobile-menu-toggle

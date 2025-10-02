@@ -69,6 +69,89 @@
     @apply text-primary-600 font-medium;
   }
 
+  /* Dropdown Menu Styles - CSS Only */
+  .dropdown-parent {
+    @apply relative;
+  }
+
+  .dropdown-parent:hover .dropdown-menu {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .dropdown-parent:hover .nav-link svg {
+    @apply rotate-180;
+  }
+
+  .dropdown-menu {
+    @apply list-none p-0 m-0;
+  }
+
+  .dropdown-menu li {
+    @apply border-b border-neutral-100 last:border-b-0;
+  }
+
+  .dropdown-menu li:first-child {
+    @apply rounded-t-lg;
+  }
+
+  .dropdown-menu li:last-child {
+    @apply rounded-b-lg;
+  }
+
+  .dropdown-menu li:only-child {
+    @apply rounded-lg;
+  }
+
+  .dropdown-link {
+    @apply block w-full text-left;
+  }
+
+  .dropdown-link:hover {
+    @apply text-primary-600 bg-neutral-50;
+  }
+
+  .dropdown-menu .current-menu-item > .dropdown-link,
+  .dropdown-menu .current_page_item > .dropdown-link {
+    @apply text-primary-600 bg-primary-50;
+  }
+
+  /* Enhanced CSS-only hover with smooth transitions */
+  .dropdown-parent .nav-link svg {
+    @apply transition-transform duration-200 ease-in-out;
+  }
+
+  .dropdown-menu {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Ensure dropdown stays open when hovering over it */
+  .dropdown-parent:hover .dropdown-menu,
+  .dropdown-menu:hover {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  /* Focus states for accessibility */
+  .dropdown-parent:focus-within .dropdown-menu {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .dropdown-parent:focus-within .nav-link svg {
+    @apply rotate-180;
+  }
+
+  /* Bookmark Button */
+  .bookmark-button {
+    @apply relative;
+  }
+
+  .bookmark-button:hover .bookmark-count {
+    @apply text-primary-600;
+  }
+
+  .bookmark-button:focus {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+
   /* Mobile Menu Navigation */
   .mobile-nav-menu {
     @apply list-none p-0 m-0;
