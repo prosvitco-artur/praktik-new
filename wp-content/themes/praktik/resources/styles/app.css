@@ -2,8 +2,26 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full pt-[60px];
+  }
+  
+  #app {
+    @apply min-h-[calc(100vh-60px)] flex flex-col;
+  }
+}
+
 /* Custom Styles */
 @layer components {
+  .main {
+    @apply flex-1;
+  }
+  
   /* Header Styles */
   .banner {
     @apply bg-white shadow-sm;
@@ -75,11 +93,6 @@
   .mobile-menu-item.current-menu-item > .mobile-menu-link,
   .mobile-menu-item.current_page_item > .mobile-menu-link {
     @apply text-primary-600;
-  }
-
-  /* Add spacing for fixed header */
-  body {
-    @apply pt-[60px];
   }
 
   /* Footer Styles */
