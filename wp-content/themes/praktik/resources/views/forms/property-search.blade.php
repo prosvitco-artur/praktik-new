@@ -1,0 +1,150 @@
+<div class="property-search-container">
+  <form role="search" method="get" class="property-search-form" action="{{ home_url('/') }}">
+    <div class="property-search-form__wrapper">
+      <div class="property-search-form__field">
+        <label for="property-category" class="property-search-form__label">Категорія</label>
+        <select 
+          id="property-category" 
+          name="property_category" 
+          class="property-search-form__select"
+        >
+          <option value="">Квартира</option>
+          <option value="house">Будинок</option>
+          <option value="commercial">Комерційна нерухомість</option>
+          <option value="land">Земельна ділянка</option>
+        </select>
+      </div>
+
+      <div class="property-search-form__field">
+        <label for="property-type" class="property-search-form__label">Тип об'єкту</label>
+        <select 
+          id="property-type" 
+          name="property_type" 
+          class="property-search-form__select"
+        >
+          <option value="">Вторинний ринок</option>
+          <option value="new">Новобудова</option>
+        </select>
+      </div>
+
+      <button type="submit" class="property-search-form__submit">
+        <span>Шукати</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 19L14.65 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <input type="hidden" name="s" value="">
+    <input type="hidden" name="post_type" value="property">
+  </form>
+</div>
+
+<style>
+.property-search-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.property-search-form {
+  width: 100%;
+}
+
+.property-search-form__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.property-search-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.property-search-form__label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.property-search-form__select {
+  width: 100%;
+  padding: 0.875rem 2.5rem 0.875rem 1rem;
+  font-size: 1rem;
+  color: #1a1a1a;
+  background-color: #f5f5f5;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%231a1a1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.property-search-form__select:hover {
+  background-color: #ebebeb;
+}
+
+.property-search-form__select:focus {
+  outline: 2px solid #4a68ad;
+  outline-offset: 2px;
+}
+
+.property-search-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #4a68ad;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.property-search-form__submit:hover {
+  background-color: #3d5691;
+}
+
+.property-search-form__submit:active {
+  background-color: #334776;
+}
+
+.property-search-form__submit svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 768px) {
+  .property-search-form__wrapper {
+    display: grid;
+    grid-template-columns: 220px 220px 160px;
+    align-items: end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .property-search-container {
+    padding: 28px 80px 40px;
+  }
+
+  .property-search-form__submit {
+    padding: 0.875rem 2rem;
+  }
+}
+</style>
+

@@ -161,3 +161,7 @@ add_action('customize_register', function ($wp_customize) {
         'priority' => 9,
     ]));
 });
+
+add_shortcode('property_search_form', function () {
+    return view('forms.property-search')->render();
+});
