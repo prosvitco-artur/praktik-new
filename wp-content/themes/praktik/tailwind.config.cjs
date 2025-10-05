@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'fixel': ['Fixel', 'sans-serif'],
+      },
       spacing: {
         '60px': '60px',
         '32px': '32px',
