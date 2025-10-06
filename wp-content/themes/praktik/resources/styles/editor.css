@@ -3,12 +3,10 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  /* Загальний шрифт для редактора WordPress */
   .editor-styles-wrapper {
     @apply font-fixel;
   }
 
-  /* Стилі заголовків для редактора WordPress */
   .wp-block-heading h1,
   .editor-styles-wrapper h1,
   .editor-styles-wrapper .wp-block-heading h1 {

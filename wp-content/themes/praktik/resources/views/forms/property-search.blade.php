@@ -1,5 +1,5 @@
 <div class="property-search-container">
-  <form role="search" method="get" class="property-search-form" action="{{ home_url('/') }}">
+  <form role="search" method="get" class="property-search-form" id="property-search-form">
     <div class="property-search-form__wrapper">
       <div class="property-search-form__field">
         <label for="property-category" class="property-search-form__label">Категорія</label>
@@ -8,10 +8,10 @@
           name="property_category" 
           class="property-search-form__select"
         >
-          <option value="">Квартира</option>
-          <option value="house">Будинок</option>
-          <option value="commercial">Комерційна нерухомість</option>
-          <option value="land">Земельна ділянка</option>
+          <option value="">Всі категорії</option>
+          @foreach(get_property_post_types() as $post_type => $label)
+            <option value="{{ $post_type }}">{{ $label }}</option>
+          @endforeach
         </select>
       </div>
 
@@ -37,7 +37,6 @@
     </div>
 
     <input type="hidden" name="s" value="">
-    <input type="hidden" name="post_type" value="property">
   </form>
 </div>
 
@@ -147,4 +146,33 @@
   }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('property-search-form');
+  const categorySelect = document.getElementById('property-category');
+  const baseUrl = '{{ home_url("/") }}';
+  
+  // Зміна action форми при зміні категорії
+  categorySelect.addEventListener('change', function() {
+    const selectedCategory = this.value;
+    
+    if (selectedCategory) {
+      // Якщо обрано конкретну категорію, перенаправляємо на URL цієї категорії
+      form.action = baseUrl + selectedCategory + '/';
+    } else {
+      // Якщо обрано "Всі категорії", залишаємо базовий URL
+      form.action = baseUrl;
+    }
+  });
+  
+  // Встановлення початкового action при завантаженні
+  const initialCategory = categorySelect.value;
+  if (initialCategory) {
+    form.action = baseUrl + initialCategory + '/';
+  } else {
+    form.action = baseUrl;
+  }
+});
+</script>
 
