@@ -1508,6 +1508,11 @@
           "name": "Ui-monospace",
           "slug": "mono",
           "fontFamily": "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace"
+        },
+        {
+          "name": "Fixel",
+          "slug": "fixel",
+          "fontFamily": "Fixel,sans-serif"
         }
       ],
       "fontSizes": [

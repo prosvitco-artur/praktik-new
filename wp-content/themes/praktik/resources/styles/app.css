@@ -9,6 +9,7 @@
   
   body {
     @apply h-full pt-[60px] font-fixel;
+    background-color: #F4F4F6;
   }
   
   #app {
@@ -208,6 +209,24 @@
 
   .dropdown-parent:focus-within .nav-link svg {
     @apply rotate-180;
+  }
+
+  .property-card {
+    position: relative;
+  }
+
+  .property-title {
+    display: block;
+  }
+
+  .property-title::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 
   /* Bookmark Button */
