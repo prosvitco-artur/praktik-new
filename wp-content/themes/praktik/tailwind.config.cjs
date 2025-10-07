@@ -24,6 +24,7 @@ module.exports = {
         '16px': '16px',
       },
       colors: {
+        'light-gray': '#D9D9D9',
         // Brand Colors
         primary: {
           50: '#fdf8f3',
@@ -44,7 +45,7 @@ module.exports = {
           200: '#c7dbff',
           300: '#a4c2ff',
           400: '#7a9dff',
-          500: '#5978ff',
+          500: '#ECB648',
           600: '#3b4ef5',
           700: '#2d3ed8',
           800: '#2735ae',
@@ -58,7 +59,7 @@ module.exports = {
           200: '#e5e5e5',
           300: '#d4d4d4',
           400: '#a3a3a3',
-          500: '#737373',
+          500: '#ECB648',
           600: '#525252',
           700: '#404040',
           800: '#262626',

@@ -215,7 +215,7 @@
         {
           "name": "Neutral 500",
           "slug": "neutral-500",
-          "color": "#737373"
+          "color": "#ecb648"
         },
         {
           "name": "Neutral 600",
@@ -1143,6 +1143,11 @@
           "color": "#881337"
         },
         {
+          "name": "Light-gray",
+          "slug": "light-gray",
+          "color": "#d9d9d9"
+        },
+        {
           "name": "Primary 50",
           "slug": "primary-50",
           "color": "#fdf8f3"
@@ -1225,7 +1230,7 @@
         {
           "name": "Secondary 500",
           "slug": "secondary-500",
-          "color": "#5978ff"
+          "color": "#ecb648"
         },
         {
           "name": "Secondary 600",
