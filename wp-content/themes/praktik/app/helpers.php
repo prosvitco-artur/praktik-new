@@ -106,3 +106,55 @@ add_action('wp_footer', function() {
 add_action('admin_footer', function() {
     echo generate_svg_sprite();
 }, 999);
+
+function get_property_meta($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+    
+    return [
+        'price' => get_post_meta($post_id, 'property_price', true),
+        'city' => get_post_meta($post_id, 'property_city', true),
+        'district' => get_post_meta($post_id, 'property_district', true),
+        'street' => get_post_meta($post_id, 'property_street', true),
+        'rooms' => get_post_meta($post_id, 'property_rooms', true),
+        'area' => get_post_meta($post_id, 'property_area', true),
+        'photos_count' => get_post_meta($post_id, 'property_photos_count', true) ?: 1,
+        'floor' => get_post_meta($post_id, 'property_floor', true),
+        'total_floors' => get_post_meta($post_id, 'property_total_floors', true),
+        'year_built' => get_post_meta($post_id, 'property_year_built', true),
+        'condition' => get_post_meta($post_id, 'property_condition', true),
+        'furniture' => get_post_meta($post_id, 'property_furniture', true),
+        'heating' => get_post_meta($post_id, 'property_heating', true),
+        'parking' => get_post_meta($post_id, 'property_parking', true),
+        'balcony' => get_post_meta($post_id, 'property_balcony', true),
+        'elevator' => get_post_meta($post_id, 'property_elevator', true),
+    ];
+}
+
+/**
+ * Форматувати ціну нерухомості
+ */
+function format_property_price($price) {
+    if (!$price) return '';
+    
+    $formatted_price = number_format($price, 0, ',', ' ');
+    return '$ ' . $formatted_price;
+}
+
+/**
+ * Get property type label in current language
+ */
+function get_property_type_label($post_type) {
+    $types = [
+        'room' => __('Room', 'praktik'),
+        'apartment' => __('Apartment', 'praktik'),
+        'house' => __('House', 'praktik'),
+        'plot' => __('Plot', 'praktik'),
+        'garage' => __('Garage', 'praktik'),
+        'commercial' => __('Commercial Property', 'praktik'),
+        'dacha' => __('Dacha', 'praktik')
+    ];
+    
+    return $types[$post_type] ?? ucfirst($post_type);
+}

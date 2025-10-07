@@ -1,0 +1,128 @@
+# Template for Praktik theme translations
+# Copyright (C) 2024 Praktik Real Estate
+# This file is distributed under the same license as the Praktik theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Praktik Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+# Property single page translations
+msgid "PHOTO"
+msgstr ""
+
+msgid "No Title"
+msgstr ""
+
+msgid "Unknown ID"
+msgstr ""
+
+msgid "Unknown Type"
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "District"
+msgstr ""
+
+msgid "Street"
+msgstr ""
+
+msgid "Number of Rooms"
+msgstr ""
+
+msgid "Total Area"
+msgstr ""
+
+msgid "Property Type"
+msgstr ""
+
+msgid "Property Description"
+msgstr ""
+
+# Property types
+msgid "Room"
+msgstr ""
+
+msgid "Apartment"
+msgstr ""
+
+msgid "House"
+msgstr ""
+
+msgid "Plot"
+msgstr ""
+
+msgid "Garage"
+msgstr ""
+
+msgid "Commercial Property"
+msgstr ""
+
+msgid "Dacha"
+msgstr ""
+
+# Post types labels
+msgid "Rooms"
+msgstr ""
+
+msgid "Apartments"
+msgstr ""
+
+msgid "Houses"
+msgstr ""
+
+msgid "Plots"
+msgstr ""
+
+msgid "Garages"
+msgstr ""
+
+msgid "Commercial"
+msgstr ""
+
+msgid "Dachas"
+msgstr ""
+
+# Admin labels
+msgid "Add new"
+msgstr ""
+
+msgid "Add new %s"
+msgstr ""
+
+msgid "New %s"
+msgstr ""
+
+msgid "Edit %s"
+msgstr ""
+
+msgid "View %s"
+msgstr ""
+
+msgid "All %s"
+msgstr ""
+
+msgid "Search %s"
+msgstr ""
+
+msgid "Parent %s:"
+msgstr ""
+
+msgid "Not found %s"
+msgstr ""
+
+msgid "Not found %s in trash"
+msgstr ""
+
+msgid "Continued"
+msgstr ""

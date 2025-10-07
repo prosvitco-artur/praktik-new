@@ -368,4 +368,46 @@
       @apply order-2;
     }
   }
+
+  /* Property Single Page Styles */
+  .property-single {
+    @apply bg-white;
+  }
+
+  .property-overview {
+    @apply px-4 py-6;
+  }
+
+  .property-description {
+    @apply bg-gray-50 px-4 py-6;
+  }
+
+  .property-detail {
+    @apply mb-4 flex;
+  }
+
+  .property-detail:last-child {
+    @apply mb-0;
+  }
+
+  /* Mobile-first responsive adjustments */
+  @media (min-width: 768px) {
+    .property-overview {
+      @apply px-6 py-8;
+    }
+
+    .property-description {
+      @apply px-6 py-8;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .property-overview {
+      @apply px-8 py-10;
+    }
+
+    .property-description {
+      @apply px-8 py-10;
+    }
+  }
 }

@@ -77,3 +77,16 @@ collect(['setup', 'filters', 'helpers', 'post-types'])
 */
 
 add_theme_support('sage');
+
+/*
+|--------------------------------------------------------------------------
+| Load Theme Text Domain
+|--------------------------------------------------------------------------
+|
+| Load the theme text domain for translations.
+|
+*/
+
+add_action('after_setup_theme', function () {
+    load_theme_textdomain('praktik', get_template_directory() . '/languages');
+});
