@@ -193,3 +193,32 @@ msgstr "Оберіть меблі"
 
 msgid "Yes"
 msgstr "Так"
+
+# Desktop version translations
+msgid "Back to catalog"
+msgstr "Назад до каталогу"
+
+msgid "No image available"
+msgstr "Зображення недоступне"
+
+msgid "Agent Name"
+msgstr "Ім'я Фамілія"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Write to Telegram"
+msgstr "Написати в Telegram"
+
+# Gallery translations
+msgid "Property Gallery"
+msgstr "Галерея нерухомості"
+
+msgid "Add Images to Gallery"
+msgstr "Додати зображення до галереї"
+
+msgid "Select Images for Gallery"
+msgstr "Оберіть зображення для галереї"
+
+msgid "Add to Gallery"
+msgstr "Додати до галереї"

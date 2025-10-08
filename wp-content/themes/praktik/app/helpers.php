@@ -158,3 +158,43 @@ function get_property_type_label($post_type) {
     
     return $types[$post_type] ?? ucfirst($post_type);
 }
+
+function get_property_gallery($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+    
+    $gallery_ids = carbon_get_post_meta($post_id, 'property_gallery');
+    
+    if (!is_array($gallery_ids) || empty($gallery_ids)) {
+        return [];
+    }
+    
+    $gallery = [];
+    
+    foreach ($gallery_ids as $image_id) {
+        if ($image_id) {
+            $image_data = [
+                'id' => $image_id,
+                'url' => wp_get_attachment_image_url($image_id, 'large'),
+                'thumbnail' => wp_get_attachment_image_url($image_id, 'medium'),
+                'alt' => get_post_meta($image_id, '_wp_attachment_image_alt', true),
+                'title' => get_the_title($image_id),
+            ];
+            
+            if ($image_data['url']) {
+                $gallery[] = $image_data;
+            }
+        }
+    }
+    
+    return $gallery;
+}
+
+/**
+ * Отримати кількість зображень в галереї
+ */
+function get_property_gallery_count($post_id = null) {
+    $gallery = get_property_gallery($post_id);
+    return count($gallery);
+}

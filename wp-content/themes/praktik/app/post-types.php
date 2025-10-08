@@ -2,9 +2,13 @@
 
 namespace App;
 
-/**
- * Реєстрація пост тайпів нерухомості
- */
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
+add_action('after_setup_theme', function() {
+    \Carbon_Fields\Carbon_Fields::boot();
+});
+
 add_action('init', function () {
     $post_types = get_property_post_types();
     
@@ -98,161 +102,79 @@ add_filter('pre_get_posts', function ($query) {
     return $query;
 });
 
-/**
- * Додати мета бокс для нерухомості
- */
-add_action('add_meta_boxes', function () {
+add_action('carbon_fields_register_fields', function() {
     $property_post_types = array_keys(get_property_post_types());
     
-    foreach ($property_post_types as $post_type) {
-        add_meta_box(
-            'property_details',
-            __('Property Details', 'praktik'),
-            'App\render_property_meta_box',
-            $post_type,
-            'normal',
-            'high'
-        );
-    }
-});
-
-/**
- * Рендер мета боксу для нерухомості
- */
-function render_property_meta_box($post) {
-    wp_nonce_field('property_meta_box', 'property_meta_box_nonce');
-    
-    $meta_fields = [
-        'property_price' => __('Price', 'praktik'),
-        'property_city' => __('City', 'praktik'),
-        'property_district' => __('District', 'praktik'),
-        'property_street' => __('Street', 'praktik'),
-        'property_rooms' => __('Number of Rooms', 'praktik'),
-        'property_area' => __('Total Area (m²)', 'praktik'),
-        'property_floor' => __('Floor', 'praktik'),
-        'property_total_floors' => __('Total Floors', 'praktik'),
-        'property_year_built' => __('Year Built', 'praktik'),
-        'property_condition' => __('Condition', 'praktik'),
-        'property_furniture' => __('Furniture', 'praktik'),
-        'property_heating' => __('Heating', 'praktik'),
-        'property_parking' => __('Parking', 'praktik'),
-        'property_balcony' => __('Balcony', 'praktik'),
-        'property_elevator' => __('Elevator', 'praktik'),
-        'property_photos_count' => __('Photos Count', 'praktik'),
-    ];
-    
-    echo '<table class="form-table">';
-    
-    foreach ($meta_fields as $field_key => $field_label) {
-        $value = get_post_meta($post->ID, $field_key, true);
-        
-        echo '<tr>';
-        echo '<th scope="row"><label for="' . esc_attr($field_key) . '">' . esc_html($field_label) . '</label></th>';
-        echo '<td>';
-        
-        if ($field_key === 'property_condition') {
-            $conditions = [
-                'excellent' => __('Excellent', 'praktik'),
-                'good' => __('Good', 'praktik'),
-                'fair' => __('Fair', 'praktik'),
-                'needs_renovation' => __('Needs Renovation', 'praktik'),
-            ];
+    Container::make('post_meta', __('Property Details', 'praktik'))
+        ->where('post_type', 'IN', $property_post_types)
+        ->add_tab(__('Basic Information', 'praktik'), [
+            Field::make('text', 'property_price', __('Price', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('step', '1')
+                ->set_help_text(__('Price in USD', 'praktik')),
             
-            echo '<select name="' . esc_attr($field_key) . '" id="' . esc_attr($field_key) . '">';
-            echo '<option value="">' . __('Select Condition', 'praktik') . '</option>';
+            Field::make('text', 'property_city', __('City', 'praktik')),
             
-            foreach ($conditions as $condition_value => $condition_label) {
-                $selected = selected($value, $condition_value, false);
-                echo '<option value="' . esc_attr($condition_value) . '"' . $selected . '>' . esc_html($condition_label) . '</option>';
-            }
+            Field::make('text', 'property_district', __('District', 'praktik')),
             
-            echo '</select>';
-        } elseif ($field_key === 'property_furniture') {
-            $furniture_options = [
-                'furnished' => __('Furnished', 'praktik'),
-                'semi_furnished' => __('Semi-furnished', 'praktik'),
-                'unfurnished' => __('Unfurnished', 'praktik'),
-            ];
+            Field::make('text', 'property_street', __('Street', 'praktik')),
             
-            echo '<select name="' . esc_attr($field_key) . '" id="' . esc_attr($field_key) . '">';
-            echo '<option value="">' . __('Select Furniture', 'praktik') . '</option>';
+            Field::make('text', 'property_rooms', __('Number of Rooms', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0'),
             
-            foreach ($furniture_options as $furniture_value => $furniture_label) {
-                $selected = selected($value, $furniture_value, false);
-                echo '<option value="' . esc_attr($furniture_value) . '"' . $selected . '>' . esc_html($furniture_label) . '</option>';
-            }
+            Field::make('text', 'property_area', __('Total Area (m²)', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0'),
+        ])
+        ->add_tab(__('Building Details', 'praktik'), [
+            Field::make('text', 'property_floor', __('Floor', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0'),
             
-            echo '</select>';
-        } elseif (in_array($field_key, ['property_parking', 'property_balcony', 'property_elevator'])) {
-            $checked = checked($value, '1', false);
-            echo '<input type="checkbox" name="' . esc_attr($field_key) . '" id="' . esc_attr($field_key) . '" value="1"' . $checked . '>';
-            echo '<label for="' . esc_attr($field_key) . '">' . __('Yes', 'praktik') . '</label>';
-        } else {
-            $input_type = in_array($field_key, ['property_price', 'property_area', 'property_floor', 'property_total_floors', 'property_year_built', 'property_photos_count']) ? 'number' : 'text';
-            echo '<input type="' . esc_attr($input_type) . '" name="' . esc_attr($field_key) . '" id="' . esc_attr($field_key) . '" value="' . esc_attr($value) . '" class="regular-text" />';
-        }
-        
-        echo '</td>';
-        echo '</tr>';
-    }
-    
-    echo '</table>';
-}
-
-/**
- * Збереження мета полів нерухомості
- */
-add_action('save_post', function ($post_id) {
-    $property_post_types = array_keys(get_property_post_types());
-    
-    if (!in_array(get_post_type($post_id), $property_post_types)) {
-        return;
-    }
-    
-    if (!isset($_POST['property_meta_box_nonce']) || !wp_verify_nonce($_POST['property_meta_box_nonce'], 'property_meta_box')) {
-        return;
-    }
-    
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
-    
-    $meta_fields = [
-        'property_price',
-        'property_city',
-        'property_district',
-        'property_street',
-        'property_rooms',
-        'property_area',
-        'property_floor',
-        'property_total_floors',
-        'property_year_built',
-        'property_condition',
-        'property_furniture',
-        'property_heating',
-        'property_parking',
-        'property_balcony',
-        'property_elevator',
-        'property_photos_count',
-    ];
-    
-    foreach ($meta_fields as $field) {
-        if (isset($_POST[$field])) {
-            $value = sanitize_text_field($_POST[$field]);
+            Field::make('text', 'property_total_floors', __('Total Floors', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '1'),
             
-            if (in_array($field, ['property_parking', 'property_balcony', 'property_elevator'])) {
-                $value = isset($_POST[$field]) ? '1' : '0';
-            }
+            Field::make('text', 'property_year_built', __('Year Built', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '1800')
+                ->set_attribute('max', date('Y')),
             
-            update_post_meta($post_id, $field, $value);
-        } else {
-            if (in_array($field, ['property_parking', 'property_balcony', 'property_elevator'])) {
-                update_post_meta($post_id, $field, '0');
-            }
-        }
-    }
+            Field::make('select', 'property_condition', __('Condition', 'praktik'))
+                ->set_options([
+                    '' => __('Select Condition', 'praktik'),
+                    'excellent' => __('Excellent', 'praktik'),
+                    'good' => __('Good', 'praktik'),
+                    'fair' => __('Fair', 'praktik'),
+                    'needs_renovation' => __('Needs Renovation', 'praktik'),
+                ]),
+            
+            Field::make('select', 'property_furniture', __('Furniture', 'praktik'))
+                ->set_options([
+                    '' => __('Select Furniture', 'praktik'),
+                    'furnished' => __('Furnished', 'praktik'),
+                    'semi_furnished' => __('Semi-furnished', 'praktik'),
+                    'unfurnished' => __('Unfurnished', 'praktik'),
+                ]),
+            
+            Field::make('text', 'property_heating', __('Heating', 'praktik')),
+        ])
+        ->add_tab(__('Amenities', 'praktik'), [
+            Field::make('checkbox', 'property_parking', __('Parking', 'praktik')),
+            
+            Field::make('checkbox', 'property_balcony', __('Balcony', 'praktik')),
+            
+            Field::make('checkbox', 'property_elevator', __('Elevator', 'praktik')),
+        ])
+        ->add_tab(__('Gallery', 'praktik'), [
+            Field::make('media_gallery', 'property_gallery', __('Property Gallery', 'praktik'))
+                ->set_help_text(__('Add property images', 'praktik')),
+            
+            Field::make('text', 'property_photos_count', __('Photos Count', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0')
+                ->set_help_text(__('Manual photo counter (optional)', 'praktik')),
+        ]);
 });

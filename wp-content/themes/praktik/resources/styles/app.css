@@ -374,12 +374,16 @@
     @apply bg-white;
   }
 
-  .property-overview {
-    @apply px-4 py-6;
+  .property-gallery {
+    @apply mb-6;
+  }
+
+  .property-details {
+    @apply space-y-4;
   }
 
   .property-description {
-    @apply bg-gray-50 px-4 py-6;
+    @apply bg-gray-50 py-6;
   }
 
   .property-detail {
@@ -392,22 +396,35 @@
 
   /* Mobile-first responsive adjustments */
   @media (min-width: 768px) {
-    .property-overview {
-      @apply px-6 py-8;
-    }
-
     .property-description {
-      @apply px-6 py-8;
+      @apply py-8;
     }
   }
 
   @media (min-width: 1024px) {
-    .property-overview {
-      @apply px-8 py-10;
+    .property-gallery {
+      @apply mb-0;
     }
 
     .property-description {
-      @apply px-8 py-10;
+      @apply py-10;
     }
+  }
+
+  /* Admin Gallery Styles */
+  .gallery-preview {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+
+  .gallery-item {
+    @apply relative inline-block;
+  }
+
+  .gallery-item img {
+    @apply w-20 h-20 object-cover rounded border;
+  }
+
+  .gallery-item .remove-image {
+    @apply absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-red-600 cursor-pointer;
   }
 }
