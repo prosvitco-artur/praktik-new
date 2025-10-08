@@ -27,9 +27,7 @@
       aria-label="Закрити меню"
       data-mobile-menu-close
     >
-      <svg class="w-24px h-24px text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
+      <x-icon name="close" class="w-24px h-24px text-neutral-900 stroke-current" />
     </button>
   </div>
 
@@ -51,9 +49,7 @@
     <a href="{{ home_url('/saved') }}" class="flex items-center justify-between py-12px">
       <span class="text-p1 text-neutral-900">Збережені</span>
       <div class="flex items-center gap-8px">
-        <svg class="w-20px h-20px text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-        </svg>
+        <x-icon name="bookmark" class="w-20px h-20px text-neutral-600 stroke-current" />
         <span class="text-p2 text-neutral-600">0</span>
       </div>
     </a>

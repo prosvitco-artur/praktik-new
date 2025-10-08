@@ -11,9 +11,7 @@
   {{-- Back to catalog link --}}
   <div class="container mx-auto py-4">
     <a href="javascript:history.back()" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
+      <x-icon name="chevron-left" class="w-4 h-4 stroke-current" />
       {{ __('Back to catalog', 'praktik') }}
     </a>
   </div>
@@ -44,14 +42,10 @@
           {{-- Navigation arrows --}}
           @if($gallery_count > 1)
             <button class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
-              <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
+              <x-icon name="chevron-left" class="w-4 h-4 text-gray-700 stroke-current" />
             </button>
             <button class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
-              <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
+              <x-icon name="chevron-right" class="w-4 h-4 text-gray-700 stroke-current" />
             </button>
           @endif
           
@@ -98,14 +92,10 @@
           {{-- Action buttons --}}
           <div class="flex gap-2 ml-4">
             <button class="w-10 h-10 bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
-              </svg>
+              <x-icon name="share" class="w-5 h-5 text-gray-700 stroke-current" />
             </button>
             <button class="w-10 h-10 bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-              </svg>
+              <x-icon name="bookmark" class="w-5 h-5 text-gray-700 stroke-current" />
             </button>
           </div>
         </div>
@@ -151,18 +141,14 @@
         {{-- Agent information --}}
         <div class="bg-gray-50 p-4 flex items-center gap-4">
           <div class="w-12 h-12 bg-gray-300 flex items-center justify-center">
-            <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
+            <x-icon name="user" class="w-6 h-6 text-gray-600" />
           </div>
           <div class="flex-1">
             <div class="font-medium text-gray-900">{{ __('Agent Name', 'praktik') }}</div>
             <div class="text-sm text-gray-600">{{ __('Phone', 'praktik') }}: +38 (067) 123-45-67</div>
           </div>
           <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 flex items-center gap-2 text-sm transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
+            <x-icon name="check" class="w-4 h-4" />
             {{ __('Write to Telegram', 'praktik') }}
           </button>
         </div>
