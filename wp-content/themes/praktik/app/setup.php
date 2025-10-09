@@ -165,3 +165,23 @@ add_action('customize_register', function ($wp_customize) {
 add_shortcode('property_search_form', function () {
     return view('forms.property-search')->render();
 });
+
+add_action('init', function () {
+    add_rewrite_rule('^favorites/?$', 'index.php?favorites=1', 'top');
+});
+
+add_filter('query_vars', function ($vars) {
+    $vars[] = 'favorites';
+    return $vars;
+});
+
+add_filter('template_include', function ($template) {
+    if (get_query_var('favorites')) {
+        return get_theme_file_path('template-favorites.php');
+    }
+    return $template;
+});
+
+add_action('after_switch_theme', function () {
+    flush_rewrite_rules();
+});

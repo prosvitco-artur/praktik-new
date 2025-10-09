@@ -126,3 +126,109 @@ msgstr ""
 
 msgid "Continued"
 msgstr ""
+
+# Admin meta box translations
+msgid "Property Details"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Floor"
+msgstr ""
+
+msgid "Total Floors"
+msgstr ""
+
+msgid "Year Built"
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Furniture"
+msgstr ""
+
+msgid "Heating"
+msgstr ""
+
+msgid "Parking"
+msgstr ""
+
+msgid "Balcony"
+msgstr ""
+
+msgid "Elevator"
+msgstr ""
+
+msgid "Photos Count"
+msgstr ""
+
+msgid "Excellent"
+msgstr ""
+
+msgid "Good"
+msgstr ""
+
+msgid "Fair"
+msgstr ""
+
+msgid "Needs Renovation"
+msgstr ""
+
+msgid "Select Condition"
+msgstr ""
+
+msgid "Furnished"
+msgstr ""
+
+msgid "Semi-furnished"
+msgstr ""
+
+msgid "Unfurnished"
+msgstr ""
+
+msgid "Select Furniture"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+# Desktop version translations
+msgid "Back to catalog"
+msgstr ""
+
+msgid "No image available"
+msgstr ""
+
+msgid "Agent Name"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Write to Telegram"
+msgstr ""
+
+# Gallery translations
+msgid "Property Gallery"
+msgstr ""
+
+msgid "Add Images to Gallery"
+msgstr ""
+
+msgid "Select Images for Gallery"
+msgstr ""
+
+msgid "Add to Gallery"
+msgstr ""
+
+# Favorites page translations
+msgid "Favorites"
+msgstr ""
+
+msgid "Your savings items will be here."
+msgstr ""
+
+msgid "Select those that deserve the most, and equalize them at any time."
+msgstr ""
