@@ -411,6 +411,49 @@
     }
   }
 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 44px;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn--primary {
+    color: #ffffff;
+    background-color: #4a68ad;
+  }
+
+  .btn--primary:hover {
+    background-color: #3d5691;
+  }
+
+  .btn--primary:active {
+    background-color: #334776;
+  }
+
+  .btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn--full {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .btn {
+      padding: 0 2rem;
+    }
+  }
+
   /* Admin Gallery Styles */
   .gallery-preview {
     @apply flex flex-wrap gap-2 mb-4;

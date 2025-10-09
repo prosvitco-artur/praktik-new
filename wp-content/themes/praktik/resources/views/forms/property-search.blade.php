@@ -27,8 +27,8 @@
         </select>
       </div>
 
-      <button type="submit" class="property-search-form__submit">
-        <span>Шукати</span>
+      <button type="submit" class="btn btn--primary">
+        <span>{{ __('Search', 'praktik') }}</span>
         <x-icon name="search" class="w-5 h-5 stroke-current" />
       </button>
     </div>
