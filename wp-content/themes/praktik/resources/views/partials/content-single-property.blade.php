@@ -76,7 +76,7 @@
         {{-- Title and actions --}}
         <div class="flex items-start justify-between mb-4">
           <div class="flex-1">
-            <h1 class="text-h2 font-bold text-gray-900 mb-2">
+            <h1 class="text-h2 text-gray-900 mb-2">
               {{ get_the_title() ?: __('No Title', 'praktik') }}
             </h1>
             <div class="text-sm text-gray-600 mb-4">
@@ -160,7 +160,7 @@
   @if(get_the_content())
     <section class="property-description bg-gray-50 py-6">
       <div class="container mx-auto px-4">
-        <h2 class="text-h4 font-bold text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</h2>
+        <h2 class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</h2>
         <div class="property-content text-p1 text-gray-700 leading-relaxed">
           @php(the_content())
         </div>

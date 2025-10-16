@@ -3,7 +3,7 @@
 @section('content')
   @include('partials.archive-header')
   
-  <div class="container px-4 py-8">
+  <div class="container">
 
     @if (! have_posts())
       <x-alert type="warning">

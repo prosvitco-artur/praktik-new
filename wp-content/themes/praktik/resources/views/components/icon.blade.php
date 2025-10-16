@@ -10,7 +10,7 @@ if ($class) {
 }
 @endphp
 
-<svg {{ $attributes->merge(['class' => $classes, 'aria-hidden' => 'true', 'focusable' => 'false']) }}>
+<svg class="{{ $classes }}" aria-hidden="true" focusable="false">
     <use href="#icon-{{ $name }}"></use>
 </svg>
 

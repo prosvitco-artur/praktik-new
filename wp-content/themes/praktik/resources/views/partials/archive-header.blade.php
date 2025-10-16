@@ -1,5 +1,5 @@
 <header class="archive-header">
-  <div class="container px-4 py-8">
+  <div class="container">
     <div class="archive-search">
       <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ get_post_type_archive_link(get_post_type()) }}">
         <div class="w-full relative">

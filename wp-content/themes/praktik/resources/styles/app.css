@@ -64,7 +64,7 @@
 /* Custom Styles */
 @layer components {
   .main {
-    @apply flex-1;
+    @apply flex-1 px-16px;
   }
 
   /* Container */
@@ -219,7 +219,7 @@
     display: block;
   }
 
-  .property-title::after {
+  /* .property-title::after {
     position: absolute;
     content: "";
     width: 100%;
@@ -227,7 +227,7 @@
     top: 0;
     left: 0;
     z-index: 1;
-  }
+  } */
 
   .line-clamp-2 {
     display: -webkit-box;
@@ -243,6 +243,10 @@
 
   .bookmark-button:hover .bookmark-count {
     @apply text-primary-600;
+  }
+
+  .bookmark-button:hover .icon-bookmark path{
+    @apply stroke-primary-600;
   }
 
   .bookmark-button:focus {

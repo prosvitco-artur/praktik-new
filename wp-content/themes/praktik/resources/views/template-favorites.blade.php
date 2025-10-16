@@ -2,7 +2,7 @@
 
 @section('content')
   @if($has_favorites)
-    <div class="container px-4 py-8">
+    <div class="container">
       <header class="page-header mb-8">
         <h1 class="text-3xl font-bold text-neutral-900">
           {{ __('Favorites', 'praktik') }}
