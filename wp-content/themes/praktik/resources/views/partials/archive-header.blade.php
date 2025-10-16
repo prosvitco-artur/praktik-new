@@ -25,16 +25,33 @@
     <!-- Filter Buttons -->
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between">
-        <div class="block">
+        <div class="block relative">
           <label class="hidden md:block text-sm text-neutral-600 mb-2">Категорія</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
             id="category-dropdown"
+            data-dropdown-toggle="category"
           >
             <span class="text-p1">Квартири</span>
             <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
           </button>
+          
+          {{-- Dropdown Menu --}}
+          <div class="dropdown-menu absolute top-full left-0 w-full bg-white border border-info-600 rounded-lg shadow-lg z-10 hidden" data-dropdown-content="category">
+            <div class="py-2">
+              @foreach(\App\get_property_categories() as $key => $label)
+                <button 
+                  type="button"
+                  class="dropdown-item w-full px-4 py-2 text-left text-sm hover:bg-neutral-50 transition-colors {{ $key === 'apartments' ? 'text-info-600' : 'text-neutral-700' }}"
+                  data-value="{{ $key }}"
+                  data-label="{{ $label }}"
+                >
+                  {{ $label }}
+                </button>
+              @endforeach
+            </div>
+          </div>
         </div>
 
         <div class="hidden md:block">
