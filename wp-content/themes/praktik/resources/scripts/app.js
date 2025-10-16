@@ -5,7 +5,7 @@ import domReady from '@roots/sage/client/dom-ready';
  */
 class FilterPanel {
   constructor() {
-    this.filterToggle = document.querySelector('[data-filter-panel-toggle]');
+    this.filterToggles = document.querySelectorAll('[data-filter-panel-toggle]');
     this.filterPanel = document.querySelector('[data-filter-panel]');
     this.filterOverlay = document.querySelector('[data-filter-panel-overlay]');
     this.filterClose = document.querySelector('[data-filter-panel-close]');
@@ -18,10 +18,12 @@ class FilterPanel {
   }
 
   init() {
-    if (!this.filterToggle || !this.filterPanel || !this.filterOverlay) return;
+    if (!this.filterToggles.length || !this.filterPanel || !this.filterOverlay) return;
 
     // Toggle filter panel
-    this.filterToggle.addEventListener('click', () => this.toggle());
+    this.filterToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => this.toggle());
+    });
     this.filterClose?.addEventListener('click', () => this.close());
     this.filterOverlay.addEventListener('click', () => this.close());
 
@@ -64,7 +66,9 @@ class FilterPanel {
     this.isOpen = true;
     this.filterPanel.classList.remove('translate-y-full');
     this.filterOverlay.classList.remove('opacity-0', 'invisible');
-    this.filterToggle.setAttribute('aria-expanded', 'true');
+    this.filterToggles.forEach(toggle => {
+      toggle.setAttribute('aria-expanded', 'true');
+    });
     this.filterOverlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
@@ -73,7 +77,9 @@ class FilterPanel {
     this.isOpen = false;
     this.filterPanel.classList.add('translate-y-full');
     this.filterOverlay.classList.add('opacity-0', 'invisible');
-    this.filterToggle.setAttribute('aria-expanded', 'false');
+    this.filterToggles.forEach(toggle => {
+      toggle.setAttribute('aria-expanded', 'false');
+    });
     this.filterOverlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }

@@ -25,16 +25,89 @@
     <!-- Filter Buttons -->
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between">
-        <button 
-          type="button"
-          class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-          id="filter-dropdown"
-        >
-          <span class="text-p1">Квартири</span>
-          <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-        </button>
+        <div class="block">
+          <label class="block text-sm text-neutral-600 mb-2">Категорія</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">Квартири</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+        </div>
+
+        <div class="block">
+          <label class="block text-sm text-neutral-600 mb-2">Тип об’єкту</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">Новобудова</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+        </div>
+
+        <div class="block">
+          <label class="block text-sm text-neutral-600 mb-2">Кількість кімнат</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">Всі</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+        </div>
+
+        <div class="block">
+          <label class="block text-sm text-neutral-600 mb-2">Загальна площа</label>
+          <div class="flex items-center gap-2">
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">Від:</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">до:</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+          </div>
+        </div>
+
+        <div class="block">
+          <label class="block text-sm text-neutral-600 mb-2">Загальна площа</label>
+          <div class="flex items-center gap-2">
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">Від:</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="filter-dropdown"
+          >
+            <span class="text-p1">до:</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+          </div>
+        </div>
         
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 md:hidden">
            <button 
              type="button"
              class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5" 
