@@ -20,7 +20,7 @@
 
   {{-- Filter Header --}}
   <div class="flex items-center justify-between px-16px py-12px border-b border-neutral-200">
-    <h2 class="text-p1 font-bold text-neutral-900">Фільтри</h2>
+    <h2 class="text-p1 font-bold text-neutral-900">Фільтрувати</h2>
     <button 
       type="button"
       class="filter-panel-close p-8px -mr-8px"
@@ -32,80 +32,133 @@
   </div>
 
   {{-- Filter Content --}}
-  <div class="filter-panel-content py-16px px-16px">
-    <div class="space-y-6">
-      {{-- Property Type Filter --}}
-      <div class="filter-section">
-        <h3 class="text-p1 font-semibold text-neutral-900 mb-3">Тип нерухомості</h3>
-        <div class="space-y-2">
+  <div class="filter-panel-content">
+    <div class="space-y-0">
+      {{-- Object Type Filter --}}
+      <div class="filter-section border-b border-neutral-200">
+        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="object-type">
+          <span class="text-p1 text-neutral-900">Тип об'єкту</span>
+          <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
+        </button>
+        <div class="filter-content px-4 pb-4 space-y-3 hidden" data-filter-content="object-type">
           <label class="flex items-center gap-3 cursor-pointer">
-            <input type="radio" name="property_type" value="apartment" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">Квартири</span>
+            <input type="radio" name="object_type" value="new" class="w-4 h-4 text-info-600" checked>
+            <span class="text-p1 text-neutral-700">Новобудова</span>
           </label>
           <label class="flex items-center gap-3 cursor-pointer">
-            <input type="radio" name="property_type" value="house" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">Будинки</span>
-          </label>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="radio" name="property_type" value="commercial" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">Комерційна нерухомість</span>
+            <input type="radio" name="object_type" value="secondary" class="w-4 h-4 text-info-600">
+            <span class="text-p1 text-neutral-700">Вторинний ринок</span>
           </label>
         </div>
       </div>
 
-      {{-- Price Range Filter --}}
-      <div class="filter-section">
-        <h3 class="text-p1 font-semibold text-neutral-900 mb-3">Ціна</h3>
-        <div class="space-y-3">
-          <div class="flex gap-2">
-            <input 
-              type="number" 
-              placeholder="Від" 
-              class="flex-1 px-3 py-2 border border-neutral-300 rounded-lg text-p1"
-            >
-            <input 
-              type="number" 
-              placeholder="До" 
-              class="flex-1 px-3 py-2 border border-neutral-300 rounded-lg text-p1"
-            >
+      {{-- Number of Rooms Filter --}}
+      <div class="filter-section border-b border-neutral-200">
+        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="rooms">
+          <span class="text-p1 text-neutral-900">Кількість кімнат</span>
+          <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
+        </button>
+        <div class="filter-content px-4 pb-4 space-y-3 hidden" data-filter-content="rooms">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="rooms" value="all" class="w-4 h-4 text-info-600" checked>
+            <span class="text-p1 text-neutral-700">Всі</span>
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="room_1" value="1" class="w-4 h-4 text-info-600">
+              <span class="text-p1 text-neutral-700">1</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="room_2" value="2" class="w-4 h-4 text-info-600">
+              <span class="text-p1 text-neutral-700">2</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="room_3" value="3" class="w-4 h-4 text-info-600">
+              <span class="text-p1 text-neutral-700">3</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="room_4" value="4+" class="w-4 h-4 text-info-600">
+              <span class="text-p1 text-neutral-700">4+</span>
+            </label>
           </div>
         </div>
       </div>
 
-      {{-- Area Filter --}}
-      <div class="filter-section">
-        <h3 class="text-p1 font-semibold text-neutral-900 mb-3">Площа</h3>
-        <div class="space-y-2">
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" name="area" value="0-50" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">До 50 м²</span>
-          </label>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" name="area" value="50-100" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">50-100 м²</span>
-          </label>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" name="area" value="100+" class="w-4 h-4 text-primary-600">
-            <span class="text-p1 text-neutral-700">Понад 100 м²</span>
-          </label>
+      {{-- Total Area Filter --}}
+      <div class="filter-section border-b border-neutral-200">
+        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="area">
+          <span class="text-p1 text-neutral-900">Загальна площа</span>
+          <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
+        </button>
+        <div class="filter-content px-4 pb-4 hidden" data-filter-content="area">
+          <div class="py-4">
+            <div class="relative">
+              <div class="h-2 bg-neutral-200 rounded-full">
+                <div class="h-2 bg-info-600 rounded-full" style="width: 100%"></div>
+              </div>
+              <div class="flex justify-between mt-2">
+                <span class="text-sm text-neutral-600">20 м²</span>
+                <span class="text-sm text-neutral-600">100 м²</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- Price Filter --}}
+      <div class="filter-section border-b border-neutral-200">
+        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="price">
+          <span class="text-p1 text-neutral-900">Ціна</span>
+          <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
+        </button>
+        <div class="filter-content px-4 pb-4 hidden" data-filter-content="price">
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm text-neutral-600 mb-1">Від:</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
+                  <input type="number" value="0" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="0">
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm text-neutral-600 mb-1">до:</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
+                  <input type="number" value="150000" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="150 000">
+                </div>
+              </div>
+            </div>
+            <div class="py-4">
+              <div class="relative">
+                <div class="h-2 bg-neutral-200 rounded-full">
+                  <div class="h-2 bg-info-600 rounded-full" style="width: 100%"></div>
+                </div>
+                <div class="flex justify-between mt-2">
+                  <span class="text-sm text-neutral-600">$ 0</span>
+                  <span class="text-sm text-neutral-600">$ 150 000</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   {{-- Filter Actions --}}
-  <div class="mt-auto border-t border-neutral-200 px-16px py-16px">
+  <div class="mt-auto border-t border-neutral-200 px-4 py-4">
     <div class="flex gap-3">
       <button 
         type="button"
-        class="flex-1 px-4 py-3 text-p1 text-neutral-600 border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors"
+        class="flex-1 px-4 py-3 text-p1 text-info-600 border border-info-600 rounded-lg hover:bg-info-50 transition-colors"
         data-filter-clear
       >
-        Очистити
+        Скинути
       </button>
       <button 
         type="button"
-        class="flex-1 px-4 py-3 text-p1 text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+        class="flex-1 px-4 py-3 text-p1 text-white bg-info-600 rounded-lg hover:bg-info-700 transition-colors"
         data-filter-apply
       >
         Застосувати

@@ -29,6 +29,12 @@ class FilterPanel {
     this.filterClear?.addEventListener('click', () => this.clearFilters());
     this.filterApply?.addEventListener('click', () => this.applyFilters());
 
+    // Filter section toggles
+    const filterToggles = document.querySelectorAll('[data-filter-toggle]');
+    filterToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => this.toggleFilterSection(e));
+    });
+
     // Close on ESC key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.isOpen) {
@@ -118,6 +124,27 @@ class FilterPanel {
     
     // Here you would typically trigger a search/filter request
     // For now, just log the filters
+  }
+
+  toggleFilterSection(e) {
+    const toggle = e.currentTarget;
+    const sectionId = toggle.getAttribute('data-filter-toggle');
+    const content = document.querySelector(`[data-filter-content="${sectionId}"]`);
+    const icon = toggle.querySelector('svg');
+    
+    if (!content) return;
+
+    const isExpanded = !content.classList.contains('hidden');
+    
+    if (isExpanded) {
+      content.classList.add('hidden');
+      icon?.classList.remove('rotate-180');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      content.classList.remove('hidden');
+      icon?.classList.add('rotate-180');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
   }
 }
 
