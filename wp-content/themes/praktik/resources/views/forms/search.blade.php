@@ -11,6 +11,5 @@
       name="s"
     >
   </label>
-
   <button>{{ _x('Search', 'submit button', 'sage') }}</button>
 </form>
