@@ -106,29 +106,28 @@ add_action('wp_footer', function() {
 add_action('admin_footer', function() {
     echo generate_svg_sprite();
 }, 999);
-
 function get_property_meta($post_id = null) {
     if (!$post_id) {
         $post_id = get_the_ID();
     }
     
     return [
-        'price' => get_post_meta($post_id, 'property_price', true),
-        'city' => get_post_meta($post_id, 'property_city', true),
-        'district' => get_post_meta($post_id, 'property_district', true),
-        'street' => get_post_meta($post_id, 'property_street', true),
-        'rooms' => get_post_meta($post_id, 'property_rooms', true),
-        'area' => get_post_meta($post_id, 'property_area', true),
-        'photos_count' => get_post_meta($post_id, 'property_photos_count', true) ?: 1,
-        'floor' => get_post_meta($post_id, 'property_floor', true),
-        'total_floors' => get_post_meta($post_id, 'property_total_floors', true),
-        'year_built' => get_post_meta($post_id, 'property_year_built', true),
-        'condition' => get_post_meta($post_id, 'property_condition', true),
-        'furniture' => get_post_meta($post_id, 'property_furniture', true),
-        'heating' => get_post_meta($post_id, 'property_heating', true),
-        'parking' => get_post_meta($post_id, 'property_parking', true),
-        'balcony' => get_post_meta($post_id, 'property_balcony', true),
-        'elevator' => get_post_meta($post_id, 'property_elevator', true),
+        'price' => carbon_get_post_meta($post_id, 'property_price'),
+        'city' => carbon_get_post_meta($post_id, 'property_city'),
+        'district' => carbon_get_post_meta($post_id, 'property_district'),
+        'street' => carbon_get_post_meta($post_id, 'property_street'),
+        'rooms' => carbon_get_post_meta($post_id, 'property_rooms'),
+        'area' => carbon_get_post_meta($post_id, 'property_area'),
+        'photos_count' => carbon_get_post_meta($post_id, 'property_photos_count') ?: 1,
+        'floor' => carbon_get_post_meta($post_id, 'property_floor'),
+        'total_floors' => carbon_get_post_meta($post_id, 'property_total_floors'),
+        'year_built' => carbon_get_post_meta($post_id, 'property_year_built'),
+        'condition' => carbon_get_post_meta($post_id, 'property_condition'),
+        'furniture' => carbon_get_post_meta($post_id, 'property_furniture'),
+        'heating' => carbon_get_post_meta($post_id, 'property_heating'),
+        'parking' => carbon_get_post_meta($post_id, 'property_parking'),
+        'balcony' => carbon_get_post_meta($post_id, 'property_balcony'),
+        'elevator' => carbon_get_post_meta($post_id, 'property_elevator'),
     ];
 }
 

@@ -65,6 +65,7 @@
 @layer components {
   .main {
     @apply flex-1 px-16px;
+    background-color: #F4F4F6;
   }
 
   /* Container */
@@ -373,22 +374,10 @@
     }
   }
 
-  /* Property Single Page Styles */
-  .property-single {
-    @apply bg-white;
-  }
-
   .property-gallery {
     @apply mb-6;
   }
 
-  .property-details {
-    @apply space-y-4;
-  }
-
-  .property-description {
-    @apply bg-gray-50 py-6;
-  }
 
   .property-detail {
     @apply mb-4 flex;
@@ -398,20 +387,27 @@
     @apply mb-0;
   }
 
-  /* Mobile-first responsive adjustments */
-  @media (min-width: 768px) {
-    .property-description {
-      @apply py-8;
-    }
-  }
-
   @media (min-width: 1024px) {
+    .property-single{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
     .property-gallery {
       @apply mb-0;
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    .property-details {
+      grid-column-start: 2;
+      grid-column-end: 3;
     }
 
     .property-description {
-      @apply py-10;
+      grid-column-start: 1;
+      grid-column-end: 2
     }
   }
 

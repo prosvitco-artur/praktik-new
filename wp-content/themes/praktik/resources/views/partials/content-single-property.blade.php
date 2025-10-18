@@ -7,8 +7,7 @@
   $gallery_count = get_property_gallery_count();
 @endphp
 
-<article @php(post_class('property-single bg-white min-h-screen'))>
-  {{-- Back to catalog link --}}
+<article @php(post_class('min-h-screen'))>
   <div class="container mx-auto py-4">
     <a href="javascript:history.back()" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
       <x-icon name="chevron-left" class="w-4 h-4 stroke-current" />
@@ -16,155 +15,136 @@
     </a>
   </div>
 
-  {{-- Main content area --}}
-  <div class="container mx-auto pb-6">
-    {{-- Desktop layout: two columns --}}
-    <div class="lg:grid lg:grid-cols-2 lg:gap-5">
-      
-      {{-- Left column: Image gallery --}}
+  <div class="container mx-auto mb-10">
+    <div class="property-single">
       <div class="property-gallery mb-6 lg:mb-0">
-        {{-- Main image --}}
         <div class="relative bg-gray-200 overflow-hidden mb-4" style="aspect-ratio: 3/2;">
           @if(!empty($property_gallery))
-            <img src="{{ $property_gallery[0]['url'] }}" 
-                 alt="{{ $property_gallery[0]['alt'] ?: get_the_title() }}" 
-                 class="w-full h-full object-cover">
+            <img src="{{ $property_gallery[0]['url'] }}" alt="{{ $property_gallery[0]['alt'] ?: get_the_title() }}"
+              class="w-full h-full object-cover">
           @elseif(has_post_thumbnail())
-            <img src="{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}" 
-                 alt="{{ get_the_title() }}" 
-                 class="w-full h-full object-cover">
+            <img src="{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}" alt="{{ get_the_title() }}"
+              class="w-full h-full object-cover">
           @else
             <div class="w-full h-full flex items-center justify-center text-gray-500">
               {{ __('No image available', 'praktik') }}
             </div>
           @endif
-          
+
           {{-- Navigation arrows --}}
           @if($gallery_count > 1)
-            <button class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
+            <button
+              class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
               <x-icon name="chevron-left" class="w-4 h-4 text-gray-700 stroke-current" />
             </button>
-            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
+            <button
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
               <x-icon name="chevron-right" class="w-4 h-4 text-gray-700 stroke-current" />
             </button>
           @endif
-          
+
           {{-- Photo counter --}}
           <div class="absolute bottom-2 right-2 bg-black bg-opacity-60 text-white px-2 py-1 text-sm">
             {{ __('PHOTO', 'praktik') }} 1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}
           </div>
         </div>
-        
+
         {{-- Thumbnail gallery --}}
         @if($gallery_count > 1)
           <div class="grid grid-cols-4 gap-2">
             @foreach($property_gallery as $index => $image)
               @if($index < 3)
-                <div class="relative bg-gray-200 overflow-hidden cursor-pointer {{ $index === 0 ? 'ring-2 ring-yellow-400' : '' }}" style="aspect-ratio: 4/3;">
-                  <img src="{{ $image['thumbnail'] }}" 
-                       alt="{{ $image['alt'] ?: $image['title'] }}" 
-                       class="w-full h-full object-cover">
+                <div
+                  class="relative bg-gray-200 overflow-hidden cursor-pointer {{ $index === 0 ? 'ring-2 ring-yellow-400' : '' }}"
+                  style="aspect-ratio: 4/3;">
+                  <img src="{{ $image['thumbnail'] }}" alt="{{ $image['alt'] ?: $image['title'] }}"
+                    class="w-full h-full object-cover">
                 </div>
               @endif
             @endforeach
           </div>
         @endif
       </div>
-      
+
       {{-- Right column: Property details --}}
-      <div class="property-details">
+      <div class="property-details ">
         {{-- Title and actions --}}
-        <div class="flex items-start justify-between mb-4">
-          <div class="flex-1">
-            <h1 class="text-h2 text-gray-900 mb-2">
-              {{ get_the_title() ?: __('No Title', 'praktik') }}
-            </h1>
-            <div class="text-sm text-gray-600 mb-4">
-              {{ __('ID', 'praktik') }} {{ get_the_ID() ?: __('Unknown ID', 'praktik') }}
+        <div class="md:bg-white md:p-10 mb-6">
+          <div class="md:flex md:items-start md:justify-between ">
+            <div class="flex-1 mb-5">
+              <h1 class="text-gray-900 mb-2 text-2xl">
+                {{ get_the_title() ?: __('No Title', 'praktik') }}
+              </h1>
+              <div class="text-sm text-gray-600 mb-3">
+                {{ __('ID', 'praktik') }} {{ get_the_ID() ?: __('Unknown ID', 'praktik') }}
+              </div>
+              @if(!empty($property_meta['price']))
+                <div class="text-[24px] leading-[130%] md:text-[32px] font-bold text-secondary-500">
+                  {{ format_property_price($property_meta['price']) }}
+                </div>
+              @endif
             </div>
-            @if(!empty($property_meta['price']))
-              <div class="text-4xl font-bold text-orange-500 mb-6">
-                {{ format_property_price($property_meta['price']) }}
+
+            <div class="hidden md:flex gap-2 ml-4">
+              <button class="w-8 h-8 flex items-center justify-center">
+                <x-icon name="share" />
+              </button>
+              <button class="w-8 h-8 flex items-center justify-center">
+                <x-icon name="bookmark" />
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            @if(!empty($property_meta['city']))
+              <div class="property-detail">
+                <div class="w-1/2 text-sm text-gray-500">{{ __('City', 'praktik') }}</div>
+                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['city'] }}</div>
+              </div>
+            @endif
+
+            @if(!empty($property_meta['district']))
+              <div class="property-detail">
+                <div class="w-1/2 text-sm text-gray-500">{{ __('District', 'praktik') }}</div>
+                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['district'] }}</div>
+              </div>
+            @endif
+
+            @if(!empty($property_meta['street']))
+              <div class="property-detail">
+                <div class="w-1/2 text-sm text-gray-500">{{ __('Street', 'praktik') }}</div>
+                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['street'] }}</div>
+              </div>
+            @endif
+
+            @if(!empty($property_meta['rooms']))
+              <div class="property-detail">
+                <div class="w-1/2 text-sm text-gray-500">{{ __('Number of Rooms', 'praktik') }}</div>
+                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['rooms'] }}</div>
+              </div>
+            @endif
+
+            @if(!empty($property_meta['area']))
+              <div class="property-detail">
+                <div class="w-1/2 text-sm text-gray-500">{{ __('Total Area', 'praktik') }}</div>
+                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['area'] }} m²</div>
               </div>
             @endif
           </div>
-          
-          {{-- Action buttons --}}
-          <div class="flex gap-2 ml-4">
-            <button class="w-10 h-10 bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <x-icon name="share" class="w-5 h-5 text-gray-700 stroke-current" />
-            </button>
-            <button class="w-10 h-10 bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <x-icon name="bookmark" class="w-5 h-5 text-gray-700 stroke-current" />
-            </button>
-          </div>
         </div>
 
-        {{-- Property details --}}
-        <div class="space-y-3 mb-6">
-          @if(!empty($property_meta['city']))
-            <div class="property-detail">
-              <div class="w-1/2 text-sm text-gray-500">{{ __('City', 'praktik') }}</div>
-              <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['city'] }}</div>
-            </div>
-          @endif
-
-          @if(!empty($property_meta['district']))
-            <div class="property-detail">
-              <div class="w-1/2 text-sm text-gray-500">{{ __('District', 'praktik') }}</div>
-              <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['district'] }}</div>
-            </div>
-          @endif
-
-          @if(!empty($property_meta['street']))
-            <div class="property-detail">
-              <div class="w-1/2 text-sm text-gray-500">{{ __('Street', 'praktik') }}</div>
-              <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['street'] }}</div>
-            </div>
-          @endif
-
-          @if(!empty($property_meta['rooms']))
-            <div class="property-detail">
-              <div class="w-1/2 text-sm text-gray-500">{{ __('Number of Rooms', 'praktik') }}</div>
-              <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['rooms'] }}</div>
-            </div>
-          @endif
-
-          @if(!empty($property_meta['area']))
-            <div class="property-detail">
-              <div class="w-1/2 text-sm text-gray-500">{{ __('Total Area', 'praktik') }}</div>
-              <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['area'] }} m²</div>
-            </div>
-          @endif
-        </div>
-
-        {{-- Agent information --}}
-        <div class="bg-gray-50 p-4 flex items-center gap-4">
-          <div class="w-12 h-12 bg-gray-300 flex items-center justify-center">
-            <x-icon name="user" class="w-6 h-6 text-gray-600" />
-          </div>
-          <div class="flex-1">
-            <div class="font-medium text-gray-900">{{ __('Agent Name', 'praktik') }}</div>
-            <div class="text-sm text-gray-600">{{ __('Phone', 'praktik') }}: +38 (067) 123-45-67</div>
-          </div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 flex items-center gap-2 text-sm transition-colors">
-            <x-icon name="check" class="w-4 h-4" />
-            {{ __('Write to Telegram', 'praktik') }}
-          </button>
+        <div class="md:bg-white md:p-10">
+          teser
         </div>
       </div>
-    </div>
-  </div>
-
-  {{-- Property description - full width --}}
-  @if(get_the_content())
-    <section class="property-description bg-gray-50 py-6">
-      <div class="container mx-auto px-4">
-        <h2 class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</h2>
+      @if(get_the_content())
+      <div class="property-description md:bg-white md:p-10">
+        <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
         <div class="property-content text-p1 text-gray-700 leading-relaxed">
           @php(the_content())
         </div>
       </div>
-    </section>
-  @endif
+      @endif
+    </div>
+  </div>
 </article>

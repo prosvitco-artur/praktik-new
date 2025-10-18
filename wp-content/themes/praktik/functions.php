@@ -90,3 +90,22 @@ add_theme_support('sage');
 add_action('after_setup_theme', function () {
     load_theme_textdomain('praktik', get_template_directory() . '/languages');
 });
+
+add_filter('airwpsync/get_post_types', function ($post_types) {
+    return array_map(function ($post_type) {
+        $post_type['enabled'] = true;
+        return $post_type;
+    }, $post_types);
+});
+
+add_filter('airwpsync/get_wp_fields', function ($fields, $module) {
+    if ($module === 'post' && isset($fields['post']['options'])) {
+        foreach ($fields['post']['options'] as &$option) {
+            if ($option['value'] === 'postmeta::custom_field') {
+                $option['enabled'] = true;
+                $option['label'] = __('Custom Field...', 'praktik');
+            }
+        }
+    }
+    return $fields;
+}, 20, 2);

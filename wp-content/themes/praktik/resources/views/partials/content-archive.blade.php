@@ -1,3 +1,9 @@
+@php
+  $post_type = get_post_type();
+  $property_meta = get_property_meta();
+  $property_address = $property_meta['street'] . ', ' . $property_meta['district'] . ', ' . $property_meta['city'];
+@endphp
+
 <article @php(post_class('bg-white mb-6 overflow-hidden property-card'))>
   <div class="flex flex-col md:flex-row">
     <div class="w-full md:w-[224px] h-48 md:h-auto bg-light-gray flex items-center justify-center">
@@ -15,22 +21,22 @@
             </a>
           </h2>
           <div class="text-h4 text-neutral-500 hidden md:block">
-            <span>32000 $</span>
+            <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
         </div>
 
         <div class="flex items-center mb-3">
           <x-icon name="location" class="w-5 h-5 text-neutral-400 mr-2 flex-shrink-0" />
-          <span class="text-p1 text-neutral-600 truncate">вул. І. Багряного, Олександрівка, Чернігів</span>
+          <span class="text-p1 text-neutral-600 truncate">{{ $property_address }}</span>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <x-icon name="qube-2" class="w-5 h-5 text-neutral-400 mr-2 flex-shrink-0" />
-            <span class="text-p2 text-neutral-600">45 м²</span>
+            <span class="text-p2 text-neutral-600">{{ $property_meta['area'] }} м²</span>
           </div>
           <div class="text-h4 text-neutral-500 md:hidden">
-            <span>32000 $</span>
+            <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
         </div>
       </div>
