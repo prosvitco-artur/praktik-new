@@ -26,24 +26,49 @@
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between">
         <div class="block relative">
-          <label class="hidden md:block text-sm text-neutral-600 mb-2">Категорія</label>
+          <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
           <button 
             type="button"
             class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
             id="category-dropdown"
             data-dropdown-toggle="category"
           >
-            <span class="text-p1">Квартири</span>
+            <span class="text-p1">{{ get_property_post_types()[get_post_type()] }}</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          </button>
+          <div class="dropdown-menu" data-dropdown-content="category">
+            <div class="py-1">
+              @foreach(get_property_post_types() as $key => $label)
+                <a 
+                  href="{{ get_post_type_archive_link($key) }}"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium"
+                >
+                  {{ $label }}
+                </a>
+              @endforeach
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block relative">
+          <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            id="type-dropdown"
+            data-dropdown-toggle="type"
+          >
+            <span class="text-p1">{{ __('New Building', 'praktik') }}</span>
             <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
           </button>
           
           {{-- Dropdown Menu --}}
-          <div class="dropdown-menu" data-dropdown-content="category">
+          <div class="dropdown-menu" data-dropdown-content="type">
             <div class="py-2">
-              @foreach(\App\get_property_categories() as $key => $label)
+              @foreach(\App\get_property_types() as $key => $label)
                 <button 
                   type="button"
-                  class="dropdown-item w-full px-4 py-2 text-left text-sm transition-colors {{ $key === 'apartments' ? 'text-info-600' : 'text-neutral-700' }}"
+                  class="dropdown-item w-full px-4 py-2 text-left text-sm transition-colors {{ $key === 'new' ? 'text-info-600' : 'text-neutral-700' }}"
                   data-value="{{ $key }}"
                   data-label="{{ $label }}"
                 >
@@ -54,73 +79,114 @@
           </div>
         </div>
 
-        <div class="hidden md:block">
-          <label class="block text-sm text-neutral-600 mb-2">Тип об'єкту</label>
-          <button 
-            type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-            id="type-dropdown"
-          >
-            <span class="text-p1">Новобудова</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-          </button>
-        </div>
-
-        <div class="hidden md:block">
-          <label class="block text-sm text-neutral-600 mb-2">Кількість кімнат</label>
+        <div class="hidden md:block relative">
+          <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
           <button 
             type="button"
             class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
             id="rooms-dropdown"
+            data-dropdown-toggle="rooms"
           >
-            <span class="text-p1">Всі</span>
+            <span class="text-p1">{{ __('All', 'praktik') }}</span>
             <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
           </button>
-        </div>
-
-        <div class="hidden md:block">
-          <label class="block text-sm text-neutral-600 mb-2">Загальна площа</label>
-          <div class="flex items-center gap-2">
-            <button 
-              type="button"
-              class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-              id="area-from"
-            >
-              <span class="text-p1">Від:</span>
-              <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-            </button>
-
-            <button 
-              type="button"
-              class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-              id="area-to"
-            >
-              <span class="text-p1">до:</span>
-              <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-            </button>
+          
+          {{-- Dropdown Menu --}}
+          <div class="dropdown-menu" data-dropdown-content="rooms">
+            <div class="py-2">
+              @foreach(\App\get_room_counts() as $key => $label)
+                <button 
+                  type="button"
+                  class="dropdown-item w-full px-4 py-2 text-left text-sm transition-colors {{ $key === 'all' ? 'text-info-600' : 'text-neutral-700' }}"
+                  data-value="{{ $key }}"
+                  data-label="{{ $label }}"
+                >
+                  {{ $label }}
+                </button>
+              @endforeach
+            </div>
           </div>
         </div>
 
-        <div class="hidden md:block">
-          <label class="block text-sm text-neutral-600 mb-2">Ціна</label>
-          <div class="flex items-center gap-2">
-            <button 
-              type="button"
-              class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-              id="price-from"
-            >
-              <span class="text-p1">Від: $</span>
-              <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-            </button>
+        <div class="hidden md:block relative">
+          <label class="block text-sm text-neutral-600 mb-2">{{ __('Total Area', 'praktik') }}</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            id="area-dropdown"
+            data-dropdown-toggle="area"
+          >
+            <span class="text-p1">{{ __('Select Area', 'praktik') }}</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400 ml-auto" />
+          </button>
+          
+          {{-- Dropdown Menu --}}
+          <div class="dropdown-menu" data-dropdown-content="area">
+            <div class="p-4 space-y-3">
+              <div>
+                <label class="block text-xs text-neutral-600 mb-1">{{ __('From (m²):', 'praktik') }}</label>
+                <input 
+                  type="number" 
+                  name="area_from" 
+                  placeholder="20" 
+                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
+                  min="0"
+                  step="1"
+                >
+              </div>
+              <div>
+                <label class="block text-xs text-neutral-600 mb-1">{{ __('To (m²):', 'praktik') }}</label>
+                <input 
+                  type="number" 
+                  name="area_to" 
+                  placeholder="100" 
+                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
+                  min="0"
+                  step="1"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <button 
-              type="button"
-              class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
-              id="price-to"
-            >
-              <span class="text-p1">до: $</span>
-              <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
-            </button>
+        <div class="hidden md:block relative">
+          <label class="block text-sm text-neutral-600 mb-2">{{ __('Price', 'praktik') }}</label>
+          <button 
+            type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            id="price-dropdown"
+            data-dropdown-toggle="price"
+          >
+            <span class="text-p1">{{ __('Select Price', 'praktik') }}</span>
+            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400 ml-auto" />
+          </button>
+          
+          {{-- Dropdown Menu --}}
+          <div class="dropdown-menu" data-dropdown-content="price">
+            <div class="p-4 space-y-3">
+              <div>
+                <label class="block text-xs text-neutral-600 mb-1">{{ __('From ($):', 'praktik') }}</label>
+                <input 
+                  type="number" 
+                  name="price_from" 
+                  placeholder="0" 
+                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
+                  min="0"
+                  step="1000"
+                >
+              </div>
+              <div>
+                <label class="block text-xs text-neutral-600 mb-1">{{ __('To ($):', 'praktik') }}</label>
+                <input 
+                  type="number" 
+                  name="price_to" 
+                  placeholder="150000" 
+                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
+                  min="0"
+                  step="1000"
+                >
+              </div>
+            </div>
           </div>
         </div>
         

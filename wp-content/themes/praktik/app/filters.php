@@ -48,20 +48,6 @@ add_action('pre_get_posts', function ($query) {
 });
 
 /**
- * Get property categories for filter dropdown
- *
- * @return array
- */
-function get_property_categories() {
-    return [
-        'apartments' => __('Квартири', 'praktik'),
-        'houses' => __('Будинки', 'praktik'),
-        'commercial' => __('Комерційна нерухомість', 'praktik'),
-        'land' => __('Земельні ділянки', 'praktik'),
-    ];
-}
-
-/**
  * Get property types for filter dropdown
  *
  * @return array

@@ -283,17 +283,15 @@ class CustomDropdown {
 
     if (!content) return;
 
-    // Close all other dropdowns
+    // Check if current dropdown is open BEFORE closing others
+    const isCurrentlyOpen = content.classList.contains('dropdown-open');
+
+    // Close all dropdowns (including current one)
     this.closeAllDropdowns();
 
-    // Toggle current dropdown
-    const isOpen = !content.classList.contains('hidden');
-    
-    if (isOpen) {
-      content.classList.add('hidden');
-      icon?.classList.remove('rotate-180');
-    } else {
-      content.classList.remove('hidden');
+    // If it was closed, open it. If it was open, keep it closed (toggle behavior)
+    if (!isCurrentlyOpen) {
+      content.classList.add('dropdown-open');
       icon?.classList.add('rotate-180');
     }
   }
@@ -303,7 +301,7 @@ class CustomDropdown {
     const allIcons = document.querySelectorAll('[data-dropdown-toggle] svg');
     
     allDropdowns.forEach(dropdown => {
-      dropdown.classList.add('hidden');
+      dropdown.classList.remove('dropdown-open');
     });
     
     allIcons.forEach(icon => {
