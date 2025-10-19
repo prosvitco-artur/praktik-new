@@ -36,7 +36,7 @@
     <div class="space-y-0">
       {{-- Object Type Filter --}}
       <div class="filter-section border-b border-neutral-200">
-        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="object-type">
+        <button class="w-full flex items-center justify-between py-4 px-4 transition-colors" data-filter-toggle="object-type">
           <span class="text-p1 text-neutral-900">Тип об'єкту</span>
           <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
         </button>
@@ -54,7 +54,7 @@
 
       {{-- Number of Rooms Filter --}}
       <div class="filter-section border-b border-neutral-200">
-        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="rooms">
+        <button class="w-full flex items-center justify-between py-4 px-4 transition-colors" data-filter-toggle="rooms">
           <span class="text-p1 text-neutral-900">Кількість кімнат</span>
           <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
         </button>
@@ -86,7 +86,7 @@
 
       {{-- Total Area Filter --}}
       <div class="filter-section border-b border-neutral-200">
-        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="area">
+        <button class="w-full flex items-center justify-between py-4 px-4 transition-colors" data-filter-toggle="area">
           <span class="text-p1 text-neutral-900">Загальна площа</span>
           <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
         </button>
@@ -107,7 +107,7 @@
 
       {{-- Price Filter --}}
       <div class="filter-section border-b border-neutral-200">
-        <button class="w-full flex items-center justify-between py-4 px-4 hover:bg-neutral-50 transition-colors" data-filter-toggle="price">
+        <button class="w-full flex items-center justify-between py-4 px-4 transition-colors" data-filter-toggle="price">
           <span class="text-p1 text-neutral-900">Ціна</span>
           <x-icon name="chevron-down" class="w-5 h-5 text-neutral-400" />
         </button>

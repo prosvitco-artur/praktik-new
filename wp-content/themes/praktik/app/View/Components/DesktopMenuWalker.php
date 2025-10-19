@@ -62,7 +62,7 @@ class DesktopMenuWalker extends Walker_Nav_Menu
             $atts['class'] = 'nav-link flex items-center gap-1 text-p1 text-neutral-900 hover:text-primary-600 transition-colors no-underline py-2 px-1';
         } else {
             // Submenu items
-            $atts['class'] = 'dropdown-link block px-4 py-3 text-sm text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 transition-colors no-underline';
+            $atts['class'] = 'dropdown-link block px-4 py-3 text-sm text-neutral-900 hover:text-primary-600 transition-colors no-underline';
         }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);

@@ -119,17 +119,3 @@ function get_price_ranges() {
         '500000+' => __('Понад $500,000', 'praktik'),
     ];
 }
-
-/**
- * Get property post types
- *
- * @return array
- */
-function get_property_post_types() {
-    return [
-        'property' => __('Нерухомість', 'praktik'),
-        'apartment' => __('Квартири', 'praktik'),
-        'house' => __('Будинки', 'praktik'),
-        'commercial' => __('Комерційна', 'praktik'),
-    ];
-}

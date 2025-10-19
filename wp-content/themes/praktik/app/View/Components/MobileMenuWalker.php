@@ -35,7 +35,7 @@ class MobileMenuWalker extends Walker_Nav_Menu
 
         $atts = [];
         $atts['href'] = !empty($item->url) ? $item->url : '';
-        $atts['class'] = 'mobile-menu-link flex items-center justify-between px-16px py-12px text-p1 text-neutral-900 hover:bg-neutral-50 transition-colors';
+        $atts['class'] = 'mobile-menu-link flex items-center justify-between px-16px py-12px text-p1 text-neutral-900 transition-colors';
         
         if ($depth === 0) {
             $atts['class'] .= ' font-medium';
@@ -56,7 +56,7 @@ class MobileMenuWalker extends Walker_Nav_Menu
 
         if ($has_children) {
             // Parent item with submenu
-            $output .= '<button type="button" class="mobile-menu-link mobile-submenu-toggle flex items-center justify-between w-full px-16px py-12px text-p1 text-neutral-900 hover:bg-neutral-50 transition-colors';
+            $output .= '<button type="button" class="mobile-menu-link mobile-submenu-toggle flex items-center justify-between w-full px-16px py-12px text-p1 text-neutral-900 transition-colors';
             if ($depth === 0) {
                 $output .= ' font-medium';
             }

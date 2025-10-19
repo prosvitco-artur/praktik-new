@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --box-shadow-first: 0px 3px 6px 0px #3339690F;
+}
+
 @layer base {
   html {
     @apply h-full;
@@ -156,7 +160,20 @@
   }
 
   .dropdown-menu {
-    @apply list-none p-0 m-0;
+    @apply list-none p-0 m-0 absolute left-0 w-full bg-white z-10;
+    box-shadow: var(--box-shadow-first);
+    top: calc(100% + 8px);
+    animation: slideDown 0.3s ease-out;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .dropdown-menu li {
@@ -180,7 +197,7 @@
   }
 
   .dropdown-link:hover {
-    @apply bg-neutral-50;
+    @apply text-secondary-500;
   }
 
   .dropdown-menu .current-menu-item > .dropdown-link,
@@ -188,19 +205,12 @@
     @apply bg-primary-50;
   }
 
-  /* Enhanced CSS-only hover with smooth transitions */
   .dropdown-parent .nav-link svg {
     @apply transition-transform duration-200 ease-in-out;
   }
 
   .dropdown-menu {
     @apply transition-all duration-200 ease-in-out;
-  }
-
-  /* Ensure dropdown stays open when hovering over it */
-  .dropdown-parent:hover .dropdown-menu,
-  .dropdown-menu:hover {
-    @apply opacity-100 visible translate-y-0;
   }
 
   /* Focus states for accessibility */
