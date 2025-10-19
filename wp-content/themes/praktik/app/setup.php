@@ -57,7 +57,7 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'primary_navigation' => __('Primary Navigation', 'praktik'),
     ]);
 
     /**
@@ -138,12 +138,12 @@ add_action('widgets_init', function () {
     ];
 
     register_sidebar([
-        'name' => __('Primary', 'sage'),
+        'name' => __('Primary', 'praktik'),
         'id' => 'sidebar-primary',
     ] + $config);
 
     register_sidebar([
-        'name' => __('Footer', 'sage'),
+        'name' => __('Footer', 'praktik'),
         'id' => 'sidebar-footer',
     ] + $config);
 });
@@ -155,7 +155,7 @@ add_action('customize_register', function ($wp_customize) {
     ]);
 
     $wp_customize->add_control(new \WP_Customize_Media_Control($wp_customize, 'footer_logo', [
-        'label' => __('Footer Logo', 'sage'),
+        'label' => __('Footer Logo', 'praktik'),
         'section' => 'title_tagline',
         'mime_type' => 'image',
         'priority' => 9,

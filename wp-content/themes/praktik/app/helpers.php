@@ -2,13 +2,13 @@
 
 function get_property_post_types() {
     return [
-        'room' => __('Rooms', 'sage'),
-        'apartment' => __('Apartments', 'sage'),
-        'house' => __('Houses', 'sage'),
-        'plot' => __('Plots', 'sage'),
-        'garage' => __('Garages', 'sage'),
-        'commercial' => __('Commercial', 'sage'),
-        'dacha' => __('Dachas', 'sage')
+        'room' => __('Rooms', 'praktik'),
+        'apartment' => __('Apartments', 'praktik'),
+        'house' => __('Houses', 'praktik'),
+        'plot' => __('Plots', 'praktik'),
+        'garage' => __('Garages', 'praktik'),
+        'commercial' => __('Commercial', 'praktik'),
+        'dacha' => __('Dachas', 'praktik')
     ];
 }
 

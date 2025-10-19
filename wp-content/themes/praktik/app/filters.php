@@ -12,7 +12,7 @@ namespace App;
  * @return string
  */
 add_filter('excerpt_more', function () {
-    return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage'));
+    return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'praktik'));
 });
 
 add_filter('get_the_archive_title', function ($title) {

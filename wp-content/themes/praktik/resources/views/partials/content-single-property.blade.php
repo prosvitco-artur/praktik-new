@@ -5,11 +5,12 @@
   $property_meta = get_property_meta();
   $property_gallery = get_property_gallery();
   $gallery_count = get_property_gallery_count();
+  $archive_url = get_post_type_archive_link(get_post_type());
 @endphp
 
 <article @php(post_class('min-h-screen'))>
   <div class="container mx-auto py-4">
-    <a href="javascript:history.back()" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
+    <a href="{{ $archive_url }}" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
       <x-icon name="chevron-left" class="w-4 h-4 stroke-current" />
       {{ __('Back to catalog', 'praktik') }}
     </a>
@@ -18,7 +19,7 @@
   <div class="container mx-auto mb-10">
     <div class="property-single">
       <div class="property-gallery mb-6 lg:mb-0">
-        <div class="relative bg-gray-200 overflow-hidden mb-4" style="aspect-ratio: 3/2;">
+        <div class="relative bg-gray-200 overflow-hidden mb-4 md:mb-0" style="aspect-ratio: 3/2;">
           @if(!empty($property_gallery))
             <img src="{{ $property_gallery[0]['url'] }}" alt="{{ $property_gallery[0]['alt'] ?: get_the_title() }}"
               class="w-full h-full object-cover">
@@ -133,8 +134,21 @@
           </div>
         </div>
 
-        <div class="md:bg-white md:p-10">
-          teser
+        <div class="fixed bottom-0 left-0 right-0 bg-white p-5 flex items-center justify-between md:p-10 md:static">
+          <div class="flex items-center gap-4">
+            <!-- get attachment with ID 2835 -->
+            <div class="rounded-full h-12 w-12 overflow-hidden">
+              {!! wp_get_attachment_image(2835) !!}
+            </div>
+            <div>
+              <p class="font-bold">Ім'я Фамілія</p>
+              <a href="tel:+38 (067) 123-45-67">+38 (067) 123-45-67</a>
+            </div>
+          </div>
+          <a href="/" class="md:flex md:items-center md:gap-2 md:justify-center md:border md:border-secondary-500 md:py-2 md:px-4">
+            <x-icon name="telegram-message" class="w-6 h-6 text-secondary-500" />
+            <span class="text-secondary-500 hidden md:block">{{ __('Write to Telegram', 'praktik') }}</span>
+          </a>
         </div>
       </div>
       @if(get_the_content())

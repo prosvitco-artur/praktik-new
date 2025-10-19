@@ -387,6 +387,18 @@
     @apply mb-0;
   }
 
+  .property-contact {
+    /* position sticky top 0 */
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+
   @media (min-width: 1024px) {
     .property-single{
       display: grid;
@@ -403,11 +415,20 @@
     .property-details {
       grid-column-start: 2;
       grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
     }
 
     .property-description {
       grid-column-start: 1;
       grid-column-end: 2
+    }
+
+    .property-contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
     }
   }
 

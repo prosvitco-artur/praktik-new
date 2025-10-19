@@ -20,7 +20,7 @@
       @endif
 
       <div class="hidden lg:flex items-center gap-2 flex-shrink-0">
-        <a class="bookmark-button flex items-center gap-2 p-2 hover:bg-neutral-50 rounded-lg transition-colors" aria-label="{{ __('Favorites', 'sage') }}" href="{{ home_url('/favorites') }}">
+        <a class="bookmark-button flex items-center gap-2 p-2 hover:bg-neutral-50 rounded-lg transition-colors" aria-label="{{ __('Favorites', 'praktik') }}" href="{{ home_url('/favorites') }}">
           <x-icon name="bookmark" class="w-20px h-20px text-neutral-900 stroke-current" />
           <span class="bookmark-count text-sm font-medium text-neutral-900">0</span>
           </a>
