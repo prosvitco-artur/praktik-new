@@ -1,0 +1,43 @@
+:root {
+  --box-shadow-first: 0px 3px 6px 0px #3339690F;
+}
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full pt-[60px] font-fixel;
+    background-color: #F4F4F6;
+  }
+  
+  #app {
+    @apply min-h-[calc(100vh-60px)] flex flex-col;
+  }
+
+  h1 {
+    @apply text-h1 text-neutral-900;
+  }
+
+  h2 {
+    @apply text-h2 text-neutral-900;
+  }
+
+  h3 {
+    @apply text-h3 text-neutral-900;
+  }
+
+  h4 {
+    @apply text-h4 text-neutral-900;
+  }
+
+  h5 {
+    @apply text-h5 text-neutral-900;
+  }
+
+  h6 {
+    @apply text-h6 text-neutral-900;
+  }
+}
+

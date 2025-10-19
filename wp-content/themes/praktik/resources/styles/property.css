@@ -1,0 +1,88 @@
+@layer components {
+  .property-card {
+    position: relative;
+  }
+
+  .property-title {
+    display: block;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .bookmark-button {
+    @apply relative;
+  }
+
+  .bookmark-button:hover .bookmark-count {
+    @apply text-primary-600;
+  }
+
+  .bookmark-button:hover .icon-bookmark path{
+    @apply stroke-primary-600;
+  }
+
+  .bookmark-button:focus {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+
+  .property-gallery {
+    @apply mb-6;
+  }
+
+  .property-detail {
+    @apply mb-4 flex;
+  }
+
+  .property-detail:last-child {
+    @apply mb-0;
+  }
+
+  .property-contact {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: 1024px) {
+    .property-single{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .property-gallery {
+      @apply mb-0;
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    .property-details {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    .property-description {
+      grid-column-start: 1;
+      grid-column-end: 2
+    }
+
+    .property-contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+  }
+}
+

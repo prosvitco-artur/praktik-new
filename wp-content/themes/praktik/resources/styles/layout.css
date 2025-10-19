@@ -1,0 +1,54 @@
+@layer components {
+  .main {
+    @apply flex-1 px-16px;
+    background-color: #F4F4F6;
+  }
+
+  .container {
+    @apply mx-auto;
+    max-width: 1180px;
+  }
+
+  .spacing-sm {
+    @apply mb-4;
+  }
+
+  .spacing-lg {
+    @apply mb-10;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-sm {
+      @apply mb-6;
+    }
+
+    .spacing-lg {
+      margin-bottom: 100px;
+    }
+  }
+
+  .banner {
+    @apply bg-white shadow-sm;
+  }
+
+  .logo-component {
+    @apply transition-opacity duration-200 hover:opacity-80;
+  }
+
+  .logo-component img {
+    @apply object-contain;
+  }
+
+  .logo-text {
+    @apply flex flex-col;
+  }
+
+  .logo-title {
+    @apply font-semibold leading-tight;
+  }
+
+  .logo-subtitle {
+    @apply leading-tight;
+  }
+}
+

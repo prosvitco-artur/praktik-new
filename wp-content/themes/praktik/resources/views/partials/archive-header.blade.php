@@ -68,7 +68,7 @@
               @foreach(\App\get_property_types() as $key => $label)
                 <button 
                   type="button"
-                  class="dropdown-item w-full px-4 py-2 text-left text-sm transition-colors {{ $key === 'new' ? 'text-info-600' : 'text-neutral-700' }}"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left"
                   data-value="{{ $key }}"
                   data-label="{{ $label }}"
                 >
@@ -97,7 +97,7 @@
               @foreach(\App\get_room_counts() as $key => $label)
                 <button 
                   type="button"
-                  class="dropdown-item w-full px-4 py-2 text-left text-sm transition-colors {{ $key === 'all' ? 'text-info-600' : 'text-neutral-700' }}"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left"
                   data-value="{{ $key }}"
                   data-label="{{ $label }}"
                 >
