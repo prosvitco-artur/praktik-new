@@ -91,6 +91,14 @@ add_action('after_setup_theme', function () {
     load_theme_textdomain('praktik', get_template_directory() . '/languages');
 });
 
+add_filter('https_ssl_verify', '__return_false');
+add_filter('https_local_ssl_verify', '__return_false');
+add_filter('http_request_args', function ($args, $url) {
+    $args['sslverify'] = false;
+    $args['timeout'] = 30;
+    return $args;
+}, 10, 2);
+
 add_filter('airwpsync/get_post_types', function ($post_types) {
     return array_map(function ($post_type) {
         $post_type['enabled'] = true;

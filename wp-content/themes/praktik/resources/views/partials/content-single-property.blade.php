@@ -32,31 +32,19 @@
             </div>
           @endif
 
-          {{-- Navigation arrows --}}
-          @if($gallery_count > 1)
-            <button
-              class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
-              <x-icon name="chevron-left" class="w-4 h-4 text-gray-700 stroke-current" />
-            </button>
-            <button
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
-              <x-icon name="chevron-right" class="w-4 h-4 text-gray-700 stroke-current" />
-            </button>
-          @endif
-
           {{-- Photo counter --}}
-          <div class="absolute bottom-2 right-2 bg-black bg-opacity-60 text-white px-2 py-1 text-sm">
+          <div class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold">
             {{ __('PHOTO', 'praktik') }} 1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}
           </div>
         </div>
 
         {{-- Thumbnail gallery --}}
         @if($gallery_count > 1)
-          <div class="grid grid-cols-4 gap-2">
+          <div class="grid grid-cols-4 gap-8px md:gap-12px">
             @foreach($property_gallery as $index => $image)
-              @if($index < 3)
+              @if($index < 4)
                 <div
-                  class="relative bg-gray-200 overflow-hidden cursor-pointer {{ $index === 0 ? 'ring-2 ring-yellow-400' : '' }}"
+                  class="relative bg-gray-200 overflow-hidden cursor-pointer rounded-4px {{ $index === 0 ? 'ring-2 ring-neutral-500' : '' }}"
                   style="aspect-ratio: 4/3;">
                   <img src="{{ $image['thumbnail'] }}" alt="{{ $image['alt'] ?: $image['title'] }}"
                     class="w-full h-full object-cover">
