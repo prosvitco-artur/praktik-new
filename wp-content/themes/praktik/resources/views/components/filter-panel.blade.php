@@ -118,14 +118,14 @@
                 <label class="block text-sm text-neutral-600 mb-1">Від:</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
-                  <input type="number" value="0" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="0">
+                  <input type="number" name="price_from" value="0" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="0">
                 </div>
               </div>
               <div>
                 <label class="block text-sm text-neutral-600 mb-1">до:</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
-                  <input type="number" value="150000" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="150 000">
+                  <input type="number" name="price_to" value="150000" class="w-full pl-8 pr-3 py-2 border border-neutral-300 rounded-lg text-p1" placeholder="150 000">
                 </div>
               </div>
             </div>

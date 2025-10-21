@@ -41,8 +41,114 @@ add_filter('get_the_archive_title', function ($title) {
 
 add_action('pre_get_posts', function ($query) {
     if (!is_admin() && $query->is_main_query()) {
-        if (is_post_type_archive() && isset($_GET['search']) && !empty($_GET['search'])) {
-            $query->set('s', sanitize_text_field($_GET['search']));
+        if (is_post_type_archive()) {
+            // Search query
+            if (isset($_GET['search']) && !empty($_GET['search'])) {
+                $query->set('s', sanitize_text_field($_GET['search']));
+            }
+            
+            // Build meta query for filters
+            $meta_query = ['relation' => 'AND'];
+            
+            // Price range filter
+            if (isset($_GET['price_from']) && !empty($_GET['price_from'])) {
+                $price_from = intval($_GET['price_from']);
+                if ($price_from > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_price',
+                        'value' => $price_from,
+                        'compare' => '>=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
+            if (isset($_GET['price_to']) && !empty($_GET['price_to'])) {
+                $price_to = intval($_GET['price_to']);
+                if ($price_to > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_price',
+                        'value' => $price_to,
+                        'compare' => '<=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
+            // Area range filter
+            if (isset($_GET['area_from']) && !empty($_GET['area_from'])) {
+                $area_from = intval($_GET['area_from']);
+                if ($area_from > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_area',
+                        'value' => $area_from,
+                        'compare' => '>=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
+            if (isset($_GET['area_to']) && !empty($_GET['area_to'])) {
+                $area_to = intval($_GET['area_to']);
+                if ($area_to > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_area',
+                        'value' => $area_to,
+                        'compare' => '<=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
+            // Rooms filter
+            if (isset($_GET['rooms']) && !empty($_GET['rooms'])) {
+                $rooms = explode(',', sanitize_text_field($_GET['rooms']));
+                $rooms = array_map('trim', $rooms);
+                
+                if (!empty($rooms)) {
+                    $rooms_query = ['relation' => 'OR'];
+                    foreach ($rooms as $room) {
+                        if ($room === '4+') {
+                            $rooms_query[] = [
+                                'key' => '_property_rooms',
+                                'value' => 4,
+                                'compare' => '>=',
+                                'type' => 'NUMERIC'
+                            ];
+                        } else {
+                            $room_int = intval($room);
+                            if ($room_int > 0) {
+                                $rooms_query[] = [
+                                    'key' => '_property_rooms',
+                                    'value' => $room_int,
+                                    'compare' => '=',
+                                    'type' => 'NUMERIC'
+                                ];
+                            }
+                        }
+                    }
+                    if (count($rooms_query) > 1) {
+                        $meta_query[] = $rooms_query;
+                    }
+                }
+            }
+            
+            // Object type filter (custom taxonomy or meta field)
+            if (isset($_GET['object_type']) && !empty($_GET['object_type'])) {
+                $object_type = sanitize_text_field($_GET['object_type']);
+                // Add your custom logic here based on how you store object type
+                // For now, we'll assume it's a meta field
+                $meta_query[] = [
+                    'key' => '_property_type',
+                    'value' => $object_type,
+                    'compare' => '='
+                ];
+            }
+            
+            // Apply meta query if we have filters
+            if (count($meta_query) > 1) {
+                $query->set('meta_query', $meta_query);
+            }
         }
     }
 });

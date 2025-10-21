@@ -98,36 +98,46 @@ class FilterPanel {
 
   applyFilters() {
     // Collect filter values
-    const filters = {};
+    const params = new URLSearchParams();
     
     // Radio buttons
     const radioInputs = this.filterPanel.querySelectorAll('input[type="radio"]:checked');
     radioInputs.forEach(input => {
-      filters[input.name] = input.value;
-    });
-    
-    // Checkboxes
-    const checkboxInputs = this.filterPanel.querySelectorAll('input[type="checkbox"]:checked');
-    checkboxInputs.forEach(input => {
-      if (!filters[input.name]) {
-        filters[input.name] = [];
+      if (input.value && input.value !== 'all') {
+        params.append(input.name, input.value);
       }
-      filters[input.name].push(input.value);
     });
     
-    // Number inputs
+    // Checkboxes (collect rooms)
+    const checkboxInputs = this.filterPanel.querySelectorAll('input[type="checkbox"]:checked');
+    const rooms = [];
+    checkboxInputs.forEach(input => {
+      if (input.name.startsWith('room_')) {
+        rooms.push(input.value);
+      }
+    });
+    if (rooms.length > 0) {
+      params.append('rooms', rooms.join(','));
+    }
+    
+    // Number inputs (price range)
     const numberInputs = this.filterPanel.querySelectorAll('input[type="number"]');
     numberInputs.forEach(input => {
-      if (input.value) {
-        filters[input.name || input.placeholder.toLowerCase()] = input.value;
+      if (input.name && input.value) {
+        const value = parseInt(input.value);
+        if (value > 0) {
+          params.append(input.name, value);
+        }
       }
     });
     
     // Close panel after applying
     this.close();
     
-    // Here you would typically trigger a search/filter request
-    // For now, just log the filters
+    // Redirect with filters
+    const currentUrl = new URL(window.location.href);
+    const newUrl = `${currentUrl.pathname}?${params.toString()}`;
+    window.location.href = newUrl;
   }
 
   toggleFilterSection(e) {
@@ -350,6 +360,74 @@ class CustomDropdown {
 }
 
 /**
+ * Desktop Filters Manager
+ */
+class DesktopFilters {
+  constructor() {
+    this.filters = {};
+    this.init();
+  }
+
+  init() {
+    // Listen to dropdown changes
+    document.addEventListener('dropdownChange', (e) => {
+      const { dropdownId, value } = e.detail;
+      this.filters[dropdownId] = value;
+    });
+
+    // Listen to input changes in dropdowns
+    document.addEventListener('change', (e) => {
+      if (e.target.matches('[data-dropdown-content] input[type="number"]')) {
+        this.filters[e.target.name] = e.target.value;
+      }
+    });
+
+    // Apply filters when inputs lose focus (optional, for better UX)
+    document.addEventListener('blur', (e) => {
+      if (e.target.matches('[data-dropdown-content] input[type="number"]')) {
+        // Auto-apply after input change (debounced)
+        clearTimeout(this.applyTimeout);
+        this.applyTimeout = setTimeout(() => {
+          if (Object.keys(this.filters).length > 0) {
+            this.applyFilters();
+          }
+        }, 500);
+      }
+    }, true);
+
+    // Apply filters on Enter key in input fields
+    document.addEventListener('keypress', (e) => {
+      if (e.target.matches('[data-dropdown-content] input[type="number"]') && e.key === 'Enter') {
+        this.applyFilters();
+      }
+    });
+  }
+
+  applyFilters() {
+    const params = new URLSearchParams();
+
+    // Add all filter values to params
+    for (const [key, value] of Object.entries(this.filters)) {
+      if (value && value !== 'all' && value !== '') {
+        params.append(key, value);
+      }
+    }
+
+    // Redirect with filters
+    const currentUrl = new URL(window.location.href);
+    const newUrl = `${currentUrl.pathname}?${params.toString()}`;
+    window.location.href = newUrl;
+  }
+
+  clearFilters() {
+    this.filters = {};
+    // Redirect to clean URL
+    const currentUrl = new URL(window.location.href);
+    window.location.href = currentUrl.pathname;
+  }
+}
+
+/**
  * Application entrypoint
  */
 domReady(async () => {
@@ -361,6 +439,9 @@ domReady(async () => {
 
   // Initialize custom dropdowns
   new CustomDropdown();
+
+  // Initialize desktop filters
+  new DesktopFilters();
 });
 
 /**
