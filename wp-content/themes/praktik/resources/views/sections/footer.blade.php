@@ -19,20 +19,20 @@
     </div>
 
     <div class="social-icons">
-      <a href="#" class="social-icon" aria-label="Instagram">
-        <x-icon name="instagram" class="w-5 h-5" />
-      </a>
-      <a href="#" class="social-icon" aria-label="Facebook">
-        <x-icon name="facebook" class="w-5 h-5" />
-      </a>
       <a href="#" class="social-icon" aria-label="Telegram">
-        <x-icon name="telegram" class="w-5 h-5" />
+        <x-icon name="telegram" class="w-6 h-6" />
       </a>
       <a href="#" class="social-icon" aria-label="YouTube">
-        <x-icon name="youtube" class="w-5 h-5" />
+        <x-icon name="youtube" class="w-6 h-6" />
+      </a>
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <x-icon name="instagram" class="w-6 h-6" />
       </a>
       <a href="#" class="social-icon" aria-label="TikTok">
-        <x-icon name="tiktok" class="w-5 h-5" />
+        <x-icon name="tiktok" class="w-6 h-6" />
+      </a>
+      <a href="#" class="social-icon" aria-label="Facebook">
+        <x-icon name="facebook" class="w-6 h-6" />
       </a>
     </div>
 

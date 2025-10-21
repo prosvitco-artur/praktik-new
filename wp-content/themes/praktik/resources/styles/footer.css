@@ -28,7 +28,7 @@
   }
 
   .social-icon {
-    @apply w-12 h-12 bg-[#4A69B4] rounded-full flex items-center justify-center text-white hover:bg-[#5A7BC4] transition-colors;
+    @apply w-10 h-10 bg-[#4A69B4] rounded-full flex items-center justify-center text-white hover:bg-[#5A7BC4] transition-colors;
   }
 
   .footer-cta {

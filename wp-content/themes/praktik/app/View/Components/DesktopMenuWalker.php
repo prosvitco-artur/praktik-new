@@ -15,7 +15,7 @@ class DesktopMenuWalker extends Walker_Nav_Menu
         
         if ($depth === 0) {
             // First level submenu - dropdown
-            $output .= "\n$indent<ul class=\"dropdown-menu absolute top-full left-0 bg-white shadow-lg rounded-lg border border-neutral-200 min-w-200px opacity-0 invisible transition-all duration-200 transform translate-y-2 z-50\">\n";
+            $output .= "\n$indent<ul class=\"dropdown-menu absolute top-full left-0 bg-white shadow-lg min-w-200px opacity-0 invisible transition-all duration-200 transform translate-y-2 z-50\">\n";
         } else {
             // Deeper levels
             $output .= "\n$indent<ul class=\"dropdown-submenu\">\n";
@@ -62,7 +62,7 @@ class DesktopMenuWalker extends Walker_Nav_Menu
             $atts['class'] = 'nav-link flex items-center gap-1 text-p1 text-neutral-900 hover:text-primary-600 transition-colors no-underline py-2 px-1';
         } else {
             // Submenu items
-            $atts['class'] = 'dropdown-link block px-4 py-3 text-sm text-neutral-900 hover:text-primary-600 transition-colors no-underline';
+            $atts['class'] = 'dropdown-link block px-4 py-3 text-sm text-neutral-900 transition-colors no-underline';
         }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
