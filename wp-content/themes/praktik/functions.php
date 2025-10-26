@@ -64,6 +64,18 @@ collect(['setup', 'filters', 'helpers', 'post-types', 'theme-options'])
         }
     });
 
+add_action('carbon_fields_register_fields', function() {
+    $blocks_path = get_template_directory() . '/app/carbon-blocks';
+    
+    if (is_dir($blocks_path)) {
+        $blocks = glob($blocks_path . '/*.php');
+        
+        foreach ($blocks as $block) {
+            require_once $block;
+        }
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Enable Sage Theme Support
