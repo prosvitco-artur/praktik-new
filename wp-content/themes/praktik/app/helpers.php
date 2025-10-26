@@ -28,6 +28,9 @@ function get_svg_icons() {
     
     foreach ($files as $file) {
         $icon_name = basename($file, '.svg');
+        if (!file_exists($file)) {
+            continue;
+        }
         $content = file_get_contents($file);
         
         if (preg_match('/<svg[^>]*>(.*?)<\/svg>/is', $content, $matches)) {

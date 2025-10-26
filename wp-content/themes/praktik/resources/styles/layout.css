@@ -1,6 +1,6 @@
 @layer components {
   .main {
-    @apply flex-1 px-16px;
+    @apply flex-1;
     background-color: #F4F4F6;
   }
 
