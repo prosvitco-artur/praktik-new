@@ -3,6 +3,10 @@ module.exports = {
   content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
   safelist: [
     'h-screen',
+    'md:px-[120px]',
+    'md:py-[80px]',
+    'pl-[120px]',
+    'md:mb-[60px]',
   ],
   theme: {
     extend: {
@@ -11,6 +15,7 @@ module.exports = {
       },
       spacing: {
         '60px': '60px',
+        '80px': '80px',
         '32px': '32px',
         '24px': '24px',
         '20px': '20px',

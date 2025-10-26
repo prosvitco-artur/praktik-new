@@ -18,23 +18,17 @@
       </div>
     </div>
 
-    <div class="social-icons">
-      <a href="#" class="social-icon" aria-label="Telegram">
-        <x-icon name="telegram" class="w-6 h-6" />
-      </a>
-      <a href="#" class="social-icon" aria-label="YouTube">
-        <x-icon name="youtube" class="w-6 h-6" />
-      </a>
-      <a href="#" class="social-icon" aria-label="Instagram">
-        <x-icon name="instagram" class="w-6 h-6" />
-      </a>
-      <a href="#" class="social-icon" aria-label="TikTok">
-        <x-icon name="tiktok" class="w-6 h-6" />
-      </a>
-      <a href="#" class="social-icon" aria-label="Facebook">
-        <x-icon name="facebook" class="w-6 h-6" />
-      </a>
-    </div>
+    @if(has_social_links())
+      <div class="social-icons">
+        @foreach(get_social_links() as $network => $url)
+          @if($url)
+            <a href="{{ $url }}" class="social-icon" aria-label="{{ ucfirst($network) }}" target="_blank" rel="noopener noreferrer">
+              <x-icon name="{{ $network }}" class="w-6 h-6" />
+            </a>
+          @endif
+        @endforeach
+      </div>
+    @endif
 
     <div class="footer-cta">
       <div class="footer-text">Актуальні підбірки для вас:</div>

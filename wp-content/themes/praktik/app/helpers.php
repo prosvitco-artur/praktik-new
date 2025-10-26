@@ -200,3 +200,18 @@ function get_property_gallery_count($post_id = null) {
     $gallery = get_property_gallery($post_id);
     return count($gallery);
 }
+
+function get_social_links() {
+    return [
+        'telegram' => carbon_get_theme_option('social_telegram'),
+        'youtube' => carbon_get_theme_option('social_youtube'),
+        'instagram' => carbon_get_theme_option('social_instagram'),
+        'tiktok' => carbon_get_theme_option('social_tiktok'),
+        'facebook' => carbon_get_theme_option('social_facebook'),
+    ];
+}
+
+function has_social_links() {
+    $social_links = get_social_links();
+    return !empty(array_filter($social_links));
+}
