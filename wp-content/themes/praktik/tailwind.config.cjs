@@ -4,9 +4,15 @@ module.exports = {
   safelist: [
     'h-screen',
     'md:px-[120px]',
+    'p-5',
+    'py-10',
     'md:py-[80px]',
     'pl-[120px]',
+    'mb-10',
+    'mb-5',
+    'md:mb-6',
     'md:mb-[60px]',
+    'md:mb-[104px]',
   ],
   theme: {
     extend: {
