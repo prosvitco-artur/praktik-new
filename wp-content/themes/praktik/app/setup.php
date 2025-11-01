@@ -137,6 +137,10 @@ add_shortcode('property_search_form', function () {
     return view('forms.property-search')->render();
 });
 
+add_shortcode('reviews_archive', function () {
+    return view('shortcodes.reviews-archive')->render();
+});
+
 add_action('init', function () {
     add_rewrite_rule('^favorites/?$', 'index.php?favorites=1', 'top');
 });
