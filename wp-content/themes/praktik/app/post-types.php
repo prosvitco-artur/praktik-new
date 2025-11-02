@@ -62,6 +62,53 @@ add_action('init', function () {
         
         register_post_type($post_type, $args);
     }
+    
+    $review_labels = [
+        'name' => __('Reviews', 'praktik'),
+        'singular_name' => __('Review', 'praktik'),
+        'menu_name' => __('Reviews', 'praktik'),
+        'name_admin_bar' => __('Review', 'praktik'),
+        'add_new' => __('Add new', 'praktik'),
+        'add_new_item' => __('Add new Review', 'praktik'),
+        'new_item' => __('New Review', 'praktik'),
+        'edit_item' => __('Edit Review', 'praktik'),
+        'view_item' => __('View Review', 'praktik'),
+        'all_items' => __('All Reviews', 'praktik'),
+        'search_items' => __('Search Reviews', 'praktik'),
+        'parent_item_colon' => __('Parent Reviews:', 'praktik'),
+        'not_found' => __('No reviews found', 'praktik'),
+        'not_found_in_trash' => __('No reviews found in trash', 'praktik'),
+    ];
+    
+    register_post_type('review', [
+        'labels' => $review_labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => false,
+        'show_in_admin_bar' => true,
+        'show_in_rest' => false,
+        'query_var' => true,
+        'rewrite' => [
+            'slug' => 'reviews',
+            'with_front' => false,
+        ],
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => 6,
+        'menu_icon' => 'dashicons-star-filled',
+        'supports' => [
+            'title',
+            'editor',
+            'author',
+            'thumbnail',
+            'excerpt',
+            'revisions',
+        ],
+        'taxonomies' => [],
+    ]);
 });
 
 /**
