@@ -12,9 +12,42 @@
 @import './admin.css';
 
 
+.review-image {
+  max-width: 31.5%;
+}
+
+@media (min-width: 768px) {
+  .review-image {
+    max-width: 16%;
+  }
+}
+
 .review-content p {
   @apply md:mb-4;
+  font-size: 12px;
   line-height: 16px;
+}
+
+.review-title {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.review-date {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@media (min-width: 768px) {
+  .review-title {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  
+  .review-content p {
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
 
 .line-clamp-4 {
