@@ -27,6 +27,9 @@ add_action('carbon_fields_register_fields', function() {
             Field::make('text', 'social_facebook', __('Facebook', 'praktik'))
                 ->set_help_text(__('Enter full URL (e.g., https://facebook.com/page)', 'praktik'))
                 ->set_attribute('placeholder', 'https://facebook.com/'),
+        ])
+        ->add_tab( __('Review Archive', 'praktik'), [
+                Field::make('image', 'review_archive_banner', __('Review Archive Banner')),
         ]);
 });
 
