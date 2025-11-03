@@ -59,7 +59,7 @@
         class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
         id="filter-button" data-filter-panel-toggle aria-expanded="false">
         <x-icon name="filter" class="w-6 h-6" />
-        <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white" />
+        <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
       </button>
     </div>
   </div>
@@ -69,5 +69,54 @@
     @include('partials.content-archive-review')
     @endwhile
   </div>
+  <?php
+    $query_args = [];
+    if (!empty($_GET['search'])) { $query_args['search'] = sanitize_text_field($_GET['search']); }
+    if (!empty($_GET['date_from'])) { $query_args['date_from'] = sanitize_text_field($_GET['date_from']); }
+    if (!empty($_GET['date_to'])) { $query_args['date_to'] = sanitize_text_field($_GET['date_to']); }
+
+    $current = max(1, (int) (get_query_var('paged') ?: get_query_var('page') ?: 1));
+    $total = max(1, (int) ($GLOBALS['wp_query']->max_num_pages ?? 1));
+
+    $number_links = paginate_links([
+      'total'     => $total,
+      'current'   => $current,
+      'type'      => 'array',
+      'prev_next' => false,
+      'end_size'  => 3,
+      'mid_size'  => 1,
+      'add_args'  => $query_args,
+    ]);
+    $has_pagination = ($total > 1);
+  ?>
+  @if (!empty($has_pagination))
+    <nav class="mt-6" aria-label="{{ __('Пагінація', 'praktik') }}">
+      <ul class="flex flex-wrap items-center gap-2">
+        <?php
+          $prev_url = add_query_arg($query_args, get_pagenum_link(max(1, $current - 1)));
+          $next_url = add_query_arg($query_args, get_pagenum_link(min($total, $current + 1)));
+        ?>
+        <li class="inline-block">
+          @if ($current > 1)
+            <a href="{{ $prev_url }}" class="px-3 py-2 border border-neutral-200 rounded hover:bg-neutral-50">{{ __('« Назад', 'praktik') }}</a>
+          @else
+            <span class="px-3 py-2 border border-neutral-200 rounded text-neutral-400 cursor-not-allowed">{{ __('« Назад', 'praktik') }}</span>
+          @endif
+        </li>
+        @if (!empty($number_links))
+          @foreach ($number_links as $link)
+            <li class="inline-block">{!! $link !!}</li>
+          @endforeach
+        @endif
+        <li class="inline-block">
+          @if ($current < $total)
+            <a href="{{ $next_url }}" class="px-3 py-2 border border-neutral-200 rounded hover:bg-neutral-50">{{ __('Далі »', 'praktik') }}</a>
+          @else
+            <span class="px-3 py-2 border border-neutral-200 rounded text-neutral-400 cursor-not-allowed">{{ __('Далі »', 'praktik') }}</span>
+          @endif
+        </li>
+      </ul>
+    </nav>
+  @endif
 </div>
 @endsection
