@@ -7,7 +7,7 @@
     $date_to = isset($_GET['date_to']) ? sanitize_text_field($_GET['date_to']) : '';
   @endphp
 
-  <div class="container py-5 md:py-8">
+  <div class="container p-5">
     <div class="archive-reviews mb-8">
       @while(have_posts()) @php(the_post())
         @include('partials.content-archive-review')

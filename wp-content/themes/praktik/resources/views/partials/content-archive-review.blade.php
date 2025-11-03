@@ -1,11 +1,11 @@
-<article @php(post_class('bg-white mb-4 overflow-hidden review-card'))>
+<article @php(post_class('bg-white mb-5 overflow-hidden review-card'))>
   <div class="flex items-start">
-  <div class="w-[180px] h-[250px] bg-secondary-500 flex items-center justify-center flex-shrink-0 mr-4 md:mr-6">
+  <div class="">
     @if (has_post_thumbnail())
       {!! get_the_post_thumbnail(get_the_ID()) !!}
     @endif
-  </div>  
-  <div class="flex-1">
+  </div>
+  <div class="p-3 md:p-5">
       <div class="mb-3">
         <h3 class="text-h5 md:text-h4 text-neutral-900 font-bold mb-1">
           {!! get_the_title() !!}
@@ -15,7 +15,7 @@
         </p>
       </div>
       
-      <div class="text-p1 text-neutral-700 leading-relaxed">
+      <div class="text-p1 text-neutral-700 leading-relaxed review-content line-clamp-4">
         {!! get_the_content() !!}
       </div>
     </div>
