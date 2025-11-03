@@ -225,3 +225,34 @@ add_action('carbon_fields_register_fields', function() {
                 ->set_help_text(__('Manual photo counter (optional)', 'praktik')),
         ]);
 });
+
+/**
+ * Фільтрація архіву відгуків за пошуком і датами
+ */
+add_action('pre_get_posts', function ($query) {
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->is_post_type_archive('review')) {
+        $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+        $date_from = isset($_GET['date_from']) ? sanitize_text_field($_GET['date_from']) : '';
+        $date_to = isset($_GET['date_to']) ? sanitize_text_field($_GET['date_to']) : '';
+
+        if ($search !== '') {
+            $query->set('s', $search);
+        }
+
+        $date_query = [];
+        if ($date_from) {
+            $date_query['after'] = $date_from;
+        }
+        if ($date_to) {
+            $date_query['before'] = $date_to;
+            $date_query['inclusive'] = true;
+        }
+        if (!empty($date_query)) {
+            $query->set('date_query', [$date_query]);
+        }
+    }
+});
