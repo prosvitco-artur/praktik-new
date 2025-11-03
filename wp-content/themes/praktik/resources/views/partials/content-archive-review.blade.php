@@ -1,8 +1,8 @@
 <article @php(post_class('bg-white mb-5 overflow-hidden review-card'))>
   <div class="flex items-start">
-    <div class="review-image">
+    <div class="shrink-0 w-[31.5%] md:w-[16%]">
       @if (has_post_thumbnail())
-        {!! get_the_post_thumbnail(get_the_ID()) !!}
+        {!! get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy', 'decoding' => 'async']) !!}
       @endif
     </div>
     <div class="p-3 md:p-5">

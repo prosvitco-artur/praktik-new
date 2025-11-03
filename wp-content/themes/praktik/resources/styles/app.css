@@ -12,15 +12,6 @@
 @import './admin.css';
 
 
-.review-image {
-  max-width: 31.5%;
-}
-
-@media (min-width: 768px) {
-  .review-image {
-    max-width: 16%;
-  }
-}
 
 .review-content p {
   @apply md:mb-4;
