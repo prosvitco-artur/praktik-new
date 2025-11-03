@@ -154,6 +154,14 @@ add_filter('template_include', function ($template) {
     if (get_query_var('favorites')) {
         return get_theme_file_path('template-favorites.php');
     }
+    
+    if (is_singular('review')) {
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
+        return get_404_template();
+    }
+    
     return $template;
 });
 
