@@ -149,6 +149,50 @@ add_action('pre_get_posts', function ($query) {
             if (count($meta_query) > 1) {
                 $query->set('meta_query', $meta_query);
             }
+            
+            // Sort functionality
+            $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
+            
+            switch ($sort) {
+                case 'date_asc':
+                    $query->set('orderby', 'date');
+                    $query->set('order', 'ASC');
+                    break;
+                    
+                case 'date_desc':
+                    $query->set('orderby', 'date');
+                    $query->set('order', 'DESC');
+                    break;
+                    
+                case 'price_asc':
+                    $query->set('meta_key', '_property_price');
+                    $query->set('orderby', 'meta_value_num');
+                    $query->set('order', 'ASC');
+                    break;
+                    
+                case 'price_desc':
+                    $query->set('meta_key', '_property_price');
+                    $query->set('orderby', 'meta_value_num');
+                    $query->set('order', 'DESC');
+                    break;
+                    
+                case 'area_asc':
+                    $query->set('meta_key', '_property_area');
+                    $query->set('orderby', 'meta_value_num');
+                    $query->set('order', 'ASC');
+                    break;
+                    
+                case 'area_desc':
+                    $query->set('meta_key', '_property_area');
+                    $query->set('orderby', 'meta_value_num');
+                    $query->set('order', 'DESC');
+                    break;
+                    
+                default:
+                    $query->set('orderby', 'date');
+                    $query->set('order', 'DESC');
+                    break;
+            }
         }
     }
 });

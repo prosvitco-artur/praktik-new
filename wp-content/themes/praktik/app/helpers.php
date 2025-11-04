@@ -241,3 +241,23 @@ function has_social_links() {
     $social_links = get_social_links();
     return !empty(array_filter($social_links));
 }
+
+function get_sort_options() {
+    return [
+        'date_desc' => __('Newest First', 'praktik'),
+        'date_asc' => __('Oldest First', 'praktik'),
+        'price_asc' => __('Price: Low to High', 'praktik'),
+        'price_desc' => __('Price: High to Low', 'praktik'),
+        'area_asc' => __('Area: Small to Large', 'praktik'),
+        'area_desc' => __('Area: Large to Small', 'praktik'),
+    ];
+}
+
+function get_current_sort() {
+    return $_GET['sort'] ?? 'date_desc';
+}
+
+function get_sort_label($sort_key) {
+    $options = get_sort_options();
+    return $options[$sort_key] ?? $options['date_desc'];
+}

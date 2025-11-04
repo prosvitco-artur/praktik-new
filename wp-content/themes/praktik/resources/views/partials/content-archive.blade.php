@@ -6,7 +6,7 @@
 
 <article @php(post_class('bg-white mb-6 overflow-hidden property-card'))>
   <div class="flex flex-col md:flex-row">
-    <div class="w-full md:w-[224px] h-48 md:h-auto bg-light-gray flex items-center justify-center">
+    <div class="w-full md:w-[224px] h-48 md:h-[168px] bg-light-gray flex items-center justify-center">
       @if (has_post_thumbnail())
         {!! get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'w-full h-full object-cover']) !!}
       @endif

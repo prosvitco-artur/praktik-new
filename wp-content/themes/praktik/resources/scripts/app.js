@@ -257,6 +257,20 @@ class MobileMenu {
 
 /**
  * Custom Dropdown functionality
+ * 
+ * Universal dropdown system that works with any dropdown using data attributes.
+ * 
+ * To add a new dropdown:
+ * 1. Add toggle button with: data-dropdown-toggle="unique-id"
+ * 2. Add dropdown content with: data-dropdown-content="unique-id"
+ * 3. Add items inside: buttons (with data-value/data-label), links, or elements with .dropdown-item class
+ * 
+ * Example:
+ * <button data-dropdown-toggle="my-dropdown">Toggle</button>
+ * <div data-dropdown-content="my-dropdown">
+ *   <a href="/link">Link item</a>
+ *   <button data-value="1" data-label="Button item">Button item</button>
+ * </div>
  */
 class CustomDropdown {
   constructor() {
@@ -276,11 +290,38 @@ class CustomDropdown {
       }
     });
 
-    // Handle dropdown item selection
+    // Unified handler for all dropdown items (buttons, links, etc.)
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('dropdown-item')) {
-        this.selectItem(e);
+      const dropdownContent = e.target.closest('[data-dropdown-content]');
+      if (!dropdownContent) return;
+
+      const item = e.target.closest('button, a, .dropdown-item');
+      if (!item) return;
+
+      // Skip if clicking on the toggle button itself
+      if (item.hasAttribute('data-dropdown-toggle')) return;
+
+      const dropdownId = dropdownContent.getAttribute('data-dropdown-content');
+      const toggle = document.querySelector(`[data-dropdown-toggle="${dropdownId}"]`);
+      
+      if (!toggle) return;
+
+      // Update toggle text if item has text content
+      const toggleText = toggle.querySelector('span');
+      const itemText = item.textContent?.trim();
+      
+      if (toggleText && itemText) {
+        toggleText.textContent = itemText;
       }
+
+      // Handle button items with data-value and data-label
+      if (item.hasAttribute('data-value') && item.hasAttribute('data-label')) {
+        this.selectItem(e);
+        return;
+      }
+
+      // For links, just close the dropdown (navigation will happen via href)
+      this.closeAllDropdowns();
     });
   }
 

@@ -3,7 +3,16 @@
     transition: transform 0.3s ease-in-out;
   }
 
-  .filter-buttons .dropdown-menu {
+  /**
+   * Universal dropdown styles
+   * 
+   * Works with any element that has [data-dropdown-content] attribute.
+   * Dropdown is closed by default, opened when .dropdown-open class is added.
+   * 
+   * No need to add specific classes for different dropdown types.
+   * Just use data-dropdown-content attribute and the system will work.
+   */
+  [data-dropdown-content] {
     @apply absolute left-0 bg-white z-50 shadow-lg mt-1 min-w-[200px];
     top: 100%;
     max-height: 300px;
@@ -16,15 +25,16 @@
     transform-origin: top;
   }
 
-  .filter-buttons .dropdown-menu.dropdown-open {
+  [data-dropdown-content].dropdown-open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
   }
 
-  .filter-buttons .dropdown-item:hover,
-  .filter-buttons .dropdown-menu a:hover {
+  [data-dropdown-content] .dropdown-item:hover,
+  [data-dropdown-content] a:hover,
+  [data-dropdown-content] button:hover {
     @apply bg-neutral-50;
   }
 }
