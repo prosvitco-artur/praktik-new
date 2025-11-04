@@ -54,7 +54,7 @@ try {
 |
 */
 
-collect(['setup', 'filters', 'helpers', 'post-types', 'theme-options'])
+collect(['setup', 'filters', 'helpers', 'post-types', 'theme-options', 'integrations-airwpsync', 'content-cleanup'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
@@ -110,22 +110,3 @@ add_filter('http_request_args', function ($args, $url) {
     $args['timeout'] = 30;
     return $args;
 }, 10, 2);
-
-add_filter('airwpsync/get_post_types', function ($post_types) {
-    return array_map(function ($post_type) {
-        $post_type['enabled'] = true;
-        return $post_type;
-    }, $post_types);
-});
-
-add_filter('airwpsync/get_wp_fields', function ($fields, $module) {
-    if ($module === 'post' && isset($fields['post']['options'])) {
-        foreach ($fields['post']['options'] as &$option) {
-            if ($option['value'] === 'postmeta::custom_field') {
-                $option['enabled'] = true;
-                $option['label'] = __('Custom Field...', 'praktik');
-            }
-        }
-    }
-    return $fields;
-}, 20, 2);
