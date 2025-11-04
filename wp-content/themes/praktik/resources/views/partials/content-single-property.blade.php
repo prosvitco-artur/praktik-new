@@ -122,22 +122,7 @@
           </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 bg-white p-5 flex items-center justify-between md:p-10 md:static">
-          <div class="flex items-center gap-4">
-            <!-- get attachment with ID 2835 -->
-            <div class="rounded-full h-12 w-12 overflow-hidden">
-              {!! wp_get_attachment_image(2835) !!}
-            </div>
-            <div>
-              <p class="font-bold">Ім'я Фамілія</p>
-              <a href="tel:+38 (067) 123-45-67">+38 (067) 123-45-67</a>
-            </div>
-          </div>
-          <a href="/" class="md:flex md:items-center md:gap-2 md:justify-center md:border md:border-secondary-500 md:py-2 md:px-4">
-            <x-icon name="telegram-message" class="w-6 h-6 text-secondary-500" />
-            <span class="text-secondary-500 hidden md:block">{{ __('Write to Telegram', 'praktik') }}</span>
-          </a>
-        </div>
+        <x-agent-contact />
       </div>
       @if(get_the_content())
       <div class="property-description md:bg-white md:p-10">
