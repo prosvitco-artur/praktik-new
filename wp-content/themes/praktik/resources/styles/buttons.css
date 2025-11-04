@@ -1,30 +1,41 @@
 @layer components {
+  :root {
+    --btn-height: 44px;
+    --btn-radius: 0;
+    --btn-gap: 8px;
+    --btn-padding-x: 24px;
+    --btn-padding-x-lg: 32px;
+    --btn-text-color: #ffffff;
+    --btn-primary: #4a68ad;
+    --btn-primary-hover: #3d5691;
+    --btn-primary-active: #334776;
+    --btn-disabled-text: #A5ABB5;
+  }
   .btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 44px;
-    padding: 0 1.5rem;
-    font-size: 1rem;
+    gap: var(--btn-gap);
+    height: var(--btn-height);
+    padding: 0 var(--btn-padding-x);
+    font-size: 16px;
     font-weight: 500;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s ease;
     text-decoration: none;
+    border-radius: var(--btn-radius);
   }
 
   .btn--primary {
-    color: #ffffff;
-    background-color: #4a68ad;
+    color: var(--btn-text-color);
+    background-color: var(--btn-primary);
   }
-
   .btn--primary:hover {
-    background-color: #3d5691;
+    background-color: var(--btn-primary-hover);
   }
-
   .btn--primary:active {
-    background-color: #334776;
+    background-color: var(--btn-primary-active);
   }
 
   .btn svg {
@@ -38,8 +49,22 @@
 
   @media (min-width: 1024px) {
     .btn {
-      padding: 0 2rem;
+      padding: 0 var(--btn-padding-x-lg);
     }
+  }
+
+  .btn--disabled,
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    color: var(--btn-disabled-text);
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .btn--sm {
+    height: 40px;
+    padding: 0 10px;
   }
 }
 

@@ -35,8 +35,6 @@ function praktik_get_pagination_params(array $options = []): array {
         'query_args' => $query_args,
         'end_size' => $options['end_size'] ?? 3,
         'mid_size' => $options['mid_size'] ?? 1,
-        'prev_label' => $options['prev_label'] ?? __('« Назад', 'praktik'),
-        'next_label' => $options['next_label'] ?? __('Далі »', 'praktik'),
     ];
 }
 

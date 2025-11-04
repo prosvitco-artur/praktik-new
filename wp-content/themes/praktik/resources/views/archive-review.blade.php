@@ -73,8 +73,6 @@
     'persist_keys' => ['search','date_from','date_to'],
     'end_size' => 3,
     'mid_size' => 1,
-    'prev_label' => __('« Назад', 'praktik'),
-    'next_label' => __('Далі »', 'praktik'),
   ]))
   @include('components.pagination', $pg)
 </div>

@@ -47,3 +47,24 @@
   -webkit-line-clamp: 4;
   overflow: hidden;
 }
+
+.pagination .page-numbers {
+  @apply btn px-[10px];
+  height: 40px;
+  width: 40px;
+}
+
+.pagination .page-numbers:hover {
+  
+}
+
+.pagination .page-numbers.current {
+  @apply btn--primary
+}
+
+.pagination .page-numbers.dots {
+
+}
+
+/* Force SVG to inherit currentColor (for sprites with hardcoded fills/strokes) */
+ 
