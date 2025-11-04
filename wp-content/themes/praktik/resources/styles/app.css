@@ -54,17 +54,15 @@
   width: 40px;
 }
 
-.pagination .page-numbers:hover {
-  
+.icon {
+  display: var(--icon-display, block);
+  width: var(--icon-width, 1.5rem);
+  height: var(--icon-height, 1.5rem);
+  max-width: var(--icon-max-width, 100%);
+  margin: var(--icon-margin, 0);
+  font-size: var(--icon-font-size, 1.5rem);
+  color: var(--icon-color, inherit);
+  fill: currentColor;
+  flex-shrink: 0;
+  pointer-events: none;
 }
-
-.pagination .page-numbers.current {
-  @apply btn--primary
-}
-
-.pagination .page-numbers.dots {
-
-}
-
-/* Force SVG to inherit currentColor (for sprites with hardcoded fills/strokes) */
- 
