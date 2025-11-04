@@ -12,6 +12,34 @@ function get_property_post_types() {
     ];
 }
 
+function praktik_get_pagination_params(array $options = []): array {
+    $persist_keys = isset($options['persist_keys']) && is_array($options['persist_keys'])
+        ? $options['persist_keys']
+        : [];
+
+    $current = max(1, (int) (get_query_var('paged') ?: get_query_var('page') ?: 1));
+    $total = max(1, (int) ($GLOBALS['wp_query']->max_num_pages ?? 1));
+
+    $query_args = [];
+    if (!empty($persist_keys)) {
+        foreach ($persist_keys as $key) {
+            if (isset($_GET[$key]) && !is_array($_GET[$key])) {
+                $query_args[$key] = sanitize_text_field($_GET[$key]);
+            }
+        }
+    }
+
+    return [
+        'current' => $current,
+        'total' => $total,
+        'query_args' => $query_args,
+        'end_size' => $options['end_size'] ?? 3,
+        'mid_size' => $options['mid_size'] ?? 1,
+        'prev_label' => $options['prev_label'] ?? __('« Назад', 'praktik'),
+        'next_label' => $options['next_label'] ?? __('Далі »', 'praktik'),
+    ];
+}
+
 function svg_sprite_path() {
     return get_template_directory() . '/resources/images/icons';
 }

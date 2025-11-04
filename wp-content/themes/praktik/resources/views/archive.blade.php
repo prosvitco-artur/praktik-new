@@ -17,8 +17,7 @@
       @endwhile
     </div>
 
-    <div class="mt-12">
-      {!! get_the_posts_navigation() !!}
-    </div>
+    @php($pg = praktik_get_pagination_params())
+    @include('components.pagination', $pg)
   </div>
 @endsection
