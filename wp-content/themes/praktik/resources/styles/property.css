@@ -1,8 +1,15 @@
 @layer components {
   .property-card {
     position: relative;
+    --icon-width: 20px;
+    --icon-height: 20px;
   }
 
+  .property-card #addToFavorites {
+    
+    --icon-width: 28px;
+    --icon-height: 28px;
+  }
   .property-title {
     display: block;
   }
