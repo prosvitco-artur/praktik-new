@@ -15,6 +15,10 @@ use function Roots\bundle;
  */
 add_action('wp_enqueue_scripts', function () {
     bundle('app')->enqueue();
+    
+    wp_localize_script('app', 'praktikAjax', [
+        'ajaxurl' => admin_url('admin-ajax.php'),
+    ]);
 }, 100);
 
 /**

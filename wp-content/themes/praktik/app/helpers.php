@@ -261,3 +261,29 @@ function get_sort_label($sort_key) {
     $options = get_sort_options();
     return $options[$sort_key] ?? $options['date_desc'];
 }
+
+function get_user_favorites() {
+    if (isset($_COOKIE['praktik_favorites'])) {
+        $cookie = $_COOKIE['praktik_favorites'];
+        
+        $cookie = wp_unslash($cookie);
+        
+        if (is_string($cookie)) {
+            $decoded = json_decode($cookie, true);
+            
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $decoded = json_decode(urldecode($cookie), true);
+            }
+            
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $decoded = json_decode(stripslashes($cookie), true);
+            }
+            
+            if (is_array($decoded)) {
+                return array_map('strval', $decoded);
+            }
+        }
+    }
+    
+    return [];
+}

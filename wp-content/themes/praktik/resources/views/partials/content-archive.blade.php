@@ -7,6 +7,9 @@
     $property_meta['city'] ?? ''
   ]);
   $property_address = implode(', ', $address_parts);
+  $favorites = get_user_favorites();
+  $post_id = get_the_ID();
+  $is_favorite = in_array((string)$post_id, $favorites);
 @endphp
 
 <article @php(post_class('bg-white mb-6 overflow-hidden property-card'))>
@@ -29,7 +32,7 @@
           <div class="text-h4 text-primary-500 hidden md:block">
             <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
-          <button class="md:hidden text-secondary-500" id="addToFavorites" data-post-id="{{ get_the_ID() }}">
+          <button class="md:hidden text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
             <x-icon name="bookmark" />
           </button>
         </div>
@@ -47,7 +50,7 @@
           <div class="text-h4 text-primary-500 md:hidden">
             <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
-          <button class="hidden md:block text-secondary-500" id="addToFavorites" data-post-id="{{ get_the_ID() }}">
+          <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
             <x-icon name="bookmark" />
           </button>
         </div>

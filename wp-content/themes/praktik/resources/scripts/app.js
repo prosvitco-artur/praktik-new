@@ -3,12 +3,14 @@ import MobileMenu from './modules/mobile-menu.js';
 import FilterPanel from './modules/filter-panel.js';
 import CustomDropdown from './modules/custom-dropdown.js';
 import DesktopFilters from './modules/desktop-filters.js';
+import Favorites from './modules/favorites.js';
 
 domReady(async () => {
   new MobileMenu();
   new FilterPanel();
   new CustomDropdown();
   new DesktopFilters();
+  new Favorites();
 });
 
 /**

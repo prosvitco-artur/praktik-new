@@ -54,7 +54,17 @@ try {
 |
 */
 
-collect(['setup', 'filters', 'helpers', 'post-types', 'theme-options', 'integrations-airwpsync', 'content-cleanup'])
+collect(
+    [
+        'setup',
+        'filters',
+        'helpers',
+        'post-types',
+        'theme-options',
+        'integrations-airwpsync',
+        'content-cleanup',
+        'favorites'
+    ])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
