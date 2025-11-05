@@ -72,6 +72,14 @@
       grid-row-end: 3;
     }
 
+    .property-details .icon {
+      @apply text-secondary-500;
+    }
+
+    .property-details button:hover .icon {
+      @apply fill-secondary-600;
+    }
+
     .property-description {
       grid-column-start: 1;
       grid-column-end: 2
