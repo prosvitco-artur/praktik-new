@@ -1,22 +1,27 @@
 @php
-  $post_type = get_post_type();
-  $property_meta = get_property_meta();
-  $address_parts = array_filter([
-    $property_meta['street'] ?? '',
-    $property_meta['district'] ?? '',
-    $property_meta['city'] ?? ''
-  ]);
-  $property_address = implode(', ', $address_parts);
-  $favorites = get_user_favorites();
-  $post_id = get_the_ID();
-  $is_favorite = in_array((string)$post_id, $favorites);
+$post_obj = $post ?? get_post();
+$post_id = $post_obj->ID;
+
+$post_type = get_post_type($post_obj);
+$property_meta = get_property_meta($post_id);
+
+$address_parts = array_filter([
+  $property_meta['street'] ?? '',
+  $property_meta['district'] ?? '',
+  $property_meta['city'] ?? '',
+]);
+
+$property_address = implode(', ', $address_parts);
+
+$favorites = get_user_favorites();
+$is_favorite = in_array((string)$post_id, $favorites);
 @endphp
 
 <article @php(post_class('bg-white mb-6 overflow-hidden property-card'))>
   <div class="flex flex-col md:flex-row">
     <div class="w-full md:w-[224px] h-48 md:h-[168px] bg-light-gray flex items-center justify-center">
-      @if (has_post_thumbnail())
-        {!! get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'w-full h-full object-cover']) !!}
+      @if (has_post_thumbnail($post))
+        {!! get_the_post_thumbnail($post_id, 'large', ['class' => 'w-full h-full object-cover']) !!}
       @endif
     </div>
 
@@ -24,9 +29,9 @@
       <div class="flex-1">
         <div class="flex justify-between items-start mb-2">
           <h2 class="entry-title text-h5 md:text-h4 flex-1 pr-4 line-clamp-2">
-            <a href="{{ get_permalink() }}"
+            <a href="{{ get_permalink($post) }}"
               class="text-neutral-900 transition-colors duration-200 no-underline property-title block">
-              {!! get_the_title() !!}
+              {!! get_the_title($post) !!}
             </a>
           </h2>
           <div class="text-h4 text-primary-500 hidden md:block">

@@ -3,16 +3,24 @@
 @section('content')
   @if($has_favorites)
     <div class="container">
-      <header class="page-header mb-8">
-        <h1 class="text-3xl font-bold text-neutral-900">
-          {{ __('Favorites', 'praktik') }}
+    <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
+      {!! wp_get_attachment_image($favorite_page_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
+      <span aria-hidden="true"
+        class="wp-block-cover__background has-secondary-500-background-color has-background-dim-70 has-background-dim">
+      </span>
+      <div class="wp-block-cover__inner-container flex items-center gap-5">
+        <h1 class="m-0 text-4xl">
+          <strong>{{ __('Compare selected objects', 'praktik') }}</strong>
         </h1>
-      </header>
+      </div>
+    </div>
 
       <div class="archive-posts">
         @foreach($favorites as $post)
-          @php(setup_postdata($post))
-          @includeFirst(['partials.content-archive-' . get_post_type(), 'partials.content-archive'])
+          @includeFirst(
+            ['partials.content-archive-' . get_post_type(), 'partials.content-archive'],
+            ['post' =>  $post]
+          )
         @endforeach
         @php(wp_reset_postdata())
       </div>

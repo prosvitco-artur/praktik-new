@@ -6,6 +6,10 @@
   $property_gallery = get_property_gallery();
   $gallery_count = get_property_gallery_count();
   $archive_url = get_post_type_archive_link(get_post_type());
+
+  $post_id = get_the_ID();
+  $favorites = get_user_favorites();
+  $is_favorite = in_array((string)$post_id, $favorites);
 @endphp
 
 <article @php(post_class('min-h-screen'))>
@@ -24,7 +28,7 @@
             <img src="{{ $property_gallery[0]['url'] }}" alt="{{ $property_gallery[0]['alt'] ?: get_the_title() }}"
               class="w-full h-full object-cover">
           @elseif(has_post_thumbnail())
-            <img src="{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}" alt="{{ get_the_title() }}"
+            <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
               class="w-full h-full object-cover">
           @else
             <div class="w-full h-full flex items-center justify-center text-gray-500">
@@ -65,7 +69,7 @@
                 {{ get_the_title() ?: __('No Title', 'praktik') }}
               </h1>
               <div class="text-sm text-gray-600 mb-3">
-                {{ __('ID', 'praktik') }} {{ get_the_ID() ?: __('Unknown ID', 'praktik') }}
+                {{ __('ID', 'praktik') }} {{ $post_id ?: __('Unknown ID', 'praktik') }}
               </div>
               @if(!empty($property_meta['price']))
                 <div class="text-[24px] leading-[130%] md:text-[32px] font-bold text-secondary-500">
@@ -78,9 +82,9 @@
               <button class="w-8 h-8 flex items-center justify-center">
                 <x-icon name="share" />
               </button>
-              <button class="w-8 h-8 flex items-center justify-center">
-                <x-icon name="bookmark" />
-              </button>
+              <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
+              <x-icon name="bookmark" />
+            </button>
             </div>
           </div>
 

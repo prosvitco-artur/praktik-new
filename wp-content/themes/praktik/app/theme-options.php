@@ -28,8 +28,10 @@ add_action('carbon_fields_register_fields', function() {
                 ->set_help_text(__('Enter full URL (e.g., https://facebook.com/page)', 'praktik'))
                 ->set_attribute('placeholder', 'https://facebook.com/'),
         ])
-        ->add_tab( __('Review Archive', 'praktik'), [
+        ->add_tab( __('Banners', 'praktik'), [
                 Field::make('image', 'review_archive_banner', __('Review Archive Banner')),
+                Field::make('image', 'favorite_page_banner', __('Favorite Page banner')),
+
         ]);
 });
 

@@ -1,11 +1,12 @@
 <?php
 
-$favorites_cookie = isset($_COOKIE['praktikFavorites']) ? $_COOKIE['praktikFavorites'] : '';
-$favorites_ids = [];
+$favorites_ids = get_user_favorites();
 
 if (!empty($favorites_cookie)) {
     $favorites_ids = array_filter(array_map('intval', explode(',', $favorites_cookie)));
 }
+
+
 
 $favorites_posts = [];
 if (!empty($favorites_ids)) {
@@ -20,4 +21,6 @@ if (!empty($favorites_ids)) {
 echo \Roots\view('template-favorites', [
     'favorites' => $favorites_posts,
     'has_favorites' => !empty($favorites_posts),
+    'favorite_page_banner' => carbon_get_theme_option('favorite_page_banner') ?? 2845,
 ])->render();
+
