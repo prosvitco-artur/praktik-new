@@ -34,8 +34,8 @@
 
     <!-- Filter Buttons -->
     <div class="filter-buttons mt-4">
-      <div class="flex items-center justify-between">
-        <div class="block relative">
+      <div class="flex items-center justify-between gap-8">
+        <div class="block relative w-full">
           <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
           <button 
             type="button"
@@ -60,11 +60,11 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative">
+        <div class="hidden md:block relative w-full">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
             id="type-dropdown"
             data-dropdown-toggle="type"
           >
@@ -78,7 +78,7 @@
               @foreach(\App\get_property_types() as $key => $label)
                 <button 
                   type="button"
-                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full"
                   data-value="{{ $key }}"
                   data-label="{{ $label }}"
                 >
@@ -89,11 +89,11 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative">
+        <div class="hidden md:block relative w-full">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
             id="rooms-dropdown"
             data-dropdown-toggle="rooms"
           >
@@ -118,7 +118,7 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative">
+        <div class="hidden md:block relative w-full">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Total Area', 'praktik') }}</label>
           <button 
             type="button"
@@ -159,7 +159,7 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative">
+        <div class="hidden md:block relative w-full">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Price', 'praktik') }}</label>
           <button 
             type="button"
