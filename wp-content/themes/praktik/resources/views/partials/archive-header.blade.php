@@ -1,6 +1,16 @@
 <header class="py-5">
   <div class="container">
-    <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ get_post_type_archive_link(get_post_type()) }}">
+    @php
+      $current_post_type = get_post_type();
+      $property_types = get_property_post_types();
+      $current_type_label = isset($property_types[$current_post_type]) 
+        ? $property_types[$current_post_type] 
+        : ($current_post_type ? ucfirst($current_post_type) : __('All Properties', 'praktik'));
+      $archive_link = $current_post_type && get_post_type_archive_link($current_post_type) 
+        ? get_post_type_archive_link($current_post_type) 
+        : home_url('/');
+    @endphp
+    <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
       <div class="w-full relative">
         <input
           type="search"
@@ -33,7 +43,7 @@
             id="category-dropdown"
             data-dropdown-toggle="category"
           >
-            <span class="text-p1">{{ get_property_post_types()[get_post_type()] }}</span>
+            <span class="text-p1">{{ $current_type_label }}</span>
             <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
           </button>
           <div class="dropdown-menu" data-dropdown-content="category">

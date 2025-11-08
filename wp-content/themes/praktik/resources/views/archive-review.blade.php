@@ -64,16 +64,24 @@
     </div>
   </div>
 
-  <div class="archive-reviews mb-8">
-    @while(have_posts()) @php(the_post())
-    @include('partials.content-archive-review')
-    @endwhile
-  </div>
-  @php($pg = praktik_get_pagination_params([
-    'persist_keys' => ['search','date_from','date_to'],
-    'end_size' => 3,
-    'mid_size' => 1,
-  ]))
-  @include('components.pagination', $pg)
+  @if (! have_posts())
+    <section class="container mx-auto">
+      <div class="px-5 min-h-screen lg:min-h-full flex flex-col items-center justify-center lg:pt-[140px]">
+        <img class="mb-10 w-full max-w-[280px] lg:max-w-[820px]" src="@asset('images/favorites/empty-favorites.svg')" alt="{{ __('No reviews found', 'praktik') }}">
+      </div>
+    </section>
+  @else
+    <div class="archive-reviews mb-8">
+      @while(have_posts()) @php(the_post())
+      @include('partials.content-archive-review')
+      @endwhile
+    </div>
+    @php($pg = praktik_get_pagination_params([
+      'persist_keys' => ['search','date_from','date_to'],
+      'end_size' => 3,
+      'mid_size' => 1,
+    ]))
+    @include('components.pagination', $pg)
+  @endif
 </div>
 @endsection
