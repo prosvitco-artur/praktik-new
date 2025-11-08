@@ -1,5 +1,9 @@
 @php
-$post_obj = $post ?? get_post();
+if(isset($favorite) && isset($post)) {
+  $post_obj = $post;
+} else {
+  $post_obj = get_post();
+}
 $post_id = $post_obj->ID;
 
 $post_type = get_post_type($post_obj);

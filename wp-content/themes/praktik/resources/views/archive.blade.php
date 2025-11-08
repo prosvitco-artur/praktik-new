@@ -2,7 +2,6 @@
 
 @section('content')
   @include('partials.archive-header')
-  
   <div class="container">
     @if (! have_posts())
       <section class="container mx-auto">

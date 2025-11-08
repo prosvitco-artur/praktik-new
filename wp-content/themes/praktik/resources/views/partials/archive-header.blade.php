@@ -9,6 +9,9 @@
       $archive_link = $current_post_type && get_post_type_archive_link($current_post_type) 
         ? get_post_type_archive_link($current_post_type) 
         : home_url('/');
+
+      
+      $count = $GLOBALS['wp_query']->found_posts;
     @endphp
     <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
       <div class="w-full relative">
@@ -219,9 +222,14 @@
         </div>
       </div>
     </div>
-    <div class="sort-buttons mt-4 hidden md:block">
-      <div class="relative inline-block">
-        <label class="block text-sm text-neutral-600 mb-2">{{ __('Sort by', 'praktik') }}</label>
+    <div class="sort-buttons mt-4 flex items-center justify-between">
+      <div>
+        {!! 
+          sprintf( __('Знайдено <strong>%s будинків</strong>', 'praktik'), $count)
+        !!}
+      </div>
+      <div class="relative hidden md:flex items-center gap-2">
+        <label class="block text-sm text-neutral-600">{{ __('Sort by', 'praktik') }}</label>
         <button 
           type="button"
           class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"

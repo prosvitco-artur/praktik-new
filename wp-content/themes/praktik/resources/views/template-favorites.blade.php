@@ -19,7 +19,9 @@
         @foreach($favorites as $post)
           @includeFirst(
             ['partials.content-archive-' . get_post_type(), 'partials.content-archive'],
-            ['post' =>  $post]
+            [
+              'post' =>  $post, 'favorite' => true
+            ]
           )
         @endforeach
         @php(wp_reset_postdata())
