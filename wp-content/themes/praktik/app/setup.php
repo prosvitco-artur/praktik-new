@@ -16,6 +16,17 @@ use function Roots\bundle;
 add_action('wp_enqueue_scripts', function () {
     bundle('app')->enqueue();
     
+    // Enqueue Swiper CSS
+    $swiper_css = get_template_directory() . '/node_modules/swiper/swiper-bundle.css';
+    if (file_exists($swiper_css)) {
+        wp_enqueue_style(
+            'swiper',
+            get_template_directory_uri() . '/node_modules/swiper/swiper-bundle.css',
+            [],
+            filemtime($swiper_css)
+        );
+    }
+    
     wp_localize_script('app', 'praktikAjax', [
         'ajaxurl' => admin_url('admin-ajax.php'),
     ]);

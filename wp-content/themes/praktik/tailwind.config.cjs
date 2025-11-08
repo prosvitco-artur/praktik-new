@@ -33,6 +33,7 @@ module.exports = {
       },
       borderRadius: {
         '16px': '16px',
+        '4px': '4px',
       },
       colors: {
         'light-gray': '#D9D9D9',

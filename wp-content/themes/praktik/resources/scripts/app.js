@@ -4,6 +4,7 @@ import FilterPanel from './modules/filter-panel.js';
 import CustomDropdown from './modules/custom-dropdown.js';
 import DesktopFilters from './modules/desktop-filters.js';
 import Favorites from './modules/favorites.js';
+import PropertyGallery from './modules/property-gallery.js';
 
 domReady(async () => {
   new MobileMenu();
@@ -11,6 +12,7 @@ domReady(async () => {
   new CustomDropdown();
   new DesktopFilters();
   new Favorites();
+  new PropertyGallery();
 });
 
 /**

@@ -22,39 +22,57 @@
 
   <div class="container mx-auto mb-10">
     <div class="property-single">
-      <div class="property-gallery mb-6 lg:mb-0">
-        <div class="relative bg-gray-200 overflow-hidden mb-4 md:mb-0" style="aspect-ratio: 3/2;">
-          @if(!empty($property_gallery))
-            <img src="{{ $property_gallery[0]['url'] }}" alt="{{ $property_gallery[0]['alt'] ?: get_the_title() }}"
-              class="w-full h-full object-cover">
-          @elseif(has_post_thumbnail())
-            <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
-              class="w-full h-full object-cover">
-          @else
-            <div class="w-full h-full flex items-center justify-center text-gray-500">
-              {{ __('No image available', 'praktik') }}
-            </div>
-          @endif
-
-          {{-- Photo counter --}}
-          <div class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold">
-            {{ __('PHOTO', 'praktik') }} 1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}
-          </div>
-        </div>
-
-        {{-- Thumbnail gallery --}}
-        @if($gallery_count > 1)
-          <div class="grid grid-cols-4 gap-8px md:gap-12px">
-            @foreach($property_gallery as $index => $image)
-              @if($index < 4)
-                <div
-                  class="relative bg-gray-200 overflow-hidden cursor-pointer rounded-4px {{ $index === 0 ? 'ring-2 ring-neutral-500' : '' }}"
-                  style="aspect-ratio: 4/3;">
-                  <img src="{{ $image['thumbnail'] }}" alt="{{ $image['alt'] ?: $image['title'] }}"
+      <div class="property-gallery">
+        {{-- Main Swiper --}}
+        <div class="property-gallery-main swiper relative bg-gray-200" style="aspect-ratio: 3/2;">
+          <div class="swiper-wrapper">
+            @if(!empty($property_gallery))
+              @foreach($property_gallery as $image)
+                <div class="swiper-slide">
+                  <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
                     class="w-full h-full object-cover">
                 </div>
-              @endif
-            @endforeach
+              @endforeach
+            @elseif(has_post_thumbnail())
+              <div class="swiper-slide">
+                <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
+                  class="w-full h-full object-cover">
+              </div>
+            @else
+              <div class="swiper-slide">
+                <div class="w-full h-full flex items-center justify-center text-gray-500">
+                  {{ __('No image available', 'praktik') }}
+                </div>
+              </div>
+            @endif
+          </div>
+
+          {{-- Navigation buttons --}}
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+
+          {{-- Photo counter --}}
+          <div class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold z-10">
+            {{ __('PHOTO', 'praktik') }} <span class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
+          </div>
+
+          {{-- Pagination --}}
+          <div class="swiper-pagination"></div>
+        </div>
+
+        {{-- Thumbnail Swiper --}}
+        @if($gallery_count > 1)
+          <div class="property-gallery-thumbs swiper mt-4" style="height: auto;">
+            <div class="swiper-wrapper">
+              @foreach($property_gallery as $image)
+                <div class="swiper-slide cursor-pointer" style="aspect-ratio: 4/3;">
+                  <div class="relative bg-gray-200 overflow-hidden rounded-4px h-full">
+                    <img src="{{ $image['thumbnail'] }}" alt="{{ $image['alt'] ?: $image['title'] }}"
+                      class="w-full h-full object-cover">
+                  </div>
+                </div>
+              @endforeach
+            </div>
           </div>
         @endif
       </div>

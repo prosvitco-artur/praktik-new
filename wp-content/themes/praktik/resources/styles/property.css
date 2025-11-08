@@ -37,10 +37,6 @@
     @apply outline-none ring-2 ring-primary-500 ring-offset-2;
   }
 
-  .property-gallery {
-    @apply mb-6;
-  }
-
   .property-detail {
     @apply mb-4 flex;
   }
@@ -59,6 +55,56 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   }
 
+  /* Swiper Gallery Styles */
+  .property-gallery-main {
+    @apply rounded-4px overflow-hidden;
+  }
+
+  .property-gallery-main .swiper-button-next,
+  .property-gallery-main .swiper-button-prev {
+    @apply text-white;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+
+  .property-gallery-main .swiper-button-next:hover,
+  .property-gallery-main .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .property-gallery-main .swiper-button-next::after,
+  .property-gallery-main .swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .property-gallery-main .swiper-pagination {
+    @apply text-white;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .property-gallery-thumbs .swiper-slide {
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .property-gallery-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .property-gallery-thumbs .swiper-slide:hover {
+    opacity: 0.8;
+  }
+
   @media (min-width: 1024px) {
     .property-single{
       display: grid;
@@ -67,7 +113,6 @@
     }
 
     .property-gallery {
-      @apply mb-0;
       grid-column-start: 1;
       grid-column-end: 2;
     }
