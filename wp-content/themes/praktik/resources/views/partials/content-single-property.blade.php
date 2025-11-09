@@ -14,8 +14,8 @@
 
 <article @php(post_class('min-h-screen'))>
   <div class="container mx-auto py-4">
-    <a href="{{ $archive_url }}" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
-      <x-icon name="chevron-left" class="w-4 h-4 stroke-current" />
+    <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center gap-2" style="font-weight: 600;">
+      <x-icon name="chevron-left" class="w-4 h-4" />
       {{ __('Back to catalog', 'praktik') }}
     </a>
   </div>

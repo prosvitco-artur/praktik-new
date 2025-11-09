@@ -287,3 +287,8 @@ function get_user_favorites() {
     
     return [];
 }
+
+function get_user_favorites_count() {
+    $favorites = get_user_favorites();
+    return count($favorites);
+}

@@ -19,11 +19,11 @@
         </nav>
       @endif
 
-      <div class="hidden lg:flex items-center gap-2 flex-shrink-0">
-        <a class="bookmark-button flex items-center gap-2 p-2 rounded-lg transition-colors" aria-label="{{ __('Favorites', 'praktik') }}" href="{{ home_url('/favorites') }}">
-          <x-icon name="bookmark" class="w-20px h-20px text-neutral-900 stroke-current" />
-          <span class="bookmark-count text-sm font-medium text-neutral-900">0</span>
-          </a>
+      <div class="hidden lg:flex items-center gap-20 text-neutral-950">
+        <a class="bookmark-button flex items-center gap-2 p-2" aria-label="{{ __('Favorites', 'praktik') }}" href="{{ home_url('/favorites') }}">
+          <x-icon name="bookmark" class="w-5 h-5" />
+          <span class="bookmark-count">{{ get_user_favorites_count() }}</span>
+        </a>
       </div>
 
       {{-- Mobile Menu Toggle --}}

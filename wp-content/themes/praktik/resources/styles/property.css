@@ -26,18 +26,19 @@
 
   .bookmark-button {
     @apply relative;
-  }
-
-  .bookmark-button:hover .bookmark-count {
-    @apply text-primary-600;
+    font-weight: 600;
   }
 
   .bookmark-button:hover .icon-bookmark path{
     @apply stroke-primary-600;
   }
 
-  .bookmark-button:focus {
-    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  .bookmark-button:focus,
+  .bookmark-button:active,
+  .bookmark-button:focus-visible {
+    @apply outline-none;
+    outline: none;
+    box-shadow: none;
   }
 
   .property-detail {
