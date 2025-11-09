@@ -5,6 +5,7 @@ import CustomDropdown from './modules/custom-dropdown.js';
 import DesktopFilters from './modules/desktop-filters.js';
 import Favorites from './modules/favorites.js';
 import PropertyGallery from './modules/property-gallery.js';
+import Share from './modules/share.js';
 
 domReady(async () => {
   new MobileMenu();
@@ -13,6 +14,7 @@ domReady(async () => {
   new DesktopFilters();
   new Favorites();
   new PropertyGallery();
+  new Share();
 });
 
 /**

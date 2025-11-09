@@ -163,6 +163,38 @@
   }
 }
 
-.property-photo-counter {
-  font-weight: 900;
-}
+  .property-photo-counter {
+    font-weight: 900;
+  }
+
+  /* Share button styles */
+  .property-share-button {
+    transition: opacity 0.2s;
+  }
+
+  .property-share-button:hover {
+    opacity: 0.7;
+  }
+
+  .property-share-button:active {
+    opacity: 0.5;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+  }

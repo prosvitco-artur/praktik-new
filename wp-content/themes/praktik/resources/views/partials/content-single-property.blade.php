@@ -111,8 +111,11 @@
                 @endif
               </div>
 
-              <div class="hidden md:flex gap-2 ml-4">
-                <button class="w-8 h-8 flex items-center justify-center">
+              <div class="flex gap-2 ml-4">
+                <button class="w-8 h-8 flex items-center justify-center property-share-button" 
+                        data-share-url="{{ get_permalink() }}"
+                        data-share-title="{{ get_the_title() }}"
+                        aria-label="{{ __('Share', 'praktik') }}">
                   <x-icon name="share" />
                 </button>
                 <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}"
