@@ -9,7 +9,7 @@
 
   $post_id = get_the_ID();
   $favorites = get_user_favorites();
-  $is_favorite = in_array((string)$post_id, $favorites);
+  $is_favorite = in_array((string) $post_id, $favorites);
 @endphp
 
 <article @php(post_class('min-h-screen'))>
@@ -20,65 +20,70 @@
     </a>
   </div>
 
+
   <div class="container mx-auto mb-10">
     <div class="property-single">
-      <div class="property-gallery">
-        {{-- Main Swiper --}}
-        <div class="property-gallery-main swiper relative bg-gray-200" style="aspect-ratio: 3/2;">
-          <div class="swiper-wrapper">
-            @if(!empty($property_gallery))
-              @foreach($property_gallery as $image)
-                <div class="swiper-slide">
-                  <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
-                    class="w-full h-full object-cover">
-                </div>
-              @endforeach
-            @elseif(has_post_thumbnail())
-              <div class="swiper-slide">
-                <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
-                  class="w-full h-full object-cover">
-              </div>
-            @else
-              <div class="swiper-slide">
-                <div class="w-full h-full flex items-center justify-center text-gray-500">
-                  {{ __('No image available', 'praktik') }}
-                </div>
-              </div>
-            @endif
-          </div>
-
-          {{-- Navigation buttons --}}
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-
-          {{-- Photo counter --}}
-          <div class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold z-10">
-            {{ __('PHOTO', 'praktik') }} <span class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
-          </div>
-
-          {{-- Pagination --}}
-          <div class="swiper-pagination"></div>
-        </div>
-
-        {{-- Thumbnail Swiper --}}
-        @if($gallery_count > 1)
-          <div class="property-gallery-thumbs swiper mt-4" style="height: auto;">
+        <div class="property-gallery">
+          {{-- Main Swiper --}}
+          <div class="swiper property-gallery-main" style="aspect-ratio: 3/2;">
             <div class="swiper-wrapper">
-              @foreach($property_gallery as $image)
-                <div class="swiper-slide cursor-pointer" style="aspect-ratio: 4/3;">
-                  <div class="relative bg-gray-200 overflow-hidden rounded-4px h-full">
+              @if(!empty($property_gallery))
+                @foreach($property_gallery as $index => $image)
+                  <div class="swiper-slide">
+                    <a href="{{ $image['url'] }}" data-fancybox="property-gallery"
+                      data-caption="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}" class="block w-full h-full">
+                      <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
+                        class="w-full h-full object-cover cursor-pointer">
+                    </a>
+                  </div>
+                @endforeach
+              @elseif(has_post_thumbnail())
+                <div class="swiper-slide">
+                  <a href="{{ get_the_post_thumbnail_url($post_id, 'full') }}" data-fancybox="property-gallery"
+                    data-caption="{{ get_the_title() }}" class="block w-full h-full">
+                    <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
+                      class="w-full h-full object-cover cursor-pointer">
+                  </a>
+                </div>
+              @else
+                <div class="swiper-slide">
+                  <div class="w-full h-full flex items-center justify-center text-gray-500">
+                    {{ __('No image available', 'praktik') }}
+                  </div>
+                </div>
+              @endif
+            </div>
+
+            {{-- Navigation buttons --}}
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            {{-- Photo counter --}}
+            <div
+              class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold z-10">
+              {{ __('PHOTO', 'praktik') }} <span
+                class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
+            </div>
+
+            {{-- Pagination --}}
+            <div class="swiper-pagination"></div>
+          </div>
+
+          {{-- Thumbnail Navigation Swiper --}}
+          @if($gallery_count > 1)
+            <div class="swiper property-gallery-thumbs mt-4" style="height: auto;">
+              <div class="swiper-wrapper">
+                @foreach($property_gallery as $image)
+                  <div class="swiper-slide" style="aspect-ratio: 4/3;">
                     <img src="{{ $image['thumbnail'] }}" alt="{{ $image['alt'] ?: $image['title'] }}"
                       class="w-full h-full object-cover">
                   </div>
-                </div>
-              @endforeach
+                @endforeach
+              </div>
             </div>
-          </div>
-        @endif
-      </div>
-
-      {{-- Right column: Property details --}}
-      <div class="property-details ">
+          @endif
+        </div>
+      <div class="property-details container px-4 md:px-0">
         {{-- Title and actions --}}
         <div class="md:bg-white md:p-10 mb-6">
           <div class="md:flex md:items-start md:justify-between ">
@@ -100,9 +105,10 @@
               <button class="w-8 h-8 flex items-center justify-center">
                 <x-icon name="share" />
               </button>
-              <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
-              <x-icon name="bookmark" />
-            </button>
+              <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}"
+                data-post-id="{{ $post_id }}">
+                <x-icon name="bookmark" />
+              </button>
             </div>
           </div>
 
@@ -146,14 +152,5 @@
 
         <x-agent-contact />
       </div>
-      @if(get_the_content())
-      <div class="property-description md:bg-white md:p-10">
-        <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
-        <div class="property-content text-p1 text-gray-700 leading-relaxed">
-          @php(the_content())
-        </div>
-      </div>
-      @endif
     </div>
-  </div>
 </article>

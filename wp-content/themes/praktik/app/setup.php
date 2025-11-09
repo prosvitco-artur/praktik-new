@@ -27,6 +27,17 @@ add_action('wp_enqueue_scripts', function () {
         );
     }
     
+    // Enqueue Fancybox CSS
+    $fancybox_css = get_template_directory() . '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css';
+    if (file_exists($fancybox_css)) {
+        wp_enqueue_style(
+            'fancybox',
+            get_template_directory_uri() . '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css',
+            [],
+            filemtime($fancybox_css)
+        );
+    }
+    
     wp_localize_script('app', 'praktikAjax', [
         'ajaxurl' => admin_url('admin-ajax.php'),
     ]);
