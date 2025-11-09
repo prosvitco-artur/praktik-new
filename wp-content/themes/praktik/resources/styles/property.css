@@ -95,6 +95,10 @@
       display: flex;
       z-index: 20;
       pointer-events: auto;
+      width: 40px;
+      height: 80px;
+      background-color: #fff;
+      padding: 31px 16px;
     }
 
     /* Show thumbnail gallery on desktop */
@@ -122,6 +126,17 @@
 
   @media (min-width: 1024px) {
 
+    .property-single {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .property-gallery {
+      flex: 1 1 auto;
+      max-width: 50%;
+      --swiper-navigation-color: #3c589e; /* secondary/500 */
+    }
+
     .property-details .icon {
       @apply text-secondary-500;
     }
@@ -147,3 +162,6 @@
   }
 }
 
+.property-photo-counter {
+  font-weight: 900;
+}

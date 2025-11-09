@@ -32,12 +32,10 @@ class PropertyGallery {
         watchSlidesProgress: true,
         breakpoints: {
           640: {
-            slidesPerView: 5,
-            spaceBetween: 10,
+            spaceBetween: 12,
           },
           768: {
-            slidesPerView: 6,
-            spaceBetween: 12,
+            spaceBetween: 16,
           },
         },
       });
@@ -63,17 +61,6 @@ class PropertyGallery {
       swiperConfig.modules.push(Thumbs);
       swiperConfig.thumbs = {
         swiper: thumbsInstance,
-      };
-    }
-
-    // Add pagination only on desktop
-    if (!isMobile) {
-      swiperConfig.modules.push(Pagination);
-      swiperConfig.pagination = {
-        el: mainSwiper.querySelector('.swiper-pagination'),
-        type: 'fraction',
-        formatFractionCurrent: (number) => number,
-        formatFractionTotal: (number) => number,
       };
     }
 

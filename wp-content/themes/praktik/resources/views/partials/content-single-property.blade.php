@@ -60,7 +60,7 @@
 
           {{-- Photo counter --}}
           <div
-            class="absolute bottom-8px right-8px bg-black bg-opacity-60 text-white px-8px py-4px text-caption rounded-4px font-semibold z-10">
+            class="absolute bottom-8px right-1/2 transform translate-x-1/2 bg-white px-8px py-4px text-caption z-10">
             {{ __('PHOTO', 'praktik') }} <span
               class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
           </div>
@@ -71,7 +71,7 @@
 
         {{-- Thumbnail Navigation Swiper --}}
         @if($gallery_count > 1)
-          <div class="swiper property-gallery-thumbs mt-4" style="height: auto;">
+          <div class="swiper property-gallery-thumbs mt-4 md:mb-5" style="height: auto;">
             <div class="swiper-wrapper">
               @foreach($property_gallery as $image)
                 <div class="swiper-slide" style="aspect-ratio: 4/3;">
@@ -82,84 +82,95 @@
             </div>
           </div>
         @endif
+
+        @if(get_the_content())
+        <div class="hidden md:block">
+          <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
+          <div class="property-content text-p1 text-gray-700 leading-relaxed">
+            @php(the_content())
+          </div>
+        </div>
+        @endif
       </div>
-      <div class="property-details container px-4 md:px-0">
-        {{-- Title and actions --}}
-        <div class="md:bg-white md:p-10 mb-6">
-          <div class="md:flex md:items-start md:justify-between ">
-            <div class="flex-1 mb-5">
-              <h1 class="property-title">
-                {{ get_the_title() ?: __('No Title', 'praktik') }}
-              </h1>
-              <div class="text-xs text-neutral-600 mb-3">
-                {{ __('ID', 'praktik') }} {{ $post_id ?: __('Unknown ID', 'praktik') }}
+      <div class="container px-4 md:px-0">
+        <div class="property-details">
+          {{-- Title and actions --}}
+          <div class="md:bg-white md:p-10 mb-6">
+            <div class="md:flex md:items-start md:justify-between ">
+              <div class="flex-1 mb-5">
+                <h1 class="property-title">
+                  {{ get_the_title() ?: __('No Title', 'praktik') }}
+                </h1>
+                <div class="text-xs text-neutral-600 mb-3">
+                  {{ __('ID', 'praktik') }} {{ $post_id ?: __('Unknown ID', 'praktik') }}
+                </div>
+                @if(!empty($property_meta['price']))
+                  <div class="text-[24px] leading-[130%] md:text-[32px] font-bold text-primary-500">
+                    {{ format_property_price($property_meta['price']) }}
+                  </div>
+                @endif
               </div>
-              @if(!empty($property_meta['price']))
-                <div class="text-[24px] leading-[130%] md:text-[32px] font-bold text-primary-500">
-                  {{ format_property_price($property_meta['price']) }}
+
+              <div class="hidden md:flex gap-2 ml-4">
+                <button class="w-8 h-8 flex items-center justify-center">
+                  <x-icon name="share" />
+                </button>
+                <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}"
+                  data-post-id="{{ $post_id }}">
+                  <x-icon name="bookmark" />
+                </button>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              @if(!empty($property_meta['city']))
+                <div class="property-detail">
+                  <div class="w-1/2 text-sm text-gray-500">{{ __('City', 'praktik') }}</div>
+                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['city'] }}</div>
+                </div>
+              @endif
+
+              @if(!empty($property_meta['district']))
+                <div class="property-detail">
+                  <div class="w-1/2 text-sm text-gray-500">{{ __('District', 'praktik') }}</div>
+                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['district'] }}</div>
+                </div>
+              @endif
+
+              @if(!empty($property_meta['street']))
+                <div class="property-detail">
+                  <div class="w-1/2 text-sm text-gray-500">{{ __('Street', 'praktik') }}</div>
+                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['street'] }}</div>
+                </div>
+              @endif
+
+              @if(!empty($property_meta['rooms']))
+                <div class="property-detail">
+                  <div class="w-1/2 text-sm text-gray-500">{{ __('Number of Rooms', 'praktik') }}</div>
+                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['rooms'] }}</div>
+                </div>
+              @endif
+
+              @if(!empty($property_meta['area']))
+                <div class="property-detail">
+                  <div class="w-1/2 text-sm text-gray-500">{{ __('Total Area', 'praktik') }}</div>
+                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['area'] }} m²</div>
                 </div>
               @endif
             </div>
-
-            <div class="hidden md:flex gap-2 ml-4">
-              <button class="w-8 h-8 flex items-center justify-center">
-                <x-icon name="share" />
-              </button>
-              <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}"
-                data-post-id="{{ $post_id }}">
-                <x-icon name="bookmark" />
-              </button>
-            </div>
           </div>
 
-          <div class="space-y-3">
-            @if(!empty($property_meta['city']))
-              <div class="property-detail">
-                <div class="w-1/2 text-sm text-gray-500">{{ __('City', 'praktik') }}</div>
-                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['city'] }}</div>
-              </div>
-            @endif
-
-            @if(!empty($property_meta['district']))
-              <div class="property-detail">
-                <div class="w-1/2 text-sm text-gray-500">{{ __('District', 'praktik') }}</div>
-                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['district'] }}</div>
-              </div>
-            @endif
-
-            @if(!empty($property_meta['street']))
-              <div class="property-detail">
-                <div class="w-1/2 text-sm text-gray-500">{{ __('Street', 'praktik') }}</div>
-                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['street'] }}</div>
-              </div>
-            @endif
-
-            @if(!empty($property_meta['rooms']))
-              <div class="property-detail">
-                <div class="w-1/2 text-sm text-gray-500">{{ __('Number of Rooms', 'praktik') }}</div>
-                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['rooms'] }}</div>
-              </div>
-            @endif
-
-            @if(!empty($property_meta['area']))
-              <div class="property-detail">
-                <div class="w-1/2 text-sm text-gray-500">{{ __('Total Area', 'praktik') }}</div>
-                <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['area'] }} m²</div>
-              </div>
-            @endif
+          <x-agent-contact />
+        </div>
+        @if(get_the_content())
+        <div class="md:hidden">
+          <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
+          <div class="property-content text-p1 text-gray-700 leading-relaxed">
+            @php(the_content())
           </div>
         </div>
-
-        <x-agent-contact />
+        @endif
       </div>
-      @if(get_the_content())
-      <div class="property-description container px-4 md:px-0">
-        <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
-        <div class="property-content text-p1 text-gray-700 leading-relaxed">
-          @php(the_content())
-        </div>
-      </div>
-      @endif
     </div>
   </div>
 </article>
