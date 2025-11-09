@@ -125,36 +125,36 @@
             <div class="space-y-3">
               @if(!empty($property_meta['city']))
                 <div class="property-detail">
-                  <div class="w-1/2 text-sm text-gray-500">{{ __('City', 'praktik') }}</div>
-                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['city'] }}</div>
+                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('City', 'praktik') }}</div>
+                  <div class="text-neutral-950">{{ $property_meta['city'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['district']))
                 <div class="property-detail">
-                  <div class="w-1/2 text-sm text-gray-500">{{ __('District', 'praktik') }}</div>
-                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['district'] }}</div>
+                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('District', 'praktik') }}</div>
+                  <div class="text-neutral-950">{{ $property_meta['district'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['street']))
                 <div class="property-detail">
-                  <div class="w-1/2 text-sm text-gray-500">{{ __('Street', 'praktik') }}</div>
-                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['street'] }}</div>
+                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Street', 'praktik') }}</div>
+                  <div class="text-neutral-950">{{ $property_meta['street'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['rooms']))
                 <div class="property-detail">
-                  <div class="w-1/2 text-sm text-gray-500">{{ __('Number of Rooms', 'praktik') }}</div>
-                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['rooms'] }}</div>
+                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Number of Rooms', 'praktik') }}</div>
+                  <div class="text-neutral-950">{{ $property_meta['rooms'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['area']))
                 <div class="property-detail">
-                  <div class="w-1/2 text-sm text-gray-500">{{ __('Total Area', 'praktik') }}</div>
-                  <div class="w-1/2 text-base font-medium text-gray-900">{{ $property_meta['area'] }} m²</div>
+                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
+                  <div class="text-neutral-950">{{ $property_meta['area'] }} m²</div>
                 </div>
               @endif
             </div>
