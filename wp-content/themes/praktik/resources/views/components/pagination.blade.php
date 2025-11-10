@@ -31,9 +31,9 @@
             <x-icon name="arrow-right" class="w-5 h-5 rotate-180" />{{ $prev_label }}
           </a>
         @else
-          <div class="btn">
+          <div class="btn cursor-not-allowed">
             <x-icon name="arrow-right" class="w-5 h-5 rotate-180" />
-            <span class="hidden md:block" >{{ $prev_label }}</span>
+            <span class="hidden md:block">{{ $prev_label }}</span>
           </div>
         @endif
       </li>
@@ -46,12 +46,12 @@
       @endif
       <li class="inline-block {{ $current < $total ? 'flex-1 md:flex-none' : '' }}">
         @if ($current < $total)
-          <a href="{{ $next_url }}" class="btn btn--priUpdamary">
+          <a href="{{ $next_url }}" class="btn btn--primary">
             {{ $next_label }}
             <x-icon name="arrow-right" class="w-5 h-5" />
           </a>
         @else
-          <div class="btn">
+          <div class="btn cursor-not-allowed">
             <span class="hidden md:block">{{ $next_label }}</span>
             <x-icon name="arrow-right" class="w-5 h-5" />
           </div>
