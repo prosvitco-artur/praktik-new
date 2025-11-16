@@ -8,12 +8,12 @@
   }
   
   body {
-    @apply h-full pt-[60px] font-fixel;
+    @apply h-full font-fixel;
     background-color: #F4F4F6;
   }
   
   #app {
-    @apply min-h-[calc(100vh-60px)] flex flex-col;
+    @apply h-full flex flex-col;
   }
 
   h1 {
