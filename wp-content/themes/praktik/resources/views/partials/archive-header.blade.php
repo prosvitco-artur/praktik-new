@@ -35,7 +35,6 @@
       </button>
     </form>
 
-    <!-- Filter Buttons -->
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between gap-8">
         <div class="block relative w-full">
@@ -212,12 +211,10 @@
              aria-expanded="false"
            >
              <x-icon name="filter" class="w-6 h-6" />
-             <!-- <span class="text-p1">Фільтр</span> -->
              <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
            </button>
           <button class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5" id="sort-button">
             <x-icon name="sort" class="w-6 h-6" />
-            <!-- <span class="text-p1">Фільтр</span> -->
           </button>
         </div>
       </div>

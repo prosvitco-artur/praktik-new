@@ -1,6 +1,6 @@
 @layer components {
   .footer {
-    @apply bg-[#283570] text-white py-6 px-4;
+    @apply bg-secondary-700 text-white py-6 px-4;
   }
 
   .footer-container {
@@ -28,7 +28,7 @@
   }
 
   .social-icon {
-    @apply w-10 h-10 bg-[#4A69B4] rounded-full flex items-center justify-center text-white hover:bg-[#5A7BC4] transition-colors;
+    @apply w-10 h-10 bg-secondary-500 rounded-full flex items-center justify-center text-white hover:bg-secondary-400 transition-colors;
   }
 
   .footer-cta {
@@ -40,7 +40,7 @@
   }
 
   .chat-bot-button {
-    @apply bg-[#4A69B4] hover:bg-[#5A7BC4] text-white px-6 py-3 rounded-[100px] flex items-center gap-3 transition-colors font-medium text-sm;
+    @apply bg-secondary-500 hover:bg-secondary-400 text-white px-6 py-3 rounded-[100px] flex items-center gap-3 transition-colors font-medium text-sm;
   }
 
   .robot-icon {

@@ -51,10 +51,10 @@
   }
 
   .property-contact {
+    @apply bg-white;
     position: sticky;
     bottom: 0;
     z-index: 100;
-    background-color: #fff;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -97,12 +97,12 @@
     /* Show navigation buttons on desktop */
     .property-gallery-main .swiper-button-next,
     .property-gallery-main .swiper-button-prev {
+      @apply bg-white;
       display: flex;
       z-index: 20;
       pointer-events: auto;
       width: 40px;
       height: 80px;
-      background-color: #fff;
       padding: 31px 16px;
     }
 
@@ -139,7 +139,7 @@
     .property-gallery {
       flex: 1 1 auto;
       max-width: 50%;
-      --swiper-navigation-color: #3c589e; /* secondary/500 */
+      --swiper-navigation-color: #3c589e;
     }
 
     .property-details .icon {

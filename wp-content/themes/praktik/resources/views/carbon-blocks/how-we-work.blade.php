@@ -5,7 +5,7 @@
         <div class="py-4">
           @if(!empty($step['step_title']))
             <div class="font-bold mb-2">
-              <span class="text-neutral-500">{{ $key + 1 }}.</span>
+              <span class="text-primary-500 text-xl">{{ $key + 1 }}.</span>
               <span>{{ $step['step_title'] }}</span>
             </div>
           @endif
