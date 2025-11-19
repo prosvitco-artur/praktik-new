@@ -142,7 +142,7 @@ ul.standard-list {
 }
 
 body.admin-bar header.banner {
-  @apply top-8;
+  @apply md:top-8;
 }
 
 .filter-buttons {

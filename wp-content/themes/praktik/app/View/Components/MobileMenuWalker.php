@@ -12,7 +12,7 @@ class MobileMenuWalker extends Walker_Nav_Menu
     public function start_lvl(&$output, $depth = 0, $args = null)
     {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"mobile-submenu hidden pl-16px\">\n";
+        $output .= "\n$indent<ul class=\"mobile-submenu hidden pl-4\">\n";
     }
 
     /**
@@ -35,7 +35,7 @@ class MobileMenuWalker extends Walker_Nav_Menu
 
         $atts = [];
         $atts['href'] = !empty($item->url) ? $item->url : '';
-        $atts['class'] = 'mobile-menu-link flex items-center justify-between px-16px py-12px text-p1 text-neutral-900 transition-colors';
+        $atts['class'] = 'mobile-menu-link flex items-center justify-between text-neutral-900 px-3 py-2 mb-2';
         
         if ($depth === 0) {
             $atts['class'] .= ' font-medium';
@@ -56,7 +56,7 @@ class MobileMenuWalker extends Walker_Nav_Menu
 
         if ($has_children) {
             // Parent item with submenu
-            $output .= '<button type="button" class="mobile-menu-link mobile-submenu-toggle flex items-center justify-between w-full px-16px py-12px text-p1 text-neutral-900 transition-colors';
+            $output .= '<button type="button" class="mobile-menu-link mobile-submenu-toggle flex items-center justify-between w-full px-3 py-2 mb-2';
             if ($depth === 0) {
                 $output .= ' font-medium';
             }

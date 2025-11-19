@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
   safelist: [
-    'h-screen',
+    'md:h-screen',
     'md:px-[120px]',
     'md:px-5',
     'p-5',

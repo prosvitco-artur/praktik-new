@@ -1,8 +1,8 @@
-<div class="bg-white p-6 max-w-[800px]">
+<div class="bg-white p-6 md:pb-10 md:px-[80px] max-w-[800px]">
   <form role="search" method="get" class="property-search-form" id="property-search-form">
     <div class="flex flex-col md:flex-row items-end gap-5 w-full">
       <div class="block relative w-full text-neutral-950">
-        <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+        <label class="text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
           id="category-dropdown" data-dropdown-toggle="category">
@@ -22,7 +22,7 @@
       </div>
 
       <div class="block relative w-full text-neutral-950">
-        <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+        <label class="text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
           id="category-dropdown" data-dropdown-toggle="type">
@@ -43,9 +43,9 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn--primary">
+      <button type="submit" class="btn btn--primary w-full md:w-auto">
         <span>{{ __('Search', 'praktik') }}</span>
-        <x-icon name="search" class="w-5 h-5 stroke-current text-color-transparent" />
+        <x-icon name="search" class="w-5 h-5 stroke-current" />
       </button>
     </div>
 

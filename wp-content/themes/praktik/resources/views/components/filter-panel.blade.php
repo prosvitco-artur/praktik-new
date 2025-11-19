@@ -7,32 +7,28 @@
 
 {{-- Filter Panel --}}
 <div 
-  class="filter-panel fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 overflow-y-auto rounded-t-16px"
+  class="filter-panel p-5 fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg"
   data-filter-panel
   role="dialog"
   aria-modal="true"
   aria-label="Фільтри"
 >
-  {{-- Top Indicator (drag handle) --}}
-  <div class="flex justify-center pt-8px pb-4px">
-    <div class="w-32px h-4px bg-neutral-300 rounded-full"></div>
-  </div>
 
   {{-- Filter Header --}}
-  <div class="flex items-center justify-between px-16px py-12px border-b border-neutral-200">
+  <div class="flex items-center justify-between">
     <h2 class="text-p1 font-bold text-neutral-900">Фільтрувати</h2>
     <button 
       type="button"
-      class="filter-panel-close p-8px -mr-8px"
+      class="filter-panel-close"
       aria-label="Закрити фільтри"
       data-filter-panel-close
     >
-      <x-icon name="close" class="w-24px h-24px text-neutral-900 stroke-current" />
+      <x-icon name="close" class="w-4 h-4" />
     </button>
   </div>
 
   {{-- Filter Content --}}
-  <div class="filter-panel-content">
+  <!-- <div class="filter-panel-content">
     <div class="space-y-0">
       {{-- Object Type Filter --}}
       <div class="filter-section border-b border-neutral-200">
@@ -144,10 +140,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   {{-- Filter Actions --}}
-  <div class="mt-auto border-t border-neutral-200 px-4 py-4">
+  <!-- <div class="mt-auto border-t px-4 py-4">
     <div class="flex gap-3">
       <button 
         type="button"
@@ -164,5 +160,11 @@
         Застосувати
       </button>
     </div>
-  </div>
+  </div> -->
+  <button class="btn btn--primary">
+    скинути
+  </button>
+  <button class="btn btn--primary">
+    Застосувати
+  </button>
 </div>

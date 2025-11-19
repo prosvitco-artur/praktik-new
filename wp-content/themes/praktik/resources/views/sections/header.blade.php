@@ -29,12 +29,12 @@
       {{-- Mobile Menu Toggle --}}
       <button 
         type="button"
-        class="mobile-menu-toggle lg:hidden p-8px -mr-8px ml-auto"
+        class="mobile-menu-toggle lg:hidden p-8px -mr-8px ml-auto text-secondary-500"
         aria-label="Відкрити меню"
         aria-expanded="false"
         data-mobile-menu-toggle
       >
-        <x-icon name="menu" class="w-24px h-24px text-neutral-900 stroke-current" />
+        <x-icon name="menu" />
       </button>
     </div>
   </div>

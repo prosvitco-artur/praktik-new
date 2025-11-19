@@ -104,25 +104,19 @@
     @apply list-none p-0 m-0;
   }
 
-  .mobile-menu-item {
-    @apply border-b border-neutral-100 last:border-b-0;
-  }
-
-  .mobile-menu-link {
-    @apply w-full text-left;
-  }
-
-  .mobile-submenu .mobile-menu-item {
-    @apply border-b-0;
-  }
-
-  .mobile-submenu .mobile-menu-link {
-    @apply text-neutral-700 text-p2;
-  }
-
   .mobile-menu-item.current-menu-item > .mobile-menu-link,
   .mobile-menu-item.current_page_item > .mobile-menu-link {
-    @apply text-primary-600;
+    @apply text-secondary-500 font-bold;
+  }
+
+  .filter-panel-close,
+  .mobile-menu-close {
+    --icon-width: 1rem;
+    --icon-height: 1rem;
+  }
+
+  .mobile-menu-nav {
+    @apply py-1 border-b-[1px];
   }
 }
 

@@ -7,23 +7,19 @@
 
 {{-- Mobile Menu Panel --}}
 <div 
-  class="mobile-menu-panel fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 overflow-y-auto rounded-t-16px"
+  class="mobile-menu-panel fixed p-5 left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg"
   data-mobile-menu-panel
   role="dialog"
   aria-modal="true"
   aria-label="Мобільне меню"
 >
-  {{-- Top Indicator (drag handle) --}}
-  <div class="flex justify-center pt-8px pb-4px">
-    <div class="w-32px h-4px bg-neutral-300 rounded-full"></div>
-  </div>
 
   {{-- Menu Header --}}
-  <div class="flex items-center justify-between px-16px py-12px border-b border-neutral-200">
-    <h2 class="text-p1 font-bold text-neutral-900">Меню</h2>
+  <div class="flex items-center justify-between mb-5">
+    <div class="font-bold text-neutral-900">Меню</div>
     <button 
       type="button"
-      class="mobile-menu-close p-8px -mr-8px"
+      class="mobile-menu-close"
       aria-label="Закрити меню"
       data-mobile-menu-close
     >
@@ -32,7 +28,7 @@
   </div>
 
   {{-- Menu Content --}}
-  <nav class="mobile-menu-nav py-16px" aria-label="Мобільна навігація">
+  <nav class="mobile-menu-nav" aria-label="Мобільна навігація">
     {!! wp_nav_menu([
       'theme_location' => 'primary_navigation',
       'container' => false,
@@ -45,7 +41,7 @@
 
   {{-- Saved Items (Optional) --}}
   @if (is_user_logged_in())
-  <div class="mt-auto border-t border-neutral-200 px-16px py-16px">
+  <div class="mt-auto px-16px py-16px">
     <a href="{{ home_url('/saved') }}" class="flex items-center justify-between py-12px">
       <span class="text-p1 text-neutral-900">Збережені</span>
       <div class="flex items-center gap-8px">
