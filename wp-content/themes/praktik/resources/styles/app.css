@@ -149,3 +149,8 @@ body.admin-bar header.banner {
   --icon-width: 20px;
   --icon-height: 20px;
 }
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #3C589E;
+}

@@ -73,8 +73,6 @@
             <span class="text-p1">{{ __('New Building', 'praktik') }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
-          
-          {{-- Dropdown Menu --}}
           <div class="dropdown-menu" data-dropdown-content="type">
             <div class="py-2">
               @foreach(\App\get_property_types() as $key => $label)

@@ -128,17 +128,52 @@ class FilterPanel {
     const sectionId = toggle.getAttribute('data-filter-toggle');
     const content = document.querySelector(`[data-filter-content="${sectionId}"]`);
     const icon = toggle.querySelector('svg');
-    
+  
     if (!content) return;
-
-    const isExpanded = !content.classList.contains('hidden');
-    
-    if (isExpanded) {
-      content.classList.add('hidden');
+  
+    const isOpen = !content.classList.contains('hidden');
+  
+    if (isOpen) {
+      // Закриття з плавною анімацією
+      const height = content.scrollHeight + 'px';
+      content.style.height = height;
+      content.style.overflow = 'hidden';
+      content.style.transition = 'height 220ms ease';
+      
+      requestAnimationFrame(() => {
+        content.style.height = '0px';
+      });
+  
+      content.addEventListener('transitionend', function handler() {
+        content.classList.add('hidden');
+        content.style.height = '';
+        content.style.overflow = '';
+        content.style.transition = '';
+        content.removeEventListener('transitionend', handler);
+      });
+  
       icon?.classList.remove('rotate-180');
       toggle.setAttribute('aria-expanded', 'false');
+  
     } else {
+      // Відкриття з плавною анімацією
       content.classList.remove('hidden');
+      content.style.height = '0px';
+      content.style.overflow = 'hidden';
+      content.style.transition = 'height 220ms ease';
+  
+      const height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        content.style.height = height;
+      });
+  
+      content.addEventListener('transitionend', function handler() {
+        content.style.height = 'auto';
+        content.style.overflow = '';
+        content.style.transition = '';
+        content.removeEventListener('transitionend', handler);
+      });
+  
       icon?.classList.add('rotate-180');
       toggle.setAttribute('aria-expanded', 'true');
     }

@@ -217,7 +217,6 @@ function get_property_types() {
  */
 function get_room_counts() {
     return [
-        'all' => __('Всі', 'praktik'),
         '1' => '1',
         '2' => '2',
         '3' => '3',
