@@ -154,3 +154,18 @@ input[type="radio"],
 input[type="checkbox"] {
   accent-color: #3C589E;
 }
+
+.range-slider {
+  @apply h-[64px];
+}
+
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  background: var(--slider-color, #3C589E);
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  @apply h-5 w-5 rounded-full relative z-[2] pointer-events-auto;
+  -webkit-appearance: none;
+  background: var(--slider-color, #3C589E);
+}

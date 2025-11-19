@@ -49,6 +49,16 @@
       </div>
     </div>
 
+    <div class="filter-section border-b border-neutral-200">
+      <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="area">
+        <span class="text-bold">{{ __('Total Area', 'praktik') }}</span>
+        <x-icon name="chevron" class="w-5 h-5" />
+      </button>
+      <div class="filter-content hidden mb-2" data-filter-content="area">
+        <x-price-range-slider :min="0" :max="1000" :from="100" :to="900" :name="'area'" :text="'м²'" />
+      </div>
+    </div>
+
     <div class="flex gap pt-5 gap-5">
       <button class="btn btn--primary w-full" data-filter-clear>
         скинути
