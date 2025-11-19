@@ -2,7 +2,7 @@
 
 @section('content')
   @include('partials.archive-header')
-  <div class="archive-container container">
+  <div class="archive-container container px-5">
     @if (! have_posts())
       <section class="container mx-auto">
         <div class="px-5 min-h-screen lg:min-h-full flex flex-col items-center justify-center lg:pt-[140px]">

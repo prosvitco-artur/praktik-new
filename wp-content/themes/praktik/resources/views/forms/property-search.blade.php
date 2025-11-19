@@ -1,21 +1,46 @@
 <div class="bg-white p-6 max-w-[800px]">
   <form role="search" method="get" class="property-search-form" id="property-search-form">
     <div class="flex flex-col md:flex-row items-end gap-5 w-full">
-      <div class="select-field">
-        <label for="property-category">Категорія</label>
-        <select id="property-category" name="property_category">
-          @foreach(get_property_post_types() as $post_type => $label)
-            <option value="{{ $post_type }}">{{ $label }}</option>
-          @endforeach
-        </select>
+      <div class="block relative w-full text-neutral-950">
+        <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+        <button type="button"
+          class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
+          id="category-dropdown" data-dropdown-toggle="category">
+          <span class="text-p1">Квартири</span>
+          <x-icon name="chevron" class="w-4 h-4" />
+        </button>
+        <div class="dropdown-menu bg-secondary-50" data-dropdown-content="category">
+          <div class="py-1">
+            @foreach(get_property_post_types() as $key => $label)
+              <a href="{{ get_post_type_archive_link($key) }}"
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium">
+                {{ $label }}
+              </a>
+            @endforeach
+          </div>
+        </div>
       </div>
 
-      <div class="select-field">
-        <label for="property-type">{{ __("Property type", "praktik") }}</label>
-        <select id="property-type" name="property_type">
-          <option value="">Вторинний ринок</option>
-          <option value="new">Новобудова</option>
-        </select>
+      <div class="block relative w-full text-neutral-950">
+        <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+        <button type="button"
+          class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
+          id="category-dropdown" data-dropdown-toggle="type">
+          <span class="text-p1">Квартири</span>
+          <x-icon name="chevron" class="w-4 h-4" />
+        </button>
+
+        <div class="dropdown-menu bg-secondary-50" data-dropdown-content="type">
+          <div class="py-2">
+            @foreach(\App\get_property_types() as $key => $label)
+              <button type="button"
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full"
+                data-value="{{ $key }}" data-label="{{ $label }}">
+                {{ $label }}
+              </button>
+            @endforeach
+          </div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn--primary">
@@ -31,7 +56,7 @@
   const propertyForm = document.getElementById('property-search-form');
 
   if (propertyForm) {
-    propertyForm.addEventListener('submit', function(e) {
+    propertyForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const category = document.getElementById('property-category').value;

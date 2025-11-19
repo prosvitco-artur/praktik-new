@@ -1,5 +1,5 @@
 <header class="py-5">
-  <div class="container">
+  <div class="container px-5">
     @php
       $current_post_type = get_post_type();
       $property_types = get_property_post_types();
@@ -31,22 +31,22 @@
 
       <button type="submit" class="btn btn--primary hidden lg:flex">
         <span>{{ __('Search', 'praktik') }}</span>
-        <x-icon name="search" class="w-5 h-5 stroke-current" />
+        <x-icon name="search" class="w-5 h-5 stroke-current text-transparent" />
       </button>
     </form>
 
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between gap-8">
-        <div class="block relative w-full">
+        <div class="block relative w-full text-neutral-950">
           <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
-          <button 
+          <button
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="category-dropdown"
             data-dropdown-toggle="category"
           >
             <span class="text-p1">{{ $current_type_label }}</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+            <x-icon name="chevron" class="w-4 h-4" />
           </button>
           <div class="dropdown-menu" data-dropdown-content="category">
             <div class="py-1">
@@ -66,12 +66,12 @@
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="type-dropdown"
             data-dropdown-toggle="type"
           >
             <span class="text-p1">{{ __('New Building', 'praktik') }}</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+            <x-icon name="chevron" class="w-4 h-4" />
           </button>
           
           {{-- Dropdown Menu --}}
@@ -95,12 +95,12 @@
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="rooms-dropdown"
             data-dropdown-toggle="rooms"
           >
             <span class="text-p1">{{ __('All', 'praktik') }}</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+            <x-icon name="chevron" class="w-4 h-4" />
           </button>
           
           {{-- Dropdown Menu --}}
@@ -124,12 +124,12 @@
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Total Area', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="area-dropdown"
             data-dropdown-toggle="area"
           >
             <span class="text-p1">{{ __('Select Area', 'praktik') }}</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400 ml-auto" />
+            <x-icon name="chevron" class="w-4 h-4" />
           </button>
           
           {{-- Dropdown Menu --}}
@@ -165,12 +165,12 @@
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Price', 'praktik') }}</label>
           <button 
             type="button"
-            class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5 w-full"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="price-dropdown"
             data-dropdown-toggle="price"
           >
             <span class="text-p1">{{ __('Select Price', 'praktik') }}</span>
-            <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400 ml-auto" />
+            <x-icon name="chevron" class="w-4 h-4" />
           </button>
           
           {{-- Dropdown Menu --}}
@@ -229,12 +229,12 @@
         <label class="block text-sm text-neutral-600">{{ __('Sort by', 'praktik') }}</label>
         <button 
           type="button"
-          class="filter-dropdown flex items-center gap-2 text-neutral-800 hover:text-neutral-600 transition-colors bg-white p-2.5"
+          class="filter-dropdown flex items-center gap-2 text-neutral-800 transition-colors bg-white p-2.5"
           id="sort-dropdown"
           data-dropdown-toggle="sort"
         >
           <span class="text-p1">{{ get_sort_label(get_current_sort()) }}</span>
-          <x-icon name="chevron-down" class="w-4 h-4 text-neutral-400" />
+          <x-icon name="chevron" class="w-4 h-4" />
         </button>
         
         <div class="dropdown-menu" data-dropdown-content="sort">

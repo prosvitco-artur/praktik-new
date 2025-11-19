@@ -2,7 +2,7 @@
 
 @section('content')
   @if($has_favorites)
-    <div class="container">
+    <div class="container px-5">
     <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
       {!! wp_get_attachment_image($favorite_page_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
       <span aria-hidden="true"

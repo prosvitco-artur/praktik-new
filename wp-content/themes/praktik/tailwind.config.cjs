@@ -4,6 +4,7 @@ module.exports = {
   safelist: [
     'h-screen',
     'md:px-[120px]',
+    'md:px-5',
     'p-5',
     'py-10',
     'md:py-[80px]',

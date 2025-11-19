@@ -8,7 +8,7 @@
   $review_archive_banner = carbon_get_theme_option('review_archive_banner') ?? 2909;
 @endphp
 
-<div class="archive-container container p-5 md:pt-[60px]">
+<div class="archive-container container px-5">
   <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
     {!! wp_get_attachment_image($review_archive_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
     <span aria-hidden="true"

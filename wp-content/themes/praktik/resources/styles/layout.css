@@ -1,6 +1,6 @@
 @layer components {
   .main {
-    @apply flex-1 bg-neutral-100;
+    @apply flex-1 bg-neutral-100 pt-[60px];
   }
 
   .container {
