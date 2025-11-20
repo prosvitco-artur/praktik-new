@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-11-20T21:21:04+00:00\n"
-"PO-Revision-Date: 2025-11-20 22:12+0000\n"
+"PO-Revision-Date: 2025-11-20 21:57+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: praktik\n"
 "Language: uk\n"
@@ -646,8 +646,7 @@ msgstr "Виберіть меблі"
 
 #: resources/views/template-favorites.blade.php:38
 msgid "Select those that deserve the most, and equalize them at any time."
-msgstr ""
-"Виберіть ті, що заслуговують найбільше, та порівняйте їх у будь-який час."
+msgstr "Виберіть ті, що заслуговують найбільше, та порівняйте їх у будь-який час."
 
 #: app/post-types.php:205
 msgid "Semi-furnished"
