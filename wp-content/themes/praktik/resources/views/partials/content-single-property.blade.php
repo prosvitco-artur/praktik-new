@@ -157,7 +157,7 @@
               @if(!empty($property_meta['area']))
                 <div class="property-detail">
                   <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['area'] }} m²</div>
+                  <div class="text-neutral-950">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
                 </div>
               @endif
             </div>

@@ -40,6 +40,13 @@ add_action('wp_enqueue_scripts', function () {
     
     wp_localize_script('app', 'praktikAjax', [
         'ajaxurl' => admin_url('admin-ajax.php'),
+        'i18n' => [
+            'errorSavingFavorites' => __('Error saving favorites:', 'praktik'),
+            'unknownError' => __('Unknown error', 'praktik'),
+            'failedToSendRequest' => __('Failed to send request:', 'praktik'),
+            'linkCopiedToClipboard' => __('Link copied to clipboard', 'praktik'),
+            'failedToCopyLink' => __('Failed to copy link', 'praktik'),
+        ],
     ]);
 }, 100);
 

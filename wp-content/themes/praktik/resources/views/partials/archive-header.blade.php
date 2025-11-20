@@ -179,7 +179,7 @@
     <div class="sort-buttons mt-4 flex items-center justify-between">
       <div>
         {!! 
-          sprintf(__('Знайдено <strong>%s будинків</strong>', 'praktik'), $count)
+          sprintf(__('Found <strong>%s properties</strong>', 'praktik'), $count)
         !!}
       </div>
       <div class="relative hidden md:flex items-center gap-2">

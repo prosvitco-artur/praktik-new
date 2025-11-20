@@ -167,7 +167,8 @@ function format_property_price($price) {
     if (!$price) return '';
     
     $formatted_price = number_format($price, 0, ',', ' ');
-    return '$ ' . $formatted_price;
+    $currency_symbol = apply_filters('praktik_currency_symbol', '$');
+    return $currency_symbol . ' ' . $formatted_price;
 }
 
 /**

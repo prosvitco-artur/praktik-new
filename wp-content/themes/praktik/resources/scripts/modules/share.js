@@ -1,7 +1,6 @@
-import { __ } from '@wordpress/i18n';
-
 class Share {
   constructor() {
+    this.i18n = (window.praktikAjax && window.praktikAjax.i18n) || {};
     this.init();
   }
 
@@ -44,7 +43,7 @@ class Share {
   async copyToClipboard(text, button) {
     try {
       await navigator.clipboard.writeText(text);
-      this.showFeedback(button, __('Link copied to clipboard', 'praktik'));
+      this.showFeedback(button, this.i18n.linkCopiedToClipboard || 'Link copied to clipboard');
     } catch (error) {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
@@ -58,10 +57,10 @@ class Share {
       
       try {
         document.execCommand('copy');
-        this.showFeedback(button, __('Link copied to clipboard', 'praktik'));
+        this.showFeedback(button, this.i18n.linkCopiedToClipboard || 'Link copied to clipboard');
       } catch (err) {
         console.error('Failed to copy:', err);
-        this.showFeedback(button, __('Failed to copy link', 'praktik'), true);
+        this.showFeedback(button, this.i18n.failedToCopyLink || 'Failed to copy link', true);
       } finally {
         document.body.removeChild(textArea);
       }

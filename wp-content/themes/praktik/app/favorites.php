@@ -11,7 +11,7 @@ function handle_toggle_favorite() {
     
     if (!$post_id || !get_post($post_id)) {
         wp_send_json_error([
-            'message' => __('Невірний ID поста.', 'praktik')
+            'message' => __('Invalid post ID.', 'praktik')
         ]);
     }
     

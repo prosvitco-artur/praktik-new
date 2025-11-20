@@ -49,7 +49,7 @@
       </div>
       <div class="h-[44px] bg-white hidden md:flex items-center gap-2 pl-5">
 
-        <label for="date_from" class="text-neutral-500">{{ __('to: ', 'praktik') }}</label>
+        <label for="date_to" class="text-neutral-500">{{ __('To: ', 'praktik') }}</label>
         <input id="date_to" name="date_to" type="date" value="{{ esc_attr($date_to) }}"
           class="px-3 py-2 text-neutral-500">
       </div>

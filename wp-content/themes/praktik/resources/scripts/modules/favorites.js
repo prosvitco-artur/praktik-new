@@ -1,9 +1,8 @@
-import { __ } from '@wordpress/i18n';
-
 class Favorites {
   constructor() {
     this.ajaxUrl = (window.praktikAjax && window.praktikAjax.ajaxurl) || '/wp-admin/admin-ajax.php';
     this.nonce = (window.praktikAjax && window.praktikAjax.favoritesNonce) || '';
+    this.i18n = (window.praktikAjax && window.praktikAjax.i18n) || {};
     this.init();
   }
 
@@ -105,10 +104,13 @@ class Favorites {
         });
         document.dispatchEvent(event);
       } else {
-        console.error(__('Error saving favorites:', 'praktik'), data.data?.message || __('Unknown error', 'praktik'));
+        console.error(
+          this.i18n.errorSavingFavorites || 'Error saving favorites:',
+          data.data?.message || this.i18n.unknownError || 'Unknown error'
+        );
       }
     } catch (error) {
-      console.error(__('Failed to send request:', 'praktik'), error);
+      console.error(this.i18n.failedToSendRequest || 'Failed to send request:', error);
     } finally {
       button.disabled = false;
     }
