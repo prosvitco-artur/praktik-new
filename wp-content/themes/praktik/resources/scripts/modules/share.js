@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 class Share {
   constructor() {
     this.init();
@@ -42,7 +44,7 @@ class Share {
   async copyToClipboard(text, button) {
     try {
       await navigator.clipboard.writeText(text);
-      this.showFeedback(button, this.getTranslation('Link copied to clipboard'));
+      this.showFeedback(button, __('Link copied to clipboard', 'praktik'));
     } catch (error) {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
@@ -56,22 +58,14 @@ class Share {
       
       try {
         document.execCommand('copy');
-        this.showFeedback(button, this.getTranslation('Link copied to clipboard'));
+        this.showFeedback(button, __('Link copied to clipboard', 'praktik'));
       } catch (err) {
         console.error('Failed to copy:', err);
-        this.showFeedback(button, this.getTranslation('Failed to copy link'), true);
+        this.showFeedback(button, __('Failed to copy link', 'praktik'), true);
       } finally {
         document.body.removeChild(textArea);
       }
     }
-  }
-
-  getTranslation(key) {
-    const translations = {
-      'Link copied to clipboard': 'Посилання скопійовано',
-      'Failed to copy link': 'Не вдалося скопіювати посилання'
-    };
-    return translations[key] || key;
   }
 
   showFeedback(button, message, isError = false) {

@@ -5,11 +5,11 @@
 {{-- Filter Panel --}}
 <div
   class="filter-panel p-5 fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg text-neutral-950"
-  data-filter-panel role="dialog" aria-modal="true" aria-label="Фільтри">
+  data-filter-panel role="dialog" aria-modal="true" aria-label="{{ __('Filters', 'praktik') }}">
 
   <div class="flex items-center justify-between mb-5">
-    <div class="font-bold">Фільтрувати</div>
-    <button type="button" class="filter-panel-close" aria-label="Закрити фільтри" data-filter-panel-close>
+    <div class="font-bold">{{ __('Filter', 'praktik') }}</div>
+    <button type="button" class="filter-panel-close" aria-label="{{ __('Close filters', 'praktik') }}" data-filter-panel-close>
       <x-icon name="close" class="w-4 h-4" />
     </button>
   </div>
@@ -55,7 +55,7 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="area">
-        <x-price-range-slider :min="0" :max="1000" :from="100" :to="900" :name="'area'" :text="'м²'" />
+        <x-price-range-slider :min="0" :max="1000" :from="100" :to="900" :name="'area'" :text="__('m²', 'praktik')" />
       </div>
     </div>
 

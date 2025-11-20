@@ -107,7 +107,7 @@
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 id="area-from-dropdown" data-dropdown-toggle="area_from">
                 <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input name="area-from" class="w-10" />м²</span>
+                <span><input name="area-from" class="w-10" />{{ __('m²', 'praktik') }}</span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
@@ -128,7 +128,7 @@
                 <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
                 <span>
                   <input name="area-to" class="w-10" />
-                  м²
+                  {{ __('m²', 'praktik') }}
                 </span>
 
                 <x-icon name="chevron" class="w-4 h-4" />

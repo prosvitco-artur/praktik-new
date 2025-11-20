@@ -19,7 +19,7 @@
 @endphp
 
 @if ($has_pagination)
-  <nav class="pagination mt-6" aria-label="{{ __('Пагінація', 'praktik') }}">
+  <nav class="pagination mt-6" aria-label="{{ __('Pagination', 'praktik') }}">
     <ul class="flex flex-wrap items-center gap-2 justify-between">
       @php
         $prev_url = add_query_arg($query_args, get_pagenum_link(max(1, $current - 1)));

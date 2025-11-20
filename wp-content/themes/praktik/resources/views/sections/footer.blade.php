@@ -13,8 +13,8 @@
         @endif
       </div>
       <div class="footer-links">
-        <a href="/privacy-policy" class="footer-link">Політика конфіденційності</a>
-        <a href="/terms-of-use" class="footer-link">Умови використання</a>
+        <a href="/privacy-policy" class="footer-link">{{ __('Privacy policy', 'praktik') }}</a>
+        <a href="/terms-of-use" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
       </div>
     </div>
 
@@ -31,16 +31,16 @@
     @endif
 
     <div class="footer-cta">
-      <div class="footer-text">Актуальні підбірки для вас:</div>
+      <div class="footer-text">{{ __('Fresh picks for you:', 'praktik') }}</div>
       <button class="chat-bot-button">
         <span class="robot-icon">🤖</span>
-        <span class="button-text">Чат бот пошуку квартир</span>
+        <span class="button-text">{{ __('Apartment search chatbot', 'praktik') }}</span>
       </button>
     </div>
 
     <div class="footer-links-mobile">
-      <a href="/privacy-policy" class="footer-link">Політика конфіденційності</a>
-      <a href="/terms-of-use" class="footer-link">Умови використання</a>
+      <a href="/privacy-policy" class="footer-link">{{ __('Privacy policy', 'praktik') }}</a>
+      <a href="/terms-of-use" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
     </div>
   </div>
 </footer>

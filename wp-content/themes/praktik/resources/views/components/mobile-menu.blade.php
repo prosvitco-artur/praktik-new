@@ -11,16 +11,16 @@
   data-mobile-menu-panel
   role="dialog"
   aria-modal="true"
-  aria-label="Мобільне меню"
+  aria-label="{{ __('Mobile menu', 'praktik') }}"
 >
 
   {{-- Menu Header --}}
   <div class="flex items-center justify-between mb-5">
-    <div class="font-bold text-neutral-900">Меню</div>
+    <div class="font-bold text-neutral-900">{{ __('Menu', 'praktik') }}</div>
     <button 
       type="button"
       class="mobile-menu-close"
-      aria-label="Закрити меню"
+      aria-label="{{ __('Close menu', 'praktik') }}"
       data-mobile-menu-close
     >
       <x-icon name="close" class="w-24px h-24px text-neutral-900 stroke-current" />
@@ -28,7 +28,7 @@
   </div>
 
   {{-- Menu Content --}}
-  <nav class="mobile-menu-nav" aria-label="Мобільна навігація">
+  <nav class="mobile-menu-nav" aria-label="{{ __('Mobile navigation', 'praktik') }}">
     {!! wp_nav_menu([
       'theme_location' => 'primary_navigation',
       'container' => false,
@@ -43,7 +43,7 @@
   @if (is_user_logged_in())
   <div class="mt-auto px-16px py-16px">
     <a href="{{ home_url('/saved') }}" class="flex items-center justify-between py-12px">
-      <span class="text-p1 text-neutral-900">Збережені</span>
+      <span class="text-p1 text-neutral-900">{{ __('Saved items', 'praktik') }}</span>
       <div class="flex items-center gap-8px">
         <x-icon name="bookmark" class="w-20px h-20px text-neutral-600 stroke-current" />
         <span class="text-p2 text-neutral-600">0</span>

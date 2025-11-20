@@ -6,7 +6,7 @@
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
           id="category-dropdown" data-dropdown-toggle="category">
-          <span class="text-p1">Квартири</span>
+          <span class="text-p1">{{ __('Apartments', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
         <div class="dropdown-menu bg-secondary-50" data-dropdown-content="category">
@@ -26,7 +26,7 @@
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
           id="category-dropdown" data-dropdown-toggle="type">
-          <span class="text-p1">Квартири</span>
+          <span class="text-p1">{{ __('Apartments', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
 

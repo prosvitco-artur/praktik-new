@@ -84,7 +84,7 @@
 
       <button class="chat-bot-button rounded-none justify-center w-full">
         <span class="robot-icon">🤖</span>
-        <span class="button-text">Чат бот пошуку квартир</span>
+        <span class="button-text">{{ __('Apartment search chatbot', 'praktik') }}</span>
       </button>
     </div>
 

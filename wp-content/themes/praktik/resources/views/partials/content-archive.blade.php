@@ -54,7 +54,7 @@ $is_favorite = in_array((string)$post_id, $favorites);
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 text-neutral-400">
             <x-icon name="qube-2" />
-            <span class="text-p2">{{ $property_meta['area'] }} м²</span>
+            <span class="text-p2">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</span>
           </div>
           <div class="text-h4 text-primary-500 md:hidden">
             <span>{{ format_property_price($property_meta['price']) }}</span>

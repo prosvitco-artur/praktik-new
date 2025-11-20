@@ -30,7 +30,7 @@
       <button 
         type="button"
         class="mobile-menu-toggle lg:hidden p-8px -mr-8px ml-auto text-secondary-500"
-        aria-label="Відкрити меню"
+        aria-label="{{ __('Open menu', 'praktik') }}"
         aria-expanded="false"
         data-mobile-menu-toggle
       >

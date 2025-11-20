@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 class Favorites {
   constructor() {
     this.ajaxUrl = (window.praktikAjax && window.praktikAjax.ajaxurl) || '/wp-admin/admin-ajax.php';
@@ -103,10 +105,10 @@ class Favorites {
         });
         document.dispatchEvent(event);
       } else {
-        console.error('Помилка при збереженні favorites:', data.data?.message || 'Невідома помилка');
+        console.error(__('Error saving favorites:', 'praktik'), data.data?.message || __('Unknown error', 'praktik'));
       }
     } catch (error) {
-      console.error('Помилка при відправці запиту:', error);
+      console.error(__('Failed to send request:', 'praktik'), error);
     } finally {
       button.disabled = false;
     }
