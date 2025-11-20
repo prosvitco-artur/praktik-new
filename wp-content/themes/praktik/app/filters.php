@@ -204,9 +204,8 @@ add_action('pre_get_posts', function ($query) {
  */
 function get_property_types() {
     return [
-        'new' => __('Новобудова', 'praktik'),
-        'secondary' => __('Вторинний ринок', 'praktik'),
-        'rent' => __('Оренда', 'praktik'),
+        'new' => __('New building', 'praktik'),
+        'secondary' => __('Secondary market', 'praktik'),
     ];
 }
 
@@ -231,26 +230,13 @@ function get_room_counts() {
  * @return array
  */
 function get_area_ranges() {
-    return [
-        '0-20' => __('До 20 м²', 'praktik'),
-        '20-50' => __('20-50 м²', 'praktik'),
-        '50-100' => __('50-100 м²', 'praktik'),
-        '100-150' => __('100-150 м²', 'praktik'),
-        '150+' => __('Понад 150 м²', 'praktik'),
-    ];
+    return [ 20, 30, 40, 50, 60, 70, 80, 90, 100];
 }
 
 /**
- * Get price ranges for filter dropdown
- *
- * @return array
+ * 
  */
-function get_price_ranges() {
-    return [
-        '0-50000' => __('До $50,000', 'praktik'),
-        '50000-100000' => __('$50,000 - $100,000', 'praktik'),
-        '100000-200000' => __('$100,000 - $200,000', 'praktik'),
-        '200000-500000' => __('$200,000 - $500,000', 'praktik'),
-        '500000+' => __('Понад $500,000', 'praktik'),
-    ];
+
+ function get_plot_area_ranges() {
+    return [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 }

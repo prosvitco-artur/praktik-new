@@ -13,10 +13,8 @@
    * Just use data-dropdown-content attribute and the system will work.
    */
   [data-dropdown-content] {
-    @apply absolute left-0 bg-white z-50 shadow-lg mt-1 min-w-[200px];
+    @apply absolute left-0 bg-white z-50 shadow-lg mt-1;
     top: 100%;
-    max-height: 300px;
-    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

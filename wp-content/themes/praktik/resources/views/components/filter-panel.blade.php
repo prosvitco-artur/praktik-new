@@ -17,7 +17,7 @@
   <div class="filter-panel-content">
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="object-type">
-        <span class="text-bold">{{ __('Property Type', 'praktik') }}</span>
+        <span class="font-bold">{{ __('Property Type', 'praktik') }}</span>
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="object-type">
@@ -32,7 +32,7 @@
 
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="rooms">
-        <span class="text-bold">{{ __('Number of Rooms', 'praktik') }}</span>
+        <span class="font-bold">{{ __('Number of Rooms', 'praktik') }}</span>
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="rooms">
@@ -51,7 +51,7 @@
 
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="area">
-        <span class="text-bold">{{ __('Total Area', 'praktik') }}</span>
+        <span class="font-bold">{{ __('Total Area', 'praktik') }}</span>
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="area">
@@ -61,10 +61,10 @@
 
     <div class="flex gap pt-5 gap-5">
       <button class="btn btn--primary w-full" data-filter-clear>
-        скинути
+        {{ __('Clear', 'praktik') }}
       </button>
       <button class="btn btn--primary w-full" data-filter-apply>
-        Застосувати
+        {{ __('Apply', 'praktik') }}
       </button>
     </div>
   </div>

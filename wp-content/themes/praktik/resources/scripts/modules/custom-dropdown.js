@@ -10,45 +10,33 @@ class CustomDropdown {
     });
 
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('[data-dropdown-toggle]') && !e.target.closest('[data-dropdown-content]')) {
-        this.closeAllDropdowns();
-      }
-    });
-
-    document.addEventListener('click', (e) => {
+      const toggleClicked = e.target.closest('[data-dropdown-toggle]');
       const dropdownContent = e.target.closest('[data-dropdown-content]');
-      if (!dropdownContent) return;
-
-      const item = e.target.closest('button, a, .dropdown-item');
-      if (!item) return;
-
-      if (item.hasAttribute('data-dropdown-toggle')) return;
-
-      const dropdownId = dropdownContent.getAttribute('data-dropdown-content');
-      const toggle = document.querySelector(`[data-dropdown-toggle="${dropdownId}"]`);
       
-      if (!toggle) return;
-
-      const toggleText = toggle.querySelector('span');
-      const itemText = item.textContent?.trim();
-      
-      if (toggleText && itemText) {
-        toggleText.textContent = itemText;
-      }
-
-      if (item.hasAttribute('data-value') && item.hasAttribute('data-label')) {
-        this.selectItem(e);
+      if (!toggleClicked && !dropdownContent) {
+        this.closeAllDropdowns();
         return;
       }
 
-      this.closeAllDropdowns();
+      if (dropdownContent) {
+        const item = e.target.closest('button, a, .dropdown-item');
+        
+        if (!item || item.hasAttribute('data-dropdown-toggle')) return;
+        console.log(item.hasAttribute('data-value') && item.hasAttribute('data-label'));
+        if (item.hasAttribute('data-value') && item.hasAttribute('data-label')) {
+          this.selectItem(item);
+          return;
+        }
+
+        this.closeAllDropdowns();
+      }
     });
   }
 
   toggleDropdown(e) {
     e.stopPropagation();
     const toggle = e.currentTarget;
-    const dropdownId = toggle.getAttribute('data-dropdown-toggle');
+    const dropdownId = toggle.dataset.dropdownToggle;
     const content = document.querySelector(`[data-dropdown-content="${dropdownId}"]`);
     const icon = toggle.querySelector('svg');
 
@@ -65,53 +53,39 @@ class CustomDropdown {
   }
 
   closeAllDropdowns() {
-    const allDropdowns = document.querySelectorAll('[data-dropdown-content]');
-    const allIcons = document.querySelectorAll('[data-dropdown-toggle] svg');
-    
-    allDropdowns.forEach(dropdown => {
+    document.querySelectorAll('[data-dropdown-content]').forEach(dropdown => {
       dropdown.classList.remove('dropdown-open');
     });
-    
-    allIcons.forEach(icon => {
+    document.querySelectorAll('[data-dropdown-toggle] svg').forEach(icon => {
       icon.classList.remove('rotate-180');
     });
   }
 
-  selectItem(e) {
-    const item = e.currentTarget;
-    const value = item.getAttribute('data-value');
-    const label = item.getAttribute('data-label');
-    const dropdownId = item.closest('[data-dropdown-content]').getAttribute('data-dropdown-content');
-    const toggle = document.querySelector(`[data-dropdown-toggle="${dropdownId}"]`);
-    const toggleText = toggle.querySelector('span');
-
-    if (toggleText) {
-      toggleText.textContent = label;
-    }
-
+  selectItem(item) {
+    const value = item.dataset.value;
+    const label = item.dataset.label;
     const dropdownContent = item.closest('[data-dropdown-content]');
-    const allItems = dropdownContent.querySelectorAll('.dropdown-item');
-    
-    allItems.forEach(dropdownItem => {
-      dropdownItem.classList.remove('text-info-600');
-      dropdownItem.classList.add('text-neutral-700');
+    const dropdownId = dropdownContent.dataset.dropdownContent;
+    const toggle = document.querySelector(`[data-dropdown-toggle="${dropdownId}"]`);
+    const input = toggle.querySelector('input');
+
+    if (input) input.value = label;
+
+    dropdownContent.querySelectorAll('.dropdown-item').forEach(i => {
+      i.classList.remove('text-info-600');
+      i.classList.add('text-neutral-700');
     });
-    
+
     item.classList.remove('text-neutral-700');
     item.classList.add('text-info-600');
 
     this.closeAllDropdowns();
 
     const customEvent = new CustomEvent('dropdownChange', {
-      detail: {
-        dropdownId,
-        value,
-        label
-      }
+      detail: { dropdownId, value, label }
     });
     document.dispatchEvent(customEvent);
   }
 }
 
 export default CustomDropdown;
-

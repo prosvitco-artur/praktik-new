@@ -3,28 +3,24 @@
     @php
       $current_post_type = get_post_type();
       $property_types = get_property_post_types();
-      $current_type_label = isset($property_types[$current_post_type]) 
-        ? $property_types[$current_post_type] 
+      $current_type_label = isset($property_types[$current_post_type])
+        ? $property_types[$current_post_type]
         : ($current_post_type ? ucfirst($current_post_type) : __('All Properties', 'praktik'));
-      $archive_link = $current_post_type && get_post_type_archive_link($current_post_type) 
-        ? get_post_type_archive_link($current_post_type) 
+      $archive_link = $current_post_type && get_post_type_archive_link($current_post_type)
+        ? get_post_type_archive_link($current_post_type)
         : home_url('/');
 
-      
+
       $count = $GLOBALS['wp_query']->found_posts;
     @endphp
     <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
       <div class="w-full relative">
-        <input
-          type="search"
-          placeholder="{{ __('Search', 'praktik') }}"
-          value="{{ $_GET['search'] ?? '' }}"
-          name="search"
-          class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none"
-        >
+        <input type="search" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
+          name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">
         <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </button>
       </div>
@@ -36,25 +32,20 @@
     </form>
 
     <div class="filter-buttons mt-4">
-      <div class="flex items-center justify-between gap-8">
-        <div class="block relative w-full text-neutral-950">
-          <label class="hidden md:block text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
-          <button
-            type="button"
-            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="category-dropdown"
-            data-dropdown-toggle="category"
-          >
-            <span class="text-p1">{{ $current_type_label }}</span>
+      <div class="flex items-center justify-between gap-[71px] flex-wrap text-sm">
+        <div class="relative">
+          <label class="hidden md:block text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+          <button type="button"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white px-4 py-3"
+            id="category-dropdown" data-dropdown-toggle="category">
+            <span>{{ $current_type_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
           <div class="dropdown-menu" data-dropdown-content="category">
             <div class="py-1">
               @foreach(get_property_post_types() as $key => $label)
-                <a 
-                  href="{{ get_post_type_archive_link($key) }}"
-                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium"
-                >
+                <a href="{{ get_post_type_archive_link($key) }}"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium">
                   {{ $label }}
                 </a>
               @endforeach
@@ -62,26 +53,20 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative w-full">
+        <div class="hidden md:block relative">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
-          <button 
-            type="button"
+          <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="type-dropdown"
-            data-dropdown-toggle="type"
-          >
-            <span class="text-p1">{{ __('New Building', 'praktik') }}</span>
+            id="type-dropdown" data-dropdown-toggle="type">
+            <span>{{ __('New Building', 'praktik') }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
           <div class="dropdown-menu" data-dropdown-content="type">
             <div class="py-2">
               @foreach(\App\get_property_types() as $key => $label)
-                <button 
-                  type="button"
+                <button type="button"
                   class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full"
-                  data-value="{{ $key }}"
-                  data-label="{{ $label }}"
-                >
+                  data-value="{{ $key }}" data-label="{{ $label }}">
                   {{ $label }}
                 </button>
               @endforeach
@@ -89,129 +74,103 @@
           </div>
         </div>
 
-        <div class="hidden md:block relative w-full">
+        <div class="hidden md:block relative">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
-          <button 
-            type="button"
+          <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="rooms-dropdown"
-            data-dropdown-toggle="rooms"
-          >
-            <span class="text-p1">{{ __('All', 'praktik') }}</span>
+            id="rooms-dropdown" data-dropdown-toggle="rooms">
+            <span>{{ __('All', 'praktik') }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
-          
+
           {{-- Dropdown Menu --}}
           <div class="dropdown-menu" data-dropdown-content="rooms">
             <div class="py-2">
+              <label class="flex items-center gap-3 py-2 px-3 font-bold text-secondary-500">
+                {{ __('All', 'praktik') }}
+              </label>
               @foreach(\App\get_room_counts() as $key => $label)
-                <button 
-                  type="button"
-                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left"
-                  data-value="{{ $key }}"
-                  data-label="{{ $label }}"
-                >
-                  {{ $label }}
-                </button>
+                <label class="flex items-center gap-3 py-2 px-3">
+                  <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4">
+                  <span>{{ $label }}</span>
+                </label>
               @endforeach
             </div>
           </div>
         </div>
 
-        <div class="hidden md:block relative w-full">
-          <label class="block text-sm text-neutral-600 mb-2">{{ __('Total Area', 'praktik') }}</label>
-          <button 
-            type="button"
-            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="area-dropdown"
-            data-dropdown-toggle="area"
-          >
-            <span class="text-p1">{{ __('Select Area', 'praktik') }}</span>
-            <x-icon name="chevron" class="w-4 h-4" />
-          </button>
-          
-          {{-- Dropdown Menu --}}
-          <div class="dropdown-menu" data-dropdown-content="area">
-            <div class="p-4 space-y-3">
-              <div>
-                <label class="block text-xs text-neutral-600 mb-1">{{ __('From (m²):', 'praktik') }}</label>
-                <input 
-                  type="number" 
-                  name="area_from" 
-                  placeholder="20" 
-                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
-                  min="0"
-                  step="1"
-                >
+        <div class="hidden md:block">
+          <label class="mb-2">{{ __('Total Area', 'praktik') }}</label>
+          <div class="flex gap-2">
+            <div class="relative">
+              <button type="button"
+                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
+                id="area-from-dropdown" data-dropdown-toggle="area_from">
+                <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
+                <span><input name="area-from" class="w-10" />м²</span>
+                <x-icon name="chevron" class="w-4 h-4" />
+              </button>
+
+              <div class="dropdown-menu" data-dropdown-content="area_from" data-filter-area="area-from">
+                <div class="p-4 space-y-3 flex flex-col items-start">
+                  @foreach (\App\get_area_ranges() as $value)
+                    <button type="button" class="w-full text-left" data-value="{{ $key }}"
+                      data-label="{{ $value }}">{{ $value }}</button>
+                  @endforeach
+                </div>
               </div>
-              <div>
-                <label class="block text-xs text-neutral-600 mb-1">{{ __('To (m²):', 'praktik') }}</label>
-                <input 
-                  type="number" 
-                  name="area_to" 
-                  placeholder="100" 
-                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
-                  min="0"
-                  step="1"
-                >
+            </div>
+            <div class="relative">
+              <button type="button"
+                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
+                data-dropdown-toggle="area_to">
+
+                <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
+                <span>
+                  <input name="area-to" class="w-10" />
+                  м²
+                </span>
+
+                <x-icon name="chevron" class="w-4 h-4" />
+              </button>
+
+              <div class="dropdown-menu" data-dropdown-content="area_to" data-filter-area="area-to">
+                <div class="p-4 space-y-3 flex flex-col items-start">
+                  @foreach (\App\get_area_ranges() as $value)
+                    <button type="button" class="dropdown-item w-full text-left text-neutral-700" data-value="{{ $key }}"
+                      data-label="{{ $value }}">
+                      {{ $value }}
+                    </button>
+                  @endforeach
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <label class="mb-2">{{ __('Price', 'praktik') }}</label>
+          <div class="flex gap-2">
+            <div class="bg-white px-4 py-3">
+              <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
+              <input name="price-from" class="w-10" />
+            </div>
+            <div class="bg-white px-4 py-3">
+              <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
+              <input name="price-to" class="w-10" />
             </div>
           </div>
         </div>
 
-        <div class="hidden md:block relative w-full">
-          <label class="block text-sm text-neutral-600 mb-2">{{ __('Price', 'praktik') }}</label>
-          <button 
-            type="button"
-            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="price-dropdown"
-            data-dropdown-toggle="price"
-          >
-            <span class="text-p1">{{ __('Select Price', 'praktik') }}</span>
-            <x-icon name="chevron" class="w-4 h-4" />
-          </button>
-          
-          {{-- Dropdown Menu --}}
-          <div class="dropdown-menu" data-dropdown-content="price">
-            <div class="p-4 space-y-3">
-              <div>
-                <label class="block text-xs text-neutral-600 mb-1">{{ __('From ($):', 'praktik') }}</label>
-                <input 
-                  type="number" 
-                  name="price_from" 
-                  placeholder="0" 
-                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
-                  min="0"
-                  step="1000"
-                >
-              </div>
-              <div>
-                <label class="block text-xs text-neutral-600 mb-1">{{ __('To ($):', 'praktik') }}</label>
-                <input 
-                  type="number" 
-                  name="price_to" 
-                  placeholder="150000" 
-                  class="w-full px-3 py-2 border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-info-500"
-                  min="0"
-                  step="1000"
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        
         <div class="flex items-center gap-4 md:hidden">
-           <button 
-             type="button"
-             class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5" 
-             id="filter-button"
-             data-filter-panel-toggle
-             aria-expanded="false"
-           >
-             <x-icon name="filter" class="w-6 h-6" />
-             <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
-           </button>
-          <button class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5" id="sort-button">
+          <button type="button"
+            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
+            id="filter-button" data-filter-panel-toggle aria-expanded="false">
+            <x-icon name="filter" class="w-6 h-6" />
+            <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
+          </button>
+          <button
+            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
+            id="sort-button">
             <x-icon name="sort" class="w-6 h-6" />
           </button>
         </div>
@@ -220,31 +179,26 @@
     <div class="sort-buttons mt-4 flex items-center justify-between">
       <div>
         {!! 
-          sprintf( __('Знайдено <strong>%s будинків</strong>', 'praktik'), $count)
+          sprintf(__('Знайдено <strong>%s будинків</strong>', 'praktik'), $count)
         !!}
       </div>
       <div class="relative hidden md:flex items-center gap-2">
         <label class="block text-sm text-neutral-600">{{ __('Sort by', 'praktik') }}</label>
-        <button 
-          type="button"
+        <button type="button"
           class="filter-dropdown flex items-center gap-2 text-neutral-800 transition-colors bg-white p-2.5"
-          id="sort-dropdown"
-          data-dropdown-toggle="sort"
-        >
-          <span class="text-p1">{{ get_sort_label(get_current_sort()) }}</span>
+          id="sort-dropdown" data-dropdown-toggle="sort">
+          <span>{{ get_sort_label(get_current_sort()) }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
-        
+
         <div class="dropdown-menu" data-dropdown-content="sort">
           <div class="py-2">
             @foreach(get_sort_options() as $key => $label)
               @php
                 $sort_url = add_query_arg(['sort' => $key], remove_query_arg(['paged', 'sort']));
               @endphp
-              <a 
-                href="{{ $sort_url }}"
-                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium {{ get_current_sort() === $key ? 'text-secondary-500 font-bold' : '' }}"
-              >
+              <a href="{{ $sort_url }}"
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium {{ get_current_sort() === $key ? 'text-secondary-500 font-bold' : '' }}">
                 {{ $label }}
               </a>
             @endforeach
@@ -252,7 +206,7 @@
         </div>
       </div>
     </div>
-    
+
     @include('components.filter-panel')
   </div>
 </header>
