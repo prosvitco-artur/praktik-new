@@ -4,15 +4,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: \n"
+"Language-Team: Українська\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-11-20T21:21:04+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"PO-Revision-Date: 2025-11-20 21:49+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Domain: praktik\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-7.4.33"
 
 #. Theme Name of the theme
 #: style.css
@@ -111,15 +115,14 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: app/helpers.php:6
-#: resources/views/forms/property-search.blade.php:9
+#: app/helpers.php:6 resources/views/forms/property-search.blade.php:9
 #: resources/views/forms/property-search.blade.php:31
 msgid "Apartments"
-msgstr ""
+msgstr "Квартири"
 
 #: app/helpers.php:7
 msgid "Houses"
-msgstr ""
+msgstr "Будинки"
 
 #: app/helpers.php:8
 msgid "Plots"
@@ -143,11 +146,11 @@ msgstr ""
 
 #: app/helpers.php:180
 msgid "Apartment"
-msgstr ""
+msgstr "Квартира"
 
 #: app/helpers.php:181
 msgid "House"
-msgstr ""
+msgstr "Будинок"
 
 #: app/helpers.php:182
 msgid "Plot"
@@ -163,7 +166,7 @@ msgstr ""
 
 #: app/helpers.php:185
 msgid "Dacha"
-msgstr ""
+msgstr "Дача"
 
 #: app/helpers.php:248
 msgid "Newest First"
@@ -193,8 +196,7 @@ msgstr ""
 msgid "Custom Field..."
 msgstr ""
 
-#: app/post-types.php:22
-#: app/post-types.php:71
+#: app/post-types.php:22 app/post-types.php:71
 msgid "Add new"
 msgstr ""
 
@@ -234,13 +236,11 @@ msgstr ""
 msgid "Not found %s in trash"
 msgstr ""
 
-#: app/post-types.php:67
-#: app/post-types.php:69
+#: app/post-types.php:67 app/post-types.php:69
 msgid "Reviews"
 msgstr ""
 
-#: app/post-types.php:68
-#: app/post-types.php:70
+#: app/post-types.php:68 app/post-types.php:70
 msgid "Review"
 msgstr ""
 
@@ -272,8 +272,7 @@ msgstr ""
 msgid "Parent Reviews:"
 msgstr ""
 
-#: app/post-types.php:79
-#: resources/views/archive-review.blade.php:72
+#: app/post-types.php:79 resources/views/archive-review.blade.php:72
 msgid "No reviews found"
 msgstr ""
 
@@ -289,10 +288,9 @@ msgstr ""
 msgid "Basic Information"
 msgstr ""
 
-#: app/post-types.php:158
-#: resources/views/partials/archive-header.blade.php:161
+#: app/post-types.php:158 resources/views/partials/archive-header.blade.php:161
 msgid "Price"
-msgstr ""
+msgstr "Ціна"
 
 #: app/post-types.php:161
 msgid "Price in USD"
@@ -301,24 +299,23 @@ msgstr ""
 #: app/post-types.php:163
 #: resources/views/partials/content-single-property.blade.php:138
 msgid "City"
-msgstr ""
+msgstr "Місто"
 
 #: app/post-types.php:165
 #: resources/views/partials/content-single-property.blade.php:145
 msgid "District"
-msgstr ""
+msgstr "Район"
 
 #: app/post-types.php:167
 #: resources/views/partials/content-single-property.blade.php:152
 msgid "Street"
-msgstr ""
+msgstr "Вулиця"
 
-#: app/post-types.php:169
-#: resources/views/components/filter-panel.blade.php:36
+#: app/post-types.php:169 resources/views/components/filter-panel.blade.php:36
 #: resources/views/partials/archive-header.blade.php:82
 #: resources/views/partials/content-single-property.blade.php:159
 msgid "Number of Rooms"
-msgstr ""
+msgstr "Кількість кімнат"
 
 #: app/post-types.php:173
 msgid "Total Area (m²)"
@@ -531,19 +528,19 @@ msgstr ""
 #: resources/views/partials/archive-header.blade.php:18
 #: resources/views/partials/archive-header.blade.php:29
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: resources/views/archive-review.blade.php:48
 #: resources/views/partials/archive-header.blade.php:115
 #: resources/views/partials/archive-header.blade.php:164
 msgid "From: "
-msgstr ""
+msgstr "Від: "
 
 #: resources/views/archive-review.blade.php:54
 #: resources/views/partials/archive-header.blade.php:135
 #: resources/views/partials/archive-header.blade.php:168
 msgid "To: "
-msgstr ""
+msgstr "До: "
 
 #: resources/views/archive.blade.php:9
 msgid "No results found"
@@ -572,15 +569,15 @@ msgstr ""
 
 #: resources/views/components/filter-panel.blade.php:8
 msgid "Filters"
-msgstr ""
+msgstr "Фільтри"
 
 #: resources/views/components/filter-panel.blade.php:11
 msgid "Filter"
-msgstr ""
+msgstr "Фільтр"
 
 #: resources/views/components/filter-panel.blade.php:12
 msgid "Close filters"
-msgstr ""
+msgstr "Закрити фільтри"
 
 #: resources/views/components/filter-panel.blade.php:20
 #: resources/views/partials/archive-header.blade.php:59
@@ -591,21 +588,21 @@ msgstr ""
 #: resources/views/partials/archive-header.blade.php:86
 #: resources/views/partials/archive-header.blade.php:94
 msgid "All"
-msgstr ""
+msgstr "Всі"
 
 #: resources/views/components/filter-panel.blade.php:56
 #: resources/views/partials/archive-header.blade.php:109
 #: resources/views/partials/content-single-property.blade.php:166
 msgid "Total Area"
-msgstr ""
+msgstr "Загальна площа"
 
 #: resources/views/components/filter-panel.blade.php:66
 msgid "Clear"
-msgstr ""
+msgstr "Очистити"
 
 #: resources/views/components/filter-panel.blade.php:70
 msgid "Apply"
-msgstr ""
+msgstr "Застосувати"
 
 #: resources/views/components/mobile-menu.blade.php:14
 msgid "Mobile menu"
@@ -613,7 +610,7 @@ msgstr ""
 
 #: resources/views/components/mobile-menu.blade.php:19
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #: resources/views/components/mobile-menu.blade.php:23
 msgid "Close menu"
@@ -629,11 +626,11 @@ msgstr ""
 
 #: resources/views/components/pagination.blade.php:5
 msgid "Previous"
-msgstr ""
+msgstr "Попередня"
 
 #: resources/views/components/pagination.blade.php:6
 msgid "Next"
-msgstr ""
+msgstr "Наступна"
 
 #: resources/views/components/pagination.blade.php:22
 msgid "Pagination"
@@ -643,7 +640,7 @@ msgstr ""
 #: resources/views/forms/property-search.blade.php:27
 #: resources/views/partials/archive-header.blade.php:37
 msgid "Category"
-msgstr ""
+msgstr "Категорія"
 
 #: resources/views/forms/search.blade.php:4
 msgctxt "label"
@@ -660,14 +657,13 @@ msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: resources/views/index.blade.php:7
-#: resources/views/search.blade.php:7
+#: resources/views/index.blade.php:7 resources/views/search.blade.php:7
 msgid "Sorry, no results were found."
 msgstr ""
 
 #: resources/views/partials/archive-header.blade.php:8
 msgid "All Properties"
-msgstr ""
+msgstr "Вся нерухомість"
 
 #: resources/views/partials/archive-header.blade.php:63
 msgid "New Building"
@@ -678,15 +674,15 @@ msgstr ""
 #: resources/views/partials/content-archive.blade.php:59
 #: resources/views/partials/content-single-property.blade.php:167
 msgid "m²"
-msgstr ""
+msgstr "м²"
 
 #: resources/views/partials/archive-header.blade.php:191
 msgid "Found <strong>%s properties</strong>"
-msgstr ""
+msgstr "Знайдено <strong>%s об'єктів</strong>"
 
 #: resources/views/partials/archive-header.blade.php:195
 msgid "Sort by"
-msgstr ""
+msgstr "Сортувати за"
 
 #. translators: %1$s is replaced with the number of comments and %2$s with the post title
 #: resources/views/partials/comments.blade.php:5
@@ -695,6 +691,7 @@ msgid "%1$s response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. translators: %1$s is replaced with the number of comments and %2$s with the post title
 #: resources/views/partials/comments.blade.php:5
@@ -725,7 +722,7 @@ msgstr ""
 
 #: resources/views/partials/content-single-property.blade.php:19
 msgid "Back to catalog"
-msgstr ""
+msgstr "Повернутися до каталогу"
 
 #: resources/views/partials/content-single-property.blade.php:53
 msgid "No image available"
@@ -754,7 +751,7 @@ msgstr ""
 
 #: resources/views/partials/content-single-property.blade.php:125
 msgid "Share"
-msgstr ""
+msgstr "Поділитися"
 
 #: resources/views/partials/entry-meta.blade.php:7
 msgid "By"
@@ -777,7 +774,7 @@ msgstr ""
 #: resources/views/sections/header.blade.php:25
 #: resources/views/template-favorites.blade.php:35
 msgid "Favorites"
-msgstr ""
+msgstr "Обране"
 
 #: resources/views/sections/header.blade.php:35
 msgid "Open menu"

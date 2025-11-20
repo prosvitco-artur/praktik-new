@@ -4,15 +4,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: \n"
+"Language-Team: Українська\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-11-20T21:21:04+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"PO-Revision-Date: 2025-11-20 21:48+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Domain: praktik\n"
+"\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-7.4.33"
 
 #. Theme Name of the theme
 #: style.css
@@ -111,8 +116,7 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: app/helpers.php:6
-#: resources/views/forms/property-search.blade.php:9
+#: app/helpers.php:6 resources/views/forms/property-search.blade.php:9
 #: resources/views/forms/property-search.blade.php:31
 msgid "Apartments"
 msgstr ""
@@ -193,8 +197,7 @@ msgstr ""
 msgid "Custom Field..."
 msgstr ""
 
-#: app/post-types.php:22
-#: app/post-types.php:71
+#: app/post-types.php:22 app/post-types.php:71
 msgid "Add new"
 msgstr ""
 
@@ -234,13 +237,11 @@ msgstr ""
 msgid "Not found %s in trash"
 msgstr ""
 
-#: app/post-types.php:67
-#: app/post-types.php:69
+#: app/post-types.php:67 app/post-types.php:69
 msgid "Reviews"
 msgstr ""
 
-#: app/post-types.php:68
-#: app/post-types.php:70
+#: app/post-types.php:68 app/post-types.php:70
 msgid "Review"
 msgstr ""
 
@@ -272,8 +273,7 @@ msgstr ""
 msgid "Parent Reviews:"
 msgstr ""
 
-#: app/post-types.php:79
-#: resources/views/archive-review.blade.php:72
+#: app/post-types.php:79 resources/views/archive-review.blade.php:72
 msgid "No reviews found"
 msgstr ""
 
@@ -289,8 +289,7 @@ msgstr ""
 msgid "Basic Information"
 msgstr ""
 
-#: app/post-types.php:158
-#: resources/views/partials/archive-header.blade.php:161
+#: app/post-types.php:158 resources/views/partials/archive-header.blade.php:161
 msgid "Price"
 msgstr ""
 
@@ -313,8 +312,7 @@ msgstr ""
 msgid "Street"
 msgstr ""
 
-#: app/post-types.php:169
-#: resources/views/components/filter-panel.blade.php:36
+#: app/post-types.php:169 resources/views/components/filter-panel.blade.php:36
 #: resources/views/partials/archive-header.blade.php:82
 #: resources/views/partials/content-single-property.blade.php:159
 msgid "Number of Rooms"
@@ -660,8 +658,7 @@ msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: resources/views/index.blade.php:7
-#: resources/views/search.blade.php:7
+#: resources/views/index.blade.php:7 resources/views/search.blade.php:7
 msgid "Sorry, no results were found."
 msgstr ""
 
