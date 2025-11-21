@@ -11,6 +11,8 @@ class DesktopFilters {
     this.initRoomsCheckboxes();
     this.initPropertyType();
     this.initAreaFilters();
+    this.initPriceFilters();
+    this.initPriceFilters();
 
     document.addEventListener('dropdownChange', (e) => {
       const { dropdownId, value, label } = e.detail;
@@ -43,7 +45,7 @@ class DesktopFilters {
     });
 
     document.addEventListener('change', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input')) {
+      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input')) {
         const name = e.target.name;
         if (e.target.value && parseInt(e.target.value) > 0) {
           this.filters[name] = e.target.value;
@@ -54,7 +56,7 @@ class DesktopFilters {
     });
 
     document.addEventListener('blur', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input')) {
+      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input')) {
         clearTimeout(this.applyTimeout);
         this.applyTimeout = setTimeout(() => {
           const name = e.target.name;
@@ -69,7 +71,7 @@ class DesktopFilters {
     }, true);
 
     document.addEventListener('keypress', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input') && e.key === 'Enter') {
+      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input') && e.key === 'Enter') {
         const name = e.target.name;
         if (e.target.value && parseInt(e.target.value) > 0) {
           this.filters[name] = e.target.value;
@@ -187,6 +189,19 @@ class DesktopFilters {
     }
   }
 
+  initPriceFilters() {
+    const priceFromInput = document.getElementById('price-from-input');
+    const priceToInput = document.getElementById('price-to-input');
+    
+    if (priceFromInput && priceFromInput.value) {
+      this.filters.price_from = priceFromInput.value;
+    }
+    
+    if (priceToInput && priceToInput.value) {
+      this.filters.price_to = priceToInput.value;
+    }
+  }
+
   applyFilters() {
     const params = new URLSearchParams();
     const currentUrl = new URL(window.location.href);
@@ -200,7 +215,7 @@ class DesktopFilters {
     const existingParams = new URLSearchParams(currentUrl.search);
     const filterKeys = Object.keys(this.filters);
     existingParams.forEach((value, key) => {
-      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type' && key !== 'area_from' && key !== 'area_to') {
+      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type' && key !== 'area_from' && key !== 'area_to' && key !== 'price_from' && key !== 'price_to') {
         params.append(key, value);
       }
     });

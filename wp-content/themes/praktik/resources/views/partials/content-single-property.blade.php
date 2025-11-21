@@ -118,9 +118,9 @@
                         aria-label="{{ __('Share', 'praktik') }}">
                   <x-icon name="share" />
                 </button>
-                <button class="hidden md:block text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}"
+                <button class="hidden md:block {{ $is_favorite ? 'favorites-post' : '' }}"
                   data-post-id="{{ $post_id }}">
-                  <x-icon name="bookmark" />
+                  <x-icon name="bookmark" class="w-6 h-6" />
                 </button>
               </div>
             </div>

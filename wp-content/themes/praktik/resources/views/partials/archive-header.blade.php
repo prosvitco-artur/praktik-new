@@ -33,7 +33,7 @@
     </form>
 
     <div class="filter-buttons mt-4">
-      <div class="flex items-center justify-between gap-[71px] flex-wrap text-sm">
+      <div class="flex items-center justify-between flex-wrap text-sm">
         <div class="relative">
           <label class="hidden md:block text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
           <button type="button"
@@ -179,15 +179,19 @@
         <div class="hidden md:block">
           <label class="mb-2">{{ __('Price', 'praktik') }}</label>
           <div class="flex gap-2">
+            @php
+              $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
+              $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
+            @endphp
             <div class="bg-white px-4 py-3">
               <label for="price-from-input" class="sr-only">{{ __('Price From', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-              <input type="number" id="price-from-input" name="price-from" class="w-10" aria-label="{{ __('Price From', 'praktik') }}" />
+              <input type="number" id="price-from-input" name="price_from" value="{{ $price_from }}" class="w-[100px] border-0 focus:outline-none" aria-label="{{ __('Price From', 'praktik') }}" />
             </div>
             <div class="bg-white px-4 py-3">
               <label for="price-to-input" class="sr-only">{{ __('Price To', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
-              <input type="number" id="price-to-input" name="price-to" class="w-10" aria-label="{{ __('Price To', 'praktik') }}" />
+              <input type="number" id="price-to-input" name="price_to" value="{{ $price_to }}" class="w-[100px] border-0 focus:outline-none" aria-label="{{ __('Price To', 'praktik') }}" />
             </div>
           </div>
         </div>

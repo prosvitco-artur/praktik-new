@@ -26,20 +26,18 @@
 
   .bookmark-button {
     @apply relative;
-    font-weight: 600;
+    --icon-width: 24px;
+    --icon-height: 24px;
+    --icon-color: transparent;
+    stroke-width: 1.5;
+    stroke: #0D131D;
   }
 
-  .bookmark-button:hover .icon-bookmark path{
-    @apply stroke-primary-600;
+  .bookmark-button:hover{
+    color: #ECB648;
+    stroke: #ECB648;
   }
 
-  .bookmark-button:focus,
-  .bookmark-button:active,
-  .bookmark-button:focus-visible {
-    @apply outline-none;
-    outline: none;
-    box-shadow: none;
-  }
 
   .property-detail {
     @apply mb-1 flex gap-4;
@@ -179,6 +177,47 @@
 
   .property-share-button:active {
     opacity: 0.5;
+  }
+
+  .review-title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .review-content p,
+  .review-date {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .review-content p {
+    @apply md:mb-4;
+  }
+
+  @media (min-width: 768px) {
+    .review-title {
+      font-size: 16px;
+      line-height: 21px;
+    }
+
+    .review-content p {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  .favorite-button {
+    --icon-width: 24px;
+    --icon-height: 24px;
+    --icon-color: transparent;
+    stroke: #3C589E;
+    transition: stroke 0.3s, --icon-color 0.3s;
+  }
+
+  .favorite-button:hover,
+  .favorite-button.favorites-post {
+    --icon-color: #3C589E;
+    stroke: #3C589E;
   }
 
   @keyframes fadeInOut {

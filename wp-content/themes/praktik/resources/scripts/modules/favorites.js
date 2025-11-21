@@ -16,6 +16,22 @@ class Favorites {
         button.addEventListener('click', (e) => this.toggleFavorite(e, postId));
       }
     });
+
+    this.initHeaderCounter();
+    document.addEventListener('favoritesChanged', (e) => this.updateHeaderCounter(e.detail.favorites));
+  }
+
+  initHeaderCounter() {
+    this.updateHeaderCounter(this.getFavorites());
+  }
+
+  updateHeaderCounter(favorites) {
+    const bookmarkCounts = document.querySelectorAll('.bookmark-count');
+    const count = favorites.length;
+    
+    bookmarkCounts.forEach(element => {
+      element.textContent = count;
+    });
   }
 
   updateButtonState(button, postId) {
@@ -94,6 +110,7 @@ class Favorites {
         
         this.setFavorites(newFavorites);
         this.updateButtonState(button, postId);
+        this.updateHeaderCounter(newFavorites);
         
         const event = new CustomEvent('favoritesChanged', {
           detail: {

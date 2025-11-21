@@ -21,7 +21,7 @@
 
       <div class="hidden lg:flex items-center gap-20 text-neutral-950">
         <a class="bookmark-button flex items-center gap-2 p-2" aria-label="{{ __('Favorites', 'praktik') }}" href="{{ home_url('/favorites') }}">
-          <x-icon name="bookmark" class="w-5 h-5" />
+          <x-icon name="bookmark"/>
           <span class="bookmark-count">{{ get_user_favorites_count() }}</span>
         </a>
       </div>

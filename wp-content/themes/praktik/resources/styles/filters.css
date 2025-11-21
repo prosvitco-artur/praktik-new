@@ -13,7 +13,7 @@
    * Just use data-dropdown-content attribute and the system will work.
    */
   [data-dropdown-content] {
-    @apply absolute left-0 bg-white z-50 shadow-lg mt-1;
+    @apply absolute left-0 bg-white z-50 shadow-lg mt-1 min-w-max;
     top: 100%;
     opacity: 0;
     visibility: hidden;
@@ -30,10 +30,24 @@
     transform: translateY(0);
   }
 
-  [data-dropdown-content] .dropdown-item:hover,
-  [data-dropdown-content] a:hover,
-  [data-dropdown-content] button:hover {
-    @apply bg-neutral-50;
+  .filter-buttons {
+    --icon-width: 20px;
+    --icon-height: 20px;
+  }
+
+  .range-slider {
+    @apply h-[64px];
+  }
+
+  .range-slider input[type="range"] {
+    -webkit-appearance: none;
+    background: var(--slider-color, #3C589E);
+  }
+
+  .range-slider input[type="range"]::-webkit-slider-thumb {
+    @apply h-5 w-5 rounded-full relative z-[2] pointer-events-auto;
+    -webkit-appearance: none;
+    background: var(--slider-color, #3C589E);
   }
 }
 
