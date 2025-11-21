@@ -5,6 +5,10 @@ namespace App;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
+// Load field definitions
+require_once __DIR__ . '/fields/property-field-options.php';
+require_once __DIR__ . '/fields/property-fields.php';
+
 add_action('after_setup_theme', function() {
     \Carbon_Fields\Carbon_Fields::boot();
 });
@@ -150,91 +154,41 @@ add_filter('pre_get_posts', function ($query) {
 });
 
 add_action('carbon_fields_register_fields', function() {
-    $property_post_types = array_keys(get_property_post_types());
-    
-    Container::make('post_meta', __('Property Details', 'praktik'))
-        ->where('post_type', 'IN', $property_post_types)
-        ->add_tab(__('Basic Information', 'praktik'), [
-            Field::make('text', 'property_price', __('Price', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('step', '1')
-                ->set_help_text(__('Price in USD', 'praktik')),
-            
-            Field::make('text', 'property_city', __('City', 'praktik')),
-            
-            Field::make('text', 'property_district', __('District', 'praktik')),
-            
-            Field::make('text', 'property_street', __('Street', 'praktik')),
-            
-            Field::make('text', 'property_rooms', __('Number of Rooms', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('min', '0'),
-            
-            Field::make('text', 'property_area', __('Total Area (m²)', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('step', '0.01')
-                ->set_attribute('min', '0'),
-        ])
-        ->add_tab(__('Building Details', 'praktik'), [
-            Field::make('text', 'property_floor', __('Floor', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('min', '0'),
-            
-            Field::make('text', 'property_total_floors', __('Total Floors', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('min', '1'),
-            
-            Field::make('text', 'property_year_built', __('Year Built', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('min', '1800')
-                ->set_attribute('max', date('Y')),
-            
-            Field::make('select', 'property_condition', __('Condition', 'praktik'))
-                ->set_options([
-                    '' => __('Select Condition', 'praktik'),
-                    'excellent' => __('Excellent', 'praktik'),
-                    'good' => __('Good', 'praktik'),
-                    'fair' => __('Fair', 'praktik'),
-                    'needs_renovation' => __('Needs Renovation', 'praktik'),
-                ]),
-            
-            Field::make('select', 'property_furniture', __('Furniture', 'praktik'))
-                ->set_options([
-                    '' => __('Select Furniture', 'praktik'),
-                    'furnished' => __('Furnished', 'praktik'),
-                    'semi_furnished' => __('Semi-furnished', 'praktik'),
-                    'unfurnished' => __('Unfurnished', 'praktik'),
-                ]),
-            
-            Field::make('text', 'property_heating', __('Heating', 'praktik')),
-        ])
-        ->add_tab(__('Amenities', 'praktik'), [
-            Field::make('checkbox', 'property_parking', __('Parking', 'praktik')),
-            
-            Field::make('checkbox', 'property_balcony', __('Balcony', 'praktik')),
-            
-            Field::make('checkbox', 'property_elevator', __('Elevator', 'praktik')),
-        ])
-        ->add_tab(__('Gallery', 'praktik'), [
-            Field::make('media_gallery', 'property_gallery', __('Property Gallery', 'praktik'))
-                ->set_help_text(__('Add property images', 'praktik')),
-            
-            Field::make('text', 'property_photos_count', __('Photos Count', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('min', '0')
-                ->set_help_text(__('Manual photo counter (optional)', 'praktik')),
-        ]);
-    
-    Container::make('post_meta', __('Property Details', 'praktik'))
-        ->where('post_type', '=', 'house')
-        ->add_tab(__('Basic Information', 'praktik'), [
-            Field::make('text', 'property_plot_area', __('Plot Area (m²)', 'praktik'))
-                ->set_attribute('type', 'number')
-                ->set_attribute('step', '0.01')
-                ->set_attribute('min', '0')
-                ->set_help_text(__('Area of the plot', 'praktik')),
-        ]);
+    \App\Fields\PropertyFields::register();
 });
+
+/**
+ * Auto-generate property code on save
+ */
+add_action('save_post', function($post_id) {
+    $property_post_types = array_keys(get_property_post_types());
+    $post_type = get_post_type($post_id);
+    
+    if (!in_array($post_type, $property_post_types)) {
+        return;
+    }
+    
+    // Skip autosave and revisions
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+    
+    // Generate code if not exists
+    $existing_code = carbon_get_post_meta($post_id, 'property_code');
+    if (empty($existing_code)) {
+        // Generate code: POST_TYPE-YYYYMMDD-XXXX
+        $prefix = strtoupper(substr($post_type, 0, 1));
+        $date = date('Ymd');
+        $random = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+        $code = sprintf('%s-%s-%s', $prefix, $date, $random);
+        
+        carbon_set_post_meta($post_id, 'property_code', $code);
+    }
+}, 10, 1);
 
 /**
  * Фільтрація архіву відгуків за пошуком і датами
