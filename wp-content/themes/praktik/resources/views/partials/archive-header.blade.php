@@ -35,10 +35,11 @@
     <div class="filter-buttons mt-4">
       <div class="flex items-center justify-between flex-wrap text-sm">
         <div class="relative">
-          <label class="hidden md:block text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+          <label for="category-dropdown" class="hidden md:block text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
           <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white px-4 py-3"
-            id="category-dropdown" data-dropdown-toggle="category">
+            id="category-dropdown" data-dropdown-toggle="category" aria-labelledby="category-label">
+            <span id="category-label" class="sr-only">{{ __('Category', 'praktik') }}</span>
             <span>{{ $current_type_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
@@ -55,7 +56,7 @@
         </div>
 
         <div class="hidden md:block relative">
-          <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
+          <label for="type-dropdown" class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
           @php
             $property_types = \App\get_property_types();
             $selected_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
@@ -65,7 +66,7 @@
           @endphp
           <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="type-dropdown" data-dropdown-toggle="type">
+            id="type-dropdown" data-dropdown-toggle="type" aria-labelledby="type-label">
             <span id="type-label">{{ $type_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
@@ -88,7 +89,7 @@
         </div>
 
         <div class="hidden md:block relative">
-          <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
+          <label for="rooms-dropdown" class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
           @php
             $selected_rooms = isset($_GET['rooms']) ? explode(',', sanitize_text_field($_GET['rooms'])) : [];
             $selected_rooms = array_map('trim', $selected_rooms);
@@ -99,7 +100,7 @@
           @endphp
           <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-            id="rooms-dropdown" data-dropdown-toggle="rooms">
+            id="rooms-dropdown" data-dropdown-toggle="rooms" aria-labelledby="rooms-label">
             <span id="rooms-label">{{ $rooms_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
@@ -123,8 +124,8 @@
         </div>
 
         <div class="hidden md:block">
-          <label class="mb-2">{{ __('Total Area', 'praktik') }}</label>
-          <div class="flex gap-2">
+          <div class="mb-2 text-sm text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
+          <div class="flex gap-2" role="group" aria-label="{{ __('Total Area', 'praktik') }}">
             <div class="relative">
               <label for="area-from-input" class="sr-only">{{ __('Total Area From', 'praktik') }}</label>
               @php
@@ -177,8 +178,8 @@
           </div>
         </div>
         <div class="hidden md:block">
-          <label class="mb-2">{{ __('Price', 'praktik') }}</label>
-          <div class="flex gap-2">
+          <div class="mb-2 text-sm text-neutral-600">{{ __('Price', 'praktik') }}</div>
+          <div class="flex gap-2" role="group" aria-label="{{ __('Price', 'praktik') }}">
             @php
               $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
               $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
