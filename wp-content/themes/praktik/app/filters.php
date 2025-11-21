@@ -159,7 +159,7 @@ add_action('pre_get_posts', function ($query) {
                 }
             }
             
-            // Property type filter (new/secondary)
+            // Property type filter (Новобудова/Вторинний ринок)
             if (isset($_GET['type']) && !empty($_GET['type'])) {
                 $property_type = sanitize_text_field($_GET['type']);
                 $meta_query[] = [
@@ -223,10 +223,19 @@ add_action('pre_get_posts', function ($query) {
 
 /**
  * Get property types for filter dropdown
+ * Uses options from Carbon Fields PropertyFieldOptions
  *
  * @return array
  */
 function get_property_types() {
+    if (class_exists('\App\Fields\PropertyFieldOptions')) {
+        $options = \App\Fields\PropertyFieldOptions::get_property_type_options();
+        // Remove empty option for filter dropdown
+        unset($options['']);
+        return $options;
+    }
+    
+    // Fallback if class doesn't exist
     return [
         'new' => __('New building', 'praktik'),
         'secondary' => __('Secondary market', 'praktik'),

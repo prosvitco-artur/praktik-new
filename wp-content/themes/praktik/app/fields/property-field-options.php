@@ -13,8 +13,8 @@ class PropertyFieldOptions {
     public static function get_property_type_options() {
         return [
             '' => __('Select Property Type', 'praktik'),
-            'new' => __('New Building', 'praktik'),
-            'secondary' => __('Secondary Market', 'praktik'),
+            'Новобудова' => 'Новобудова',
+            'Вторинний ринок' => 'Вторинний ринок',
         ];
     }
     
@@ -24,9 +24,9 @@ class PropertyFieldOptions {
     public static function get_house_type_options() {
         return [
             '' => __('Select House Type', 'praktik'),
-            'house' => __('House', 'praktik'),
-            'half_house' => __('Half House', 'praktik'),
-            'dacha' => __('Dacha', 'praktik'),
+            'Будинок' => 'Будинок',
+            'Ч/будинку' => 'Ч/будинку',
+            'Дача' => 'Дача',
         ];
     }
     
@@ -36,9 +36,9 @@ class PropertyFieldOptions {
     public static function get_location_type_options() {
         return [
             '' => __('Select Location', 'praktik'),
-            'city' => __('City', 'praktik'),
-            'suburb' => __('Suburb', 'praktik'),
-            'outside_city' => __('Outside City', 'praktik'),
+            'Місто' => 'Місто',
+            'Пригород' => 'Пригород',
+            'За містом' => 'За містом',
         ];
     }
     
@@ -48,13 +48,13 @@ class PropertyFieldOptions {
     public static function get_condition_options() {
         return [
             '' => __('Select Condition', 'praktik'),
-            'author_project' => __('Author Project', 'praktik'),
-            'euro_renovation' => __('Euro Renovation', 'praktik'),
-            'cosmetic_repair' => __('Cosmetic Repair', 'praktik'),
-            'living_condition' => __('Living Condition', 'praktik'),
-            'after_builders' => __('After Builders', 'praktik'),
-            'rough_finish' => __('Rough Finish', 'praktik'),
-            'emergency' => __('Emergency Condition', 'praktik'),
+            'Авторський проект' => 'Авторський проект',
+            'Євроремонт' => 'Євроремонт',
+            'Косметичний ремонт' => 'Косметичний ремонт',
+            'Житловий стан' => 'Житловий стан',
+            'Після будівельників' => 'Після будівельників',
+            'Під чистову обробку' => 'Під чистову обробку',
+            'Аварійний стан' => 'Аварійний стан',
         ];
     }
     
@@ -64,9 +64,9 @@ class PropertyFieldOptions {
     public static function get_bathroom_options() {
         return [
             '' => __('Select Bathroom', 'praktik'),
-            'combined' => __('Combined', 'praktik'),
-            'separate' => __('Separate', 'praktik'),
-            'none' => __('None', 'praktik'),
+            'Сумісний' => 'Сумісний',
+            'Окремий' => 'Окремий',
+            'Немає' => 'Немає',
         ];
     }
     
@@ -76,12 +76,12 @@ class PropertyFieldOptions {
     public static function get_heating_options() {
         return [
             '' => __('Select Heating', 'praktik'),
-            'autonomous' => __('Autonomous', 'praktik'),
-            'tec' => __('TEC', 'praktik'),
-            'heat_meters' => __('Heat Meters', 'praktik'),
-            'electric' => __('Electric', 'praktik'),
-            'stove' => __('Stove', 'praktik'),
-            'none' => __('None', 'praktik'),
+            'Автономне' => 'Автономне',
+            'ТЕЦ' => 'ТЕЦ',
+            'Теплові лічильники' => 'Теплові лічильники',
+            'Електричне' => 'Електричне',
+            'Пічне' => 'Пічне',
+            'Відсутнє' => 'Відсутнє',
         ];
     }
     
@@ -91,10 +91,10 @@ class PropertyFieldOptions {
     public static function get_sale_status_options() {
         return [
             '' => __('Select Sale Status', 'praktik'),
-            'active' => __('Active Sale', 'praktik'),
-            'postponed' => __('Sale Postponed', 'praktik'),
-            'removed' => __('Removed from Sale', 'praktik'),
-            'sold' => __('Property Sold', 'praktik'),
+            'Активний продаж' => 'Активний продаж',
+            'Продаж відкладено' => 'Продаж відкладено',
+            'Знято з продажу' => 'Знято з продажу',
+            'Обʼєкт продано' => 'Обʼєкт продано',
         ];
     }
     
@@ -104,14 +104,14 @@ class PropertyFieldOptions {
     public static function get_price_range_options() {
         return [
             '' => __('Select Price Range', 'praktik'),
-            'up_to_15k' => __('Up to 15k', 'praktik'),
-            '16_20k' => __('16-20k', 'praktik'),
-            '21_30k' => __('21-30k', 'praktik'),
-            '31_40k' => __('31-40k', 'praktik'),
-            '41_55k' => __('41-55k', 'praktik'),
-            '56_70k' => __('56-70k', 'praktik'),
-            '71_100k' => __('71-100k', 'praktik'),
-            '101k_plus' => __('101k and above', 'praktik'),
+            'до 15 тис' => 'до 15 тис',
+            '16-20 тис.' => '16-20 тис.',
+            '21 - 30 тис.' => '21 - 30 тис.',
+            '31 - 40 тис.' => '31 - 40 тис.',
+            '41 - 55 тис.' => '41 - 55 тис.',
+            '56 - 70 тис.' => '56 - 70 тис.',
+            '71 - 100 тис. ' => '71 - 100 тис. ',
+            '101 тис і вище' => '101 тис і вище',
         ];
     }
     
@@ -121,8 +121,8 @@ class PropertyFieldOptions {
     public static function get_courtyard_options() {
         return [
             '' => __('Select Courtyard', 'praktik'),
-            'separate' => __('Separate', 'praktik'),
-            'shared' => __('Shared', 'praktik'),
+            'Окремий' => 'Окремий',
+            'Загальний' => 'Загальний',
         ];
     }
     
@@ -132,10 +132,10 @@ class PropertyFieldOptions {
     public static function get_sewage_options() {
         return [
             '' => __('Select Sewage', 'praktik'),
-            'central' => __('Central', 'praktik'),
-            'nearby' => __('Nearby', 'praktik'),
-            'pit' => __('Pit', 'praktik'),
-            'none' => __('None', 'praktik'),
+            'Ц/каналізація' => 'Ц/каналізація',
+            'Поряд' => 'Поряд',
+            'Яма' => 'Яма',
+            'Відсутня' => 'Відсутня',
         ];
     }
     
@@ -145,17 +145,18 @@ class PropertyFieldOptions {
     public static function get_building_material_options() {
         return [
             '' => __('Select Material', 'praktik'),
-            'brick' => __('Brick', 'praktik'),
-            'panel' => __('Panel', 'praktik'),
-            'monolith' => __('Monolith', 'praktik'),
-            'block' => __('Block', 'praktik'),
-            'wood_brick' => __('Wood-Brick', 'praktik'),
-            'wood' => __('Wood', 'praktik'),
-            'gas_block' => __('Gas Block', 'praktik'),
-            'timber' => __('Timber', 'praktik'),
-            'timber_brick' => __('Timber-Brick', 'praktik'),
-            'fin_brick' => __('Fin-Brick', 'praktik'),
-            'other' => __('Other', 'praktik'),
+            'Цегла' => 'Цегла',
+            'Панель' => 'Панель',
+            'Кирпич' => 'Кирпич',
+            'Моноліт' => 'Моноліт',
+            'Блок' => 'Блок',
+            'Дерево-цегла' => 'Дерево-цегла',
+            'Дерево' => 'Дерево',
+            'Газоблок' => 'Газоблок',
+            'Брус' => 'Брус',
+            'Брус-Цегла' => 'Брус-Цегла',
+            'Фин-кирпич' => 'Фин-кирпич',
+            'Інше' => 'Інше',
         ];
     }
     
@@ -165,9 +166,9 @@ class PropertyFieldOptions {
     public static function get_utility_options() {
         return [
             '' => __('Select', 'praktik'),
-            'yes' => __('Yes', 'praktik'),
-            'nearby' => __('Nearby', 'praktik'),
-            'no' => __('No', 'praktik'),
+            'Є' => 'Є',
+            'Поряд' => 'Поряд',
+            'Нема' => 'Нема',
         ];
     }
     
@@ -177,8 +178,8 @@ class PropertyFieldOptions {
     public static function get_source_options() {
         return [
             '' => __('Select Source', 'praktik'),
-            'olx' => __('OLX.ua', 'praktik'),
-            'from_realtor' => __('From Realtor', 'praktik'),
+            'olx.ua' => 'olx.ua',
+            'від ріелтора' => 'від ріелтора',
         ];
     }
     
@@ -188,9 +189,9 @@ class PropertyFieldOptions {
     public static function get_shooting_status_options() {
         return [
             '' => __('Select Status', 'praktik'),
-            'approved' => __('Approved', 'praktik'),
-            'removed' => __('Removed', 'praktik'),
-            'published' => __('Published', 'praktik'),
+            'Погоджено' => 'Погоджено',
+            'Знято' => 'Знято',
+            'Розміщено' => 'Розміщено',
         ];
     }
     
@@ -200,12 +201,12 @@ class PropertyFieldOptions {
     public static function get_cooperation_status_options() {
         return [
             '' => __('Select Status', 'praktik'),
-            'contract_with_us' => __('Contract with Us', 'praktik'),
-            'verbal_agreement' => __('Verbal Agreement', 'praktik'),
-            'with_all' => __('With All', 'praktik'),
-            'competitor_no_contract' => __('Competitor without Contract', 'praktik'),
-            'competitor_contract' => __('Competitor Contract', 'praktik'),
-            'no_cooperation' => __('No Cooperation', 'praktik'),
+            'Договір з нами' => 'Договір з нами',
+            'Усний договір' => 'Усний договір',
+            'З усіма' => 'З усіма',
+            'З конкурентом без договору' => 'З конкурентом без договору',
+            'Договір з конкурентом' => 'Договір з конкурентом',
+            'Не співпрацює' => 'Не співпрацює',
         ];
     }
     
@@ -215,13 +216,13 @@ class PropertyFieldOptions {
     public static function get_sales_funnel_options() {
         return [
             '' => __('Select Stage', 'praktik'),
-            'new_object' => __('New Object', 'praktik'),
-            'in_work' => __('In Work', 'praktik'),
-            'viewing_approved' => __('Viewing Approved', 'praktik'),
-            'viewed' => __('Viewed', 'praktik'),
-            'cooperation_approved' => __('Cooperation Approved', 'praktik'),
-            'deposit_received' => __('Deposit Received', 'praktik'),
-            'sold' => __('Sold', 'praktik'),
+            'Новий об\'єкт' => 'Новий об\'єкт',
+            'Взято в роботу' => 'Взято в роботу',
+            'Огляд погоджено' => 'Огляд погоджено',
+            'Оглянуто' => 'Оглянуто',
+            'Співпраця погоджена' => 'Співпраця погоджена',
+            'Завдаток отриманий' => 'Завдаток отриманий',
+            'Продано' => 'Продано',
         ];
     }
 }

@@ -138,9 +138,9 @@ class PropertyFields {
             Field::make('select', 'property_furniture', __('Furniture', 'praktik'))
                 ->set_options([
                     '' => __('Select Furniture', 'praktik'),
-                    'furnished' => __('Furnished', 'praktik'),
-                    'semi_furnished' => __('Semi-furnished', 'praktik'),
-                    'unfurnished' => __('Unfurnished', 'praktik'),
+                    'З меблями' => 'З меблями',
+                    'Частково з меблями' => 'Частково з меблями',
+                    'Без меблів' => 'Без меблів',
                 ]),
         ];
     }

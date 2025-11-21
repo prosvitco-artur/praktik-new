@@ -112,15 +112,15 @@
               </div>
 
               <div class="flex gap-2 ml-4">
-                <button class="w-8 h-8 flex items-center justify-center property-share-button" 
+                <button class="w-8 h-8 flex items-center justify-center property-share-button text-secondary-500" 
                         data-share-url="{{ get_permalink() }}"
                         data-share-title="{{ get_the_title() }}"
                         aria-label="{{ __('Share', 'praktik') }}">
-                  <x-icon name="share" />
+                  <x-icon name="share" class="w-6 h-6" />
                 </button>
-                <button class="hidden md:block {{ $is_favorite ? 'favorites-post' : '' }}"
+                <button class="favorite-button hidden md:block {{ $is_favorite ? 'favorites-post' : '' }}"
                   data-post-id="{{ $post_id }}">
-                  <x-icon name="bookmark" class="w-6 h-6" />
+                  <x-icon name="bookmark" class="w-6 h-6 " />
                 </button>
               </div>
             </div>

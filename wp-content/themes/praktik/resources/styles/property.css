@@ -140,14 +140,6 @@
       --swiper-navigation-color: #3c589e;
     }
 
-    .property-details .icon {
-      @apply text-secondary-500;
-    }
-
-    .property-details button:hover .icon {
-      @apply fill-secondary-600;
-    }
-
     .property-contact {
       display: flex;
       justify-content: space-between;
