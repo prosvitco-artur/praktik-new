@@ -13,7 +13,7 @@
 @endphp
 
 <article @php(post_class('min-h-screen'))>
-  <div class="container mx-auto py-4">
+  <div class="hidden md:block container mx-auto py-4">
     <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center gap-2" style="font-weight: 600;">
       <x-icon name="chevron-left" class="w-4 h-4" />
       {{ __('Back to catalog', 'praktik') }}
@@ -21,9 +21,25 @@
   </div>
 
 
-  <div class="container mx-auto mb-10">
+  <div class="container mx-auto md:mb-10">
     <div class="property-single">
-      <div class="property-gallery">
+      <div class="property-gallery relative">
+        <div class="absolute top-3 left-3 z-[100] md:hidden">
+          <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center p-[10px] bg-white">
+            <x-icon name="chevron-left" class="w-6 h-6" />
+          </a>
+        </div>
+        <div class="flex gap-2 ml-4 absolute top-3 right-3 z-[100] md:hidden">
+          <button class="p-[10px] bg-white flex items-center justify-center property-share-button text-secondary-500"
+            data-share-url="{{ get_permalink() }}" data-share-title="{{ get_the_title() }}"
+            aria-label="{{ __('Share', 'praktik') }}">
+            <x-icon name="share" class="w-6 h-6" />
+          </button>
+          <button class="p-[10px] bg-white flex items-center justify-center favorite-button {{ $is_favorite ? 'favorites-post' : '' }}"
+            data-post-id="{{ $post_id }}">
+            <x-icon name="bookmark" class="w-6 h-6 " />
+          </button>
+        </div>
         {{-- Main Swiper --}}
         <div class="swiper property-gallery-main" style="aspect-ratio: 3/2;">
           <div class="swiper-wrapper">
@@ -59,8 +75,7 @@
           <div class="swiper-button-prev"></div>
 
           {{-- Photo counter --}}
-          <div
-            class="absolute bottom-8px right-1/2 transform translate-x-1/2 bg-white px-8px py-4px text-caption z-10">
+          <div class="absolute bottom-8px right-1/2 transform translate-x-1/2 bg-white px-8px py-4px text-caption z-10">
             {{ __('PHOTO', 'praktik') }} <span
               class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
           </div>
@@ -84,21 +99,21 @@
         @endif
 
         @if(get_the_content())
-        <div class="hidden md:block">
+        <div class="hidden md:block p-10 bg-white">
           <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
-          <div class="property-content text-p1 text-gray-700 leading-relaxed">
+          <div class="text-p1 text-gray-700 leading-relaxed">
             @php(the_content())
           </div>
         </div>
         @endif
       </div>
-      <div class="container px-4 md:px-0">
+      <div class="container p-4 md:p-0 bg-white md:bg-transparent">
         <div class="property-details">
           {{-- Title and actions --}}
-          <div class="md:bg-white md:p-10 mb-6">
+          <div class="md:bg-white md:p-10 md:mb-6">
             <div class="md:flex md:items-start md:justify-between ">
               <div class="flex-1 mb-5">
-                <h1 class="property-title">
+                <h1 class="text-2xl mb-2">
                   {{ get_the_title() ?: __('No Title', 'praktik') }}
                 </h1>
                 <div class="text-xs text-neutral-600 mb-3">
@@ -111,14 +126,13 @@
                 @endif
               </div>
 
-              <div class="flex gap-2 ml-4">
-                <button class="w-8 h-8 flex items-center justify-center property-share-button text-secondary-500" 
-                        data-share-url="{{ get_permalink() }}"
-                        data-share-title="{{ get_the_title() }}"
-                        aria-label="{{ __('Share', 'praktik') }}">
+              <div class="flex gap-2 ml-4 hidden md:block">
+                <button class="w-8 h-8 flex items-center justify-center property-share-button text-secondary-500"
+                  data-share-url="{{ get_permalink() }}" data-share-title="{{ get_the_title() }}"
+                  aria-label="{{ __('Share', 'praktik') }}">
                   <x-icon name="share" class="w-6 h-6" />
                 </button>
-                <button class="favorite-button hidden md:block {{ $is_favorite ? 'favorites-post' : '' }}"
+                <button class="favorite-button {{ $is_favorite ? 'favorites-post' : '' }}"
                   data-post-id="{{ $post_id }}">
                   <x-icon name="bookmark" class="w-6 h-6 " />
                 </button>
@@ -168,7 +182,7 @@
         @if(get_the_content())
         <div class="md:hidden">
           <div class="text-h4 text-gray-900 mb-4">{{ __('Property Description', 'praktik') }}</div>
-          <div class="property-content text-p1 text-gray-700 leading-relaxed">
+          <div class="text-p1 text-gray-700 leading-relaxed">
             @php(the_content())
           </div>
         </div>

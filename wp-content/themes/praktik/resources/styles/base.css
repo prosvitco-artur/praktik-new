@@ -9,6 +9,7 @@
   
   body {
     @apply h-full font-fixel bg-neutral-100;
+    line-height: 1.4;
   }
 
   

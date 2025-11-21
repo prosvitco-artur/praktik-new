@@ -23,6 +23,10 @@
     transform-origin: top;
   }
 
+  [data-dropdown-content].dropdown-menu-right {
+    @apply right-0 left-auto;
+  }
+
   [data-dropdown-content].dropdown-open {
     opacity: 1;
     visibility: visible;

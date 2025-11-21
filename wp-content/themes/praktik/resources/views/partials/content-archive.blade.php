@@ -8,6 +8,9 @@ $post_id = $post_obj->ID;
 
 $post_type = get_post_type($post_obj);
 $property_meta = get_property_meta($post_id);
+$post_title = get_the_title($post_id);
+$post_content = get_the_content($post_id);
+$post_permalink = get_permalink($post_id);
 
 $address_parts = array_filter([
   $property_meta['street'] ?? '',
@@ -32,16 +35,16 @@ $is_favorite = in_array((string)$post_id, $favorites);
     <div class="w-full md:flex-1 p-4 md:p-5 flex flex-col justify-between">
       <div class="flex-1">
         <div class="flex justify-between items-start mb-2">
-          <h2 class="entry-title text-h5 md:text-h4 flex-1 pr-4 line-clamp-2">
-            <a href="{{ get_permalink($post) }}"
+          <h2 class="entry-title text-base md:text-xl flex-1 pr-4 line-clamp-2">
+            <a href="{{ $post_permalink }}"
               class="text-neutral-900 transition-colors duration-200 no-underline property-title block">
-              {!! get_the_title($post) !!}
+              {!! $post_title !!}
             </a>
           </h2>
           <div class="text-h4 text-primary-500 hidden md:block">
             <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
-          <button class="md:hidden text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
+          <button class="favorite-button md:hidden text-secondary-500 {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
             <x-icon name="bookmark" />
           </button>
         </div>
