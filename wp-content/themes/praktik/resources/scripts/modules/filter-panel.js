@@ -171,7 +171,7 @@ class FilterPanel {
     });
     
     const existingParams = new URLSearchParams(currentUrl.search);
-    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'price_from', 'price_to'];
+    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to'];
     existingParams.forEach((value, key) => {
       if (!filterKeys.includes(key)) {
         params.append(key, value);

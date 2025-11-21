@@ -455,3 +455,62 @@ function get_property_price_range($post_type = null) {
         'max' => (int)$max
     ];
 }
+
+/**
+ * Отримати мінімальне та максимальне значення площі ділянки з meta полів
+ *
+ * @return array ['min' => int, 'max' => int]
+ */
+function get_property_plot_area_range() {
+    global $wpdb;
+    
+    $query = "
+        SELECT pm.meta_value
+        FROM {$wpdb->postmeta} pm
+        INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+        WHERE pm.meta_key = '_property_plot_area'
+        AND p.post_type = 'house'
+        AND p.post_status = 'publish'
+        AND pm.meta_value != ''
+        AND pm.meta_value IS NOT NULL
+        AND TRIM(pm.meta_value) != ''
+    ";
+    
+    $results = $wpdb->get_col($query);
+    
+    if ($wpdb->last_error) {
+        return ['min' => 0, 'max' => 1000];
+    }
+    
+    if (empty($results)) {
+        return ['min' => 0, 'max' => 1000];
+    }
+    
+    $values = [];
+    foreach ($results as $value) {
+        $value = trim($value);
+        if ($value === '' || $value === null) {
+            continue;
+        }
+        $numeric_value = floatval($value);
+        if ($numeric_value > 0) {
+            $values[] = $numeric_value;
+        }
+    }
+    
+    if (empty($values)) {
+        return ['min' => 0, 'max' => 1000];
+    }
+    
+    $min = floor(min($values));
+    $max = ceil(max($values));
+    
+    if ($min === 0 && $max === 0) {
+        $max = 1000;
+    }
+    
+    return [
+        'min' => (int)$min,
+        'max' => (int)$max
+    ];
+}

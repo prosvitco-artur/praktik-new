@@ -11,7 +11,7 @@ class DesktopFilters {
     this.initRoomsCheckboxes();
     this.initPropertyType();
     this.initAreaFilters();
-    this.initPriceFilters();
+    this.initPlotAreaFilters();
     this.initPriceFilters();
 
     document.addEventListener('dropdownChange', (e) => {
@@ -41,11 +41,23 @@ class DesktopFilters {
           }
         }
         this.applyFilters();
+      } else if (dropdownId === 'plot_area_from' || dropdownId === 'plot_area_to') {
+        const inputId = dropdownId === 'plot_area_from' ? 'plot-area-from-input' : 'plot-area-to-input';
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.value = value || '';
+          if (value) {
+            this.filters[dropdownId] = value;
+          } else {
+            delete this.filters[dropdownId];
+          }
+        }
+        this.applyFilters();
       }
     });
 
     document.addEventListener('change', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input')) {
+      if (e.target.matches('#area-from-input, #area-to-input, #plot-area-from-input, #plot-area-to-input, #price-from-input, #price-to-input')) {
         const name = e.target.name;
         if (e.target.value && parseInt(e.target.value) > 0) {
           this.filters[name] = e.target.value;
@@ -189,6 +201,19 @@ class DesktopFilters {
     }
   }
 
+  initPlotAreaFilters() {
+    const plotAreaFromInput = document.getElementById('plot-area-from-input');
+    const plotAreaToInput = document.getElementById('plot-area-to-input');
+    
+    if (plotAreaFromInput && plotAreaFromInput.value) {
+      this.filters.plot_area_from = plotAreaFromInput.value;
+    }
+    
+    if (plotAreaToInput && plotAreaToInput.value) {
+      this.filters.plot_area_to = plotAreaToInput.value;
+    }
+  }
+
   initPriceFilters() {
     const priceFromInput = document.getElementById('price-from-input');
     const priceToInput = document.getElementById('price-to-input');
@@ -215,7 +240,7 @@ class DesktopFilters {
     const existingParams = new URLSearchParams(currentUrl.search);
     const filterKeys = Object.keys(this.filters);
     existingParams.forEach((value, key) => {
-      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type' && key !== 'area_from' && key !== 'area_to' && key !== 'price_from' && key !== 'price_to') {
+      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type' && key !== 'area_from' && key !== 'area_to' && key !== 'plot_area_from' && key !== 'plot_area_to' && key !== 'price_from' && key !== 'price_to') {
         params.append(key, value);
       }
     });

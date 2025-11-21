@@ -224,6 +224,16 @@ add_action('carbon_fields_register_fields', function() {
                 ->set_attribute('min', '0')
                 ->set_help_text(__('Manual photo counter (optional)', 'praktik')),
         ]);
+    
+    Container::make('post_meta', __('Property Details', 'praktik'))
+        ->where('post_type', '=', 'house')
+        ->add_tab(__('Basic Information', 'praktik'), [
+            Field::make('text', 'property_plot_area', __('Plot Area (m²)', 'praktik'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0')
+                ->set_help_text(__('Area of the plot', 'praktik')),
+        ]);
 });
 
 /**

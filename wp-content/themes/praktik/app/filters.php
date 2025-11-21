@@ -100,6 +100,31 @@ add_action('pre_get_posts', function ($query) {
                 }
             }
             
+            // Plot area range filter (only for house post type)
+            if (isset($_GET['plot_area_from']) && !empty($_GET['plot_area_from'])) {
+                $plot_area_from = intval($_GET['plot_area_from']);
+                if ($plot_area_from > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_plot_area',
+                        'value' => $plot_area_from,
+                        'compare' => '>=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
+            if (isset($_GET['plot_area_to']) && !empty($_GET['plot_area_to'])) {
+                $plot_area_to = intval($_GET['plot_area_to']);
+                if ($plot_area_to > 0) {
+                    $meta_query[] = [
+                        'key' => '_property_plot_area',
+                        'value' => $plot_area_to,
+                        'compare' => '<=',
+                        'type' => 'NUMERIC'
+                    ];
+                }
+            }
+            
             // Rooms filter
             if (isset($_GET['rooms']) && !empty($_GET['rooms'])) {
                 $rooms = explode(',', sanitize_text_field($_GET['rooms']));

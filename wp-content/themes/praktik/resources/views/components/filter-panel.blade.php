@@ -21,6 +21,8 @@
       $selected_rooms = array_map('trim', $selected_rooms);
       $area_from = isset($_GET['area_from']) ? intval($_GET['area_from']) : '';
       $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
+      $plot_area_from = isset($_GET['plot_area_from']) ? intval($_GET['plot_area_from']) : '';
+      $plot_area_to = isset($_GET['plot_area_to']) ? intval($_GET['plot_area_to']) : '';
       $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
       $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
       
@@ -31,7 +33,9 @@
       }
       
       $area_range = function_exists('get_property_area_range') ? get_property_area_range($current_post_type) : ['min' => 0, 'max' => 1000];
+      $plot_area_range = function_exists('get_property_plot_area_range') ? get_property_plot_area_range() : ['min' => 0, 'max' => 1000];
       $price_range = function_exists('get_property_price_range') ? get_property_price_range($current_post_type) : ['min' => 0, 'max' => 1000000];
+      $is_house = $current_post_type === 'house';
     @endphp
 
     <div class="filter-section border-b border-neutral-200">
@@ -53,6 +57,7 @@
       </div>
     </div>
 
+    @if(!$is_house)
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="rooms">
         <span class="font-bold">{{ __('Number of Rooms', 'praktik') }}</span>
@@ -72,6 +77,7 @@
         @endforeach
       </div>
     </div>
+    @endif
 
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="area">
@@ -93,6 +99,29 @@
         </div>
       </div>
     </div>
+
+    @if($is_house)
+    <div class="filter-section border-b border-neutral-200">
+      <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="plot-area">
+        <span class="font-bold">{{ __('Plot Area', 'praktik') }}</span>
+        <x-icon name="chevron" class="w-5 h-5" />
+      </button>
+      <div class="filter-content hidden mb-2" data-filter-content="plot-area">
+        <div class="py-2 px-3">
+          <x-price-range-slider 
+            :min="$plot_area_range['min']" 
+            :max="$plot_area_range['max']" 
+            :from="$plot_area_from !== '' ? $plot_area_from : $plot_area_range['min']" 
+            :to="$plot_area_to !== '' ? $plot_area_to : $plot_area_range['max']" 
+            name="plot_area" 
+            :nameFrom="'plot_area_from'" 
+            :nameTo="'plot_area_to'" 
+            :text="__('m²', 'praktik')" 
+          />
+        </div>
+      </div>
+    </div>
+    @endif
 
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="price">
