@@ -10,6 +10,7 @@ class DesktopFilters {
     this.initRoomCounts();
     this.initRoomsCheckboxes();
     this.initPropertyType();
+    this.initAreaFilters();
 
     document.addEventListener('dropdownChange', (e) => {
       const { dropdownId, value, label } = e.detail;
@@ -26,28 +27,55 @@ class DesktopFilters {
         }
         
         this.applyFilters();
+      } else if (dropdownId === 'area_from' || dropdownId === 'area_to') {
+        const inputId = dropdownId === 'area_from' ? 'area-from-input' : 'area-to-input';
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.value = value || '';
+          if (value) {
+            this.filters[dropdownId] = value;
+          } else {
+            delete this.filters[dropdownId];
+          }
+        }
+        this.applyFilters();
       }
     });
 
     document.addEventListener('change', (e) => {
-      if (e.target.matches('[data-dropdown-content] input[type="number"]')) {
-        this.filters[e.target.name] = e.target.value;
+      if (e.target.matches('#area-from-input, #area-to-input')) {
+        const name = e.target.name;
+        if (e.target.value && parseInt(e.target.value) > 0) {
+          this.filters[name] = e.target.value;
+        } else {
+          delete this.filters[name];
+        }
       }
     });
 
     document.addEventListener('blur', (e) => {
-      if (e.target.matches('[data-dropdown-content] input[type="number"]')) {
+      if (e.target.matches('#area-from-input, #area-to-input')) {
         clearTimeout(this.applyTimeout);
         this.applyTimeout = setTimeout(() => {
-          if (Object.keys(this.filters).length > 0) {
-            this.applyFilters();
+          const name = e.target.name;
+          if (e.target.value && parseInt(e.target.value) > 0) {
+            this.filters[name] = e.target.value;
+          } else {
+            delete this.filters[name];
           }
+          this.applyFilters();
         }, 500);
       }
     }, true);
 
     document.addEventListener('keypress', (e) => {
-      if (e.target.matches('[data-dropdown-content] input[type="number"]') && e.key === 'Enter') {
+      if (e.target.matches('#area-from-input, #area-to-input') && e.key === 'Enter') {
+        const name = e.target.name;
+        if (e.target.value && parseInt(e.target.value) > 0) {
+          this.filters[name] = e.target.value;
+        } else {
+          delete this.filters[name];
+        }
         this.applyFilters();
       }
     });
@@ -146,6 +174,19 @@ class DesktopFilters {
     }
   }
 
+  initAreaFilters() {
+    const areaFromInput = document.getElementById('area-from-input');
+    const areaToInput = document.getElementById('area-to-input');
+    
+    if (areaFromInput && areaFromInput.value) {
+      this.filters.area_from = areaFromInput.value;
+    }
+    
+    if (areaToInput && areaToInput.value) {
+      this.filters.area_to = areaToInput.value;
+    }
+  }
+
   applyFilters() {
     const params = new URLSearchParams();
     const currentUrl = new URL(window.location.href);
@@ -159,7 +200,7 @@ class DesktopFilters {
     const existingParams = new URLSearchParams(currentUrl.search);
     const filterKeys = Object.keys(this.filters);
     existingParams.forEach((value, key) => {
-      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type') {
+      if (!filterKeys.includes(key) && key !== 'rooms' && key !== 'type' && key !== 'area_from' && key !== 'area_to') {
         params.append(key, value);
       }
     });

@@ -127,43 +127,47 @@
           <div class="flex gap-2">
             <div class="relative">
               <label for="area-from-input" class="sr-only">{{ __('Total Area From', 'praktik') }}</label>
+              @php
+                $area_from = isset($_GET['area_from']) ? intval($_GET['area_from']) : '';
+              @endphp
               <button type="button"
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 id="area-from-dropdown" data-dropdown-toggle="area_from">
                 <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input type="number" id="area-from-input" name="area-from" class="w-10" aria-label="{{ __('Total Area From', 'praktik') }}" />{{ __('m²', 'praktik') }}</span>
+                <span><input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" />{{ __('m²', 'praktik') }}</span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="area_from" data-filter-area="area-from">
+              <div class="dropdown-menu" data-dropdown-content="area_from">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_area_ranges() as $value)
-                    <button type="button" class="w-full text-left" data-value="{{ $key }}"
-                      data-label="{{ $value }}">{{ $value }}</button>
+                    <button type="button" class="w-full text-left {{ $area_from == $value ? 'text-secondary-500 font-bold' : '' }}" 
+                      data-value="{{ $value }}" data-label="{{ $value }}">{{ $value }}</button>
                   @endforeach
                 </div>
               </div>
             </div>
             <div class="relative">
               <label for="area-to-input" class="sr-only">{{ __('Total Area To', 'praktik') }}</label>
+              @php
+                $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
+              @endphp
               <button type="button"
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-                data-dropdown-toggle="area_to">
-
+                id="area-to-dropdown" data-dropdown-toggle="area_to">
                 <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
                 <span>
-                  <input type="number" id="area-to-input" name="area-to" class="w-10" aria-label="{{ __('Total Area To', 'praktik') }}" />
+                  <input type="number" id="area-to-input" name="area_to" value="{{ $area_to }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area To', 'praktik') }}" />
                   {{ __('m²', 'praktik') }}
                 </span>
-
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="area_to" data-filter-area="area-to">
+              <div class="dropdown-menu" data-dropdown-content="area_to">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_area_ranges() as $value)
-                    <button type="button" class="dropdown-item w-full text-left text-neutral-700" data-value="{{ $key }}"
-                      data-label="{{ $value }}">
+                    <button type="button" class="dropdown-item w-full text-left text-neutral-700 {{ $area_to == $value ? 'text-secondary-500 font-bold' : '' }}" 
+                      data-value="{{ $value }}" data-label="{{ $value }}">
                       {{ $value }}
                     </button>
                   @endforeach
