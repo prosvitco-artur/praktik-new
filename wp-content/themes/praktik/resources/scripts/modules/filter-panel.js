@@ -112,6 +112,19 @@ class FilterPanel {
         toSlider.style.background = gradient;
       }
     });
+    
+    const currentUrl = new URL(window.location.href);
+    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to'];
+    const params = new URLSearchParams();
+    
+    currentUrl.searchParams.forEach((value, key) => {
+      if (!filterKeys.includes(key)) {
+        params.append(key, value);
+      }
+    });
+    
+    const newUrl = `${currentUrl.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.location.href = newUrl;
   }
 
   initRoomsCheckboxes() {

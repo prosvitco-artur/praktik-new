@@ -13,6 +13,14 @@
 
       $count = $GLOBALS['wp_query']->found_posts;
       $is_house = $current_post_type === 'house';
+      
+      $has_active_filters = !empty($_GET['type']) || 
+                            !empty($_GET['rooms']) || 
+                            !empty($_GET['area_from']) || 
+                            !empty($_GET['area_to']) || 
+                            !empty($_GET['price_from']) || 
+                            !empty($_GET['price_to']) ||
+                            ($is_house && (!empty($_GET['plot_area_from']) || !empty($_GET['plot_area_to'])));
     @endphp
     <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
       <div class="w-full relative">
@@ -34,11 +42,11 @@
     </form>
 
     <div class="filter-buttons mt-4">
-      <div class="flex items-center justify-between flex-wrap text-sm">
-        <div class="relative">
+      <div class="flex items-center justify-between md:flex-wrap text-sm gap-3">
+        <div class="relative w-full md:w-auto">
           <label for="category-dropdown" class="hidden md:block text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
           <button type="button"
-            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white px-4 py-3"
+            class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white px-4 py-3 w-full"
             id="category-dropdown" data-dropdown-toggle="category" aria-labelledby="category-label">
             <span id="category-label" class="sr-only">{{ __('Category', 'praktik') }}</span>
             <span>{{ $current_type_label }}</span>
@@ -262,12 +270,14 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-4 md:hidden">
+        <div class="flex items-center gap-3 md:hidden">
           <button type="button"
             class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
             id="filter-button" data-filter-panel-toggle aria-expanded="false">
             <x-icon name="filter" class="w-6 h-6" />
+            @if($has_active_filters)
             <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
+            @endif
           </button>
           <button
             class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
