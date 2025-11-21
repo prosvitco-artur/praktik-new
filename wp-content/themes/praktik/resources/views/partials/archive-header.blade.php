@@ -15,9 +15,10 @@
     @endphp
     <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
       <div class="w-full relative">
-        <input type="search" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
-          name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">
-        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+        <label for="property-search-input" class="sr-only">{{ __('Search', 'praktik') }}</label>
+        <input type="search" id="property-search-input" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
+          name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none" aria-label="{{ __('Search', 'praktik') }}">
+        <button type="button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" aria-label="{{ __('Search', 'praktik') }}">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -103,11 +104,12 @@
           <label class="mb-2">{{ __('Total Area', 'praktik') }}</label>
           <div class="flex gap-2">
             <div class="relative">
+              <label for="area-from-input" class="sr-only">{{ __('Total Area From', 'praktik') }}</label>
               <button type="button"
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 id="area-from-dropdown" data-dropdown-toggle="area_from">
                 <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input name="area-from" class="w-10" />{{ __('m²', 'praktik') }}</span>
+                <span><input type="number" id="area-from-input" name="area-from" class="w-10" aria-label="{{ __('Total Area From', 'praktik') }}" />{{ __('m²', 'praktik') }}</span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
@@ -121,13 +123,14 @@
               </div>
             </div>
             <div class="relative">
+              <label for="area-to-input" class="sr-only">{{ __('Total Area To', 'praktik') }}</label>
               <button type="button"
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 data-dropdown-toggle="area_to">
 
                 <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
                 <span>
-                  <input name="area-to" class="w-10" />
+                  <input type="number" id="area-to-input" name="area-to" class="w-10" aria-label="{{ __('Total Area To', 'praktik') }}" />
                   {{ __('m²', 'praktik') }}
                 </span>
 
@@ -151,12 +154,14 @@
           <label class="mb-2">{{ __('Price', 'praktik') }}</label>
           <div class="flex gap-2">
             <div class="bg-white px-4 py-3">
+              <label for="price-from-input" class="sr-only">{{ __('Price From', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-              <input name="price-from" class="w-10" />
+              <input type="number" id="price-from-input" name="price-from" class="w-10" aria-label="{{ __('Price From', 'praktik') }}" />
             </div>
             <div class="bg-white px-4 py-3">
+              <label for="price-to-input" class="sr-only">{{ __('Price To', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
-              <input name="price-to" class="w-10" />
+              <input type="number" id="price-to-input" name="price-to" class="w-10" aria-label="{{ __('Price To', 'praktik') }}" />
             </div>
           </div>
         </div>

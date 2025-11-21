@@ -6,27 +6,38 @@
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
           id="category-dropdown" data-dropdown-toggle="category">
-          <span class="text-p1">{{ __('Apartments', 'praktik') }}</span>
+          <span class="text-p1" id="category-label">{{ __('Select Category', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
         <div class="dropdown-menu bg-secondary-50" data-dropdown-content="category">
           <div class="py-1">
-            @foreach(get_property_post_types() as $key => $label)
-              <a href="{{ get_post_type_archive_link($key) }}"
-                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium">
+            @php
+              $property_post_types = get_property_post_types();
+              $non_empty_types = [];
+              foreach ($property_post_types as $key => $label) {
+                $count = wp_count_posts($key);
+                if ($count && $count->publish > 0) {
+                  $non_empty_types[$key] = $label;
+                }
+              }
+            @endphp
+            @foreach($non_empty_types as $key => $label)
+              <button type="button"
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left"
+                data-value="{{ $key }}" data-label="{{ $label }}">
                 {{ $label }}
-              </a>
+              </button>
             @endforeach
           </div>
         </div>
       </div>
 
       <div class="block relative w-full text-neutral-950">
-        <label class="text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
+        <label class="text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
-          id="category-dropdown" data-dropdown-toggle="type">
-          <span class="text-p1">{{ __('Apartments', 'praktik') }}</span>
+          id="type-dropdown" data-dropdown-toggle="type">
+          <span class="text-p1" id="type-label">{{ __('Select Property Type', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
 
@@ -50,19 +61,48 @@
     </div>
 
     <input type="hidden" name="s" value="">
+    <input type="hidden" id="property-category" name="category" value="">
+    <input type="hidden" id="property-type" name="type" value="">
   </form>
 </div>
 <script>
   const propertyForm = document.getElementById('property-search-form');
 
   if (propertyForm) {
+    document.addEventListener('dropdownChange', function(e) {
+      const { dropdownId, value, label } = e.detail;
+      
+      if (dropdownId === 'category') {
+        document.getElementById('property-category').value = value;
+        document.getElementById('category-label').textContent = label;
+      } else if (dropdownId === 'type') {
+        document.getElementById('property-type').value = value;
+        document.getElementById('type-label').textContent = label;
+      }
+    });
+
     propertyForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const category = document.getElementById('property-category').value;
       const type = document.getElementById('property-type').value;
 
-      const url = `${window.location.origin}/${encodeURIComponent(category)}?type=${encodeURIComponent(type)}`;
+      if (!category) {
+        return;
+      }
+
+      let url = `${window.location.origin}/${encodeURIComponent(category)}`;
+      const params = new URLSearchParams();
+      
+      if (type) {
+        params.append('type', type);
+      }
+      
+      const queryString = params.toString();
+      if (queryString) {
+        url += '?' + queryString;
+      }
+      
       window.location.href = url;
     });
   }

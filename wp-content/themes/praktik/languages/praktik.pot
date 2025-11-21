@@ -645,6 +645,14 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
+#: resources/views/forms/property-search.blade.php:9
+msgid "Select Category"
+msgstr ""
+
+#: resources/views/forms/property-search.blade.php:40
+msgid "Select Property Type"
+msgstr ""
+
 #: resources/views/forms/search.blade.php:4
 msgctxt "label"
 msgid "Search for:"
