@@ -56,17 +56,29 @@
 
         <div class="hidden md:block relative">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
+          @php
+            $property_types = \App\get_property_types();
+            $selected_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+            $type_label = $selected_type && isset($property_types[$selected_type]) 
+              ? $property_types[$selected_type] 
+              : __('All', 'praktik');
+          @endphp
           <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="type-dropdown" data-dropdown-toggle="type">
-            <span>{{ __('New Building', 'praktik') }}</span>
+            <span id="type-label">{{ $type_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
           <div class="dropdown-menu" data-dropdown-content="type">
             <div class="py-2">
-              @foreach(\App\get_property_types() as $key => $label)
+              <button type="button"
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full {{ empty($selected_type) ? 'text-secondary-500 font-bold' : '' }}"
+                data-value="" data-label="{{ __('All', 'praktik') }}">
+                {{ __('All', 'praktik') }}
+              </button>
+              @foreach($property_types as $key => $label)
                 <button type="button"
-                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full {{ $selected_type === $key ? 'text-secondary-500 font-bold' : '' }}"
                   data-value="{{ $key }}" data-label="{{ $label }}">
                   {{ $label }}
                 </button>
@@ -77,22 +89,32 @@
 
         <div class="hidden md:block relative">
           <label class="block text-sm text-neutral-600 mb-2">{{ __('Number of Rooms', 'praktik') }}</label>
+          @php
+            $selected_rooms = isset($_GET['rooms']) ? explode(',', sanitize_text_field($_GET['rooms'])) : [];
+            $selected_rooms = array_map('trim', $selected_rooms);
+            $rooms_label = empty($selected_rooms) ? __('All', 'praktik') : implode(', ', array_map(function($key) use ($selected_rooms) {
+              $room_counts = \App\get_room_counts();
+              return $room_counts[$key] ?? $key;
+            }, $selected_rooms));
+          @endphp
           <button type="button"
             class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
             id="rooms-dropdown" data-dropdown-toggle="rooms">
-            <span>{{ __('All', 'praktik') }}</span>
+            <span id="rooms-label">{{ $rooms_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
 
           {{-- Dropdown Menu --}}
           <div class="dropdown-menu" data-dropdown-content="rooms">
             <div class="py-2">
-              <label class="flex items-center gap-3 py-2 px-3 font-bold text-secondary-500">
-                {{ __('All', 'praktik') }}
+              <label class="flex items-center gap-3 py-2 px-3 font-bold text-secondary-500 cursor-pointer" data-rooms-clear>
+                <input type="checkbox" class="w-4 h-4 rooms-clear-checkbox" {{ empty($selected_rooms) ? 'checked' : '' }}>
+                <span>{{ __('All', 'praktik') }}</span>
               </label>
               @foreach(\App\get_room_counts() as $key => $label)
-                <label class="flex items-center gap-3 py-2 px-3">
-                  <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4">
+                <label class="flex items-center gap-3 py-2 px-3 cursor-pointer">
+                  <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4 rooms-checkbox" 
+                    {{ in_array($key, $selected_rooms) ? 'checked' : '' }}>
                   <span>{{ $label }}</span>
                 </label>
               @endforeach

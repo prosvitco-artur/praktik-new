@@ -108,10 +108,11 @@ add_action('pre_get_posts', function ($query) {
                 if (!empty($rooms)) {
                     $rooms_query = ['relation' => 'OR'];
                     foreach ($rooms as $room) {
-                        if ($room === '4+') {
+                        if ($room === '4+' || $room === '5+') {
+                            $min_value = $room === '5+' ? 5 : 4;
                             $rooms_query[] = [
                                 'key' => '_property_rooms',
-                                'value' => 4,
+                                'value' => $min_value,
                                 'compare' => '>=',
                                 'type' => 'NUMERIC'
                             ];
@@ -133,14 +134,12 @@ add_action('pre_get_posts', function ($query) {
                 }
             }
             
-            // Object type filter (custom taxonomy or meta field)
-            if (isset($_GET['object_type']) && !empty($_GET['object_type'])) {
-                $object_type = sanitize_text_field($_GET['object_type']);
-                // Add your custom logic here based on how you store object type
-                // For now, we'll assume it's a meta field
+            // Property type filter (new/secondary)
+            if (isset($_GET['type']) && !empty($_GET['type'])) {
+                $property_type = sanitize_text_field($_GET['type']);
                 $meta_query[] = [
                     'key' => '_property_type',
-                    'value' => $object_type,
+                    'value' => $property_type,
                     'compare' => '='
                 ];
             }
