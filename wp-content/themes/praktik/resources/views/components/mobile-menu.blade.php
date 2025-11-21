@@ -39,17 +39,13 @@
     ]) !!}
   </nav>
 
-  {{-- Saved Items (Optional) --}}
-  @if (is_user_logged_in())
-  <div class="mt-auto px-16px py-16px">
-    <a href="{{ home_url('/saved') }}" class="flex items-center justify-between py-12px">
-      <span class="text-p1 text-neutral-900">{{ __('Saved items', 'praktik') }}</span>
-      <div class="flex items-center gap-8px">
-        <x-icon name="bookmark" class="w-20px h-20px text-neutral-600 stroke-current" />
-        <span class="text-p2 text-neutral-600">0</span>
+  {{-- Favorites --}}
+    <a href="{{ home_url('/favorites') }}" class="flex items-center justify-between py-2" aria-label="{{ __('Favorites', 'praktik') }}">
+      <span class="text-neutral-900">{{ __('Favorites', 'praktik') }}</span>
+      <div class="flex items-center gap-2">
+        <x-icon name="bookmark" class="w-5 h-5 text-neutral-600" />
+        <span class="bookmark-count text-neutral-600">{{ get_user_favorites_count() }}</span>
       </div>
     </a>
-  </div>
-  @endif
 </div>
 
