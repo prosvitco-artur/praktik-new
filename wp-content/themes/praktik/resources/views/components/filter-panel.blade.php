@@ -23,6 +23,15 @@
       $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
       $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
       $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
+      
+      $current_post_type = get_post_type();
+      if (!$current_post_type && is_post_type_archive()) {
+        $queried_object = get_queried_object();
+        $current_post_type = $queried_object ? $queried_object->name : null;
+      }
+      
+      $area_range = function_exists('get_property_area_range') ? get_property_area_range($current_post_type) : ['min' => 0, 'max' => 1000];
+      $price_range = function_exists('get_property_price_range') ? get_property_price_range($current_post_type) : ['min' => 0, 'max' => 1000000];
     @endphp
 
     <div class="filter-section border-b border-neutral-200">
@@ -31,13 +40,13 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="property-type">
-        <label class="flex items-center gap-3 py-2 px-3">
-          <input type="radio" name="type" value="" class="w-4 h-4" {{ empty($selected_type) ? 'checked' : '' }}>
+        <label class="flex items-center gap-3 py-2 px-3" for="filter-type-all">
+          <input type="radio" name="type" id="filter-type-all" value="" class="w-4 h-4" {{ empty($selected_type) ? 'checked' : '' }}>
           <span>{{ __('All', 'praktik') }}</span>
         </label>
         @foreach(\App\get_property_types() as $key => $label)
-          <label class="flex items-center gap-3 py-2 px-3">
-            <input type="radio" name="type" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
+          <label class="flex items-center gap-3 py-2 px-3" for="filter-type-{{ $key }}">
+            <input type="radio" name="type" id="filter-type-{{ $key }}" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
             <span>{{ $label }}</span>
           </label>
         @endforeach
@@ -50,13 +59,13 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="rooms">
-        <label class="flex items-center gap-3 py-2 px-3 cursor-pointer">
-          <input type="checkbox" class="w-4 h-4 rooms-clear-checkbox" {{ empty($selected_rooms) ? 'checked' : '' }}>
+        <label class="flex items-center gap-3 py-2 px-3 cursor-pointer" for="filter-rooms-all">
+          <input type="checkbox" id="filter-rooms-all" class="w-4 h-4 rooms-clear-checkbox" {{ empty($selected_rooms) ? 'checked' : '' }}>
           <span class="font-bold">{{ __('All', 'praktik') }}</span>
         </label>
         @foreach(\App\get_room_counts() as $key => $label)
-          <label class="flex items-center gap-3 py-2 px-3 cursor-pointer">
-            <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4 rooms-checkbox" 
+          <label class="flex items-center gap-3 py-2 px-3 cursor-pointer" for="filter-rooms-{{ $key }}">
+            <input type="checkbox" name="rooms" id="filter-rooms-{{ $key }}" value="{{ $key }}" class="w-4 h-4 rooms-checkbox" 
               {{ in_array($key, $selected_rooms) ? 'checked' : '' }}>
             <span>{{ $label }}</span>
           </label>
@@ -72,10 +81,10 @@
       <div class="filter-content hidden mb-2" data-filter-content="area">
         <div class="py-2 px-3">
           <x-price-range-slider 
-            :min="0" 
-            :max="1000" 
-            :from="$area_from ?: 0" 
-            :to="$area_to ?: 1000" 
+            :min="$area_range['min']" 
+            :max="$area_range['max']" 
+            :from="$area_from !== '' ? $area_from : $area_range['min']" 
+            :to="$area_to !== '' ? $area_to : $area_range['max']" 
             name="area" 
             :nameFrom="'area_from'" 
             :nameTo="'area_to'" 
@@ -93,12 +102,12 @@
       <div class="filter-content hidden mb-2" data-filter-content="price">
         <div class="flex flex-col gap-3 py-2 px-3">
           <div>
-            <label class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
-            <input type="number" name="price_from" value="{{ $price_from }}" placeholder="0" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
+            <label for="filter-price-from" class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
+            <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from }}" placeholder="0" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
           </div>
           <div>
-            <label class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
-            <input type="number" name="price_to" value="{{ $price_to }}" placeholder="1000000" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
+            <label for="filter-price-to" class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
+            <input type="number" id="filter-price-to" name="price_to" value="{{ $price_to }}" placeholder="1000000" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
           </div>
         </div>
       </div>
