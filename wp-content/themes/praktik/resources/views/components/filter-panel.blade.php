@@ -32,9 +32,9 @@
         $current_post_type = $queried_object ? $queried_object->name : null;
       }
       
-      $area_range = function_exists('get_property_area_range') ? get_property_area_range($current_post_type) : ['min' => 0, 'max' => 1000];
-      $plot_area_range = function_exists('get_property_plot_area_range') ? get_property_plot_area_range() : ['min' => 0, 'max' => 1000];
-      $price_range = function_exists('get_property_price_range') ? get_property_price_range($current_post_type) : ['min' => 0, 'max' => 1000000];
+      $area_range = get_property_area_range($current_post_type);
+      $plot_area_range = get_property_plot_area_range();
+      $price_range = get_property_price_range($current_post_type);
       $is_house = $current_post_type === 'house';
     @endphp
 
@@ -129,15 +129,37 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="price">
-        <div class="flex flex-col gap-3 py-2 px-3">
-          <div>
-            <label for="filter-price-from" class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
-            <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from }}" placeholder="0" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
+        <div class="py-2 px-3">
+          <div class="flex gap-3 mb-4">
+            <div class="flex-1">
+              <label for="filter-price-from" class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
+              <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from !== '' ? $price_from : $price_range['min'] }}" 
+                placeholder="{{ $price_range['min'] }}" 
+                class="w-full px-3 py-2 border border-neutral-300 rounded" 
+                min="{{ $price_range['min'] }}" 
+                max="{{ $price_range['max'] }}"
+                data-price-input="from">
+            </div>
+            <div class="flex-1">
+              <label for="filter-price-to" class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
+              <input type="number" id="filter-price-to" name="price_to" value="{{ $price_to !== '' ? $price_to : $price_range['max'] }}" 
+                placeholder="{{ $price_range['max'] }}" 
+                class="w-full px-3 py-2 border border-neutral-300 rounded" 
+                min="{{ $price_range['min'] }}" 
+                max="{{ $price_range['max'] }}"
+                data-price-input="to">
+            </div>
           </div>
-          <div>
-            <label for="filter-price-to" class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
-            <input type="number" id="filter-price-to" name="price_to" value="{{ $price_to }}" placeholder="1000000" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
-          </div>
+          <x-price-range-slider 
+            :min="$price_range['min']" 
+            :max="$price_range['max']" 
+            :from="$price_from !== '' ? $price_from : $price_range['min']" 
+            :to="$price_to !== '' ? $price_to : $price_range['max']" 
+            name="price" 
+            :nameFrom="'price_from'" 
+            :nameTo="'price_to'" 
+            :text="__('$', 'praktik')" 
+          />
         </div>
       </div>
     </div>

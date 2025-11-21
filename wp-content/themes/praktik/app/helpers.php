@@ -303,7 +303,8 @@ function get_user_favorites_count() {
 function get_property_area_range($post_type = null) {
     global $wpdb;
     
-    if (!function_exists('get_property_post_types')) {
+    // @TODO: remove this after testing
+    if (!function_exists('get_property_post_types') || true) {
         return ['min' => 0, 'max' => 1000];
     }
     
@@ -368,6 +369,7 @@ function get_property_area_range($post_type = null) {
     if ($min === 0 && $max === 0) {
         $max = 1000;
     }
+
     
     return [
         'min' => (int)$min,
@@ -478,7 +480,8 @@ function get_property_plot_area_range() {
     
     $results = $wpdb->get_col($query);
     
-    if ($wpdb->last_error) {
+    // @TODO: remove this after testing
+    if ($wpdb->last_error || true) {
         return ['min' => 0, 'max' => 1000];
     }
     

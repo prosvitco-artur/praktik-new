@@ -10,8 +10,21 @@ export default class PriceRangeSlider {
     const fromValue = slider.querySelector('.from-value');
     const toValue = slider.querySelector('.to-value');
 
+    if (!fromSlider || !toSlider) return;
+
+    // Find associated input fields
+    const sliderContainer = slider.closest('.filter-content') || slider.closest('[data-filter-content]');
+    const fromInput = sliderContainer?.querySelector('[data-price-input="from"]') || 
+                      sliderContainer?.querySelector('#filter-price-from') ||
+                      document.querySelector(`#${fromSlider.name.replace('_from', '-from-input')}`) ||
+                      document.querySelector(`#filter-${fromSlider.name}`);
+    const toInput = sliderContainer?.querySelector('[data-price-input="to"]') || 
+                    sliderContainer?.querySelector('#filter-price-to') ||
+                    document.querySelector(`#${toSlider.name.replace('_to', '-to-input')}`) ||
+                    document.querySelector(`#filter-${toSlider.name}`);
+
     const min = parseInt(fromSlider.min);
-    const max = parseInt(fromSlider.max);
+    const max = parseInt(toSlider.max);
 
     const update = () => {
       let from = parseInt(fromSlider.value);
@@ -20,9 +33,15 @@ export default class PriceRangeSlider {
       if (from > to) from = fromSlider.value = to;
       if (to < from) to = toSlider.value = from;
 
-      fromValue.textContent = from;
-      toValue.textContent = to;
+      // Update display values
+      if (fromValue) fromValue.textContent = from;
+      if (toValue) toValue.textContent = to;
 
+      // Update input fields if they exist
+      if (fromInput) fromInput.value = from;
+      if (toInput) toInput.value = to;
+
+      // Update visual gradient
       const fromPercent = ((from - min) / (max - min)) * 100;
       const toPercent = ((to - min) / (max - min)) * 100;
 
@@ -32,6 +51,31 @@ export default class PriceRangeSlider {
       toSlider.style.background = gradient;
     };
 
+    // Update from input changes
+    if (fromInput) {
+      fromInput.addEventListener('input', () => {
+        let value = parseInt(fromInput.value) || min;
+        if (value < min) value = min;
+        if (value > max) value = max;
+        if (value > parseInt(toSlider.value)) value = parseInt(toSlider.value);
+        fromSlider.value = value;
+        update();
+      });
+    }
+
+    // Update to input changes
+    if (toInput) {
+      toInput.addEventListener('input', () => {
+        let value = parseInt(toInput.value) || max;
+        if (value < min) value = min;
+        if (value > max) value = max;
+        if (value < parseInt(fromSlider.value)) value = parseInt(fromSlider.value);
+        toSlider.value = value;
+        update();
+      });
+    }
+
+    // Update slider changes
     fromSlider.addEventListener('input', update);
     toSlider.addEventListener('input', update);
 
