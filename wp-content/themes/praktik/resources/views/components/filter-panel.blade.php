@@ -15,15 +15,29 @@
   </div>
 
   <div class="filter-panel-content">
+    @php
+      $selected_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+      $selected_rooms = isset($_GET['rooms']) ? explode(',', sanitize_text_field($_GET['rooms'])) : [];
+      $selected_rooms = array_map('trim', $selected_rooms);
+      $area_from = isset($_GET['area_from']) ? intval($_GET['area_from']) : '';
+      $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
+      $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
+      $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
+    @endphp
+
     <div class="filter-section border-b border-neutral-200">
-      <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="object-type">
+      <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="property-type">
         <span class="font-bold">{{ __('Property Type', 'praktik') }}</span>
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
-      <div class="filter-content hidden mb-2" data-filter-content="object-type">
+      <div class="filter-content hidden mb-2" data-filter-content="property-type">
+        <label class="flex items-center gap-3 py-2 px-3">
+          <input type="radio" name="type" value="" class="w-4 h-4" {{ empty($selected_type) ? 'checked' : '' }}>
+          <span>{{ __('All', 'praktik') }}</span>
+        </label>
         @foreach(\App\get_property_types() as $key => $label)
           <label class="flex items-center gap-3 py-2 px-3">
-            <input type="radio" name="object_type" value="{{ $key }}" class="w-4 h-4">
+            <input type="radio" name="type" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
             <span>{{ $label }}</span>
           </label>
         @endforeach
@@ -36,13 +50,14 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="rooms">
-        <label class="flex items-center gap-3 py-2 px-3">
-          <input type="radio" name="rooms" value="{{ $key }}" class="w-4 h-4">
-          <span>{{ __('All', 'praktik') }}</span>
+        <label class="flex items-center gap-3 py-2 px-3 cursor-pointer">
+          <input type="checkbox" class="w-4 h-4 rooms-clear-checkbox" {{ empty($selected_rooms) ? 'checked' : '' }}>
+          <span class="font-bold">{{ __('All', 'praktik') }}</span>
         </label>
         @foreach(\App\get_room_counts() as $key => $label)
-          <label class="flex items-center gap-3 py-2 px-3">
-            <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4">
+          <label class="flex items-center gap-3 py-2 px-3 cursor-pointer">
+            <input type="checkbox" name="rooms" value="{{ $key }}" class="w-4 h-4 rooms-checkbox" 
+              {{ in_array($key, $selected_rooms) ? 'checked' : '' }}>
             <span>{{ $label }}</span>
           </label>
         @endforeach
@@ -55,11 +70,41 @@
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="area">
-        <x-price-range-slider :min="0" :max="1000" :from="100" :to="900" :name="'area'" :text="__('m²', 'praktik')" />
+        <div class="py-2 px-3">
+          <x-price-range-slider 
+            :min="0" 
+            :max="1000" 
+            :from="$area_from ?: 0" 
+            :to="$area_to ?: 1000" 
+            name="area" 
+            :nameFrom="'area_from'" 
+            :nameTo="'area_to'" 
+            :text="__('m²', 'praktik')" 
+          />
+        </div>
       </div>
     </div>
 
-    <div class="flex gap pt-5 gap-5">
+    <div class="filter-section border-b border-neutral-200">
+      <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="price">
+        <span class="font-bold">{{ __('Price', 'praktik') }}</span>
+        <x-icon name="chevron" class="w-5 h-5" />
+      </button>
+      <div class="filter-content hidden mb-2" data-filter-content="price">
+        <div class="flex flex-col gap-3 py-2 px-3">
+          <div>
+            <label class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
+            <input type="number" name="price_from" value="{{ $price_from }}" placeholder="0" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
+            <input type="number" name="price_to" value="{{ $price_to }}" placeholder="1000000" class="w-full px-3 py-2 border border-neutral-300 rounded" min="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-5 pt-5">
       <button class="btn btn--primary w-full" data-filter-clear>
         {{ __('Clear', 'praktik') }}
       </button>

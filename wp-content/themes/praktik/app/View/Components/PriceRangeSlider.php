@@ -12,6 +12,8 @@ class PriceRangeSlider extends Component
     public $from;
     public $to;
     public $name;
+    public $nameFrom;
+    public $nameTo;
     public $text;
 
     /**
@@ -20,7 +22,7 @@ class PriceRangeSlider extends Component
      * @return void
      */
 
-    public function __construct($min = 0, $max = 1000, $step = 1, $from = null, $to = null, $name = '', $text = '')
+    public function __construct($min = 0, $max = 1000, $step = 1, $from = null, $to = null, $name = '', $nameFrom = null, $nameTo = null, $text = '')
     {
         $this->min = $min;
         $this->max = $max;
@@ -28,6 +30,8 @@ class PriceRangeSlider extends Component
         $this->from = $from ?? $min;
         $this->to = $to ?? $max;
         $this->name = $name;
+        $this->nameFrom = $nameFrom ?? $name . '_from';
+        $this->nameTo = $nameTo ?? $name . '_to';
         $this->text = $text;
     }
 

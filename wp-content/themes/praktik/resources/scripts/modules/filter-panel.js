@@ -24,6 +24,8 @@ class FilterPanel {
     this.filterClear?.addEventListener('click', () => this.clearFilters());
     this.filterApply?.addEventListener('click', () => this.applyFilters());
 
+    this.initRoomsCheckboxes();
+
     const filterToggles = document.querySelectorAll('[data-filter-toggle]');
     filterToggles.forEach(toggle => {
       toggle.addEventListener('click', (e) => this.toggleFilterSection(e));
@@ -83,14 +85,66 @@ class FilterPanel {
         input.value = '';
       }
     });
+    
+    const roomsClearCheckbox = this.filterPanel.querySelector('.rooms-clear-checkbox');
+    if (roomsClearCheckbox) {
+      roomsClearCheckbox.checked = true;
+    }
+    
+    const sliders = this.filterPanel.querySelectorAll('[data-slider]');
+    sliders.forEach(slider => {
+      const fromSlider = slider.querySelector('.from-slider');
+      const toSlider = slider.querySelector('.to-slider');
+      const fromValue = slider.querySelector('.from-value');
+      const toValue = slider.querySelector('.to-value');
+      if (fromSlider && toSlider && fromValue && toValue) {
+        const min = parseInt(fromSlider.min) || 0;
+        const max = parseInt(toSlider.max) || 1000;
+        fromSlider.value = min;
+        toSlider.value = max;
+        fromValue.textContent = min;
+        toValue.textContent = max;
+        
+        const fromPercent = 0;
+        const toPercent = 100;
+        const gradient = `linear-gradient(to right, #ddd ${fromPercent}%, var(--range-color, #3C589E) ${fromPercent}%, var(--range-color, #3C589E) ${toPercent}%, #ddd ${toPercent}%)`;
+        fromSlider.style.background = gradient;
+        toSlider.style.background = gradient;
+      }
+    });
+  }
+
+  initRoomsCheckboxes() {
+    const roomsContainer = this.filterPanel.querySelector('[data-filter-content="rooms"]');
+    if (!roomsContainer) return;
+
+    const clearAllCheckbox = roomsContainer.querySelector('.rooms-clear-checkbox');
+    const roomCheckboxes = roomsContainer.querySelectorAll('.rooms-checkbox');
+
+    if (clearAllCheckbox) {
+      clearAllCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          roomCheckboxes.forEach(cb => cb.checked = false);
+        }
+      });
+    }
+
+    roomCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (clearAllCheckbox) {
+          clearAllCheckbox.checked = false;
+        }
+      });
+    });
   }
 
   applyFilters() {
     const params = new URLSearchParams();
+    const currentUrl = new URL(window.location.href);
     
     const radioInputs = this.filterPanel.querySelectorAll('input[type="radio"]:checked');
     radioInputs.forEach(input => {
-      if (input.value && input.value !== 'all') {
+      if (input.value && input.value !== 'all' && input.value !== '') {
         params.append(input.name, input.value);
       }
     });
@@ -98,7 +152,7 @@ class FilterPanel {
     const checkboxInputs = this.filterPanel.querySelectorAll('input[type="checkbox"]:checked');
     const rooms = [];
     checkboxInputs.forEach(input => {
-      if (input.name.startsWith('room_')) {
+      if (input.name === 'rooms' && !input.classList.contains('rooms-clear-checkbox')) {
         rooms.push(input.value);
       }
     });
@@ -106,7 +160,7 @@ class FilterPanel {
       params.append('rooms', rooms.join(','));
     }
     
-    const numberInputs = this.filterPanel.querySelectorAll('input[type="number"]');
+    const numberInputs = this.filterPanel.querySelectorAll('input[type="number"], input[type="range"]');
     numberInputs.forEach(input => {
       if (input.name && input.value) {
         const value = parseInt(input.value);
@@ -116,9 +170,16 @@ class FilterPanel {
       }
     });
     
+    const existingParams = new URLSearchParams(currentUrl.search);
+    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'price_from', 'price_to'];
+    existingParams.forEach((value, key) => {
+      if (!filterKeys.includes(key)) {
+        params.append(key, value);
+      }
+    });
+    
     this.close();
     
-    const currentUrl = new URL(window.location.href);
     const newUrl = `${currentUrl.pathname}?${params.toString()}`;
     window.location.href = newUrl;
   }
