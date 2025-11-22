@@ -6,6 +6,7 @@
 !install-plugins.sh
 !plugins.txt
 !README.md
+!deploy/
 
 wp-content/*
 !wp-content/plugins/
