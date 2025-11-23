@@ -44,13 +44,12 @@
           <span class="text-p1" id="type-label">{{ __('Select Property Type', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
-
         <div class="dropdown-menu bg-secondary-50 min-w-full" data-dropdown-content="type">
-          <div class="py-2">
+          <div class="py-1">
             @foreach(\App\get_property_types() as $key => $label)
               <button type="button"
-                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full"
-                data-value="{{ $key }}" data-label="{{ $label }}">
+                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left min-w-full"
+                data-value="{{ $key }}" data-label="{{ $label }}" data-special>
                 {{ $label }}
               </button>
             @endforeach
@@ -58,9 +57,9 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn--primary w-full md:w-auto" aria-label="{{ __('Search properties', 'praktik') }}">
-        <span>{{ __('Search', 'praktik') }}</span>
-        <x-icon name="search" class="w-5 h-5 stroke-current" />
+      <button type="submit" class="btn btn--primary w-full md:w-auto text-transparent" aria-label="{{ __('Search properties', 'praktik') }}">
+        <span class="text-white">{{ __('Search', 'praktik') }}</span>
+        <x-icon name="search" class="w-5 h-5" />
       </button>
     </div>
 

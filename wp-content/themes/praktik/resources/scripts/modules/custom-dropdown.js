@@ -22,7 +22,6 @@ class CustomDropdown {
         const item = e.target.closest('button, a, .dropdown-item');
         
         if (!item || item.hasAttribute('data-dropdown-toggle')) return;
-        console.log(item.hasAttribute('data-value') && item.hasAttribute('data-label'));
         if (item.hasAttribute('data-value') && item.hasAttribute('data-label')) {
           this.selectItem(item);
           return;

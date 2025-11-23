@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
   safelist: [
-    'md:h-screen',
+    'md:min-h-[90vh]',
     'md:px-[120px]',
     'md:px-5',
     'p-5',
@@ -11,9 +11,14 @@ module.exports = {
     'pl-[120px]',
     'mb-10',
     'mb-5',
+    'mb-4',
     'md:mb-6',
     'md:mb-[60px]',
     'md:mb-[104px]',
+    'md:text-[2rem]',
+    'md:text-[4.25rem]',
+    'text-[2.625rem]',
+    'font-bold',
   ],
   theme: {
     extend: {
