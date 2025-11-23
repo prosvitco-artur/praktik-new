@@ -62,7 +62,7 @@ $is_favorite = in_array((string)$post_id, $favorites);
           <div class="text-h4 text-primary-500 md:hidden">
             <span>{{ format_property_price($property_meta['price']) }}</span>
           </div>
-          <button class="favorite-button hidden md:block {{ $is_favorite ? 'favorites-post' : '' }}" data-post-id="{{ $post_id }}">
+          <button class="favorite-button hidden md:block <?= $is_favorite ? 'favorites-post' : '' ?>" data-post-id="{{ $post_id }}">
             <x-icon name="bookmark" />
           </button>
         </div>

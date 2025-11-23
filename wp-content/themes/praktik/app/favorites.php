@@ -4,8 +4,6 @@ namespace App;
 
 add_action('wp_ajax_toggle_favorite', __NAMESPACE__ . '\\handle_toggle_favorite');
 add_action('wp_ajax_nopriv_toggle_favorite', __NAMESPACE__ . '\\handle_toggle_favorite');
-add_action('wp_ajax_clean_favorites', __NAMESPACE__ . '\\handle_clean_favorites');
-add_action('wp_ajax_nopriv_clean_favorites', __NAMESPACE__ . '\\handle_clean_favorites');
 
 function handle_toggle_favorite() {
     
@@ -17,7 +15,7 @@ function handle_toggle_favorite() {
         ]);
     }
     
-    $favorites = clean_user_favorites();
+    $favorites = get_user_favorites();
     $post_id_str = (string) $post_id;
     $is_favorite = in_array($post_id_str, $favorites);
     
@@ -31,28 +29,10 @@ function handle_toggle_favorite() {
     
     $favorites = array_values(array_unique($favorites));
     
-    $expires = time() + (365 * 24 * 60 * 60);
-    if (empty($favorites)) {
-        setcookie('praktik_favorites', '', time() - 3600, '/', '', is_ssl(), true);
-        unset($_COOKIE['praktik_favorites']);
-    } else {
-        setcookie('praktik_favorites', json_encode($favorites), $expires, '/', '', is_ssl(), true);
-        $_COOKIE['praktik_favorites'] = json_encode($favorites);
-    }
-    
     wp_send_json_success([
         'post_id' => $post_id,
         'is_favorite' => !$is_favorite,
         'favorites' => $favorites
-    ]);
-}
-
-function handle_clean_favorites() {
-    $cleaned_favorites = clean_user_favorites();
-    
-    wp_send_json_success([
-        'favorites' => $cleaned_favorites,
-        'count' => count($cleaned_favorites)
     ]);
 }
 

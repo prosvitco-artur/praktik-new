@@ -12,15 +12,12 @@ class Favorites {
     favoriteButtons.forEach(button => {
       const postId = button.getAttribute('data-post-id') || button.getAttribute('data-favorite-toggle');
       if (postId) {
-        this.updateButtonState(button, postId);
         button.addEventListener('click', (e) => this.toggleFavorite(e, postId));
       }
     });
 
     this.initHeaderCounter();
     document.addEventListener('favoritesChanged', (e) => this.updateHeaderCounter(e.detail.favorites));
-    
-    this.cleanFavorites();
   }
 
   initHeaderCounter() {
@@ -51,7 +48,9 @@ class Favorites {
 
   getFavorites() {
     const cookie = this.getCookie('praktik_favorites');
+    console.log(cookie);
     if (!cookie) return [];
+
     
     try {
       return JSON.parse(decodeURIComponent(cookie));
@@ -75,42 +74,6 @@ class Favorites {
       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-  }
-
-  async cleanFavorites() {
-    try {
-      const formData = new FormData();
-      formData.append('action', 'clean_favorites');
-      formData.append('nonce', this.nonce);
-      
-      const response = await fetch(this.ajaxUrl, {
-        method: 'POST',
-        body: formData,
-        credentials: 'same-origin'
-      });
-      
-      const data = await response.json();
-      
-      if (data.success && data.data.favorites) {
-        const cleanedFavorites = data.data.favorites;
-        const currentFavorites = this.getFavorites();
-        
-        if (cleanedFavorites.length !== currentFavorites.length) {
-          this.setFavorites(cleanedFavorites);
-          this.updateHeaderCounter(cleanedFavorites);
-          
-          const favoriteButtons = document.querySelectorAll('button[data-post-id], [data-favorite-toggle]');
-          favoriteButtons.forEach(button => {
-            const postId = button.getAttribute('data-post-id') || button.getAttribute('data-favorite-toggle');
-            if (postId) {
-              this.updateButtonState(button, postId);
-            }
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Failed to clean favorites:', error);
-    }
   }
 
   async toggleFavorite(e, postId) {

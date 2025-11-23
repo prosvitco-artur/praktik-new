@@ -1,21 +1,18 @@
 <?php
 
-$favorites_ids = clean_user_favorites();
-
-if (empty($favorites_ids)) {
-    $favorites_ids = get_user_favorites();
-}
+$favorites_ids = get_user_favorites();
 
 if (!empty($favorites_cookie)) {
     $favorites_ids = array_filter(array_map('intval', explode(',', $favorites_cookie)));
 }
 
+
+
 $favorites_posts = [];
 if (!empty($favorites_ids)) {
-    $favorites_ids_int = array_map('intval', $favorites_ids);
     $favorites_posts = get_posts([
         'post_type' => array_keys(get_property_post_types()),
-        'post__in' => $favorites_ids_int,
+        'post__in' => $favorites_ids,
         'posts_per_page' => -1,
         'orderby' => 'post__in',
     ]);
