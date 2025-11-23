@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-11-23 21:02+0000\n"
-"Last-Translator: Артур\n"
-"Language-Team: Українська\n"
+"PO-Revision-Date: 2025-11-23 16:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -770,8 +770,9 @@ msgstr "Ділянка"
 #: resources/views/components/filter-panel.blade.php:108
 #: resources/views/partials/archive-header.blade.php:209
 #: resources/views/partials/archive-header.blade.php:210
+#, fuzzy
 msgid "Plot Area"
-msgstr "Площа ділянки"
+msgstr "Загальна площа"
 
 #: app/fields/property-fields.php:283
 #, fuzzy

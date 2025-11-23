@@ -152,7 +152,7 @@
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 id="area-from-dropdown" data-dropdown-toggle="area_from">
                 <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" />{{ __('m²', 'praktik') }}</span>
+                <span><input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" /></span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
@@ -176,7 +176,6 @@
                 <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
                 <span>
                   <input type="number" id="area-to-input" name="area_to" value="{{ $area_to }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area To', 'praktik') }}" />
-                  {{ __('m²', 'praktik') }}
                 </span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
@@ -207,7 +206,7 @@
                 class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
                 id="plot-area-from-dropdown" data-dropdown-toggle="plot_area_from">
                 <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input type="number" id="plot-area-from-input" name="plot_area_from" value="{{ $plot_area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Plot Area From', 'praktik') }}" />{{ __('m²', 'praktik') }}</span>
+                <span><input type="number" id="plot-area-from-input" name="plot_area_from" value="{{ $plot_area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Plot Area From', 'praktik') }}" /></span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
@@ -231,7 +230,6 @@
                 <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
                 <span>
                   <input type="number" id="plot-area-to-input" name="plot_area_to" value="{{ $plot_area_to }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Plot Area To', 'praktik') }}" />
-                  {{ __('m²', 'praktik') }}
                 </span>
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
