@@ -1,0 +1,1315 @@
+# Copyright (C) 2025 Praktik
+# This file is distributed under the MIT License.
+msgid ""
+msgstr ""
+"Project-Id-Version: Praktik Real Estate 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
+"POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
+"PO-Revision-Date: 2025-11-20 22:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: Українська\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: praktik\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-7.4.33\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Praktik Real Estate"
+msgstr "Praktik Нерухомість"
+
+#. Theme URI of the theme
+#. Author URI of the theme
+#: style.css
+msgid "https://praktik.com.ua/"
+msgstr "https://praktik.com.ua/"
+
+#. Description of the theme
+#: style.css
+msgid "WordPress theme for real estate agency Praktik."
+msgstr "Тема WordPress для агентства нерухомості Praktik."
+
+#. Author of the theme
+#: style.css
+msgid "Praktik"
+msgstr "Praktik"
+
+#: app/author-data.php:9
+msgid "Phone"
+msgstr "Телефон"
+
+#: app/author-data.php:10
+msgid "Photo"
+msgstr "Фото"
+
+#: app/author-data.php:13
+msgid "Telegram URL"
+msgstr "Посилання на Telegram"
+
+#: app/author-data.php:14
+msgid "Viber URL"
+msgstr "Посилання на Viber"
+
+#: app/author-data.php:15
+msgid "Instagram URL"
+msgstr "Посилання на Instagram"
+
+#: app/carbon-blocks/how-we-work.php:6
+msgid "How We Work"
+msgstr "Як ми працюємо"
+
+#: app/carbon-blocks/how-we-work.php:8
+msgid "Steps"
+msgstr "Кроки"
+
+#: app/carbon-blocks/how-we-work.php:10
+msgid "Step Title"
+msgstr "Назва кроку"
+
+#: app/carbon-blocks/how-we-work.php:11
+msgid "Step Description"
+msgstr "Опис кроку"
+
+#: app/carbon-blocks/who-work-with-us.php:6
+msgid "Who We Work With"
+msgstr "З ким ми працюємо"
+
+#: app/carbon-blocks/who-work-with-us.php:8
+msgid "Clients"
+msgstr "Клієнти"
+
+#: app/carbon-blocks/who-work-with-us.php:10
+msgid "Client Logo"
+msgstr "Логотип клієнта"
+
+#: app/carbon-blocks/who-work-with-us.php:11 app/fields/property-fields.php:166
+msgid "Client Name"
+msgstr "Назва клієнта"
+
+#: app/carbon-blocks/who-work-with-us.php:12
+msgid "Client Text"
+msgstr "Текст клієнта"
+
+#: app/favorites.php:14
+msgid "Invalid post ID."
+msgstr "Невірний ID поста."
+
+#: app/fields/property-field-options.php:15
+#: resources/views/forms/property-search.blade.php:42
+#, fuzzy
+msgid "Select Property Type"
+msgstr "Виберіть тип об'єкту"
+
+#: app/fields/property-field-options.php:26
+msgid "Select House Type"
+msgstr "Виберіть тип будинку"
+
+#: app/fields/property-field-options.php:38
+#, fuzzy
+msgid "Select Location"
+msgstr "Виберіть стан"
+
+#: app/fields/property-field-options.php:50
+msgid "Select Condition"
+msgstr "Виберіть стан"
+
+#: app/fields/property-field-options.php:66
+msgid "Select Bathroom"
+msgstr "Виберіть ванну кімнату"
+
+#: app/fields/property-field-options.php:78
+#, fuzzy
+msgid "Select Heating"
+msgstr "Опалення"
+
+#: app/fields/property-field-options.php:93
+msgid "Select Sale Status"
+msgstr "Виберіть статус продажу"
+
+#: app/fields/property-field-options.php:106
+msgid "Select Price Range"
+msgstr "Виберіть діапазон цін"
+
+#: app/fields/property-field-options.php:123
+#, fuzzy
+msgid "Select Courtyard"
+msgstr "Виберіть меблі"
+
+#: app/fields/property-field-options.php:134
+msgid "Select Sewage"
+msgstr "Виберіть каналізацію"
+
+#: app/fields/property-field-options.php:147
+msgid "Select Material"
+msgstr "Виберіть матеріал"
+
+#: app/fields/property-field-options.php:168
+msgid "Select"
+msgstr "Виберіть"
+
+#: app/fields/property-field-options.php:180
+#, fuzzy
+msgid "Select Source"
+msgstr "Виберіть меблі"
+
+#: app/fields/property-field-options.php:191
+#: app/fields/property-field-options.php:203
+#, fuzzy
+msgid "Select Status"
+msgstr "Виберіть меблі"
+
+#: app/fields/property-field-options.php:218
+#, fuzzy
+msgid "Select Stage"
+msgstr "Виберіть меблі"
+
+#: app/fields/property-fields.php:21
+msgid "Property Details"
+msgstr "Деталі нерухомості"
+
+#: app/fields/property-fields.php:23
+msgid "Basic Information"
+msgstr "Базова інформація"
+
+#: app/fields/property-fields.php:24
+msgid "Location"
+msgstr "Розташування"
+
+#: app/fields/property-fields.php:25
+msgid "Building Details"
+msgstr "Деталі будівлі"
+
+#: app/fields/property-fields.php:26
+msgid "Amenities"
+msgstr "Зручності"
+
+#: app/fields/property-fields.php:27
+#, fuzzy
+msgid "Client Information"
+msgstr "Базова інформація"
+
+#: app/fields/property-fields.php:28
+msgid "Status & Sales"
+msgstr "Статус та продажі"
+
+#: app/fields/property-fields.php:29
+msgid "Content & Media"
+msgstr "Контент та медіа"
+
+#: app/fields/property-fields.php:30
+#, fuzzy
+msgid "Additional Information"
+msgstr "Базова інформація"
+
+#: app/fields/property-fields.php:33
+#, fuzzy
+msgid "House Details"
+msgstr "Деталі нерухомості"
+
+#: app/fields/property-fields.php:35
+msgid "House Specific"
+msgstr "Специфіка будинку"
+
+#: app/fields/property-fields.php:43
+#, fuzzy
+msgid "Property Code"
+msgstr "Тип об'єкту"
+
+#: app/fields/property-fields.php:44
+msgid "Auto-generated property code (will be generated automatically on save)"
+msgstr "Автоматично згенерований код нерухомості (буде згенеровано автоматично при збереженні)"
+
+#: app/fields/property-fields.php:46
+#: resources/views/components/filter-panel.blade.php:43
+#: resources/views/forms/property-search.blade.php:38
+#: resources/views/partials/archive-header.blade.php:76
+msgid "Property Type"
+msgstr "Тип об'єкту"
+
+#: app/fields/property-fields.php:48
+#, fuzzy
+msgid "New building or secondary market"
+msgstr "Вторинний ринок"
+
+#: app/fields/property-fields.php:50
+#, fuzzy
+msgid "Price (USD)"
+msgstr "Ціна в USD"
+
+#: app/fields/property-fields.php:54
+msgid "Price in USD"
+msgstr "Ціна в USD"
+
+#: app/fields/property-fields.php:56
+#, fuzzy
+msgid "Price Range"
+msgstr "Ціна"
+
+#: app/fields/property-fields.php:58
+msgid "Price range category"
+msgstr "Категорія діапазону цін"
+
+#: app/fields/property-fields.php:60
+#: resources/views/components/filter-panel.blade.php:64
+#: resources/views/partials/archive-header.blade.php:113
+#: resources/views/partials/content-single-property.blade.php:173
+msgid "Number of Rooms"
+msgstr "Кількість кімнат"
+
+#: app/fields/property-fields.php:65
+msgid "Total Area (m²)"
+msgstr "Загальна площа (м²)"
+
+#: app/fields/property-fields.php:69
+msgid "Total area in square meters"
+msgstr "Загальна площа в квадратних метрах"
+
+#: app/fields/property-fields.php:71
+#, fuzzy
+msgid "Kitchen Area (m²)"
+msgstr "Загальна площа (м²)"
+
+#: app/fields/property-fields.php:75
+msgid "Kitchen area in square meters"
+msgstr "Площа кухні в квадратних метрах"
+
+#: app/fields/property-fields.php:84
+#: resources/views/partials/content-single-property.blade.php:152
+msgid "City"
+msgstr "Місто"
+
+#: app/fields/property-fields.php:86
+#, fuzzy
+msgid "City name"
+msgstr "Місто"
+
+#: app/fields/property-fields.php:88
+msgid "Location Type"
+msgstr "Тип розташування"
+
+#: app/fields/property-fields.php:90
+msgid "City, Suburb, or Outside City"
+msgstr "Місто, передмістя або за містом"
+
+#: app/fields/property-fields.php:92
+msgid "Settlement"
+msgstr "Населений пункт"
+
+#: app/fields/property-fields.php:93
+msgid "Settlement name (Населений пункт)"
+msgstr "Назва населеного пункту"
+
+#: app/fields/property-fields.php:95
+#: resources/views/partials/content-single-property.blade.php:159
+msgid "District"
+msgstr "Район"
+
+#: app/fields/property-fields.php:96
+msgid "District name (Район)"
+msgstr "Назва району"
+
+#: app/fields/property-fields.php:98
+#: resources/views/partials/content-single-property.blade.php:166
+msgid "Street"
+msgstr "Вулиця"
+
+#: app/fields/property-fields.php:99
+msgid "Street name (Вулиця)"
+msgstr "Назва вулиці"
+
+#: app/fields/property-fields.php:101
+#, fuzzy
+msgid "Building Number"
+msgstr "Деталі будівлі"
+
+#: app/fields/property-fields.php:102
+msgid "Building/house number"
+msgstr "Номер будинку"
+
+#: app/fields/property-fields.php:111
+msgid "Floor"
+msgstr "Поверх"
+
+#: app/fields/property-fields.php:116
+msgid "Total Floors"
+msgstr "Поверховість"
+
+#: app/fields/property-fields.php:121
+msgid "Year Built"
+msgstr "Рік побудови"
+
+#: app/fields/property-fields.php:126
+msgid "Condition"
+msgstr "Стан"
+
+#: app/fields/property-fields.php:128
+#, fuzzy
+msgid "Property condition state"
+msgstr "Опис об'єкту"
+
+#: app/fields/property-fields.php:130
+msgid "Bathroom"
+msgstr "Ванна кімната"
+
+#: app/fields/property-fields.php:132
+msgid "Bathroom type"
+msgstr "Тип ванної кімнати"
+
+#: app/fields/property-fields.php:134
+msgid "Heating"
+msgstr "Опалення"
+
+#: app/fields/property-fields.php:136
+#, fuzzy
+msgid "Heating type"
+msgstr "Опалення"
+
+#: app/fields/property-fields.php:138
+msgid "Furniture"
+msgstr "Меблі"
+
+#: app/fields/property-fields.php:140
+msgid "Select Furniture"
+msgstr "Виберіть меблі"
+
+#: app/fields/property-fields.php:153
+msgid "Parking"
+msgstr "Парковка"
+
+#: app/fields/property-fields.php:155
+msgid "Balcony"
+msgstr "Балкон"
+
+#: app/fields/property-fields.php:157
+msgid "Elevator"
+msgstr "Ліфт"
+
+#: app/fields/property-fields.php:167
+msgid "Client name (Імя клієнта)"
+msgstr "Ім'я клієнта"
+
+#: app/fields/property-fields.php:169
+#, fuzzy
+msgid "Phone 1"
+msgstr "Телефон"
+
+#: app/fields/property-fields.php:171
+msgid "Primary phone number"
+msgstr "Основний номер телефону"
+
+#: app/fields/property-fields.php:173
+#, fuzzy
+msgid "Phone 2"
+msgstr "Телефон"
+
+#: app/fields/property-fields.php:175
+#, fuzzy
+msgid "Secondary phone number"
+msgstr "Вторинний ринок"
+
+#: app/fields/property-fields.php:177
+#, fuzzy
+msgid "Phone 3"
+msgstr "Телефон"
+
+#: app/fields/property-fields.php:179
+msgid "Additional phone number"
+msgstr "Додатковий номер телефону"
+
+#: app/fields/property-fields.php:181
+#, fuzzy
+msgid "Hide Phones"
+msgstr "Телефон"
+
+#: app/fields/property-fields.php:182
+msgid "Hide phone numbers from public display"
+msgstr "Приховати номери телефонів від публічного відображення"
+
+#: app/fields/property-fields.php:184
+msgid "Realtor"
+msgstr "Ріелтор"
+
+#: app/fields/property-fields.php:186
+msgid "Assigned realtor"
+msgstr "Призначений ріелтор"
+
+#: app/fields/property-fields.php:195
+msgid "Sale Status"
+msgstr "Статус продажу"
+
+#: app/fields/property-fields.php:197
+msgid "Current sale status"
+msgstr "Поточний статус продажу"
+
+#: app/fields/property-fields.php:199
+msgid "Sales Funnel Stage"
+msgstr "Етап воронки продажів"
+
+#: app/fields/property-fields.php:201
+msgid "Current stage in sales funnel"
+msgstr "Поточний етап у воронці продажів"
+
+#: app/fields/property-fields.php:203
+msgid "Cooperation Status"
+msgstr "Статус співпраці"
+
+#: app/fields/property-fields.php:205
+msgid "Cooperation status with client"
+msgstr "Статус співпраці з клієнтом"
+
+#: app/fields/property-fields.php:207
+msgid "Registration Date"
+msgstr "Дата реєстрації"
+
+#: app/fields/property-fields.php:208
+msgid "Date when property was registered"
+msgstr "Дата реєстрації нерухомості"
+
+#: app/fields/property-fields.php:210
+msgid "Last Contact Date"
+msgstr "Дата останнього контакту"
+
+#: app/fields/property-fields.php:211
+msgid "Date of last contact with client"
+msgstr "Дата останнього контакту з клієнтом"
+
+#: app/fields/property-fields.php:220
+msgid "Title (for website)"
+msgstr "Заголовок (для сайту)"
+
+#: app/fields/property-fields.php:221
+msgid "Custom title for website display"
+msgstr "Кастомний заголовок для відображення на сайті"
+
+#: app/fields/property-fields.php:223
+msgid "Description (for website)"
+msgstr "Опис (для сайту)"
+
+#: app/fields/property-fields.php:224
+#, fuzzy
+msgid "Property description for website"
+msgstr "Опис об'єкту"
+
+#: app/fields/property-fields.php:226
+msgid "Property Gallery"
+msgstr "Галерея нерухомості"
+
+#: app/fields/property-fields.php:227
+msgid "Add property images"
+msgstr "Додати зображення нерухомості"
+
+#: app/fields/property-fields.php:229
+msgid "Photos Count"
+msgstr "Кількість фото"
+
+#: app/fields/property-fields.php:232
+msgid "Manual photo counter (optional)"
+msgstr "Ручний лічильник фото (необов'язково)"
+
+#: app/fields/property-fields.php:234
+msgid "Video Link"
+msgstr "Посилання на відео"
+
+#: app/fields/property-fields.php:237
+msgid "Link to property video"
+msgstr "Посилання на відео нерухомості"
+
+#: app/fields/property-fields.php:239
+msgid "Shooting Status"
+msgstr "Статус зйомки"
+
+#: app/fields/property-fields.php:241
+msgid "Photo/video shooting status"
+msgstr "Статус фото/відео зйомки"
+
+#: app/fields/property-fields.php:250
+msgid "Source"
+msgstr "Джерело"
+
+#: app/fields/property-fields.php:252
+msgid "Where property was found"
+msgstr "Де знайдено нерухомість"
+
+#: app/fields/property-fields.php:254
+msgid "OLX Link"
+msgstr "Посилання на OLX"
+
+#: app/fields/property-fields.php:257
+msgid "Link to OLX listing"
+msgstr "Посилання на оголошення OLX"
+
+#: app/fields/property-fields.php:259
+msgid "OLX ID"
+msgstr "ID OLX"
+
+#: app/fields/property-fields.php:261
+msgid "OLX listing ID"
+msgstr "ID оголошення OLX"
+
+#: app/fields/property-fields.php:263
+msgid "Notes"
+msgstr "Примітки"
+
+#: app/fields/property-fields.php:264
+msgid "Internal notes about the property"
+msgstr "Внутрішні примітки про нерухомість"
+
+#: app/fields/property-fields.php:266
+msgid "Featured"
+msgstr "Рекомендована"
+
+#: app/fields/property-fields.php:267
+msgid "Mark as featured property"
+msgstr "Позначити як рекомендовану нерухомість"
+
+#: app/fields/property-fields.php:269
+msgid "Ready for Export"
+msgstr "Готова до експорту"
+
+#: app/fields/property-fields.php:270
+msgid "Ready to export to website"
+msgstr "Готова до експорту на сайт"
+
+#: app/fields/property-fields.php:279
+#, fuzzy
+msgid "House Type"
+msgstr "Будинок"
+
+#: app/fields/property-fields.php:281
+#, fuzzy
+msgid "Type of house"
+msgstr "Умови використання"
+
+#: app/fields/property-fields.php:283
+#, fuzzy
+msgid "Plot Area (m²)"
+msgstr "Загальна площа (м²)"
+
+#: app/fields/property-fields.php:287
+msgid "Area of the plot in square meters"
+msgstr "Площа ділянки в квадратних метрах"
+
+#: app/fields/property-fields.php:289
+msgid "Plot Area (соток)"
+msgstr "Площа ділянки (соток)"
+
+#: app/fields/property-fields.php:293
+msgid "Area of the plot in соток"
+msgstr "Площа ділянки в сотках"
+
+#: app/fields/property-fields.php:295
+msgid "Courtyard"
+msgstr "Двір"
+
+#: app/fields/property-fields.php:297
+msgid "Courtyard type"
+msgstr "Тип двору"
+
+#: app/fields/property-fields.php:299
+msgid "Sewage"
+msgstr "Каналізація"
+
+#: app/fields/property-fields.php:301
+msgid "Sewage system type"
+msgstr "Тип каналізаційної системи"
+
+#: app/fields/property-fields.php:303
+#, fuzzy
+msgid "Building Material"
+msgstr "Деталі будівлі"
+
+#: app/fields/property-fields.php:305
+msgid "Building construction material"
+msgstr "Матеріал будівництва будівлі"
+
+#: app/fields/property-fields.php:307
+msgid "Water"
+msgstr "Вода"
+
+#: app/fields/property-fields.php:309
+#, fuzzy
+msgid "Water availability"
+msgstr "Зображення недоступне"
+
+#: app/fields/property-fields.php:311
+#, fuzzy
+msgid "Gas"
+msgstr "Гаражі"
+
+#: app/fields/property-fields.php:313
+msgid "Gas availability"
+msgstr "Наявність газу"
+
+#: app/fields/property-fields.php:315
+msgid "Electricity"
+msgstr "Електрика"
+
+#: app/fields/property-fields.php:317
+msgid "Electricity availability"
+msgstr "Наявність електрики"
+
+#: app/fields/property-fields.php:328
+#, fuzzy
+msgid "Select Realtor"
+msgstr "Виберіть стан"
+
+#: app/fields/property-fields.php:329
+msgid "No Realtor"
+msgstr "Без ріелтора"
+
+#: app/filters.php:15
+msgid "Continued"
+msgstr "Читати далі"
+
+#: app/filters.php:240
+msgid "New building"
+msgstr "Новобудова"
+
+#: app/filters.php:241
+msgid "Secondary market"
+msgstr "Вторинний ринок"
+
+#: app/helpers.php:5
+msgid "Rooms"
+msgstr "Кімнати"
+
+#: app/helpers.php:6
+msgid "Apartments"
+msgstr "Квартири"
+
+#: app/helpers.php:7
+msgid "Houses"
+msgstr "Будинки"
+
+#: app/helpers.php:8
+msgid "Plots"
+msgstr "Ділянки"
+
+#: app/helpers.php:9
+msgid "Garages"
+msgstr "Гаражі"
+
+#: app/helpers.php:10
+msgid "Commercial"
+msgstr "Комерційна нерухомість"
+
+#: app/helpers.php:11
+msgid "Dachas"
+msgstr "Дачі"
+
+#: app/helpers.php:179
+msgid "Room"
+msgstr "Кімната"
+
+#: app/helpers.php:180
+msgid "Apartment"
+msgstr "Квартира"
+
+#: app/helpers.php:181
+msgid "House"
+msgstr "Будинок"
+
+#: app/helpers.php:182
+msgid "Plot"
+msgstr "Ділянка"
+
+#: app/helpers.php:183
+msgid "Garage"
+msgstr "Гараж"
+
+#: app/helpers.php:184
+msgid "Commercial Property"
+msgstr "Комерційна нерухомість"
+
+#: app/helpers.php:185
+msgid "Dacha"
+msgstr "Дача"
+
+#: app/helpers.php:248
+msgid "Newest First"
+msgstr "Спочатку нові"
+
+#: app/helpers.php:249
+msgid "Oldest First"
+msgstr "Спочатку старі"
+
+#: app/helpers.php:250
+msgid "Price: Low to High"
+msgstr "Ціна: від низької до високої"
+
+#: app/helpers.php:251
+msgid "Price: High to Low"
+msgstr "Ціна: від високої до низької"
+
+#: app/helpers.php:252
+msgid "Area: Small to Large"
+msgstr "Площа: від малої до великої"
+
+#: app/helpers.php:253
+msgid "Area: Large to Small"
+msgstr "Площа: від великої до малої"
+
+#: app/integrations-airwpsync.php:15
+msgid "Custom Field..."
+msgstr "Кастомне поле..."
+
+#: app/post-types.php:26 app/post-types.php:75
+msgid "Add new"
+msgstr "Додати новий"
+
+#: app/post-types.php:27
+msgid "Add new %s"
+msgstr "Додати новий %s"
+
+#: app/post-types.php:28
+msgid "New %s"
+msgstr "Новий %s"
+
+#: app/post-types.php:29
+msgid "Edit %s"
+msgstr "Редагувати %s"
+
+#: app/post-types.php:30
+msgid "View %s"
+msgstr "Переглянути %s"
+
+#: app/post-types.php:31
+msgid "All %s"
+msgstr "Всі %s"
+
+#: app/post-types.php:32
+msgid "Search %s"
+msgstr "Шукати %s"
+
+#: app/post-types.php:33
+msgid "Parent %s:"
+msgstr "Батьківський %s:"
+
+#: app/post-types.php:34
+msgid "Not found %s"
+msgstr "Не знайдено %s"
+
+#: app/post-types.php:35
+msgid "Not found %s in trash"
+msgstr "Не знайдено %s в кошику"
+
+#: app/post-types.php:71 app/post-types.php:73
+msgid "Reviews"
+msgstr "Відгуки"
+
+#: app/post-types.php:72 app/post-types.php:74
+msgid "Review"
+msgstr "Відгук"
+
+#: app/post-types.php:76
+msgid "Add new Review"
+msgstr "Додати новий відгук"
+
+#: app/post-types.php:77
+msgid "New Review"
+msgstr "Новий відгук"
+
+#: app/post-types.php:78
+msgid "Edit Review"
+msgstr "Редагувати відгук"
+
+#: app/post-types.php:79
+msgid "View Review"
+msgstr "Переглянути відгук"
+
+#: app/post-types.php:80
+msgid "All Reviews"
+msgstr "Всі відгуки"
+
+#: app/post-types.php:81
+msgid "Search Reviews"
+msgstr "Шукати відгуки"
+
+#: app/post-types.php:82
+msgid "Parent Reviews:"
+msgstr "Батьківські відгуки:"
+
+#: app/post-types.php:83 resources/views/archive-review.blade.php:73
+msgid "No reviews found"
+msgstr "Відгуків не знайдено"
+
+#: app/post-types.php:84
+msgid "No reviews found in trash"
+msgstr "Відгуків не знайдено в кошику"
+
+#: app/setup.php:44
+msgid "Error saving favorites:"
+msgstr "Помилка збереження обраного:"
+
+#: app/setup.php:45
+msgid "Unknown error"
+msgstr "Невідома помилка"
+
+#: app/setup.php:46
+msgid "Failed to send request:"
+msgstr "Не вдалося відправити запит:"
+
+#: app/setup.php:47
+msgid "Link copied to clipboard"
+msgstr "Посилання скопійовано в буфер обміну"
+
+#: app/setup.php:48
+msgid "Failed to copy link"
+msgstr "Не вдалося скопіювати посилання"
+
+#: app/setup.php:93
+msgid "Primary Navigation"
+msgstr "Основна навігація"
+
+#: app/setup.php:162
+msgid "Footer Logo"
+msgstr "Логотип у футері"
+
+#: app/theme-options.php:9
+msgid "Theme Settings"
+msgstr "Налаштування теми"
+
+#: app/theme-options.php:10
+msgid "Social Media"
+msgstr "Соціальні мережі"
+
+#: app/theme-options.php:11
+msgid "Telegram"
+msgstr "Telegram"
+
+#: app/theme-options.php:12
+msgid "Enter full URL (e.g., https://t.me/username)"
+msgstr "Введіть повне посилання (наприклад, https://t.me/username)"
+
+#: app/theme-options.php:15
+msgid "YouTube"
+msgstr "YouTube"
+
+#: app/theme-options.php:16
+msgid "Enter full URL (e.g., https://youtube.com/@channel)"
+msgstr "Введіть повне посилання (наприклад, https://youtube.com/@channel)"
+
+#: app/theme-options.php:19
+msgid "Instagram"
+msgstr "Instagram"
+
+#: app/theme-options.php:20
+msgid "Enter full URL (e.g., https://instagram.com/username)"
+msgstr "Введіть повне посилання (наприклад, https://instagram.com/username)"
+
+#: app/theme-options.php:23
+msgid "TikTok"
+msgstr "TikTok"
+
+#: app/theme-options.php:24
+msgid "Enter full URL (e.g., https://tiktok.com/@username)"
+msgstr "Введіть повне посилання (наприклад, https://tiktok.com/@username)"
+
+#: app/theme-options.php:27
+msgid "Facebook"
+msgstr "Facebook"
+
+#: app/theme-options.php:28
+msgid "Enter full URL (e.g., https://facebook.com/page)"
+msgstr "Введіть повне посилання (наприклад, https://facebook.com/page)"
+
+#: app/theme-options.php:31
+msgid "Banners"
+msgstr "Банери"
+
+#: app/View/Composers/Post.php:44
+msgid "Latest Posts"
+msgstr "Останні публікації"
+
+#. translators: %s is replaced with the search query
+#: app/View/Composers/Post.php:54
+msgid "Search Results for %s"
+msgstr "Результати пошуку для %s"
+
+#: app/View/Composers/Post.php:60
+msgid "Not Found"
+msgstr "Не знайдено"
+
+#. Template Name of the theme
+msgid "Custom Template"
+msgstr "Кастомний шаблон"
+
+#: resources/views/404.blade.php:7
+msgid "Sorry, but the page you are trying to view does not exist."
+msgstr "Вибачте, але сторінка, яку ви намагаєтеся переглянути, не існує."
+
+#: resources/views/archive-review.blade.php:31
+#: resources/views/archive-review.blade.php:32
+#: resources/views/archive-review.blade.php:34
+#: resources/views/archive-review.blade.php:44
+#: resources/views/forms/property-search.blade.php:62
+#: resources/views/partials/archive-header.blade.php:27
+#: resources/views/partials/archive-header.blade.php:28
+#: resources/views/partials/archive-header.blade.php:29
+#: resources/views/partials/archive-header.blade.php:30
+#: resources/views/partials/archive-header.blade.php:39
+msgid "Search"
+msgstr "Пошук"
+
+#: resources/views/archive-review.blade.php:49
+#: resources/views/partials/archive-header.blade.php:160
+#: resources/views/partials/archive-header.blade.php:219
+#: resources/views/partials/archive-header.blade.php:276
+msgid "From: "
+msgstr "Від: "
+
+#: resources/views/archive-review.blade.php:55
+#: resources/views/partials/archive-header.blade.php:183
+#: resources/views/partials/archive-header.blade.php:242
+#: resources/views/partials/archive-header.blade.php:281
+msgid "To: "
+msgstr "До: "
+
+#: resources/views/archive.blade.php:9
+msgid "No results found"
+msgstr "Нічого не знайдено"
+
+#: resources/views/author.blade.php:48
+msgid "My social networks"
+msgstr "Мої соціальні мережі"
+
+#: resources/views/author.blade.php:57
+msgid "My"
+msgstr "Мій"
+
+#: resources/views/author.blade.php:68
+msgid "Subscribe to Praktik Real Estate"
+msgstr "Підписатися на Praktik Real Estate"
+
+#: resources/views/author.blade.php:92
+#: resources/views/sections/footer.blade.php:39
+msgid "Apartment search chatbot"
+msgstr "Чат бот пошуку квартир"
+
+#: resources/views/components/agent-contact.blade.php:7
+msgid "Write to Telegram"
+msgstr "Написати в Telegram"
+
+#: resources/views/components/filter-panel.blade.php:8
+msgid "Filters"
+msgstr "Фільтри"
+
+#: resources/views/components/filter-panel.blade.php:11
+msgid "Filter"
+msgstr "Фільтр"
+
+#: resources/views/components/filter-panel.blade.php:12
+msgid "Close filters"
+msgstr "Закрити фільтри"
+
+#: resources/views/components/filter-panel.blade.php:49
+#: resources/views/components/filter-panel.blade.php:70
+#: resources/views/partials/archive-header.blade.php:82
+#: resources/views/partials/archive-header.blade.php:94
+#: resources/views/partials/archive-header.blade.php:95
+#: resources/views/partials/archive-header.blade.php:117
+#: resources/views/partials/archive-header.blade.php:134
+msgid "All"
+msgstr "Всі"
+
+#: resources/views/components/filter-panel.blade.php:86
+#: resources/views/partials/archive-header.blade.php:150
+#: resources/views/partials/archive-header.blade.php:151
+#: resources/views/partials/content-single-property.blade.php:180
+msgid "Total Area"
+msgstr "Загальна площа"
+
+#: resources/views/components/filter-panel.blade.php:108
+#: resources/views/partials/archive-header.blade.php:209
+#: resources/views/partials/archive-header.blade.php:210
+#, fuzzy
+msgid "Plot Area"
+msgstr "Загальна площа"
+
+#: resources/views/components/filter-panel.blade.php:130
+#: resources/views/partials/archive-header.blade.php:268
+#: resources/views/partials/archive-header.blade.php:269
+msgid "Price"
+msgstr "Ціна"
+
+#: resources/views/components/filter-panel.blade.php:137
+#: resources/views/components/price-range-slider.blade.php:2
+#: resources/views/components/price-range-slider.blade.php:4
+#, fuzzy
+msgid "From"
+msgstr "Від: "
+
+#: resources/views/components/filter-panel.blade.php:146
+#: resources/views/components/price-range-slider.blade.php:5
+#: resources/views/components/price-range-slider.blade.php:7
+#, fuzzy
+msgid "To"
+msgstr "До: "
+
+#: resources/views/components/filter-panel.blade.php:171
+msgid "Clear"
+msgstr "Очистити"
+
+#: resources/views/components/filter-panel.blade.php:175
+msgid "Apply"
+msgstr "Застосувати"
+
+#: resources/views/components/mobile-menu.blade.php:8
+msgid "Mobile menu"
+msgstr "Мобільне меню"
+
+#: resources/views/components/mobile-menu.blade.php:12
+msgid "Menu"
+msgstr "Меню"
+
+#: resources/views/components/mobile-menu.blade.php:13
+msgid "Close menu"
+msgstr "Закрити меню"
+
+#: resources/views/components/mobile-menu.blade.php:20
+msgid "Mobile navigation"
+msgstr "Мобільна навігація"
+
+#: resources/views/components/mobile-menu.blade.php:35
+#: resources/views/components/mobile-menu.blade.php:36
+#: resources/views/sections/header.blade.php:25
+#: resources/views/template-favorites.blade.php:35
+msgid "Favorites"
+msgstr "Обране"
+
+#: resources/views/components/pagination.blade.php:5
+msgid "Previous"
+msgstr "Попередня"
+
+#: resources/views/components/pagination.blade.php:6
+msgid "Next"
+msgstr "Наступна"
+
+#: resources/views/components/pagination.blade.php:22
+msgid "Pagination"
+msgstr "Пагінація"
+
+#: resources/views/forms/property-search.blade.php:5
+#: resources/views/partials/archive-header.blade.php:47
+#: resources/views/partials/archive-header.blade.php:51
+msgid "Category"
+msgstr "Категорія"
+
+#: resources/views/forms/property-search.blade.php:9
+msgid "Select Category"
+msgstr "Виберіть категорію"
+
+#: resources/views/forms/search.blade.php:4
+msgctxt "label"
+msgid "Search for:"
+msgstr "Шукати:"
+
+#: resources/views/forms/search.blade.php:11
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Пошук &hellip;"
+
+#: resources/views/forms/search.blade.php:16
+msgctxt "submit button"
+msgid "Search"
+msgstr "Пошук"
+
+#: resources/views/index.blade.php:7 resources/views/search.blade.php:7
+msgid "Sorry, no results were found."
+msgstr "Вибачте, нічого не знайдено."
+
+#: resources/views/partials/archive-header.blade.php:8
+msgid "All Properties"
+msgstr "Вся нерухомість"
+
+#: resources/views/partials/archive-header.blade.php:153
+#: resources/views/partials/archive-header.blade.php:161
+#, fuzzy
+msgid "Total Area From"
+msgstr "Загальна площа"
+
+#: resources/views/partials/archive-header.blade.php:161
+#: resources/views/partials/archive-header.blade.php:186
+#: resources/views/partials/archive-header.blade.php:220
+#: resources/views/partials/archive-header.blade.php:245
+#: resources/views/partials/content-archive.blade.php:62
+#: resources/views/partials/content-single-property.blade.php:181
+msgid "m²"
+msgstr "м²"
+
+#: resources/views/partials/archive-header.blade.php:176
+#: resources/views/partials/archive-header.blade.php:185
+#, fuzzy
+msgid "Total Area To"
+msgstr "Загальна площа"
+
+#: resources/views/partials/archive-header.blade.php:212
+#: resources/views/partials/archive-header.blade.php:220
+#, fuzzy
+msgid "Plot Area From"
+msgstr "Загальна площа (м²)"
+
+#: resources/views/partials/archive-header.blade.php:235
+#: resources/views/partials/archive-header.blade.php:244
+#, fuzzy
+msgid "Plot Area To"
+msgstr "Загальна площа"
+
+#: resources/views/partials/archive-header.blade.php:275
+#: resources/views/partials/archive-header.blade.php:277
+#, fuzzy
+msgid "Price From"
+msgstr "Ціна"
+
+#: resources/views/partials/archive-header.blade.php:280
+#: resources/views/partials/archive-header.blade.php:282
+#, fuzzy
+msgid "Price To"
+msgstr "Ціна"
+
+#: resources/views/partials/archive-header.blade.php:325
+msgid "Found <strong>%s properties</strong>"
+msgstr "Знайдено <strong>%s об'єктів</strong>"
+
+#: resources/views/partials/archive-header.blade.php:329
+msgid "Sort by"
+msgstr "Сортувати за"
+
+#. translators: %1$s is replaced with the number of comments and %2$s with the post title
+#: resources/views/partials/comments.blade.php:5
+msgctxt "comments title"
+msgid "%1$s response to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s відповідь на &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s відповіді на &ldquo;%2$s&rdquo;"
+msgstr[2] "%1$s відповідей на &ldquo;%2$s&rdquo;"
+
+#. translators: %1$s is replaced with the number of comments and %2$s with the post title
+#: resources/views/partials/comments.blade.php:5
+msgctxt "comments title"
+msgid "One"
+msgstr "Один"
+
+#: resources/views/partials/comments.blade.php:19
+msgid "&larr; Older comments"
+msgstr "&larr; Старіші коментарі"
+
+#: resources/views/partials/comments.blade.php:26
+msgid "Newer comments &rarr;"
+msgstr "Новіші коментарі &rarr;"
+
+#: resources/views/partials/comments.blade.php:37
+msgid "Comments are closed."
+msgstr "Коментарі закриті."
+
+#: resources/views/partials/content-page.blade.php:3
+#: resources/views/partials/content-single.blade.php:16
+msgid "Pages:"
+msgstr "Сторінки:"
+
+#: resources/views/partials/content-single-property.blade.php:4
+msgid "Unknown Type"
+msgstr "Невідомий тип"
+
+#: resources/views/partials/content-single-property.blade.php:19
+msgid "Back to catalog"
+msgstr "Повернутися до каталогу"
+
+#: resources/views/partials/content-single-property.blade.php:36
+#: resources/views/partials/content-single-property.blade.php:139
+msgid "Share"
+msgstr "Поділитися"
+
+#: resources/views/partials/content-single-property.blade.php:69
+msgid "No image available"
+msgstr "Зображення недоступне"
+
+#: resources/views/partials/content-single-property.blade.php:82
+msgid "PHOTO"
+msgstr "ФОТО"
+
+#: resources/views/partials/content-single-property.blade.php:107
+#: resources/views/partials/content-single-property.blade.php:191
+msgid "Property Description"
+msgstr "Опис об'єкту"
+
+#: resources/views/partials/content-single-property.blade.php:121
+msgid "No Title"
+msgstr "Без назви"
+
+#: resources/views/partials/content-single-property.blade.php:125
+msgid "ID"
+msgstr "ID"
+
+#: resources/views/partials/content-single-property.blade.php:125
+msgid "Unknown ID"
+msgstr "Невідомий ID"
+
+#: resources/views/partials/entry-meta.blade.php:7
+msgid "By"
+msgstr "Автор"
+
+#: resources/views/sections/footer.blade.php:17
+#: resources/views/sections/footer.blade.php:44
+msgid "Privacy policy"
+msgstr "Політика конфіденційності"
+
+#: resources/views/sections/footer.blade.php:18
+#: resources/views/sections/footer.blade.php:45
+msgid "Terms of use"
+msgstr "Умови використання"
+
+#: resources/views/sections/footer.blade.php:36
+msgid "Fresh picks for you:"
+msgstr "Свіжі пропозиції для вас:"
+
+#: resources/views/sections/header.blade.php:35
+msgid "Open menu"
+msgstr "Відкрити меню"
+
+#: resources/views/template-favorites.blade.php:14
+msgid "Compare selected objects"
+msgstr "Порівняти обрані об'єкти"
+
+#: resources/views/template-favorites.blade.php:37
+msgid "Your savings items will be here."
+msgstr "Ваші збережені елементи будуть тут."
+
+#: resources/views/template-favorites.blade.php:38
+msgid "Select those that deserve the most, and equalize them at any time."
+msgstr "Виберіть ті, що заслуговують найбільше, та порівняйте їх у будь-який час."
+
+#~ msgid "Excellent"
+#~ msgstr "Відмінний"
+
+#~ msgid "Fair"
+#~ msgstr "Задовільний"
+
+#~ msgid "Furnished"
+#~ msgstr "З меблями"
+
+#~ msgid "Gallery"
+#~ msgstr "Галерея"
+
+#~ msgid "Good"
+#~ msgstr "Добрий"
+
+#~ msgid "Needs Renovation"
+#~ msgstr "Потребує ремонту"
+
+#~ msgid "New Building"
+#~ msgstr "Новобудова"
+
+#~ msgid "Saved items"
+#~ msgstr "Збережені елементи"
+
+#~ msgid "Semi-furnished"
+#~ msgstr "Частково з меблями"
+
+#~ msgid "Unfurnished"
+#~ msgstr "Без меблів"
