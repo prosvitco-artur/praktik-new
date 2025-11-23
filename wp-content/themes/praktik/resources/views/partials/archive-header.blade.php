@@ -2,6 +2,18 @@
   <div class="container px-5">
     @php
       $current_post_type = get_post_type();
+      if (!$current_post_type && is_post_type_archive()) {
+        $queried_object = get_queried_object();
+        $current_post_type = $queried_object ? $queried_object->name : null;
+      }
+      if (!$current_post_type) {
+        global $wp_query;
+        $current_post_type = $wp_query->get('post_type');
+        if (is_array($current_post_type)) {
+          $current_post_type = reset($current_post_type);
+        }
+      }
+      
       $property_types = get_property_post_types();
       $current_type_label = isset($property_types[$current_post_type])
         ? $property_types[$current_post_type]
