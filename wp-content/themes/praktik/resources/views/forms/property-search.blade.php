@@ -5,7 +5,9 @@
         <label class="text-sm text-neutral-600 mb-2">{{ __('Category', 'praktik') }}</label>
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
-          id="category-dropdown" data-dropdown-toggle="category">
+          id="category-dropdown" 
+          data-dropdown-toggle="category"
+          aria-label="{{ __('Select Category', 'praktik') }}">
           <span class="text-p1" id="category-label">{{ __('Select Category', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
@@ -36,7 +38,9 @@
         <label class="text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
         <button type="button"
           class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-secondary-50 p-2.5 w-full"
-          id="type-dropdown" data-dropdown-toggle="type">
+          id="type-dropdown" 
+          data-dropdown-toggle="type"
+          aria-label="{{ __('Select Property Type', 'praktik') }}">
           <span class="text-p1" id="type-label">{{ __('Select Property Type', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
@@ -54,7 +58,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn--primary w-full md:w-auto">
+      <button type="submit" class="btn btn--primary w-full md:w-auto" aria-label="{{ __('Search properties', 'praktik') }}">
         <span>{{ __('Search', 'praktik') }}</span>
         <x-icon name="search" class="w-5 h-5 stroke-current" />
       </button>
