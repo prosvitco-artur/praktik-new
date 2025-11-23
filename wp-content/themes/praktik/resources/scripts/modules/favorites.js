@@ -16,12 +16,7 @@ class Favorites {
       }
     });
 
-    this.initHeaderCounter();
     document.addEventListener('favoritesChanged', (e) => this.updateHeaderCounter(e.detail.favorites));
-  }
-
-  initHeaderCounter() {
-    this.updateHeaderCounter(this.getFavorites());
   }
 
   updateHeaderCounter(favorites) {
@@ -48,10 +43,8 @@ class Favorites {
 
   getFavorites() {
     const cookie = this.getCookie('praktik_favorites');
-    console.log(cookie);
     if (!cookie) return [];
 
-    
     try {
       return JSON.parse(decodeURIComponent(cookie));
     } catch (e) {

@@ -52,7 +52,7 @@
             <span>{{ $current_type_label }}</span>
             <x-icon name="chevron" class="w-4 h-4" />
           </button>
-          <div class="dropdown-menu" data-dropdown-content="category">
+          <div class="dropdown-menu min-w-full" data-dropdown-content="category">
             <div class="py-1">
               @foreach(get_property_post_types() as $key => $label)
                 @php
@@ -211,7 +211,7 @@
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="plot_area_from">
+              <div class="dropdown-menu min-w-full" data-dropdown-content="plot_area_from">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_plot_area_ranges() as $value)
                     <button type="button" class="w-full text-left {{ $plot_area_from == $value ? 'text-secondary-500 font-bold' : '' }}" 
@@ -236,7 +236,7 @@
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="plot_area_to">
+              <div class="dropdown-menu min-w-full" data-dropdown-content="plot_area_to">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_plot_area_ranges() as $value)
                     <button type="button" class="dropdown-item w-full text-left text-neutral-700 {{ $plot_area_to == $value ? 'text-secondary-500 font-bold' : '' }}" 
