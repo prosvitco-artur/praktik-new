@@ -4,7 +4,7 @@
 
 {{-- Filter Panel --}}
 <div
-  class="filter-panel p-5 fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg text-neutral-950"
+  class="filter-panel p-5 fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg text-neutral-950 overflow-y-auto"
   data-filter-panel role="dialog" aria-modal="true" aria-label="{{ __('Filters', 'praktik') }}">
 
   <div class="flex items-center justify-between mb-5">
@@ -165,10 +165,10 @@
     </div>
 
     <div class="flex gap-5 pt-5">
-      <button class="btn btn--primary w-full" data-filter-clear>
+      <button class="btn btn--second w-full font-bold" data-filter-clear>
         {{ __('Clear', 'praktik') }}
       </button>
-      <button class="btn btn--primary w-full" data-filter-apply>
+      <button class="btn btn--primary w-full font-bold" data-filter-apply>
         {{ __('Apply', 'praktik') }}
       </button>
     </div>

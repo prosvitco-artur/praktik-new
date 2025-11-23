@@ -264,29 +264,27 @@ function get_sort_label($sort_key) {
 }
 
 function get_user_favorites() {
-    if (isset($_COOKIE['praktik_favorites'])) {
-        $cookie = $_COOKIE['praktik_favorites'];
-        
-        $cookie = wp_unslash($cookie);
-        
-        if (is_string($cookie)) {
-            $decoded = json_decode($cookie, true);
-            
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                $decoded = json_decode(urldecode($cookie), true);
-            }
-            
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                $decoded = json_decode(stripslashes($cookie), true);
-            }
-            
-            if (is_array($decoded)) {
-                return array_map('strval', $decoded);
-            }
+    if (is_user_logged_in()) {
+        $favorites = get_user_meta(get_current_user_id(), 'praktik_favorites', true);
+        if (!is_array($favorites)) {
+            return [];
         }
+        return array_map('strval', $favorites);
     }
     
-    return [];
+    $session_id = isset($_COOKIE['praktik_session_id']) ? sanitize_text_field($_COOKIE['praktik_session_id']) : '';
+    if (empty($session_id)) {
+        return [];
+    }
+    
+    $key = 'guest_favorites_' . md5($session_id);
+    $favorites = get_transient($key);
+    
+    if (!is_array($favorites)) {
+        return [];
+    }
+    
+    return array_map('strval', $favorites);
 }
 
 function get_user_favorites_count() {

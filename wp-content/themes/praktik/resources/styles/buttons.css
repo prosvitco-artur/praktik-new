@@ -38,6 +38,11 @@
     background-color: var(--btn-primary-active);
   }
 
+  .btn--second {
+    color: var(--btn-primary);
+    border: 2px solid var(--btn-primary);
+  }
+
   .btn svg {
     width: 20px;
     height: 20px;

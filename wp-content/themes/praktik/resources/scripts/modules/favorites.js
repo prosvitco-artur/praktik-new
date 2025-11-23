@@ -3,20 +3,71 @@ class Favorites {
     this.ajaxUrl = (window.praktikAjax && window.praktikAjax.ajaxurl) || '/wp-admin/admin-ajax.php';
     this.nonce = (window.praktikAjax && window.praktikAjax.favoritesNonce) || '';
     this.i18n = (window.praktikAjax && window.praktikAjax.i18n) || {};
+    this.favorites = [];
+    this.sessionId = this.getSessionId();
     this.init();
   }
 
-  init() {
+  getSessionId() {
+    let sessionId = localStorage.getItem('praktik_session_id');
+    if (!sessionId) {
+      sessionId = this.generateUUID();
+      localStorage.setItem('praktik_session_id', sessionId);
+    }
+    return sessionId;
+  }
+
+  generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  async init() {
+    await this.loadFavorites();
+    
     const favoriteButtons = document.querySelectorAll('button[data-post-id], [data-favorite-toggle]');
     
     favoriteButtons.forEach(button => {
       const postId = button.getAttribute('data-post-id') || button.getAttribute('data-favorite-toggle');
       if (postId) {
+        this.updateButtonState(button, postId);
         button.addEventListener('click', (e) => this.toggleFavorite(e, postId));
       }
     });
 
+    this.updateHeaderCounter(this.favorites);
     document.addEventListener('favoritesChanged', (e) => this.updateHeaderCounter(e.detail.favorites));
+  }
+
+  async loadFavorites() {
+    try {
+      const formData = new FormData();
+      formData.append('action', 'get_favorites');
+      formData.append('session_id', this.sessionId);
+      if (this.nonce) {
+        formData.append('nonce', this.nonce);
+      }
+
+      const response = await fetch(this.ajaxUrl, {
+        method: 'POST',
+        body: formData,
+        credentials: 'same-origin'
+      });
+
+      const data = await response.json();
+      
+      if (data.success && data.data && data.data.favorites) {
+        this.favorites = data.data.favorites;
+      } else {
+        this.favorites = [];
+      }
+    } catch (error) {
+      console.error('Failed to load favorites:', error);
+      this.favorites = [];
+    }
   }
 
   updateHeaderCounter(favorites) {
@@ -29,8 +80,7 @@ class Favorites {
   }
 
   updateButtonState(button, postId) {
-    const favorites = this.getFavorites();
-    const isFavorite = favorites.includes(postId.toString());
+    const isFavorite = this.favorites.includes(postId.toString());
     
     if (isFavorite) {
       button.classList.add('favorites-post');
@@ -41,42 +91,13 @@ class Favorites {
     }
   }
 
-  getFavorites() {
-    const cookie = this.getCookie('praktik_favorites');
-    if (!cookie) return [];
-
-    try {
-      return JSON.parse(decodeURIComponent(cookie));
-    } catch (e) {
-      return [];
-    }
-  }
-
-  setFavorites(favorites) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + 365 * 24 * 60 * 60 * 1000);
-    document.cookie = `praktik_favorites=${encodeURIComponent(JSON.stringify(favorites))};expires=${expires.toUTCString()};path=/`;
-  }
-
-  getCookie(name) {
-    const nameEQ = name + '=';
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-
   async toggleFavorite(e, postId) {
     e.preventDefault();
     e.stopPropagation();
     
     const button = e.currentTarget;
-    const favorites = this.getFavorites();
     const postIdStr = postId.toString();
-    const isFavorite = favorites.includes(postIdStr);
+    const isFavorite = this.favorites.includes(postIdStr);
     
     button.disabled = true;
     
@@ -84,7 +105,10 @@ class Favorites {
       const formData = new FormData();
       formData.append('action', 'toggle_favorite');
       formData.append('post_id', postId);
-      formData.append('nonce', this.nonce);
+      formData.append('session_id', this.sessionId);
+      if (this.nonce) {
+        formData.append('nonce', this.nonce);
+      }
       
       const response = await fetch(this.ajaxUrl, {
         method: 'POST',
@@ -94,23 +118,21 @@ class Favorites {
       
       const data = await response.json();
       
-      if (data.success) {
-        let newFavorites;
-        if (isFavorite) {
-          newFavorites = favorites.filter(id => id !== postIdStr);
-        } else {
-          newFavorites = [...favorites, postIdStr];
-        }
+      if (data.success && data.data) {
+        this.favorites = data.data.favorites || [];
         
-        this.setFavorites(newFavorites);
-        this.updateButtonState(button, postId);
-        this.updateHeaderCounter(newFavorites);
+        const allButtons = document.querySelectorAll(`button[data-post-id="${postId}"], [data-favorite-toggle="${postId}"]`);
+        allButtons.forEach(btn => {
+          this.updateButtonState(btn, postId);
+        });
+        
+        this.updateHeaderCounter(this.favorites);
         
         const event = new CustomEvent('favoritesChanged', {
           detail: {
             postId: postId,
-            isFavorite: !isFavorite,
-            favorites: newFavorites
+            isFavorite: data.data.is_favorite,
+            favorites: this.favorites
           }
         });
         document.dispatchEvent(event);
