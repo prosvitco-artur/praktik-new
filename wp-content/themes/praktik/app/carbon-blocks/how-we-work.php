@@ -3,7 +3,7 @@
 use Carbon_Fields\Block;
 use Carbon_Fields\Field;
 
-Block::make(__('How We Work', 'praktik'))
+Block::make('How We Work')
     ->add_fields([
         Field::make('complex', 'steps', __('Steps', 'praktik'))
             ->add_fields('step', [
