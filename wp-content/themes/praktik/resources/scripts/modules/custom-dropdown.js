@@ -68,7 +68,7 @@ class CustomDropdown {
     const toggle = document.querySelector(`[data-dropdown-toggle="${dropdownId}"]`);
     const input = toggle.querySelector('input');
 
-    if (input) input.value = label;
+    if (input) input.value = value || label;
 
     dropdownContent.querySelectorAll('.dropdown-item').forEach(i => {
       i.classList.remove('text-info-600');

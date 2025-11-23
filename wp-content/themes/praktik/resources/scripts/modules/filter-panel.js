@@ -173,9 +173,35 @@ class FilterPanel {
       params.append('rooms', rooms.join(','));
     }
     
-    const numberInputs = this.filterPanel.querySelectorAll('input[type="number"], input[type="range"]');
+    const sliderContainers = this.filterPanel.querySelectorAll('[data-slider]');
+    const processedSliderNames = new Set();
+    
+    sliderContainers.forEach(slider => {
+      const fromSlider = slider.querySelector('.from-slider');
+      const toSlider = slider.querySelector('.to-slider');
+      
+      if (fromSlider && fromSlider.name && fromSlider.value) {
+        const fromValue = parseInt(fromSlider.value);
+        const min = parseInt(fromSlider.min) || 0;
+        if (fromValue >= min) {
+          params.append(fromSlider.name, fromValue);
+          processedSliderNames.add(fromSlider.name);
+        }
+      }
+      
+      if (toSlider && toSlider.name && toSlider.value) {
+        const toValue = parseInt(toSlider.value);
+        const max = parseInt(toSlider.max) || 1000;
+        if (toValue <= max && toValue > 0) {
+          params.append(toSlider.name, toValue);
+          processedSliderNames.add(toSlider.name);
+        }
+      }
+    });
+    
+    const numberInputs = this.filterPanel.querySelectorAll('input[type="number"]');
     numberInputs.forEach(input => {
-      if (input.name && input.value) {
+      if (input.name && input.value && !processedSliderNames.has(input.name) && !input.hasAttribute('data-price-input')) {
         const value = parseInt(input.value);
         if (value > 0) {
           params.append(input.name, value);

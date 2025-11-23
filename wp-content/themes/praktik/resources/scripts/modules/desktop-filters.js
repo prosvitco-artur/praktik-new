@@ -16,12 +16,6 @@ class DesktopFilters {
 
     document.addEventListener('dropdownChange', (e) => {
       const { dropdownId, value, label } = e.detail;
-      this.filters[dropdownId] = value;
-
-      // if has special attribute return
-      if (item.hasAttribute('data-special')) {
-        return;
-      }
       
       if (dropdownId === 'type') {
         const typeLabel = document.getElementById('type-label');
@@ -31,6 +25,8 @@ class DesktopFilters {
         
         if (!value || value === '') {
           delete this.filters.type;
+        } else {
+          this.filters.type = value;
         }
         
         this.applyFilters();
