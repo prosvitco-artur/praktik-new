@@ -294,6 +294,43 @@ function get_user_favorites_count() {
     return count($favorites);
 }
 
+function clean_user_favorites() {
+    $favorites = get_user_favorites();
+    
+    if (empty($favorites)) {
+        return [];
+    }
+    
+    $favorites_int = array_map('intval', $favorites);
+    $property_post_types = array_keys(get_property_post_types());
+    
+    $existing_posts = get_posts([
+        'post_type' => $property_post_types,
+        'post__in' => $favorites_int,
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+        'post_status' => 'publish',
+    ]);
+    
+    $existing_ids = array_map('strval', $existing_posts);
+    $cleaned_favorites = array_intersect($favorites, $existing_ids);
+    $cleaned_favorites = array_values($cleaned_favorites);
+    
+    if (count($cleaned_favorites) !== count($favorites)) {
+        $expires = time() + (365 * 24 * 60 * 60);
+        
+        if (empty($cleaned_favorites)) {
+            setcookie('praktik_favorites', '', time() - 3600, '/', '', is_ssl(), true);
+            unset($_COOKIE['praktik_favorites']);
+        } else {
+            setcookie('praktik_favorites', json_encode($cleaned_favorites), $expires, '/', '', is_ssl(), true);
+            $_COOKIE['praktik_favorites'] = json_encode($cleaned_favorites);
+        }
+    }
+    
+    return $cleaned_favorites;
+}
+
 /**
  * Отримати мінімальне та максимальне значення площі з meta полів
  *

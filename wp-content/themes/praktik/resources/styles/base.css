@@ -88,34 +88,5 @@
     -webkit-line-clamp: 4;
     overflow: hidden;
   }
-
-  ul.standard-list {
-    list-style: disc;
-    padding-left: 24px;
-  }
-
-  .check-list li {
-    position: relative;
-    padding-left: 2.25rem;
-    margin: 0 0 1rem;
-    line-height: 1.2;
-  }
-
-  .check-list li:last-of-type {
-    margin: 0;
-  }
-
-  .check-list li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0%200%2024%2024' fill='none'%3E%3Cpath d='M22.9961%205.78906L9.13477%2019.6504L8.25%2020.4961L7.36523%2019.6504L1.00391%2013.2891L2.78906%2011.5039L8.25%2016.9648L21.2109%204.00391L22.9961%205.78906Z' fill='%23ECB648'/%3E%3C/svg%3E");
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-  }
 }
 

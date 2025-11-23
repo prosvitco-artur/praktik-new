@@ -130,7 +130,7 @@ msgstr "Банери"
 
 #: app/fields/property-fields.php:23
 msgid "Basic Information"
-msgstr "Базова інформація"
+msgstr "Базова інформаці"
 
 #: app/fields/property-fields.php:130
 msgid "Bathroom"

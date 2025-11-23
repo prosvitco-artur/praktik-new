@@ -9,7 +9,7 @@
           <span class="text-p1" id="category-label">{{ __('Select Category', 'praktik') }}</span>
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
-        <div class="dropdown-menu bg-secondary-50" data-dropdown-content="category">
+        <div class="dropdown-menu bg-secondary-50 min-w-full" data-dropdown-content="category">
           <div class="py-1">
             @php
               $property_post_types = get_property_post_types();
@@ -41,7 +41,7 @@
           <x-icon name="chevron" class="w-4 h-4" />
         </button>
 
-        <div class="dropdown-menu bg-secondary-50" data-dropdown-content="type">
+        <div class="dropdown-menu bg-secondary-50 min-w-full" data-dropdown-content="type">
           <div class="py-2">
             @foreach(\App\get_property_types() as $key => $label)
               <button type="button"

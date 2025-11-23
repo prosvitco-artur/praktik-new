@@ -154,6 +154,7 @@ add_filter('pre_get_posts', function ($query) {
 });
 
 add_action('carbon_fields_register_fields', function() {
+    // dump('register fields');
     \App\Fields\PropertyFields::register();
 });
 

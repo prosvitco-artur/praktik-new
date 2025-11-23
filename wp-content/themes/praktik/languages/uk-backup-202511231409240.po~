@@ -191,7 +191,7 @@ msgstr "Зручності"
 #: app/fields/property-fields.php:27
 #, fuzzy
 msgid "Client Information"
-msgstr "Базова інформація"
+msgstr "Інформація про клієнта"
 
 #: app/fields/property-fields.php:28
 msgid "Status & Sales"
@@ -204,7 +204,7 @@ msgstr "Контент та медіа"
 #: app/fields/property-fields.php:30
 #, fuzzy
 msgid "Additional Information"
-msgstr "Базова інформація"
+msgstr "Додаткова інформація"
 
 #: app/fields/property-fields.php:33
 #, fuzzy

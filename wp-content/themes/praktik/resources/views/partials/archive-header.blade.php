@@ -156,7 +156,7 @@
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="area_from">
+              <div class="dropdown-menu min-w-full" data-dropdown-content="area_from">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_area_ranges() as $value)
                     <button type="button" class="w-full text-left {{ $area_from == $value ? 'text-secondary-500 font-bold' : '' }}" 
@@ -181,7 +181,7 @@
                 <x-icon name="chevron" class="w-4 h-4" />
               </button>
 
-              <div class="dropdown-menu" data-dropdown-content="area_to">
+              <div class="dropdown-menu min-w-full" data-dropdown-content="area_to">
                 <div class="p-4 space-y-3 flex flex-col items-start">
                   @foreach (\App\get_area_ranges() as $value)
                     <button type="button" class="dropdown-item w-full text-left text-neutral-700 {{ $area_to == $value ? 'text-secondary-500 font-bold' : '' }}" 
