@@ -10,6 +10,7 @@
   $post_id = get_the_ID();
   $favorites = get_user_favorites();
   $is_favorite = in_array((string) $post_id, $favorites);
+  $total_images = count($property_gallery);
 @endphp
 
 <article @php(post_class('min-h-screen'))>
@@ -47,7 +48,7 @@
               @foreach($property_gallery as $index => $image)
                 <div class="swiper-slide">
                   <a href="{{ $image['url'] }}" data-fancybox="property-gallery"
-                    data-caption="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}" class="block w-full h-full">
+                    data-caption="{{ ($index + 1) . '/' . $total_images }}" class="block w-full h-full">
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
                       class="w-full h-full object-cover cursor-pointer">
                   </a>
@@ -56,7 +57,7 @@
             @elseif(has_post_thumbnail())
               <div class="swiper-slide">
                 <a href="{{ get_the_post_thumbnail_url($post_id, 'full') }}" data-fancybox="property-gallery"
-                  data-caption="{{ get_the_title() }}" class="block w-full h-full">
+                  data-caption="1/1" class="block w-full h-full">
                   <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
                     class="w-full h-full object-cover cursor-pointer">
                 </a>

@@ -40,12 +40,15 @@ add_action('wp_enqueue_scripts', function () {
     
     wp_localize_script('app', 'praktikAjax', [
         'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('praktik_ajax'),
         'i18n' => [
             'errorSavingFavorites' => __('Error saving favorites:', 'praktik'),
             'unknownError' => __('Unknown error', 'praktik'),
             'failedToSendRequest' => __('Failed to send request:', 'praktik'),
             'linkCopiedToClipboard' => __('Link copied to clipboard', 'praktik'),
             'failedToCopyLink' => __('Failed to copy link', 'praktik'),
+            'generatingShareLink' => __('Generating share link...', 'praktik'),
+            'failedToGenerateLink' => __('Failed to generate share link', 'praktik'),
         ],
     ]);
 }, 100);
@@ -177,16 +180,23 @@ add_shortcode('reviews_archive', function () {
 
 add_action('init', function () {
     add_rewrite_rule('^favorites/?$', 'index.php?favorites=1', 'top');
+    add_rewrite_rule('^favorites/share/([^/]+)/?$', 'index.php?favorites_share=$matches[1]', 'top');
 });
 
 add_filter('query_vars', function ($vars) {
     $vars[] = 'favorites';
+    $vars[] = 'favorites_share';
     return $vars;
 });
 
 add_filter('template_include', function ($template) {
     if (get_query_var('favorites')) {
         return get_theme_file_path('template-favorites.php');
+    }
+    
+    $share_token = get_query_var('favorites_share');
+    if ($share_token) {
+        return get_theme_file_path('template-favorites-share.php');
     }
     
     if (is_singular('review')) {
@@ -201,6 +211,13 @@ add_filter('template_include', function ($template) {
 
 add_action('after_switch_theme', function () {
     flush_rewrite_rules();
+});
+
+add_action('init', function () {
+    if (get_option('praktik_flush_rewrite_rules') !== '1') {
+        flush_rewrite_rules();
+        update_option('praktik_flush_rewrite_rules', '1');
+    }
 });
 
 add_filter('upload_mimes', function ($mimes) {

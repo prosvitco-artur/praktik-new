@@ -69,32 +69,29 @@ class PropertyGallery {
     // Update photo counter on init
     this.updatePhotoCounter(mainInstance, photoCounter);
 
-    // Initialize Fancybox only on desktop
-    if (!isMobile) {
-      this.initFancybox();
-    } else {
-      // Remove Fancybox attributes on mobile
-      this.removeFancyboxOnMobile();
-    }
+    // Initialize Fancybox for all devices
+    this.initFancybox();
   }
 
   initFancybox() {
     const galleryContainer = document.querySelector('.property-gallery');
     if (!galleryContainer) return;
 
+    const isMobile = window.innerWidth < 768;
+
     Fancybox.bind('[data-fancybox="property-gallery"]', {
       Toolbar: {
         display: {
           left: ['infobar'],
           middle: [],
-          right: ['slideshow', 'download', 'thumbs', 'close'],
+          right: isMobile ? ['close'] : ['slideshow', 'download', 'thumbs', 'close'],
         },
       },
       Thumbs: {
         autoStart: false,
       },
       Image: {
-        zoom: true,
+        zoom: !isMobile,
         wheel: 'slide',
       },
       Carousel: {
@@ -105,20 +102,6 @@ class PropertyGallery {
       trapFocus: true,
       autoFocus: true,
       placeFocusBack: true,
-    });
-  }
-
-  removeFancyboxOnMobile() {
-    const galleryContainer = document.querySelector('.property-gallery');
-    if (!galleryContainer) return;
-
-    const fancyboxLinks = galleryContainer.querySelectorAll('[data-fancybox="property-gallery"]');
-    fancyboxLinks.forEach(link => {
-      // Remove Fancybox attributes and make link non-clickable on mobile
-      link.removeAttribute('data-fancybox');
-      link.removeAttribute('data-caption');
-      link.style.pointerEvents = 'none';
-      link.style.cursor = 'default';
     });
   }
 

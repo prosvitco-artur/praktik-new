@@ -67,10 +67,11 @@
     display: none !important;
   }
 
-  /* Mobile-first: Disable Fancybox on mobile */
+  /* Enable Fancybox on mobile */
   .property-gallery-main a[data-fancybox] {
-    pointer-events: none;
-    cursor: default;
+    display: block;
+    cursor: pointer;
+    pointer-events: auto;
   }
 
   .property-gallery-main a[data-fancybox] img {

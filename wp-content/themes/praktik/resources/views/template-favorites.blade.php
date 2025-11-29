@@ -3,44 +3,44 @@
 @section('content')
   @if($has_favorites)
     <div class="container px-5">
-    <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
-      {!! wp_get_attachment_image($favorite_page_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
-      <span aria-hidden="true"
-        class="wp-block-cover__background has-secondary-500-background-color has-background-dim-70 has-background-dim">
-      </span>
-      <div class="wp-block-cover__inner-container flex items-center gap-5">
-        <h1 class="m-0 text-4xl">
-          <strong>{{ __('Compare selected objects', 'praktik') }}</strong>
-        </h1>
-      </div>
-    </div>
 
-    <div class="sort-buttons mt-4 mb-4 flex items-center justify-between">
-      <div>
+    <div class="sort-buttons mt-4 mb-4 flex items-center justify-between flex-wrap gap-3">
+      <div class="flex items-center">
+        <div>
         {!! 
           sprintf(__('Found <strong>%s properties</strong>', 'praktik'), count($favorites))
         !!}
-      </div>
-      <div class="relative flex items-center gap-2">
-        <label class="block text-sm text-neutral-600 hidden md:block">{{ __('Sort by', 'praktik') }}</label>
-        <button type="button"
-          class="filter-dropdown flex items-center gap-2 text-neutral-800 transition-colors bg-white p-2.5"
-          id="sort-dropdown" data-dropdown-toggle="sort">
-          <span>{{ get_sort_label(get_current_sort()) }}</span>
-          <x-icon name="chevron" class="w-4 h-4" />
-        </button>
+        </div>
 
-        <div class="dropdown-menu" data-dropdown-content="sort">
-          <div class="py-2">
-            @foreach(get_sort_options() as $key => $label)
-              @php
-                $sort_url = add_query_arg(['sort' => $key], remove_query_arg(['paged', 'sort']));
-              @endphp
-              <a href="{{ $sort_url }}"
-                class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium {{ get_current_sort() === $key ? 'text-secondary-500 font-bold' : '' }}">
-                {{ $label }}
-              </a>
-            @endforeach
+      <button type="button"
+          class="favorites-share-button btn btn--second flex items-center gap-2 border-0"
+          data-favorites-share>
+          <x-icon name="share" class="w-5 h-5" />
+          <span>{{ __('Share List', 'praktik') }}</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center gap-2">
+          <label class="block text-sm text-neutral-600 hidden md:block">{{ __('Sort by', 'praktik') }}</label>
+          <button type="button"
+            class="filter-dropdown flex items-center gap-2 text-neutral-800 transition-colors bg-white p-2.5"
+            id="sort-dropdown" data-dropdown-toggle="sort">
+            <span>{{ get_sort_label(get_current_sort()) }}</span>
+            <x-icon name="chevron" class="w-4 h-4" />
+          </button>
+
+          <div class="dropdown-menu" data-dropdown-content="sort">
+            <div class="py-2">
+              @foreach(get_sort_options() as $key => $label)
+                @php
+                  $sort_url = add_query_arg(['sort' => $key], remove_query_arg(['paged', 'sort']));
+                @endphp
+                <a href="{{ $sort_url }}"
+                  class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium {{ get_current_sort() === $key ? 'text-secondary-500 font-bold' : '' }}">
+                  {{ $label }}
+                </a>
+              @endforeach
+            </div>
           </div>
         </div>
       </div>

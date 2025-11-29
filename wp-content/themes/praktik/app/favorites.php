@@ -115,3 +115,58 @@ function handle_toggle_favorite() {
     ]);
 }
 
+function generate_favorites_share_token($favorites_ids) {
+    if (empty($favorites_ids)) {
+        return null;
+    }
+    
+    sort($favorites_ids);
+    $favorites_string = implode(',', $favorites_ids);
+    $token = md5($favorites_string . time() . wp_generate_password(12, false));
+    
+    $share_data = [
+        'favorites' => $favorites_ids,
+        'created' => time(),
+    ];
+    
+    set_transient('favorites_share_' . $token, $share_data, 30 * 24 * 60 * 60);
+    
+    return $token;
+}
+
+function get_shared_favorites($token) {
+    $share_data = get_transient('favorites_share_' . $token);
+    return $share_data ? $share_data['favorites'] : null;
+}
+
+add_action('wp_ajax_generate_favorites_share', __NAMESPACE__ . '\\handle_generate_favorites_share');
+add_action('wp_ajax_nopriv_generate_favorites_share', __NAMESPACE__ . '\\handle_generate_favorites_share');
+
+function handle_generate_favorites_share() {
+    check_ajax_referer('praktik_ajax', 'nonce', false);
+    
+    $session_id = isset($_POST['session_id']) ? sanitize_text_field($_POST['session_id']) : null;
+    $favorites = get_stored_favorites($session_id);
+    
+    if (empty($favorites)) {
+        wp_send_json_error([
+            'message' => __('No favorites to share.', 'praktik')
+        ]);
+    }
+    
+    $token = generate_favorites_share_token($favorites);
+    
+    if (!$token) {
+        wp_send_json_error([
+            'message' => __('Failed to generate share link.', 'praktik')
+        ]);
+    }
+    
+    $share_url = home_url('/favorites/share/' . $token);
+    
+    wp_send_json_success([
+        'token' => $token,
+        'url' => $share_url,
+    ]);
+}
+
