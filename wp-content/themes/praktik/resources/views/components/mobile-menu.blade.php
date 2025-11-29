@@ -18,14 +18,25 @@
 
   {{-- Menu Content --}}
   <nav class="mobile-menu-nav" aria-label="{{ __('Mobile navigation', 'praktik') }}">
-    {!! wp_nav_menu([
-  'theme_location' => 'primary_navigation',
-  'container' => false,
-  'menu_class' => 'mobile-nav-menu',
-  'fallback_cb' => false,
-  'walker' => new \App\View\Components\MobileMenuWalker(),
-  'echo' => false
-]) !!}
+    @if (has_nav_menu('mobile_navigation'))
+      {!! wp_nav_menu([
+        'theme_location' => 'mobile_navigation',
+        'container' => false,
+        'menu_class' => 'mobile-nav-menu',
+        'fallback_cb' => false,
+        'walker' => new \App\View\Components\MobileMenuWalker(),
+        'echo' => false
+      ]) !!}
+    @elseif (has_nav_menu('primary_navigation'))
+      {!! wp_nav_menu([
+        'theme_location' => 'primary_navigation',
+        'container' => false,
+        'menu_class' => 'mobile-nav-menu',
+        'fallback_cb' => false,
+        'walker' => new \App\View\Components\MobileMenuWalker(),
+        'echo' => false
+      ]) !!}
+    @endif
   </nav>
 
   {{-- Favorites --}}

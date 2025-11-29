@@ -221,3 +221,38 @@ add_action('pre_get_posts', function ($query) {
         }
     }
 });
+
+/**
+ * Автоматична заміна старого тексту в title review постів
+ */
+add_action('save_post', function($post_id) {
+    $post_type = get_post_type($post_id);
+    
+    if ($post_type !== 'review') {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+    
+    $old_text = 'Отзыв о работе АН Практик от';
+    $new_text = 'Відгук про роботу АН Практик від';
+    
+    $current_title = get_the_title($post_id);
+    
+    if (strpos($current_title, $old_text) !== false) {
+        $new_title = str_replace($old_text, $new_text, $current_title);
+        
+        remove_action('save_post', __FUNCTION__);
+        wp_update_post([
+            'ID' => $post_id,
+            'post_title' => $new_title,
+        ]);
+        add_action('save_post', __FUNCTION__);
+    }
+}, 10, 1);

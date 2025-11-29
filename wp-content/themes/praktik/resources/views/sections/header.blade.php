@@ -40,7 +40,7 @@
   </div>
 
   {{-- Mobile Menu --}}
-  @if (has_nav_menu('primary_navigation'))
+  @if (has_nav_menu('mobile_navigation') || has_nav_menu('primary_navigation'))
     @include('components.mobile-menu')
   @endif
 </header>

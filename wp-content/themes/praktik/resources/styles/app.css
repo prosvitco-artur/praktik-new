@@ -40,3 +40,7 @@ ul.standard-list {
   background-size: 24px 24px;
   background-repeat: no-repeat;
 }
+
+.wp-block-button__link {
+  @apply flex gap-2;
+}

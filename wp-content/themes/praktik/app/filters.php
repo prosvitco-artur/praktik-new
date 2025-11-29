@@ -47,6 +47,17 @@ add_action('pre_get_posts', function ($query) {
                 $query->set('s', sanitize_text_field($_GET['search']));
             }
             
+            // Determine post type
+            $post_type = $query->get('post_type');
+            if (is_array($post_type)) {
+                $post_type = reset($post_type);
+            }
+            if (!$post_type) {
+                $queried_object = get_queried_object();
+                $post_type = $queried_object ? $queried_object->name : null;
+            }
+            $is_house = ($post_type === 'house');
+            
             // Build meta query for filters
             $meta_query = ['relation' => 'AND'];
             
@@ -159,14 +170,23 @@ add_action('pre_get_posts', function ($query) {
                 }
             }
             
-            // Property type filter (Новобудова/Вторинний ринок)
+            // Property type filter (Новобудова/Вторинний ринок) - для всіх крім house
+            // House type filter (Тип Будинку) - тільки для house
             if (isset($_GET['type']) && !empty($_GET['type'])) {
-                $property_type = sanitize_text_field($_GET['type']);
-                $meta_query[] = [
-                    'key' => '_property_type',
-                    'value' => $property_type,
-                    'compare' => '='
-                ];
+                $type_value = sanitize_text_field($_GET['type']);
+                if ($is_house) {
+                    $meta_query[] = [
+                        'key' => '_property_house_type',
+                        'value' => $type_value,
+                        'compare' => '='
+                    ];
+                } else {
+                    $meta_query[] = [
+                        'key' => '_property_type',
+                        'value' => $type_value,
+                        'compare' => '='
+                    ];
+                }
             }
             
             // Apply meta query if we have filters
@@ -200,18 +220,6 @@ add_action('pre_get_posts', function ($query) {
                     $query->set('order', 'DESC');
                     break;
                     
-                case 'area_asc':
-                    $query->set('meta_key', '_property_area');
-                    $query->set('orderby', 'meta_value_num');
-                    $query->set('order', 'ASC');
-                    break;
-                    
-                case 'area_desc':
-                    $query->set('meta_key', '_property_area');
-                    $query->set('orderby', 'meta_value_num');
-                    $query->set('order', 'DESC');
-                    break;
-                    
                 default:
                     $query->set('orderby', 'date');
                     $query->set('order', 'DESC');
@@ -239,6 +247,28 @@ function get_property_types() {
     return [
         'new' => __('New building', 'praktik'),
         'secondary' => __('Secondary market', 'praktik'),
+    ];
+}
+
+/**
+ * Get house types for filter dropdown
+ * Uses options from Carbon Fields PropertyFieldOptions
+ *
+ * @return array
+ */
+function get_house_types() {
+    if (class_exists('\App\Fields\PropertyFieldOptions')) {
+        $options = \App\Fields\PropertyFieldOptions::get_house_type_options();
+        // Remove empty option for filter dropdown
+        unset($options['']);
+        return $options;
+    }
+    
+    // Fallback if class doesn't exist
+    return [
+        'Будинок' => 'Будинок',
+        'Ч/будинку' => 'Ч/будинку',
+        'Дача' => 'Дача',
     ];
 }
 

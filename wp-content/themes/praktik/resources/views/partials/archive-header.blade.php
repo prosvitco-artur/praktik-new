@@ -83,12 +83,22 @@
         </div>
 
         <div class="hidden md:block relative">
-          <label for="type-dropdown" class="block text-sm text-neutral-600 mb-2">{{ __('Property Type', 'praktik') }}</label>
+          <label for="type-dropdown" class="block text-sm text-neutral-600 mb-2">
+            @if($is_house)
+              {{ __('House Type', 'praktik') }}
+            @else
+              {{ __('Property Type', 'praktik') }}
+            @endif
+          </label>
           @php
-            $property_types = \App\get_property_types();
+            if ($is_house) {
+              $type_options = \App\get_house_types();
+            } else {
+              $type_options = \App\get_property_types();
+            }
             $selected_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
-            $type_label = $selected_type && isset($property_types[$selected_type]) 
-              ? $property_types[$selected_type] 
+            $type_label = $selected_type && isset($type_options[$selected_type]) 
+              ? $type_options[$selected_type] 
               : __('All', 'praktik');
           @endphp
           <button type="button"
@@ -104,7 +114,7 @@
                 data-value="" data-label="{{ __('All', 'praktik') }}">
                 {{ __('All', 'praktik') }}
               </button>
-              @foreach($property_types as $key => $label)
+              @foreach($type_options as $key => $label)
                 <button type="button"
                   class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium text-left w-full {{ $selected_type === $key ? 'text-secondary-500 font-bold' : '' }}"
                   data-value="{{ $key }}" data-label="{{ $label }}">
@@ -155,53 +165,21 @@
         <div class="hidden md:block">
           <div class="mb-2 text-sm text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
           <div class="flex gap-2" role="group" aria-label="{{ __('Total Area', 'praktik') }}">
-            <div class="relative">
+            <div class="bg-white px-4 py-3">
               <label for="area-from-input" class="sr-only">{{ __('Total Area From', 'praktik') }}</label>
               @php
                 $area_from = isset($_GET['area_from']) ? intval($_GET['area_from']) : '';
               @endphp
-              <button type="button"
-                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-                id="area-from-dropdown" data-dropdown-toggle="area_from">
-                <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" /></span>
-                <x-icon name="chevron" class="w-4 h-4" />
-              </button>
-
-              <div class="dropdown-menu min-w-full" data-dropdown-content="area_from">
-                <div class="p-4 space-y-3 flex flex-col items-start">
-                  @foreach (\App\get_area_ranges() as $value)
-                    <button type="button" class="w-full text-left {{ $area_from == $value ? 'text-secondary-500 font-bold' : '' }}" 
-                      data-value="{{ $value }}" data-label="{{ $value }}">{{ $value }}</button>
-                  @endforeach
-                </div>
-              </div>
+              <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
+              <input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" />
             </div>
-            <div class="relative">
+            <div class="bg-white px-4 py-3">
               <label for="area-to-input" class="sr-only">{{ __('Total Area To', 'praktik') }}</label>
               @php
                 $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
               @endphp
-              <button type="button"
-                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-                id="area-to-dropdown" data-dropdown-toggle="area_to">
-                <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
-                <span>
-                  <input type="number" id="area-to-input" name="area_to" value="{{ $area_to }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Total Area To', 'praktik') }}" />
-                </span>
-                <x-icon name="chevron" class="w-4 h-4" />
-              </button>
-
-              <div class="dropdown-menu min-w-full" data-dropdown-content="area_to">
-                <div class="p-4 space-y-3 flex flex-col items-start">
-                  @foreach (\App\get_area_ranges() as $value)
-                    <button type="button" class="dropdown-item w-full text-left text-neutral-700 {{ $area_to == $value ? 'text-secondary-500 font-bold' : '' }}" 
-                      data-value="{{ $value }}" data-label="{{ $value }}">
-                      {{ $value }}
-                    </button>
-                  @endforeach
-                </div>
-              </div>
+              <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
+              <input type="number" id="area-to-input" name="area_to" value="{{ $area_to }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Total Area To', 'praktik') }}" />
             </div>
           </div>
         </div>
@@ -209,53 +187,21 @@
         <div class="hidden md:block">
           <div class="mb-2 text-sm text-neutral-600">{{ __('Plot Area', 'praktik') }}</div>
           <div class="flex gap-2" role="group" aria-label="{{ __('Plot Area', 'praktik') }}">
-            <div class="relative">
+            <div class="bg-white px-4 py-3">
               <label for="plot-area-from-input" class="sr-only">{{ __('Plot Area From', 'praktik') }}</label>
               @php
                 $plot_area_from = isset($_GET['plot_area_from']) ? intval($_GET['plot_area_from']) : '';
               @endphp
-              <button type="button"
-                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-                id="plot-area-from-dropdown" data-dropdown-toggle="plot_area_from">
-                <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-                <span><input type="number" id="plot-area-from-input" name="plot_area_from" value="{{ $plot_area_from }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Plot Area From', 'praktik') }}" /></span>
-                <x-icon name="chevron" class="w-4 h-4" />
-              </button>
-
-              <div class="dropdown-menu min-w-full" data-dropdown-content="plot_area_from">
-                <div class="p-4 space-y-3 flex flex-col items-start">
-                  @foreach (\App\get_plot_area_ranges() as $value)
-                    <button type="button" class="w-full text-left {{ $plot_area_from == $value ? 'text-secondary-500 font-bold' : '' }}" 
-                      data-value="{{ $value }}" data-label="{{ $value }}">{{ $value }}</button>
-                  @endforeach
-                </div>
-              </div>
+              <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
+              <input type="number" id="plot-area-from-input" name="plot_area_from" value="{{ $plot_area_from }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Plot Area From', 'praktik') }}" />
             </div>
-            <div class="relative">
+            <div class="bg-white px-4 py-3">
               <label for="plot-area-to-input" class="sr-only">{{ __('Plot Area To', 'praktik') }}</label>
               @php
                 $plot_area_to = isset($_GET['plot_area_to']) ? intval($_GET['plot_area_to']) : '';
               @endphp
-              <button type="button"
-                class="filter-dropdown flex items-center justify-between gap-2 transition-colors bg-white p-2.5 w-full"
-                id="plot-area-to-dropdown" data-dropdown-toggle="plot_area_to">
-                <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
-                <span>
-                  <input type="number" id="plot-area-to-input" name="plot_area_to" value="{{ $plot_area_to }}" class="w-10 border-0 focus:outline-none" aria-label="{{ __('Plot Area To', 'praktik') }}" />
-                </span>
-                <x-icon name="chevron" class="w-4 h-4" />
-              </button>
-
-              <div class="dropdown-menu min-w-full" data-dropdown-content="plot_area_to">
-                <div class="p-4 space-y-3 flex flex-col items-start">
-                  @foreach (\App\get_plot_area_ranges() as $value)
-                    <button type="button" class="dropdown-item w-full text-left text-neutral-700 {{ $plot_area_to == $value ? 'text-secondary-500 font-bold' : '' }}" 
-                      data-value="{{ $value }}" data-label="{{ $value }}">
-                      {{ $value }}
-                    </button>
-                  @endforeach
-                </div>
-              </div>
+              <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
+              <input type="number" id="plot-area-to-input" name="plot_area_to" value="{{ $plot_area_to }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Plot Area To', 'praktik') }}" />
             </div>
           </div>
         </div>

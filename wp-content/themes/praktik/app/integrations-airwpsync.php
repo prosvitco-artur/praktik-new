@@ -43,94 +43,120 @@ add_filter('redirect_post_location', function ($location, $post_id) {
  * у масив ID медіа для мета-поля property_gallery (Carbon Fields media_gallery).
  */
 add_action('airwpsync/import_record_after', function ($importer, $fields, $record, $post_id) {
+    require_once ABSPATH . 'wp-admin/includes/admin.php';
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+
+    $thumbnail_id = 0;
+    $gallery_ids = [];
+
+    $thumbnail_meta_key = '_thumbnail_id';
+    $thumbnail_raw = get_post_meta($post_id, $thumbnail_meta_key, true);
+    
+    if (!empty($thumbnail_raw)) {
+        if (is_object($thumbnail_raw) && isset($thumbnail_raw->url)) {
+            $thumbnail_id = process_airtable_media($thumbnail_raw, $post_id);
+        } elseif (is_numeric($thumbnail_raw)) {
+            $thumbnail_id = (int) $thumbnail_raw;
+        }
+    }
+
     $meta_key = 'property_gallery';
     $raw = get_post_meta($post_id, $meta_key, true);
-    if (! is_array($raw) || empty($raw)) {
-        return;
-    }
-    // Визначаємо чи це вже масив ID, чи масив об'єктів Airtable
-    $is_objects = isset($raw[0]) && is_object($raw[0]) && isset($raw[0]->url);
-    if (! $is_objects) {
-        return;
-    }
-
-    require_once ABSPATH . 'wp-admin/includes/admin.php';
-
-    $ids = [];
-    foreach ($raw as $media) {
-        $attachment_id = 0;
-
-        // Спроба знайти існуючий attachment за _air_wp_sync_record_id
-        if (isset($media->id)) {
-            $existing = get_posts([
-                'fields' => 'ids',
-                'post_type' => 'attachment',
-                'post_status' => 'any',
-                'posts_per_page' => 1,
-                'meta_query' => [[
-                    'key' => '_air_wp_sync_record_id',
-                    'value' => $media->id,
-                ]],
-            ]);
-            if (! empty($existing)) {
-                $attachment_id = (int) $existing[0];
-            }
-        }
-
-        if (! $attachment_id && ! empty($media->url)) {
-            // Завантаження файлу у медіатеку
-            $tmp = download_url($media->url);
-            if (! is_wp_error($tmp)) {
-                $filename = basename(parse_url($media->url, PHP_URL_PATH));
-                if (empty(pathinfo($filename, PATHINFO_EXTENSION)) && ! empty($media->type)) {
-                    $map = apply_filters('getimagesize_mimes_to_exts', [
-                        'image/jpeg' => 'jpg',
-                        'image/png'  => 'png',
-                        'image/gif'  => 'gif',
-                        'image/bmp'  => 'bmp',
-                        'image/tiff' => 'tif',
-                        'image/webp' => 'webp',
-                    ]);
-                    if (! empty($map[$media->type])) {
-                        $filename = sanitize_file_name(($media->filename ?? 'image') . '.' . $map[$media->type]);
-                    }
-                }
-                $file_array = [
-                    'name' => $filename,
-                    'tmp_name' => $tmp,
-                ];
-                $post_data = [
-                    'post_title' => $media->filename ?? $filename,
-                    'post_parent' => $post_id,
-                ];
-                $result = media_handle_sideload($file_array, 0, null, $post_data);
-                if (is_wp_error($result)) {
-                    @unlink($tmp);
-                } else {
-                    $attachment_id = (int) $result;
-                    if (! empty($media->id)) {
-                        update_post_meta($attachment_id, '_air_wp_sync_record_id', $media->id);
+    
+    if (is_array($raw) && !empty($raw)) {
+        $is_objects = isset($raw[0]) && is_object($raw[0]) && isset($raw[0]->url);
+        
+        if ($is_objects) {
+            foreach ($raw as $media) {
+                $attachment_id = process_airtable_media($media, $post_id);
+                if ($attachment_id) {
+                    $gallery_ids[] = $attachment_id;
+                    if (!$thumbnail_id) {
+                        $thumbnail_id = $attachment_id;
                     }
                 }
             }
-        }
-
-        if ($attachment_id) {
-            $ids[] = $attachment_id;
+        } else {
+            $gallery_ids = array_map('intval', $raw);
+            if (!$thumbnail_id && !empty($gallery_ids[0])) {
+                $thumbnail_id = $gallery_ids[0];
+            }
         }
     }
 
-    if (! empty($ids)) {
+    if (!empty($gallery_ids)) {
         if (function_exists('carbon_set_post_meta')) {
-            carbon_set_post_meta($post_id, $meta_key, $ids);
+            carbon_set_post_meta($post_id, $meta_key, $gallery_ids);
             delete_post_meta($post_id, $meta_key);
         } else {
-            update_post_meta($post_id, $meta_key, $ids);
-        }
-        if (! empty($ids[0])) {
-            set_post_thumbnail($post_id, (int) $ids[0]);
+            update_post_meta($post_id, $meta_key, $gallery_ids);
         }
     }
+
+    if ($thumbnail_id && !get_post_thumbnail_id($post_id)) {
+        set_post_thumbnail($post_id, $thumbnail_id);
+        update_post_meta($post_id, '_thumbnail_id', $thumbnail_id);
+    }
 }, 20, 4);
+
+function process_airtable_media($media, $post_id) {
+    $attachment_id = 0;
+
+    if (isset($media->id)) {
+        $existing = get_posts([
+            'fields' => 'ids',
+            'post_type' => 'attachment',
+            'post_status' => 'any',
+            'posts_per_page' => 1,
+            'meta_query' => [[
+                'key' => '_air_wp_sync_record_id',
+                'value' => $media->id,
+            ]],
+        ]);
+        if (!empty($existing)) {
+            $attachment_id = (int) $existing[0];
+        }
+    }
+
+    if (!$attachment_id && !empty($media->url)) {
+        $tmp = download_url($media->url);
+        if (!is_wp_error($tmp)) {
+            $filename = basename(parse_url($media->url, PHP_URL_PATH));
+            if (empty(pathinfo($filename, PATHINFO_EXTENSION)) && !empty($media->type)) {
+                $map = apply_filters('getimagesize_mimes_to_exts', [
+                    'image/jpeg' => 'jpg',
+                    'image/png'  => 'png',
+                    'image/gif'  => 'gif',
+                    'image/bmp'  => 'bmp',
+                    'image/tiff' => 'tif',
+                    'image/webp' => 'webp',
+                ]);
+                if (!empty($map[$media->type])) {
+                    $filename = sanitize_file_name(($media->filename ?? 'image') . '.' . $map[$media->type]);
+                }
+            }
+            $file_array = [
+                'name' => $filename,
+                'tmp_name' => $tmp,
+            ];
+            $post_data = [
+                'post_title' => $media->filename ?? $filename,
+                'post_parent' => $post_id,
+            ];
+            $result = media_handle_sideload($file_array, 0, null, $post_data);
+            if (is_wp_error($result)) {
+                @unlink($tmp);
+            } else {
+                $attachment_id = (int) $result;
+                if (!empty($media->id)) {
+                    update_post_meta($attachment_id, '_air_wp_sync_record_id', $media->id);
+                }
+                wp_generate_attachment_metadata($attachment_id, get_attached_file($attachment_id));
+            }
+        }
+    }
+
+    return $attachment_id;
+}
 
 

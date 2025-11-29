@@ -2,7 +2,12 @@
   <div class="flex items-start">
     <div class="shrink-0 w-[31.5%] md:w-[16%]">
       @if (has_post_thumbnail())
-        {!! get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy', 'decoding' => 'async']) !!}
+        <a href="{{ get_the_post_thumbnail_url(get_the_ID(), 'full') }}" 
+           data-fancybox="review-{{ get_the_ID() }}" 
+           data-caption="{{ get_the_title() }}"
+           class="block">
+          {!! get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy', 'decoding' => 'async']) !!}
+        </a>
       @endif
     </div>
     <div class="p-3 md:p-5">

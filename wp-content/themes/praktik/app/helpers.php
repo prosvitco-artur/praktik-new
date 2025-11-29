@@ -2,13 +2,8 @@
 
 function get_property_post_types() {
     return [
-        'room' => __('Rooms', 'praktik'),
         'apartment' => __('Apartments', 'praktik'),
         'house' => __('Houses', 'praktik'),
-        'plot' => __('Plots', 'praktik'),
-        'garage' => __('Garages', 'praktik'),
-        'commercial' => __('Commercial', 'praktik'),
-        'dacha' => __('Dachas', 'praktik')
     ];
 }
 
@@ -247,10 +242,8 @@ function get_sort_options() {
     return [
         'date_desc' => __('Newest First', 'praktik'),
         'date_asc' => __('Oldest First', 'praktik'),
-        'price_asc' => __('Price: Low to High', 'praktik'),
         'price_desc' => __('Price: High to Low', 'praktik'),
-        'area_asc' => __('Area: Small to Large', 'praktik'),
-        'area_desc' => __('Area: Large to Small', 'praktik'),
+        'price_asc' => __('Price: Low to High', 'praktik'),
     ];
 }
 

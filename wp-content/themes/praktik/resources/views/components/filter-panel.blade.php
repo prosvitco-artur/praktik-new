@@ -40,7 +40,13 @@
 
     <div class="filter-section border-b border-neutral-200">
       <button class="w-full flex items-center justify-between py-2 px-3 mb-2" data-filter-toggle="property-type">
-        <span class="font-bold">{{ __('Property Type', 'praktik') }}</span>
+        <span class="font-bold">
+          @if($is_house)
+            {{ __('House Type', 'praktik') }}
+          @else
+            {{ __('Property Type', 'praktik') }}
+          @endif
+        </span>
         <x-icon name="chevron" class="w-5 h-5" />
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="property-type">
@@ -48,12 +54,21 @@
           <input type="radio" name="type" id="filter-type-all" value="" class="w-4 h-4" {{ empty($selected_type) ? 'checked' : '' }}>
           <span>{{ __('All', 'praktik') }}</span>
         </label>
-        @foreach(\App\get_property_types() as $key => $label)
-          <label class="flex items-center gap-3 py-2 px-3" for="filter-type-{{ $key }}">
-            <input type="radio" name="type" id="filter-type-{{ $key }}" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
-            <span>{{ $label }}</span>
-          </label>
-        @endforeach
+        @if($is_house)
+          @foreach(\App\get_house_types() as $key => $label)
+            <label class="flex items-center gap-3 py-2 px-3" for="filter-type-{{ $key }}">
+              <input type="radio" name="type" id="filter-type-{{ $key }}" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
+              <span>{{ $label }}</span>
+            </label>
+          @endforeach
+        @else
+          @foreach(\App\get_property_types() as $key => $label)
+            <label class="flex items-center gap-3 py-2 px-3" for="filter-type-{{ $key }}">
+              <input type="radio" name="type" id="filter-type-{{ $key }}" value="{{ $key }}" class="w-4 h-4" {{ $selected_type === $key ? 'checked' : '' }}>
+              <span>{{ $label }}</span>
+            </label>
+          @endforeach
+        @endif
       </div>
     </div>
 
