@@ -78,11 +78,6 @@
     @apply text-secondary-500;
   }
 
-  .dropdown-menu .current-menu-item > .dropdown-link,
-  .dropdown-menu .current_page_item > .dropdown-link {
-    @apply bg-primary-50;
-  }
-
   .dropdown-parent .nav-link svg {
     @apply transition-transform duration-200 ease-in-out;
   }
