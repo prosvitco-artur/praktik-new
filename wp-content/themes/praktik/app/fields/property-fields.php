@@ -320,15 +320,26 @@ class PropertyFields {
     
     /**
      * Get realtor options
-     * This should be populated from a custom post type or user list
+     * Dynamically loads realtors from 'realtor' post type
      */
     private static function get_realtor_options() {
-        // TODO: Implement dynamic realtor list from users or custom post type
-        return [
+        $options = [
             '' => __('Select Realtor', 'praktik'),
-            'no_realtor' => __('No Realtor', 'praktik'),
-            // Add more realtors dynamically
         ];
+        
+        $realtors = get_posts([
+            'post_type' => 'realtor',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+        ]);
+        
+        foreach ($realtors as $realtor) {
+            $options[$realtor->ID] = $realtor->post_title;
+        }
+        
+        return $options;
     }
 }
 

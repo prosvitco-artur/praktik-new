@@ -97,6 +97,13 @@ add_action('airwpsync/import_record_after', function ($importer, $fields, $recor
         set_post_thumbnail($post_id, $thumbnail_id);
         update_post_meta($post_id, '_thumbnail_id', $thumbnail_id);
     }
+    
+    $property_post_types = array_keys(\get_property_post_types());
+    $post_type = get_post_type($post_id);
+    
+    if (in_array($post_type, $property_post_types)) {
+        assign_realtor_to_property($post_id);
+    }
 }, 20, 4);
 
 function process_airtable_media($media, $post_id) {
@@ -157,6 +164,81 @@ function process_airtable_media($media, $post_id) {
     }
 
     return $attachment_id;
+}
+
+/**
+ * Призначити ріелтора до property під час імпорту
+ * Шукає ріелтора по title в post type 'realtor'
+ */
+function assign_realtor_to_property($post_id) {
+    $property_post_types = array_keys(\get_property_post_types());
+    $post_type = get_post_type($post_id);
+    
+    if (!in_array($post_type, $property_post_types)) {
+        return;
+    }
+    
+    $realtor_meta_key = 'property_realtor';
+    $realtor_raw = get_post_meta($post_id, $realtor_meta_key, true);
+    
+    if (empty($realtor_raw)) {
+        return;
+    }
+    
+    $realtor_id = null;
+    
+    if (is_numeric($realtor_raw)) {
+        $realtor_id = (int) $realtor_raw;
+    } elseif (is_string($realtor_raw)) {
+        $realtor_title = trim($realtor_raw);
+        
+        if (!empty($realtor_title)) {
+            global $wpdb;
+            
+            $realtor_title_escaped = $wpdb->esc_like($realtor_title);
+            
+            $realtor_post = $wpdb->get_row($wpdb->prepare(
+                "SELECT ID, post_title FROM {$wpdb->posts} 
+                WHERE post_type = 'realtor' 
+                AND post_status = 'publish' 
+                AND post_title = %s 
+                LIMIT 1",
+                $realtor_title
+            ));
+            
+            if ($realtor_post) {
+                $realtor_id = (int) $realtor_post->ID;
+            } else {
+                $realtors_fuzzy = get_posts([
+                    'post_type' => 'realtor',
+                    'post_status' => 'publish',
+                    'posts_per_page' => -1,
+                    'orderby' => 'title',
+                    'order' => 'ASC',
+                ]);
+                
+                foreach ($realtors_fuzzy as $realtor) {
+                    $realtor_title_normalized = mb_strtolower(trim($realtor_title));
+                    $realtor_post_title_normalized = mb_strtolower(trim($realtor->post_title));
+                    
+                    if ($realtor_title_normalized === $realtor_post_title_normalized ||
+                        stripos($realtor->post_title, $realtor_title) !== false || 
+                        stripos($realtor_title, $realtor->post_title) !== false) {
+                        $realtor_id = (int) $realtor->ID;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    if ($realtor_id) {
+        if (function_exists('carbon_set_post_meta')) {
+            carbon_set_post_meta($post_id, $realtor_meta_key, $realtor_id);
+        } else {
+            update_post_meta($post_id, $realtor_meta_key, $realtor_id);
+        }
+    }
 }
 
 
