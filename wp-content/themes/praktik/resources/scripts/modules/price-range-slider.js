@@ -12,16 +12,12 @@ export default class PriceRangeSlider {
 
     if (!fromSlider || !toSlider) return;
 
-    // Find associated input fields
+    // Find associated input fields only within the filter panel (mobile)
     const sliderContainer = slider.closest('.filter-content') || slider.closest('[data-filter-content]');
     const fromInput = sliderContainer?.querySelector('[data-price-input="from"]') || 
-                      sliderContainer?.querySelector('#filter-price-from') ||
-                      document.querySelector(`#${fromSlider.name.replace('_from', '-from-input')}`) ||
-                      document.querySelector(`#filter-${fromSlider.name}`);
+                      sliderContainer?.querySelector('#filter-price-from');
     const toInput = sliderContainer?.querySelector('[data-price-input="to"]') || 
-                    sliderContainer?.querySelector('#filter-price-to') ||
-                    document.querySelector(`#${toSlider.name.replace('_to', '-to-input')}`) ||
-                    document.querySelector(`#filter-${toSlider.name}`);
+                    sliderContainer?.querySelector('#filter-price-to');
 
     const min = parseInt(fromSlider.min);
     const max = parseInt(toSlider.max);

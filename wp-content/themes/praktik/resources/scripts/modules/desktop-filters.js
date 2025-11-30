@@ -17,6 +17,11 @@ class DesktopFilters {
     document.addEventListener('dropdownChange', (e) => {
       const { dropdownId, value, label } = e.detail;
       
+      const propertySearchForm = document.getElementById('property-search-form');
+      if (propertySearchForm && (dropdownId === 'category' || dropdownId === 'type')) {
+        return;
+      }
+      
       if (dropdownId === 'type') {
         const typeLabel = document.getElementById('type-label');
         if (typeLabel) {
@@ -57,19 +62,8 @@ class DesktopFilters {
       }
     });
 
-    document.addEventListener('change', (e) => {
+    document.addEventListener('input', (e) => {
       if (e.target.matches('#area-from-input, #area-to-input, #plot-area-from-input, #plot-area-to-input, #price-from-input, #price-to-input')) {
-        const name = e.target.name;
-        if (e.target.value && parseInt(e.target.value) > 0) {
-          this.filters[name] = e.target.value;
-        } else {
-          delete this.filters[name];
-        }
-      }
-    });
-
-    document.addEventListener('blur', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input')) {
         clearTimeout(this.applyTimeout);
         this.applyTimeout = setTimeout(() => {
           const name = e.target.name;
@@ -79,12 +73,41 @@ class DesktopFilters {
             delete this.filters[name];
           }
           this.applyFilters();
-        }, 500);
+        }, 2000);
+      }
+    });
+
+    document.addEventListener('change', (e) => {
+      if (e.target.matches('#area-from-input, #area-to-input, #plot-area-from-input, #plot-area-to-input, #price-from-input, #price-to-input')) {
+        clearTimeout(this.applyTimeout);
+        const name = e.target.name;
+        if (e.target.value && parseInt(e.target.value) > 0) {
+          this.filters[name] = e.target.value;
+        } else {
+          delete this.filters[name];
+        }
+        this.applyFilters();
+      }
+    });
+
+    document.addEventListener('blur', (e) => {
+      if (e.target.matches('#area-from-input, #area-to-input, #plot-area-from-input, #plot-area-to-input, #price-from-input, #price-to-input')) {
+        clearTimeout(this.applyTimeout);
+        this.applyTimeout = setTimeout(() => {
+          const name = e.target.name;
+          if (e.target.value && parseInt(e.target.value) > 0) {
+            this.filters[name] = e.target.value;
+          } else {
+            delete this.filters[name];
+          }
+          this.applyFilters();
+        }, 2000);
       }
     }, true);
 
     document.addEventListener('keypress', (e) => {
-      if (e.target.matches('#area-from-input, #area-to-input, #price-from-input, #price-to-input') && e.key === 'Enter') {
+      if (e.target.matches('#area-from-input, #area-to-input, #plot-area-from-input, #plot-area-to-input, #price-from-input, #price-to-input') && e.key === 'Enter') {
+        clearTimeout(this.applyTimeout);
         const name = e.target.name;
         if (e.target.value && parseInt(e.target.value) > 0) {
           this.filters[name] = e.target.value;

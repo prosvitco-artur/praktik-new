@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Fields;
+
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
+/**
+ * Register Carbon Fields for realtor post type
+ */
+class RealtorFields {
+    
+    /**
+     * Register all realtor fields
+     */
+    public static function register() {
+        Container::make('post_meta', __('Realtor Information', 'praktik'))
+            ->where('post_type', '=', 'realtor')
+            ->add_fields([
+                Field::make('text', 'realtor_phone', __('Phone', 'praktik'))
+                    ->set_required(true)
+                    ->set_help_text(__('Phone number of the realtor', 'praktik')),
+                
+                Field::make('text', 'realtor_telegram', __('Telegram', 'praktik'))
+                    ->set_help_text(__('Telegram username (without @)', 'praktik')),
+            ]);
+    }
+}
+
+

@@ -8,6 +8,7 @@ use Carbon_Fields\Field;
 // Load field definitions
 require_once __DIR__ . '/fields/property-field-options.php';
 require_once __DIR__ . '/fields/property-fields.php';
+require_once __DIR__ . '/fields/realtor-fields.php';
 
 add_action('after_setup_theme', function() {
     \Carbon_Fields\Carbon_Fields::boot();
@@ -113,6 +114,53 @@ add_action('init', function () {
         ],
         'taxonomies' => [],
     ]);
+    
+    $realtor_labels = [
+        'name' => __('Realtors', 'praktik'),
+        'singular_name' => __('Realtor', 'praktik'),
+        'menu_name' => __('Realtors', 'praktik'),
+        'name_admin_bar' => __('Realtor', 'praktik'),
+        'add_new' => __('Add new', 'praktik'),
+        'add_new_item' => __('Add new Realtor', 'praktik'),
+        'new_item' => __('New Realtor', 'praktik'),
+        'edit_item' => __('Edit Realtor', 'praktik'),
+        'view_item' => __('View Realtor', 'praktik'),
+        'all_items' => __('All Realtors', 'praktik'),
+        'search_items' => __('Search Realtors', 'praktik'),
+        'parent_item_colon' => __('Parent Realtors:', 'praktik'),
+        'not_found' => __('No realtors found', 'praktik'),
+        'not_found_in_trash' => __('No realtors found in trash', 'praktik'),
+    ];
+    
+    register_post_type('realtor', [
+        'labels' => $realtor_labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => false,
+        'show_in_admin_bar' => true,
+        'show_in_rest' => false,
+        'query_var' => true,
+        'rewrite' => [
+            'slug' => 'realtors',
+            'with_front' => false,
+        ],
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => 7,
+        'menu_icon' => 'dashicons-groups',
+        'supports' => [
+            'title',
+            'editor',
+            'author',
+            'thumbnail',
+            'excerpt',
+            'revisions',
+        ],
+        'taxonomies' => [],
+    ]);
 });
 
 /**
@@ -156,6 +204,7 @@ add_filter('pre_get_posts', function ($query) {
 add_action('carbon_fields_register_fields', function() {
     // dump('register fields');
     \App\Fields\PropertyFields::register();
+    \App\Fields\RealtorFields::register();
 });
 
 /**

@@ -109,7 +109,7 @@
         @endif
       </div>
       <div class="container p-4 md:p-0 bg-white md:bg-transparent">
-        <div class="property-details">
+        <div class="property-details mb-10 md:mb-0">
           {{-- Title and actions --}}
           <div class="md:bg-white md:p-10 md:mb-6">
             <div class="md:flex md:items-start md:justify-between ">
@@ -127,7 +127,7 @@
                 @endif
               </div>
 
-              <div class="flex gap-2 ml-4 hidden md:block">
+              <div class="md:gap-2 md:ml-4 hidden md:flex">
                 <button class="w-8 h-8 flex items-center justify-center property-share-button text-secondary-500"
                   data-share-url="{{ get_permalink() }}" data-share-title="{{ get_the_title() }}"
                   aria-label="{{ __('Share', 'praktik') }}">
