@@ -40,6 +40,12 @@
       @if (!empty($number_links))
         <ul class="hidden md:block">
           @foreach ($number_links as $link)
+            @php
+              $is_current = preg_match('/class=["\']([^"\']*\s+)?current(\s+[^"\']*)?["\']/', $link) || strpos($link, 'aria-current="page"') !== false;
+              if ($is_current) {
+                $link = preg_replace('/(class=["\'])([^"\']*current[^"\']*)(["\'])/', '$1$2 active$3', $link);
+              }
+            @endphp
             <li class="inline-block">{!! $link !!}</li>
           @endforeach
         </ul>
