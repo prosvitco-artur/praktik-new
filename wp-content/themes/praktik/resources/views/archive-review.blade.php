@@ -8,7 +8,7 @@
   $review_archive_banner = carbon_get_theme_option('review_archive_banner') ?? 2909;
 @endphp
 
-<div class="archive-container container px-5 pb-5 md:pb-0">
+<div class="archive-container container md:pb-0">
   <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
     {!! wp_get_attachment_image($review_archive_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
     <span aria-hidden="true"
@@ -23,14 +23,17 @@
       </span>
     </div>
   </div>
-  <div class="flex items-center gap-4 mb-8">
+  <div class="flex items-center gap-4 mb-8 px-5 md:px-0">
     <form method="GET" class="md:flex gap-[8px] w-full" action="{{ get_post_type_archive_link(get_post_type()) }}">
       <div class="w-full relative">
         <label for="review-search-input" class="sr-only">{{ __('Search', 'praktik') }}</label>
         <input type="search" id="review-search-input" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
           name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">
         <button type="button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" aria-label="{{ __('Search', 'praktik') }}">
-          <x-icon name="search" class="w-5 h-5" />
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
         </button>
       </div>
 
@@ -68,7 +71,7 @@
       </div>
     </section>
   @else
-    <div class="mb-8">
+    <div class="mb-8 px-5 md:px-0">
       @while(have_posts()) @php(the_post())
       @include('partials.content-archive-review')
       @endwhile

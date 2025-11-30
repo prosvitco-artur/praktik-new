@@ -9,19 +9,21 @@ class ReviewGallery {
     const reviewLinks = document.querySelectorAll('.review-card [data-fancybox^="review-"]');
     if (!reviewLinks.length) return;
 
+    const isMobile = window.innerWidth < 768;
+
     Fancybox.bind('.review-card [data-fancybox^="review-"]', {
       Toolbar: {
         display: {
           left: ['infobar'],
           middle: [],
-          right: ['download', 'close'],
+          right: isMobile ? ['close'] : ['download'],
         },
       },
       Image: {
-        zoom: true,
+        zoom: !isMobile,
         wheel: 'slide',
       },
-      closeButton: 'top',
+      closeButton: isMobile ? false : 'top',
       wheel: 'slide',
       trapFocus: true,
       autoFocus: true,

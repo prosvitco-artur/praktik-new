@@ -1,4 +1,8 @@
 @layer components {
+  .filter-dropdown {
+    min-width: 120px;
+  }
+
   .filter-dropdown .icon {
     transition: transform 0.3s ease-in-out;
   }
@@ -13,7 +17,7 @@
    * Just use data-dropdown-content attribute and the system will work.
    */
   [data-dropdown-content] {
-    @apply absolute left-0 bg-white z-50 shadow-lg mt-1 min-w-max;
+    @apply absolute left-0 bg-white z-50 shadow-lg mt-1 min-w-full;
     top: 100%;
     opacity: 0;
     visibility: hidden;
@@ -31,7 +35,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateY(0);   
   }
 
   .filter-buttons {

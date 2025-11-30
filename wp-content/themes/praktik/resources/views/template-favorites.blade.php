@@ -16,7 +16,7 @@
           class="favorites-share-button btn btn--second flex items-center gap-2 border-0"
           data-favorites-share>
           <x-icon name="share" class="w-5 h-5" />
-          <span>{{ __('Share List', 'praktik') }}</span>
+          <span>{{ __('Share', 'praktik') }}</span>
         </button>
       </div>
       <div class="flex items-center gap-3">

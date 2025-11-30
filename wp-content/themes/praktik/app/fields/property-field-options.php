@@ -13,8 +13,8 @@ class PropertyFieldOptions {
     public static function get_property_type_options() {
         return [
             '' => __('Select Property Type', 'praktik'),
-            'Новобудова' => 'Новобудова',
             'Вторинний ринок' => 'Вторинний ринок',
+            'Новобудова' => 'Новобудова',
         ];
     }
     

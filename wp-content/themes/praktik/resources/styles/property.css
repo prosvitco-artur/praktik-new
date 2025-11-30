@@ -34,8 +34,12 @@
 
 
   .property-detail {
-    @apply mb-1 flex gap-4;
+    @apply mb-1 flex gap-2 md:gap-4 items-start;
     line-height: 22px;
+  }
+  
+  .property-detail > div:first-child {
+    white-space: nowrap;
   }
 
   .property-detail:last-child {

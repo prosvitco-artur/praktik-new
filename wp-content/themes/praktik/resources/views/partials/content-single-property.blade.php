@@ -115,7 +115,7 @@
             <div class="md:flex md:items-start md:justify-between ">
               <div class="flex-1 mb-5">
                 <h1 class="text-2xl mb-2">
-                  {{ get_the_title() ?: __('No Title', 'praktik') }}
+                {!! get_the_title() ?: __('No Title', 'praktik') !!}
                 </h1>
                 <div class="text-xs text-neutral-600 mb-3">
                   {{ __('ID', 'praktik') }} {{ $post_id ?: __('Unknown ID', 'praktik') }}
@@ -143,36 +143,36 @@
             <div class="space-y-3">
               @if(!empty($property_meta['city']))
                 <div class="property-detail">
-                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('City', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['city'] }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('City', 'praktik') }}</div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['city'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['district']))
                 <div class="property-detail">
-                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('District', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['district'] }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('District', 'praktik') }}</div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['district'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['street']))
                 <div class="property-detail">
-                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Street', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['street'] }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Street', 'praktik') }}</div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['street'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['rooms']))
                 <div class="property-detail">
-                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Number of Rooms', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['rooms'] }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Number of Rooms', 'praktik') }}</div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['rooms'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['area']))
                 <div class="property-detail">
-                  <div class="w-[150px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
-                  <div class="text-neutral-950">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
                 </div>
               @endif
             </div>

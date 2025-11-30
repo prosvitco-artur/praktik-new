@@ -52,7 +52,7 @@
   }
 
   .dropdown-menu {
-    @apply list-none p-0 m-0 absolute left-0 bg-white z-10;
+    @apply list-none p-0 m-0 absolute left-0 bg-white z-10 min-w-full;
     box-shadow: var(--box-shadow-first);
     top: calc(100% + 8px);
     animation: slideDown 0.3s ease-out;
@@ -84,6 +84,8 @@
 
   .dropdown-menu {
     @apply transition-all duration-200 ease-in-out;
+    right: 0 !important;
+    left: auto !important;
   }
 
   .dropdown-parent:focus-within .dropdown-menu {

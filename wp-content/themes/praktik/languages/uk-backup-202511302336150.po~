@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-11-23 14:09+0000\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
+"PO-Revision-Date: 2025-11-30 23:36+0000\n"
+"Last-Translator: Артур\n"
+"Language-Team: Українська\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Domain: praktik\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
 "n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
-"X-Loco-Version: 2.8.0; wp-6.8.3; php-7.4.33\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-7.4.33"
 
 #: resources/views/partials/comments.blade.php:19
 msgid "&larr; Older comments"
@@ -489,9 +489,8 @@ msgid "House Specific"
 msgstr "Специфіка будинку"
 
 #: app/fields/property-fields.php:279
-#, fuzzy
 msgid "House Type"
-msgstr "Будинок"
+msgstr "Тип Будинку"
 
 #: app/helpers.php:7
 msgid "Houses"
@@ -770,14 +769,12 @@ msgstr "Ділянка"
 #: resources/views/components/filter-panel.blade.php:108
 #: resources/views/partials/archive-header.blade.php:209
 #: resources/views/partials/archive-header.blade.php:210
-#, fuzzy
 msgid "Plot Area"
-msgstr "Загальна площа"
+msgstr "Площа ділянки"
 
 #: app/fields/property-fields.php:283
-#, fuzzy
 msgid "Plot Area (m²)"
-msgstr "Загальна площа (м²)"
+msgstr "Площа Ділянки (м²)"
 
 #: app/fields/property-fields.php:289
 msgid "Plot Area (соток)"
@@ -1086,6 +1083,9 @@ msgstr "Тип каналізаційної системи"
 #: resources/views/partials/content-single-property.blade.php:36
 #: resources/views/partials/content-single-property.blade.php:139
 msgid "Share"
+msgstr "Поділитися"
+
+msgid "Share List"
 msgstr "Поділитися"
 
 #: app/fields/property-fields.php:239

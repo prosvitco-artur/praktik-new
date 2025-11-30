@@ -84,7 +84,7 @@ class PropertyGallery {
         display: {
           left: ['infobar'],
           middle: [],
-          right: isMobile ? ['close'] : ['slideshow', 'download', 'thumbs', 'close'],
+          right: isMobile ? ['close'] : ['slideshow', 'download', 'thumbs'],
         },
       },
       Thumbs: {
@@ -97,7 +97,7 @@ class PropertyGallery {
       Carousel: {
         infinite: false,
       },
-      closeButton: 'top',
+      closeButton: isMobile ? false : 'top',
       wheel: 'slide',
       trapFocus: true,
       autoFocus: true,
