@@ -5,23 +5,32 @@
     <div class="container px-5">
 
     <div class="sort-buttons mt-4 mb-4 flex items-center justify-between flex-wrap gap-3">
-      <div class="flex items-center">
-        <div>
-        {!! 
-          sprintf(__('Found <strong>%s properties</strong>', 'praktik'), count($favorites))
-        !!}
+      <div class="flex flex-wrap justify-between items-center gap-1">
+        <div class="w-full md:w-auto">
+          {!! 
+            sprintf(__('Found <strong>%s properties</strong>', 'praktik'), count($favorites))
+          !!}
         </div>
-
-      <button type="button"
-          class="favorites-share-button btn btn--second flex items-center gap-2 border-0"
+        <button type="button"
+          class="favorites-share-button btn btn--second flex items-center gap-2 border-0 px-0 md:px-6"
           data-favorites-share>
           <x-icon name="share" class="w-5 h-5" />
           <span>{{ __('Share', 'praktik') }}</span>
         </button>
+        <div class="md:hidden flex items-center gap-2">
+          <button
+            type="button"
+            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors bg-white p-2.5"
+            id="sort-button-mobile"
+            data-sort-panel-toggle
+            aria-expanded="false">
+            <x-icon name="sort" class="w-6 h-6" />
+          </button>
+        </div>
       </div>
       <div class="flex items-center gap-3">
-        <div class="relative flex items-center gap-2">
-          <label class="block text-sm text-neutral-600 hidden md:block">{{ __('Sort by', 'praktik') }}</label>
+        <div class="relative hidden md:flex items-center gap-2">
+          <label class="block text-sm text-neutral-600">{{ __('Sort by', 'praktik') }}</label>
           <button type="button"
             class="filter-dropdown flex items-center gap-2 text-neutral-800 transition-colors bg-white p-2.5"
             id="sort-dropdown" data-dropdown-toggle="sort">
@@ -45,6 +54,8 @@
         </div>
       </div>
     </div>
+
+    @include('components.sort-panel')
 
       <div class="archive-posts">
         @foreach($favorites as $post)

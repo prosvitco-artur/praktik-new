@@ -26,12 +26,12 @@
   <div class="container mx-auto md:mb-10">
     <div class="property-single">
       <div class="property-gallery relative">
-        <div class="absolute top-3 left-3 z-[100] md:hidden">
+        <div class="absolute top-3 left-3 z-40 md:hidden">
           <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center p-[10px] bg-white">
             <x-icon name="chevron-left" class="w-6 h-6" />
           </a>
         </div>
-        <div class="flex gap-2 ml-4 absolute top-3 right-3 z-[100] md:hidden">
+        <div class="flex gap-2 ml-4 absolute top-3 right-3 z-40 md:hidden">
           <button class="p-[10px] bg-white flex items-center justify-center property-share-button text-secondary-500"
             data-share-url="{{ get_permalink() }}" data-share-title="{{ get_the_title() }}"
             aria-label="{{ __('Share', 'praktik') }}">
