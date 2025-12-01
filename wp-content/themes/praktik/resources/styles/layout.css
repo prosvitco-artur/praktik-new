@@ -66,37 +66,6 @@
     }
   }
 
-  .author-content {
-    @apply bg-neutral-700 text-white px-8 py-10;
-    width: 400px;
-  }
-
-  .author-content > div {
-    margin-bottom: 50px;
-  }
-
-  .author-content > div:last-of-type {
-    margin-bottom: 0;
-  }
-
-  .author-data {
-    @apply flex flex-col items-center;
-  }
-
-  .author-socials {
-    @apply flex flex-col items-center;
-    --icon-width: 40px;
-    --icon-height: 40px;
-  }
-
-  .author-socials a {
-    @apply mb-[14px];
-  }
-
-  .author-socials a:last-of-type {
-    @apply mb-0;
-  }
-
   body.admin-bar header.banner {
     @apply md:top-8;
   }

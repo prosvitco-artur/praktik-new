@@ -28,6 +28,11 @@ class RealtorFields {
                 
                 Field::make('text', 'realtor_telegram', __('Telegram', 'praktik'))
                     ->set_help_text(__('Telegram username (without @)', 'praktik')),
+                Field::make('text', 'realtor_viber', __('Viber', 'praktik'))
+                    ->set_help_text(__('Viber username (without @)', 'praktik')),
+                Field::make('text', 'realtor_instagram', __('Instagram', 'praktik'))
+                    ->set_help_text(__('Instagram username (without @)', 'praktik')),
+                    
             ]);
     }
 }

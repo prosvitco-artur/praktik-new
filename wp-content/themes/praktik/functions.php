@@ -64,7 +64,6 @@ collect(
         'integrations-airwpsync',
         'content-cleanup',
         'favorites',
-        'author-data',
     ])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {

@@ -44,3 +44,34 @@ ul.standard-list {
 .wp-block-button__link {
   @apply flex gap-2;
 }
+
+.realtor-content {
+  @apply bg-neutral-700 text-white px-8 py-10;
+  width: 400px;
+}
+
+.realtor-content > div {
+  margin-bottom: 50px;
+}
+
+.realtor-content > div:last-of-type {
+  margin-bottom: 0;
+}
+
+.realtor-data {
+  @apply flex flex-col items-center;
+}
+
+.realtor-socials {
+  @apply flex flex-col items-center;
+  --icon-width: 40px;
+  --icon-height: 40px;
+}
+
+.realtor-socials a {
+  @apply mb-[14px];
+}
+
+.realtor-socials a:last-of-type {
+  @apply mb-0;
+}
