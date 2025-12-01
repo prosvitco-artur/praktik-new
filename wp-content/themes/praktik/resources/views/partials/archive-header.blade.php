@@ -235,28 +235,16 @@
             <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
             @endif
           </button>
-          <div class="relative">
-            <button
-              type="button"
-              class="filter-dropdown flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors bg-white p-2.5"
-              id="sort-button-mobile"
-              data-dropdown-toggle="sort-mobile">
-              <x-icon name="sort" class="w-6 h-6" />
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" data-dropdown-content="sort-mobile">
-              <div class="py-2">
-                @foreach(get_sort_options() as $key => $label)
-                  @php
-                    $sort_url = add_query_arg(['sort' => $key], remove_query_arg(['paged', 'sort']));
-                  @endphp
-                  <a href="{{ $sort_url }}"
-                    class="px-3 py-2 w-full block hover:text-secondary-500 hover:font-bold font-medium {{ get_current_sort() === $key ? 'text-secondary-500 font-bold' : '' }}">
-                    {{ $label }}
-                  </a>
-                @endforeach
-              </div>
-            </div>
-          </div>
+          @include('components.filter-panel')
+          <button
+            type="button"
+            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors bg-white p-2.5"
+            id="sort-button-mobile"
+            data-sort-panel-toggle
+            aria-expanded="false">
+            <x-icon name="sort" class="w-6 h-6" />
+          </button>
+          @include('components.sort-panel')
         </div>
       </div>
     </div>
