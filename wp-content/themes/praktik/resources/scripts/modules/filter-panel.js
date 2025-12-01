@@ -77,7 +77,7 @@ class FilterPanel {
   }
 
   clearFilters() {
-    const inputs = this.filterPanel.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="number"]');
+    const inputs = this.filterPanel.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="number"], input[type="date"]');
     inputs.forEach(input => {
       if (input.type === 'radio' || input.type === 'checkbox') {
         input.checked = false;
@@ -114,7 +114,7 @@ class FilterPanel {
     });
     
     const currentUrl = new URL(window.location.href);
-    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to'];
+    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to', 'date_from', 'date_to'];
     const params = new URLSearchParams();
     
     currentUrl.searchParams.forEach((value, key) => {
@@ -152,6 +152,14 @@ class FilterPanel {
   }
 
   applyFilters() {
+    const form = this.filterPanel.querySelector('form');
+    
+    if (form) {
+      this.close();
+      form.submit();
+      return;
+    }
+    
     const params = new URLSearchParams();
     const currentUrl = new URL(window.location.href);
     
@@ -172,6 +180,13 @@ class FilterPanel {
     if (rooms.length > 0) {
       params.append('rooms', rooms.join(','));
     }
+    
+    const dateInputs = this.filterPanel.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+      if (input.name && input.value) {
+        params.append(input.name, input.value);
+      }
+    });
     
     const sliderContainers = this.filterPanel.querySelectorAll('[data-slider]');
     const processedSliderNames = new Set();
@@ -210,7 +225,7 @@ class FilterPanel {
     });
     
     const existingParams = new URLSearchParams(currentUrl.search);
-    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to'];
+    const filterKeys = ['type', 'rooms', 'area_from', 'area_to', 'plot_area_from', 'plot_area_to', 'price_from', 'price_to', 'date_from', 'date_to'];
     existingParams.forEach((value, key) => {
       if (!filterKeys.includes(key)) {
         params.append(key, value);

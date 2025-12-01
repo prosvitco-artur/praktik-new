@@ -1,4 +1,4 @@
-<div class="bg-white p-6 md:pb-10 md:px-[80px] max-w-[800px]">
+<div class="bg-white p-6 md:pb-10 md:px-[80px] max-w-[800px] mb-10 md:mb-0">
   <form role="search" method="get" class="property-search-form" id="property-search-form">
     @php
       $property_post_types = get_property_post_types();

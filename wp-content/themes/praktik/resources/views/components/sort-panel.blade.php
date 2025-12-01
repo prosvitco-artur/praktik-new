@@ -21,7 +21,7 @@
         $is_selected = get_current_sort() === $key;
       @endphp
       <a href="{{ $sort_url }}"
-        class="block px-3 py-3 mb-2 rounded {{ $is_selected ? 'bg-secondary-500 text-white font-bold' : 'text-neutral-900 hover:bg-neutral-100' }}">
+        class="block px-3 py-2 mb-2 {{ $is_selected ? 'text-secondary-500 font-bold' : 'text-neutral-950' }}">
         {{ $label }}
       </a>
     @endforeach

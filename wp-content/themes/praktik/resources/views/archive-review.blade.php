@@ -59,8 +59,14 @@
         class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
         id="filter-button" data-filter-panel-toggle aria-expanded="false">
         <x-icon name="filter" class="w-6 h-6" />
+        @php
+          $has_active_review_filters = !empty($_GET['date_from']) || !empty($_GET['date_to']);
+        @endphp
+        @if($has_active_review_filters)
         <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
+        @endif
       </button>
+      @include('components.review-filter-panel', ['date_from' => $date_from, 'date_to' => $date_to])
     </div>
   </div>
 

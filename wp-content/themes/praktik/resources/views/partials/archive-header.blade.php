@@ -235,7 +235,6 @@
             <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
             @endif
           </button>
-          @include('components.filter-panel')
           <button
             type="button"
             class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors bg-white p-2.5"
@@ -244,7 +243,6 @@
             aria-expanded="false">
             <x-icon name="sort" class="w-6 h-6" />
           </button>
-          @include('components.sort-panel')
         </div>
       </div>
     </div>
@@ -279,6 +277,7 @@
       </div>
     </div>
 
+    @include('components.sort-panel')
     @include('components.filter-panel')
   </div>
 </header>

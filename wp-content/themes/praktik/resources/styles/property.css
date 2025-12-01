@@ -194,6 +194,7 @@
   }
 
   .favorite-button {
+    @apply relative z-[100];
     --icon-width: 24px;
     --icon-height: 24px;
     --icon-color: transparent;
