@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-11-30 23:36+0000\n"
+"PO-Revision-Date: 2025-12-01 00:06+0000\n"
 "Last-Translator: Артур\n"
 "Language-Team: Українська\n"
 "Language: uk\n"
@@ -39,9 +39,8 @@ msgid "Add property images"
 msgstr "Додати зображення нерухомості"
 
 #: app/fields/property-fields.php:30
-#, fuzzy
 msgid "Additional Information"
-msgstr "ДОдаткова інформація"
+msgstr "Додаткова інформація"
 
 #: app/fields/property-fields.php:179
 msgid "Additional phone number"
@@ -420,7 +419,7 @@ msgstr "Знайдено <strong>%s об'єктів</strong>"
 
 #: resources/views/sections/footer.blade.php:36
 msgid "Fresh picks for you:"
-msgstr "Свіжі пропозиції для вас:"
+msgstr "Актуальні підбірки для вас:"
 
 #: resources/views/components/filter-panel.blade.php:137
 #: resources/views/components/price-range-slider.blade.php:2
@@ -848,11 +847,11 @@ msgstr "Ціна"
 
 #: app/helpers.php:251
 msgid "Price: High to Low"
-msgstr "Ціна: від високої до низької"
+msgstr "Спочатку дорожчі"
 
 #: app/helpers.php:250
 msgid "Price: Low to High"
-msgstr "Ціна: від низької до високої"
+msgstr "Спочатку дешевші"
 
 #: app/setup.php:93
 msgid "Primary Navigation"

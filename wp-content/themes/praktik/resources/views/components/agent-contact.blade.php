@@ -10,7 +10,7 @@ $telegramLabel = __('Write to Telegram', 'praktik');
 @endphp
 
 @if($authorId && ($name || $phone || $telegram || $authorPhoto))
-  <div class="fixed bottom-0 left-0 right-0 bg-white p-5 flex items-center justify-between md:p-10 md:static">
+  <div class="fixed bottom-0 left-0 right-0 bg-white p-5 flex items-center justify-between md:p-10 md:static shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-1px_rgba(0,0,0,0.06)] md:shadow-none">
     <div class="flex items-center gap-4">
       <div class="rounded-full h-12 w-12 overflow-hidden">
         @if($authorPhoto)

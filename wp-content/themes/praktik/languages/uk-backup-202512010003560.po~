@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-11-23 21:14+0000\n"
+"PO-Revision-Date: 2025-11-30 23:36+0000\n"
 "Last-Translator: Артур\n"
 "Language-Team: Українська\n"
 "Language: uk\n"
@@ -489,9 +489,8 @@ msgid "House Specific"
 msgstr "Специфіка будинку"
 
 #: app/fields/property-fields.php:279
-#, fuzzy
 msgid "House Type"
-msgstr "Будинок"
+msgstr "Тип Будинку"
 
 #: app/helpers.php:7
 msgid "Houses"

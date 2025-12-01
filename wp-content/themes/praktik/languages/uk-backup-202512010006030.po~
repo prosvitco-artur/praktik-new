@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-11-23 16:11+0000\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
+"PO-Revision-Date: 2025-12-01 00:04+0000\n"
+"Last-Translator: Артур\n"
+"Language-Team: Українська\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -420,7 +420,7 @@ msgstr "Знайдено <strong>%s об'єктів</strong>"
 
 #: resources/views/sections/footer.blade.php:36
 msgid "Fresh picks for you:"
-msgstr "Свіжі пропозиції для вас:"
+msgstr "Актуальні підбірки для вас:"
 
 #: resources/views/components/filter-panel.blade.php:137
 #: resources/views/components/price-range-slider.blade.php:2
@@ -489,9 +489,8 @@ msgid "House Specific"
 msgstr "Специфіка будинку"
 
 #: app/fields/property-fields.php:279
-#, fuzzy
 msgid "House Type"
-msgstr "Будинок"
+msgstr "Тип Будинку"
 
 #: app/helpers.php:7
 msgid "Houses"
@@ -770,14 +769,12 @@ msgstr "Ділянка"
 #: resources/views/components/filter-panel.blade.php:108
 #: resources/views/partials/archive-header.blade.php:209
 #: resources/views/partials/archive-header.blade.php:210
-#, fuzzy
 msgid "Plot Area"
-msgstr "Загальна площа"
+msgstr "Площа ділянки"
 
 #: app/fields/property-fields.php:283
-#, fuzzy
 msgid "Plot Area (m²)"
-msgstr "Загальна площа (м²)"
+msgstr "Площа Ділянки (м²)"
 
 #: app/fields/property-fields.php:289
 msgid "Plot Area (соток)"
@@ -851,11 +848,11 @@ msgstr "Ціна"
 
 #: app/helpers.php:251
 msgid "Price: High to Low"
-msgstr "Ціна: від високої до низької"
+msgstr "Спочатку дорожчі"
 
 #: app/helpers.php:250
 msgid "Price: Low to High"
-msgstr "Ціна: від низької до високої"
+msgstr "Спочатку дешевші"
 
 #: app/setup.php:93
 msgid "Primary Navigation"

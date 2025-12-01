@@ -1,3 +1,7 @@
+@php
+  $chatbot_url = carbon_get_theme_option('chatbot_url') ?: null;
+@endphp
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-logo-section">
@@ -30,14 +34,15 @@
       </div>
     @endif
 
-    <div class="footer-cta">
-      <div class="footer-text">{{ __('Fresh picks for you:', 'praktik') }}</div>
-      <button class="chat-bot-button">
-        <span class="robot-icon">🤖</span>
-        <span class="button-text">{{ __('Apartment search chatbot', 'praktik') }}</span>
-      </button>
-    </div>
-
+    @if($chatbot_url)
+      <div class="footer-cta">
+        <div class="footer-text">{{ __('Fresh picks for you:', 'praktik') }}</div>
+        <a href="{{ $chatbot_url }}" class="chat-bot-button" target="_blank" rel="noopener noreferrer">
+          <span class="robot-icon">🤖</span>
+          <span class="button-text">{{ __('Apartment search chatbot', 'praktik') }}</span>
+        </a>
+      </div>
+    @endif
     <div class="footer-links-mobile">
       <a href="/privacy-policy" class="footer-link">{{ __('Privacy policy', 'praktik') }}</a>
       <a href="/terms-of-use" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>

@@ -27,26 +27,60 @@ function get_favorites_storage_key($session_id = null) {
     return 'guest_favorites_' . md5($session_id);
 }
 
+function validate_favorites($favorites) {
+    if (empty($favorites) || !is_array($favorites)) {
+        return [];
+    }
+    
+    $valid_favorites = [];
+    
+    foreach ($favorites as $post_id) {
+        $post_id = intval($post_id);
+        
+        if ($post_id <= 0) {
+            continue;
+        }
+        
+        $post = get_post($post_id);
+        
+        if (!$post || $post->post_status !== 'publish') {
+            continue;
+        }
+        
+        $valid_favorites[] = (string) $post_id;
+    }
+    
+    return array_values(array_unique($valid_favorites));
+}
+
 function get_stored_favorites($session_id = null) {
     if (is_user_logged_in()) {
         $favorites = get_user_meta(get_current_user_id(), 'praktik_favorites', true);
         if (!is_array($favorites)) {
             return [];
         }
-        return array_map('strval', $favorites);
+        $favorites = array_map('strval', $favorites);
+    } else {
+        $key = get_favorites_storage_key($session_id);
+        if (empty($key)) {
+            return [];
+        }
+        
+        $favorites = get_transient($key);
+        if (!is_array($favorites)) {
+            return [];
+        }
+        
+        $favorites = array_map('strval', $favorites);
     }
     
-    $key = get_favorites_storage_key($session_id);
-    if (empty($key)) {
-        return [];
+    $validated = validate_favorites($favorites);
+    
+    if (count($validated) !== count($favorites)) {
+        save_favorites($validated, $session_id);
     }
     
-    $favorites = get_transient($key);
-    if (!is_array($favorites)) {
-        return [];
-    }
-    
-    return array_map('strval', $favorites);
+    return $validated;
 }
 
 function save_favorites($favorites, $session_id = null) {
