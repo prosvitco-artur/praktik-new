@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
+"POT-Creation-Date: 2025-12-01T22:53:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: praktik\n"
@@ -35,30 +35,6 @@ msgstr ""
 msgid "Praktik"
 msgstr ""
 
-#: app/author-data.php:9
-msgid "Phone"
-msgstr ""
-
-#: app/author-data.php:10
-msgid "Photo"
-msgstr ""
-
-#: app/author-data.php:13
-msgid "Telegram URL"
-msgstr ""
-
-#: app/author-data.php:14
-msgid "Viber URL"
-msgstr ""
-
-#: app/author-data.php:15
-msgid "Instagram URL"
-msgstr ""
-
-#: app/carbon-blocks/how-we-work.php:6
-msgid "How We Work"
-msgstr ""
-
 #: app/carbon-blocks/how-we-work.php:8
 msgid "Steps"
 msgstr ""
@@ -69,10 +45,6 @@ msgstr ""
 
 #: app/carbon-blocks/how-we-work.php:11
 msgid "Step Description"
-msgstr ""
-
-#: app/carbon-blocks/who-work-with-us.php:6
-msgid "Who We Work With"
 msgstr ""
 
 #: app/carbon-blocks/who-work-with-us.php:8
@@ -92,16 +64,26 @@ msgstr ""
 msgid "Client Text"
 msgstr ""
 
-#: app/favorites.php:14
+#: app/favorites.php:122
 msgid "Invalid post ID."
 msgstr ""
 
+#: app/favorites.php:187
+msgid "No favorites to share."
+msgstr ""
+
+#: app/favorites.php:195
+msgid "Failed to generate share link."
+msgstr ""
+
 #: app/fields/property-field-options.php:15
-#: resources/views/forms/property-search.blade.php:42
+#: resources/views/forms/property-search.blade.php:18
+#: resources/views/forms/property-search.blade.php:57
 msgid "Select Property Type"
 msgstr ""
 
 #: app/fields/property-field-options.php:26
+#: resources/views/forms/property-search.blade.php:23
 msgid "Select House Type"
 msgstr ""
 
@@ -211,9 +193,9 @@ msgid "Auto-generated property code (will be generated automatically on save)"
 msgstr ""
 
 #: app/fields/property-fields.php:46
-#: resources/views/components/filter-panel.blade.php:43
-#: resources/views/forms/property-search.blade.php:38
-#: resources/views/partials/archive-header.blade.php:76
+#: resources/views/components/filter-panel.blade.php:48
+#: resources/views/forms/property-search.blade.php:52
+#: resources/views/partials/archive-header.blade.php:93
 msgid "Property Type"
 msgstr ""
 
@@ -238,9 +220,9 @@ msgid "Price range category"
 msgstr ""
 
 #: app/fields/property-fields.php:60
-#: resources/views/components/filter-panel.blade.php:64
-#: resources/views/partials/archive-header.blade.php:113
-#: resources/views/partials/content-single-property.blade.php:173
+#: resources/views/components/filter-panel.blade.php:82
+#: resources/views/partials/archive-header.blade.php:137
+#: resources/views/partials/content-single-property.blade.php:176
 msgid "Number of Rooms"
 msgstr ""
 
@@ -261,7 +243,7 @@ msgid "Kitchen area in square meters"
 msgstr ""
 
 #: app/fields/property-fields.php:84
-#: resources/views/partials/content-single-property.blade.php:152
+#: resources/views/partials/content-single-property.blade.php:154
 msgid "City"
 msgstr ""
 
@@ -286,7 +268,7 @@ msgid "Settlement name (Населений пункт)"
 msgstr ""
 
 #: app/fields/property-fields.php:95
-#: resources/views/partials/content-single-property.blade.php:159
+#: resources/views/partials/content-single-property.blade.php:161
 msgid "District"
 msgstr ""
 
@@ -295,7 +277,7 @@ msgid "District name (Район)"
 msgstr ""
 
 #: app/fields/property-fields.php:98
-#: resources/views/partials/content-single-property.blade.php:166
+#: resources/views/partials/content-single-property.blade.php:168
 msgid "Street"
 msgstr ""
 
@@ -404,6 +386,8 @@ msgid "Hide phone numbers from public display"
 msgstr ""
 
 #: app/fields/property-fields.php:184
+#: app/post-types.php:120
+#: app/post-types.php:122
 msgid "Realtor"
 msgstr ""
 
@@ -548,6 +532,8 @@ msgid "Ready to export to website"
 msgstr ""
 
 #: app/fields/property-fields.php:279
+#: resources/views/components/filter-panel.blade.php:45
+#: resources/views/partials/archive-header.blade.php:90
 msgid "House Type"
 msgstr ""
 
@@ -619,223 +605,299 @@ msgstr ""
 msgid "Electricity availability"
 msgstr ""
 
-#: app/fields/property-fields.php:328
+#: app/fields/property-fields.php:327
 msgid "Select Realtor"
 msgstr ""
 
-#: app/fields/property-fields.php:329
-msgid "No Realtor"
+#: app/fields/realtor-fields.php:16
+msgid "Realtor Information"
+msgstr ""
+
+#: app/fields/realtor-fields.php:19
+msgid "Name"
+msgstr ""
+
+#: app/fields/realtor-fields.php:20
+msgid "Name of the realtor"
+msgstr ""
+
+#: app/fields/realtor-fields.php:22
+msgid "Photo"
+msgstr ""
+
+#: app/fields/realtor-fields.php:24
+msgid "Photo of the realtor"
+msgstr ""
+
+#: app/fields/realtor-fields.php:26
+msgid "Phone"
+msgstr ""
+
+#: app/fields/realtor-fields.php:27
+msgid "Phone number of the realtor"
+msgstr ""
+
+#: app/fields/realtor-fields.php:29
+#: app/theme-options.php:11
+msgid "Telegram"
+msgstr ""
+
+#: app/fields/realtor-fields.php:30
+msgid "Telegram username (without @)"
+msgstr ""
+
+#: app/fields/realtor-fields.php:31
+msgid "Viber"
+msgstr ""
+
+#: app/fields/realtor-fields.php:32
+msgid "Viber username (without @)"
+msgstr ""
+
+#: app/fields/realtor-fields.php:33
+#: app/theme-options.php:19
+msgid "Instagram"
+msgstr ""
+
+#: app/fields/realtor-fields.php:34
+msgid "Instagram username (without @)"
 msgstr ""
 
 #: app/filters.php:15
 msgid "Continued"
 msgstr ""
 
-#: app/filters.php:240
+#: app/filters.php:248
 msgid "New building"
 msgstr ""
 
-#: app/filters.php:241
+#: app/filters.php:249
 msgid "Secondary market"
 msgstr ""
 
 #: app/helpers.php:5
-msgid "Rooms"
-msgstr ""
-
-#: app/helpers.php:6
 msgid "Apartments"
 msgstr ""
 
-#: app/helpers.php:7
+#: app/helpers.php:6
 msgid "Houses"
 msgstr ""
 
-#: app/helpers.php:8
-msgid "Plots"
-msgstr ""
-
-#: app/helpers.php:9
-msgid "Garages"
-msgstr ""
-
-#: app/helpers.php:10
-msgid "Commercial"
-msgstr ""
-
-#: app/helpers.php:11
-msgid "Dachas"
-msgstr ""
-
-#: app/helpers.php:179
+#: app/helpers.php:174
 msgid "Room"
 msgstr ""
 
-#: app/helpers.php:180
+#: app/helpers.php:175
 msgid "Apartment"
 msgstr ""
 
-#: app/helpers.php:181
+#: app/helpers.php:176
 msgid "House"
 msgstr ""
 
-#: app/helpers.php:182
+#: app/helpers.php:177
 msgid "Plot"
 msgstr ""
 
-#: app/helpers.php:183
+#: app/helpers.php:178
 msgid "Garage"
 msgstr ""
 
-#: app/helpers.php:184
+#: app/helpers.php:179
 msgid "Commercial Property"
 msgstr ""
 
-#: app/helpers.php:185
+#: app/helpers.php:180
 msgid "Dacha"
 msgstr ""
 
-#: app/helpers.php:248
+#: app/helpers.php:243
 msgid "Newest First"
 msgstr ""
 
-#: app/helpers.php:249
+#: app/helpers.php:244
 msgid "Oldest First"
 msgstr ""
 
-#: app/helpers.php:250
-msgid "Price: Low to High"
-msgstr ""
-
-#: app/helpers.php:251
+#: app/helpers.php:245
 msgid "Price: High to Low"
 msgstr ""
 
-#: app/helpers.php:252
-msgid "Area: Small to Large"
-msgstr ""
-
-#: app/helpers.php:253
-msgid "Area: Large to Small"
+#: app/helpers.php:246
+msgid "Price: Low to High"
 msgstr ""
 
 #: app/integrations-airwpsync.php:15
 msgid "Custom Field..."
 msgstr ""
 
-#: app/post-types.php:26
-#: app/post-types.php:75
+#: app/post-types.php:27
+#: app/post-types.php:76
+#: app/post-types.php:123
 msgid "Add new"
 msgstr ""
 
-#: app/post-types.php:27
+#: app/post-types.php:28
 msgid "Add new %s"
 msgstr ""
 
-#: app/post-types.php:28
+#: app/post-types.php:29
 msgid "New %s"
 msgstr ""
 
-#: app/post-types.php:29
+#: app/post-types.php:30
 msgid "Edit %s"
 msgstr ""
 
-#: app/post-types.php:30
+#: app/post-types.php:31
 msgid "View %s"
 msgstr ""
 
-#: app/post-types.php:31
+#: app/post-types.php:32
 msgid "All %s"
 msgstr ""
 
-#: app/post-types.php:32
+#: app/post-types.php:33
 msgid "Search %s"
 msgstr ""
 
-#: app/post-types.php:33
+#: app/post-types.php:34
 msgid "Parent %s:"
 msgstr ""
 
-#: app/post-types.php:34
+#: app/post-types.php:35
 msgid "Not found %s"
 msgstr ""
 
-#: app/post-types.php:35
+#: app/post-types.php:36
 msgid "Not found %s in trash"
-msgstr ""
-
-#: app/post-types.php:71
-#: app/post-types.php:73
-msgid "Reviews"
 msgstr ""
 
 #: app/post-types.php:72
 #: app/post-types.php:74
+msgid "Reviews"
+msgstr ""
+
+#: app/post-types.php:73
+#: app/post-types.php:75
 msgid "Review"
 msgstr ""
 
-#: app/post-types.php:76
+#: app/post-types.php:77
 msgid "Add new Review"
 msgstr ""
 
-#: app/post-types.php:77
+#: app/post-types.php:78
 msgid "New Review"
 msgstr ""
 
-#: app/post-types.php:78
+#: app/post-types.php:79
 msgid "Edit Review"
 msgstr ""
 
-#: app/post-types.php:79
+#: app/post-types.php:80
 msgid "View Review"
 msgstr ""
 
-#: app/post-types.php:80
+#: app/post-types.php:81
 msgid "All Reviews"
 msgstr ""
 
-#: app/post-types.php:81
+#: app/post-types.php:82
 msgid "Search Reviews"
 msgstr ""
 
-#: app/post-types.php:82
+#: app/post-types.php:83
 msgid "Parent Reviews:"
 msgstr ""
 
-#: app/post-types.php:83
-#: resources/views/archive-review.blade.php:73
+#: app/post-types.php:84
+#: resources/views/archive-review.blade.php:78
 msgid "No reviews found"
 msgstr ""
 
-#: app/post-types.php:84
+#: app/post-types.php:85
 msgid "No reviews found in trash"
 msgstr ""
 
-#: app/setup.php:44
-msgid "Error saving favorites:"
+#: app/post-types.php:119
+#: app/post-types.php:121
+msgid "Realtors"
+msgstr ""
+
+#: app/post-types.php:124
+msgid "Add new Realtor"
+msgstr ""
+
+#: app/post-types.php:125
+msgid "New Realtor"
+msgstr ""
+
+#: app/post-types.php:126
+msgid "Edit Realtor"
+msgstr ""
+
+#: app/post-types.php:127
+msgid "View Realtor"
+msgstr ""
+
+#: app/post-types.php:128
+msgid "All Realtors"
+msgstr ""
+
+#: app/post-types.php:129
+msgid "Search Realtors"
+msgstr ""
+
+#: app/post-types.php:130
+msgid "Parent Realtors:"
+msgstr ""
+
+#: app/post-types.php:131
+msgid "No realtors found"
+msgstr ""
+
+#: app/post-types.php:132
+msgid "No realtors found in trash"
 msgstr ""
 
 #: app/setup.php:45
-msgid "Unknown error"
+msgid "Error saving favorites:"
 msgstr ""
 
 #: app/setup.php:46
-msgid "Failed to send request:"
+msgid "Unknown error"
 msgstr ""
 
 #: app/setup.php:47
-msgid "Link copied to clipboard"
+msgid "Failed to send request:"
 msgstr ""
 
 #: app/setup.php:48
+msgid "Link copied to clipboard"
+msgstr ""
+
+#: app/setup.php:49
 msgid "Failed to copy link"
 msgstr ""
 
-#: app/setup.php:93
+#: app/setup.php:50
+msgid "Generating share link..."
+msgstr ""
+
+#: app/setup.php:51
+msgid "Failed to generate share link"
+msgstr ""
+
+#: app/setup.php:96
 msgid "Primary Navigation"
 msgstr ""
 
-#: app/setup.php:162
+#: app/setup.php:97
+msgid "Mobile Navigation"
+msgstr ""
+
+#: app/setup.php:166
 msgid "Footer Logo"
 msgstr ""
 
@@ -845,10 +907,6 @@ msgstr ""
 
 #: app/theme-options.php:10
 msgid "Social Media"
-msgstr ""
-
-#: app/theme-options.php:11
-msgid "Telegram"
 msgstr ""
 
 #: app/theme-options.php:12
@@ -861,10 +919,6 @@ msgstr ""
 
 #: app/theme-options.php:16
 msgid "Enter full URL (e.g., https://youtube.com/@channel)"
-msgstr ""
-
-#: app/theme-options.php:19
-msgid "Instagram"
 msgstr ""
 
 #: app/theme-options.php:20
@@ -887,7 +941,15 @@ msgstr ""
 msgid "Enter full URL (e.g., https://facebook.com/page)"
 msgstr ""
 
+#: app/theme-options.php:30
+msgid "Chatbot URL"
+msgstr ""
+
 #: app/theme-options.php:31
+msgid "Enter full URL (e.g., https://chatbot.com)"
+msgstr ""
+
+#: app/theme-options.php:34
 msgid "Banners"
 msgstr ""
 
@@ -908,34 +970,47 @@ msgstr ""
 msgid "Custom Template"
 msgstr ""
 
-#: resources/views/404.blade.php:7
-msgid "Sorry, but the page you are trying to view does not exist."
+#: resources/views/404.blade.php:10
+#: resources/views/index.blade.php:9
+msgid "Nothing Found"
+msgstr ""
+
+#: resources/views/404.blade.php:16
+#: resources/views/index.blade.php:15
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: resources/views/404.blade.php:25
+#: resources/views/404.blade.php:34
+#: resources/views/index.blade.php:24
+#: resources/views/index.blade.php:33
+msgid "It seems we can't find what you're looking for. Perhaps searching can help."
 msgstr ""
 
 #: resources/views/archive-review.blade.php:31
 #: resources/views/archive-review.blade.php:32
 #: resources/views/archive-review.blade.php:34
-#: resources/views/archive-review.blade.php:44
-#: resources/views/forms/property-search.blade.php:62
-#: resources/views/partials/archive-header.blade.php:27
-#: resources/views/partials/archive-header.blade.php:28
-#: resources/views/partials/archive-header.blade.php:29
-#: resources/views/partials/archive-header.blade.php:30
+#: resources/views/archive-review.blade.php:43
+#: resources/views/forms/property-search.blade.php:77
 #: resources/views/partials/archive-header.blade.php:39
+#: resources/views/partials/archive-header.blade.php:40
+#: resources/views/partials/archive-header.blade.php:41
+#: resources/views/partials/archive-header.blade.php:42
+#: resources/views/partials/archive-header.blade.php:51
 msgid "Search"
 msgstr ""
 
-#: resources/views/archive-review.blade.php:49
-#: resources/views/partials/archive-header.blade.php:160
-#: resources/views/partials/archive-header.blade.php:219
-#: resources/views/partials/archive-header.blade.php:276
+#: resources/views/archive-review.blade.php:48
+#: resources/views/partials/archive-header.blade.php:181
+#: resources/views/partials/archive-header.blade.php:203
+#: resources/views/partials/archive-header.blade.php:226
 msgid "From: "
 msgstr ""
 
-#: resources/views/archive-review.blade.php:55
-#: resources/views/partials/archive-header.blade.php:183
-#: resources/views/partials/archive-header.blade.php:242
-#: resources/views/partials/archive-header.blade.php:281
+#: resources/views/archive-review.blade.php:54
+#: resources/views/partials/archive-header.blade.php:189
+#: resources/views/partials/archive-header.blade.php:211
+#: resources/views/partials/archive-header.blade.php:231
 msgid "To: "
 msgstr ""
 
@@ -943,85 +1018,73 @@ msgstr ""
 msgid "No results found"
 msgstr ""
 
-#: resources/views/author.blade.php:48
-msgid "My social networks"
-msgstr ""
-
-#: resources/views/author.blade.php:57
-msgid "My"
-msgstr ""
-
-#: resources/views/author.blade.php:68
-msgid "Subscribe to Praktik Real Estate"
-msgstr ""
-
-#: resources/views/author.blade.php:92
-#: resources/views/sections/footer.blade.php:39
-msgid "Apartment search chatbot"
-msgstr ""
-
-#: resources/views/components/agent-contact.blade.php:7
+#: resources/views/components/agent-contact.blade.php:9
 msgid "Write to Telegram"
 msgstr ""
 
 #: resources/views/components/filter-panel.blade.php:8
+#: resources/views/components/review-filter-panel.blade.php:8
 msgid "Filters"
 msgstr ""
 
 #: resources/views/components/filter-panel.blade.php:11
+#: resources/views/components/review-filter-panel.blade.php:11
 msgid "Filter"
 msgstr ""
 
 #: resources/views/components/filter-panel.blade.php:12
+#: resources/views/components/review-filter-panel.blade.php:12
 msgid "Close filters"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:49
-#: resources/views/components/filter-panel.blade.php:70
-#: resources/views/partials/archive-header.blade.php:82
-#: resources/views/partials/archive-header.blade.php:94
-#: resources/views/partials/archive-header.blade.php:95
-#: resources/views/partials/archive-header.blade.php:117
-#: resources/views/partials/archive-header.blade.php:134
+#: resources/views/components/filter-panel.blade.php:57
+#: resources/views/components/filter-panel.blade.php:88
+#: resources/views/partials/archive-header.blade.php:106
+#: resources/views/partials/archive-header.blade.php:118
+#: resources/views/partials/archive-header.blade.php:119
+#: resources/views/partials/archive-header.blade.php:141
+#: resources/views/partials/archive-header.blade.php:158
 msgid "All"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:86
-#: resources/views/partials/archive-header.blade.php:150
-#: resources/views/partials/archive-header.blade.php:151
-#: resources/views/partials/content-single-property.blade.php:180
+#: resources/views/components/filter-panel.blade.php:104
+#: resources/views/partials/archive-header.blade.php:174
+#: resources/views/partials/archive-header.blade.php:175
+#: resources/views/partials/content-single-property.blade.php:185
 msgid "Total Area"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:108
-#: resources/views/partials/archive-header.blade.php:209
-#: resources/views/partials/archive-header.blade.php:210
+#: resources/views/components/filter-panel.blade.php:126
+#: resources/views/partials/archive-header.blade.php:196
+#: resources/views/partials/archive-header.blade.php:197
 msgid "Plot Area"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:130
-#: resources/views/partials/archive-header.blade.php:268
-#: resources/views/partials/archive-header.blade.php:269
+#: resources/views/components/filter-panel.blade.php:148
+#: resources/views/partials/archive-header.blade.php:218
+#: resources/views/partials/archive-header.blade.php:219
 msgid "Price"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:137
+#: resources/views/components/filter-panel.blade.php:155
 #: resources/views/components/price-range-slider.blade.php:2
 #: resources/views/components/price-range-slider.blade.php:4
 msgid "From"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:146
+#: resources/views/components/filter-panel.blade.php:164
 #: resources/views/components/price-range-slider.blade.php:5
 #: resources/views/components/price-range-slider.blade.php:7
 msgid "To"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:171
+#: resources/views/components/filter-panel.blade.php:189
+#: resources/views/components/review-filter-panel.blade.php:40
 msgid "Clear"
 msgstr ""
 
-#: resources/views/components/filter-panel.blade.php:175
+#: resources/views/components/filter-panel.blade.php:193
+#: resources/views/components/review-filter-panel.blade.php:44
 msgid "Apply"
 msgstr ""
 
@@ -1041,10 +1104,11 @@ msgstr ""
 msgid "Mobile navigation"
 msgstr ""
 
-#: resources/views/components/mobile-menu.blade.php:35
-#: resources/views/components/mobile-menu.blade.php:36
+#: resources/views/components/mobile-menu.blade.php:47
+#: resources/views/components/mobile-menu.blade.php:48
 #: resources/views/sections/header.blade.php:25
-#: resources/views/template-favorites.blade.php:35
+#: resources/views/template-favorites-share.blade.php:54
+#: resources/views/template-favorites.blade.php:66
 msgid "Favorites"
 msgstr ""
 
@@ -1060,14 +1124,39 @@ msgstr ""
 msgid "Pagination"
 msgstr ""
 
-#: resources/views/forms/property-search.blade.php:5
-#: resources/views/partials/archive-header.blade.php:47
-#: resources/views/partials/archive-header.blade.php:51
+#: resources/views/components/review-filter-panel.blade.php:24
+msgid "Date From"
+msgstr ""
+
+#: resources/views/components/review-filter-panel.blade.php:32
+msgid "Date To"
+msgstr ""
+
+#: resources/views/components/sort-panel.blade.php:8
+#: resources/views/components/sort-panel.blade.php:11
+#: resources/views/partials/archive-header.blade.php:263
+#: resources/views/template-favorites-share.blade.php:12
+#: resources/views/template-favorites.blade.php:23
+msgid "Sort by"
+msgstr ""
+
+#: resources/views/components/sort-panel.blade.php:12
+msgid "Close sorting"
+msgstr ""
+
+#: resources/views/forms/property-search.blade.php:13
+#: resources/views/forms/property-search.blade.php:32
+msgid "Select Category"
+msgstr ""
+
+#: resources/views/forms/property-search.blade.php:27
+#: resources/views/partials/archive-header.blade.php:59
+#: resources/views/partials/archive-header.blade.php:63
 msgid "Category"
 msgstr ""
 
-#: resources/views/forms/property-search.blade.php:9
-msgid "Select Category"
+#: resources/views/forms/property-search.blade.php:76
+msgid "Search properties"
 msgstr ""
 
 #: resources/views/forms/search.blade.php:4
@@ -1085,60 +1174,48 @@ msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: resources/views/index.blade.php:7
-#: resources/views/search.blade.php:7
-msgid "Sorry, no results were found."
+#: resources/views/index.blade.php:45
+msgid "Back to Home"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:8
+#: resources/views/partials/archive-header.blade.php:20
 msgid "All Properties"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:153
-#: resources/views/partials/archive-header.blade.php:161
+#: resources/views/partials/archive-header.blade.php:177
+#: resources/views/partials/archive-header.blade.php:182
 msgid "Total Area From"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:161
-#: resources/views/partials/archive-header.blade.php:186
-#: resources/views/partials/archive-header.blade.php:220
-#: resources/views/partials/archive-header.blade.php:245
-#: resources/views/partials/content-archive.blade.php:62
-#: resources/views/partials/content-single-property.blade.php:181
-msgid "m²"
-msgstr ""
-
-#: resources/views/partials/archive-header.blade.php:176
 #: resources/views/partials/archive-header.blade.php:185
+#: resources/views/partials/archive-header.blade.php:190
 msgid "Total Area To"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:212
-#: resources/views/partials/archive-header.blade.php:220
+#: resources/views/partials/archive-header.blade.php:199
+#: resources/views/partials/archive-header.blade.php:204
 msgid "Plot Area From"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:235
-#: resources/views/partials/archive-header.blade.php:244
+#: resources/views/partials/archive-header.blade.php:207
+#: resources/views/partials/archive-header.blade.php:212
 msgid "Plot Area To"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:275
-#: resources/views/partials/archive-header.blade.php:277
+#: resources/views/partials/archive-header.blade.php:225
+#: resources/views/partials/archive-header.blade.php:227
 msgid "Price From"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:280
-#: resources/views/partials/archive-header.blade.php:282
+#: resources/views/partials/archive-header.blade.php:230
+#: resources/views/partials/archive-header.blade.php:232
 msgid "Price To"
 msgstr ""
 
-#: resources/views/partials/archive-header.blade.php:325
+#: resources/views/partials/archive-header.blade.php:259
+#: resources/views/template-favorites-share.blade.php:8
+#: resources/views/template-favorites.blade.php:10
 msgid "Found <strong>%s properties</strong>"
-msgstr ""
-
-#: resources/views/partials/archive-header.blade.php:329
-msgid "Sort by"
 msgstr ""
 
 #. translators: %1$s is replaced with the number of comments and %2$s with the post title
@@ -1167,6 +1244,11 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
+#: resources/views/partials/content-archive.blade.php:62
+#: resources/views/partials/content-single-property.blade.php:188
+msgid "m²"
+msgstr ""
+
 #: resources/views/partials/content-page.blade.php:3
 #: resources/views/partials/content-single.blade.php:16
 msgid "Pages:"
@@ -1176,55 +1258,82 @@ msgstr ""
 msgid "Unknown Type"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:19
+#: resources/views/partials/content-single-property.blade.php:21
 msgid "Back to catalog"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:36
-#: resources/views/partials/content-single-property.blade.php:139
+#: resources/views/partials/content-single-property.blade.php:38
+#: resources/views/partials/content-single-property.blade.php:142
+#: resources/views/template-favorites.blade.php:18
 msgid "Share"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:69
+#: resources/views/partials/content-single-property.blade.php:72
 msgid "No image available"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:82
+#: resources/views/partials/content-single-property.blade.php:85
 msgid "PHOTO"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:107
-#: resources/views/partials/content-single-property.blade.php:191
+#: resources/views/partials/content-single-property.blade.php:110
+#: resources/views/partials/content-single-property.blade.php:211
 msgid "Property Description"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:121
+#: resources/views/partials/content-single-property.blade.php:124
 msgid "No Title"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:125
+#: resources/views/partials/content-single-property.blade.php:128
 msgid "ID"
 msgstr ""
 
-#: resources/views/partials/content-single-property.blade.php:125
+#: resources/views/partials/content-single-property.blade.php:128
 msgid "Unknown ID"
+msgstr ""
+
+#: resources/views/partials/content-single-property.blade.php:194
+#: resources/views/partials/content-single-property.blade.php:200
+msgid "Watch the video tour on Telegram"
+msgstr ""
+
+#: resources/views/partials/content-single-realtor.blade.php:62
+msgid "My social networks"
+msgstr ""
+
+#: resources/views/partials/content-single-realtor.blade.php:71
+msgid "My"
+msgstr ""
+
+#: resources/views/partials/content-single-realtor.blade.php:82
+msgid "Subscribe to Praktik Real Estate"
+msgstr ""
+
+#: resources/views/partials/content-single-realtor.blade.php:102
+#: resources/views/sections/footer.blade.php:44
+msgid "Apartment search chatbot"
 msgstr ""
 
 #: resources/views/partials/entry-meta.blade.php:7
 msgid "By"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:17
-#: resources/views/sections/footer.blade.php:44
+#: resources/views/search.blade.php:7
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:21
+#: resources/views/sections/footer.blade.php:49
 msgid "Privacy policy"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:18
-#: resources/views/sections/footer.blade.php:45
+#: resources/views/sections/footer.blade.php:22
+#: resources/views/sections/footer.blade.php:50
 msgid "Terms of use"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:36
+#: resources/views/sections/footer.blade.php:41
 msgid "Fresh picks for you:"
 msgstr ""
 
@@ -1232,14 +1341,14 @@ msgstr ""
 msgid "Open menu"
 msgstr ""
 
-#: resources/views/template-favorites.blade.php:14
-msgid "Compare selected objects"
+#: resources/views/template-favorites-share.blade.php:56
+msgid "No favorites found"
 msgstr ""
 
-#: resources/views/template-favorites.blade.php:37
+#: resources/views/template-favorites.blade.php:68
 msgid "Your savings items will be here."
 msgstr ""
 
-#: resources/views/template-favorites.blade.php:38
+#: resources/views/template-favorites.blade.php:69
 msgid "Select those that deserve the most, and equalize them at any time."
 msgstr ""

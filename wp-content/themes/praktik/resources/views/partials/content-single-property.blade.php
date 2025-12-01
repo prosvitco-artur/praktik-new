@@ -11,6 +11,7 @@
   $favorites = get_user_favorites();
   $is_favorite = in_array((string) $post_id, $favorites);
   $total_images = count($property_gallery);
+  $property_video_link = carbon_get_post_meta($post_id, 'property_video_link');
 @endphp
 
 <article @php(post_class('min-h-screen'))>
@@ -36,7 +37,8 @@
             aria-label="{{ __('Share', 'praktik') }}">
             <x-icon name="share" class="w-6 h-6" />
           </button>
-          <button class="p-[10px] bg-white flex items-center justify-center favorite-button {{ $is_favorite ? 'favorites-post' : '' }}"
+          <button
+            class="p-[10px] bg-white flex items-center justify-center favorite-button {{ $is_favorite ? 'favorites-post' : '' }}"
             data-post-id="{{ $post_id }}">
             <x-icon name="bookmark" class="w-6 h-6 " />
           </button>
@@ -111,11 +113,11 @@
       <div class="container p-4 md:p-0 bg-white md:bg-transparent flex flex-col md:flex-row gap-10 md:gap-0">
         <div class="property-details md:mb-0">
           {{-- Title and actions --}}
-          <div class="md:bg-white md:p-10 md:mb-6">
+          <div class="md:bg-white md:p-10 md:mb-6 flex flex-col md:gap-5 gap-10">
             <div class="md:flex md:items-start md:justify-between ">
-              <div class="flex-1 mb-5">
+              <div class="flex-1">
                 <h1 class="text-2xl mb-2">
-                {!! get_the_title() ?: __('No Title', 'praktik') !!}
+                  {!! get_the_title() ?: __('No Title', 'praktik') !!}
                 </h1>
                 <div class="text-xs text-neutral-600 mb-3">
                   {{ __('ID', 'praktik') }} {{ $post_id ?: __('Unknown ID', 'praktik') }}
@@ -139,7 +141,6 @@
                 </button>
               </div>
             </div>
-
             <div class="space-y-3">
               @if(!empty($property_meta['city']))
                 <div class="property-detail">
@@ -164,18 +165,33 @@
 
               @if(!empty($property_meta['rooms']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Number of Rooms', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">
+                    {{ __('Number of Rooms', 'praktik') }}
+                  </div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['rooms'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['area']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}
+                  </div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
                 </div>
               @endif
             </div>
+            @if(!empty($property_video_link))
+              <div class="bg-secondary-50 hover:bg-secondary-100 transition-colors duration-200 mt-10">
+                <a href="{{ $property_video_link }}" class="text-secondary-500 flex justify-center gap-2 mx-auto py-5" target="_blank" aria-label="{{ __('Watch the video tour on Telegram', 'praktik') }}" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5.625 3.22266V16.7773L6.58203 16.1523L16.1523 10L6.58203 3.84766L5.625 3.22266ZM6.875 5.50781L13.8477 10L6.875 14.4922V5.50781Z"
+                      fill="#3C589E" />
+                  </svg>
+                  {{ __('Watch the video tour on Telegram', 'praktik') }}
+                </a>
+              </div>
+            @endif
           </div>
 
           <x-agent-contact />
