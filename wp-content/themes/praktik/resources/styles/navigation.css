@@ -1,9 +1,13 @@
 @layer components {
-  .mobile-menu-overlay {
+  .mobile-menu-overlay,
+  .filter-panel-overlay,
+  .sort-panel-overlay {
     backdrop-filter: blur(2px);
   }
 
-  .mobile-menu-panel {
+  .mobile-menu-panel,
+  .filter-panel,
+  .sort-panel {
     box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
   }
 
@@ -106,7 +110,8 @@
   }
 
   .filter-panel-close,
-  .mobile-menu-close {
+  .mobile-menu-close,
+  .sort-panel-close {
     --icon-width: 1rem;
     --icon-height: 1rem;
   }
