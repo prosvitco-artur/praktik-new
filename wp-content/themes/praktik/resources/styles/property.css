@@ -194,12 +194,13 @@
   }
 
   .favorite-button {
-    @apply relative z-[100];
+    @apply relative;
     --icon-width: 24px;
     --icon-height: 24px;
     --icon-color: transparent;
     stroke: #3C589E;
     transition: stroke 0.3s, --icon-color 0.3s;
+    z-index: 45;
   }
 
   .favorite-button:hover,
