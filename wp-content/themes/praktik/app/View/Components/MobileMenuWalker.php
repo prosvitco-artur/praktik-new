@@ -6,13 +6,19 @@ use Walker_Nav_Menu;
 
 class MobileMenuWalker extends Walker_Nav_Menu
 {
+    private $current_item = null;
+
     /**
      * Start the element output.
      */
     public function start_lvl(&$output, $depth = 0, $args = null)
     {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"mobile-submenu hidden pl-4\">\n";
+        $is_opened = $this->current_item && in_array('opened', (array) $this->current_item->classes);
+        $hidden_class = $is_opened ? '' : ' hidden';
+        $output .= "\n$indent<ul class=\"mobile-submenu{$hidden_class} pl-4\">\n";
+        // Clear current_item after use
+        $this->current_item = null;
     }
 
     /**
@@ -55,14 +61,22 @@ class MobileMenuWalker extends Walker_Nav_Menu
         $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
 
         if ($has_children) {
+            // Check if item has "opened" class
+            $is_opened = in_array('opened', $classes);
+            $aria_expanded = $is_opened ? 'true' : 'false';
+            $rotate_class = $is_opened ? ' rotate-180' : '';
+            
+            // Store current item for start_lvl
+            $this->current_item = $item;
+            
             // Parent item with submenu
             $output .= '<button type="button" class="mobile-menu-link mobile-submenu-toggle flex items-center justify-between w-full px-3 py-2 mb-2';
             if ($depth === 0) {
                 $output .= ' font-medium';
             }
-            $output .= '" data-submenu-toggle>';
+            $output .= '" data-submenu-toggle aria-expanded="' . $aria_expanded . '">';
             $output .= '<span>' . $title . '</span>';
-            $output .= '<svg class="w-20px h-20px transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
+            $output .= '<svg class="w-20px h-20px transition-transform' . $rotate_class . '" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
             $output .= '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>';
             $output .= '</svg>';
             $output .= '</button>';

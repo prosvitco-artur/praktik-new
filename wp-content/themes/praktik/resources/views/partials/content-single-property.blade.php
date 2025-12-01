@@ -108,8 +108,8 @@
         </div>
         @endif
       </div>
-      <div class="container p-4 md:p-0 bg-white md:bg-transparent">
-        <div class="property-details mb-10 md:mb-0">
+      <div class="container p-4 md:p-0 bg-white md:bg-transparent flex flex-col md:flex-row gap-10 md:gap-0">
+        <div class="property-details md:mb-0">
           {{-- Title and actions --}}
           <div class="md:bg-white md:p-10 md:mb-6">
             <div class="md:flex md:items-start md:justify-between ">
