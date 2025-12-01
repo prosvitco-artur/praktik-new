@@ -10,6 +10,7 @@ import Share from './modules/share.js';
 import PriceRangeSlider from './modules/price-range-slider.js';
 import ReviewGallery from './modules/review-gallery.js';
 import FavoritesShare from './modules/favorites-share.js';
+import ReviewFilters from './modules/review-filters.js';
 
 domReady(async () => {
   new MobileMenu();
@@ -23,6 +24,7 @@ domReady(async () => {
   new PriceRangeSlider();
   new ReviewGallery();
   new FavoritesShare();
+  new ReviewFilters();
 });
 
 /**
