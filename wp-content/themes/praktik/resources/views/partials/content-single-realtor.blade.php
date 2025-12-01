@@ -40,8 +40,8 @@
   $chatbot_url = carbon_get_theme_option('chatbot_url') ?: null;
 @endphp
 
-<article @php(post_class('min-h-screen'))>
-  <div class="bg-secondary-500 flex-1 flex justify-center items-center py-10">
+<article @php(post_class('min-h-screen flex'))>
+  <div class="bg-secondary-500 flex-1 flex justify-center items-center">
 
     <div class="realtor-content">
       <div class="realtor-data">

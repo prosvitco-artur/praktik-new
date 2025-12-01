@@ -1,5 +1,5 @@
 @layer components {
-  .main {
+  body:not(.realtor-template-default) .main {
     @apply flex-1 bg-neutral-100 pt-[60px];
   }
 

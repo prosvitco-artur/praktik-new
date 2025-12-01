@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Praktik Real Estate 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/praktik\n"
 "POT-Creation-Date: 2025-11-23T14:00:10+00:00\n"
-"PO-Revision-Date: 2025-12-01 00:06+0000\n"
+"PO-Revision-Date: 2025-12-01 16:59+0000\n"
 "Last-Translator: Артур\n"
 "Language-Team: Українська\n"
 "Language: uk\n"
@@ -1061,7 +1061,7 @@ msgstr "Виберіть меблі"
 #: resources/views/template-favorites.blade.php:38
 msgid "Select those that deserve the most, and equalize them at any time."
 msgstr ""
-"Виберіть ті, що заслуговують найбільше, та порівняйте їх у будь-який час."
+"Обирайте ті, що сподобалися найбільше, і порівнюйте їх у будь-який час."
 
 #: app/fields/property-fields.php:92
 msgid "Settlement"
@@ -1277,7 +1277,7 @@ msgstr "Рік побудови"
 
 #: resources/views/template-favorites.blade.php:37
 msgid "Your savings items will be here."
-msgstr "Ваші збережені елементи будуть тут."
+msgstr "Тут будуть ваші збережені об’єкти."
 
 #: app/theme-options.php:15
 msgid "YouTube"

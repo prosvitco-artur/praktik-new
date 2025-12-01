@@ -93,6 +93,7 @@ class PropertyGallery {
       Image: {
         zoom: !isMobile,
         wheel: 'slide',
+        fit: 'none',
       },
       Carousel: {
         infinite: false,

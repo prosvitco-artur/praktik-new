@@ -22,6 +22,7 @@ class ReviewGallery {
       Image: {
         zoom: !isMobile,
         wheel: 'slide',
+        fit: 'none',
       },
       closeButton: isMobile ? false : 'top',
       wheel: 'slide',

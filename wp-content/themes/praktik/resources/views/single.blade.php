@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@php
+  $layout = (is_singular('realtor')) ? 'layouts.app-no-header-footer' : 'layouts.app';
+@endphp
+
+@extends($layout)
 
 @section('content')
   @while(have_posts()) @php(the_post())
