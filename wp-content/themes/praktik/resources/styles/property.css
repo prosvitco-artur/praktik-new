@@ -203,10 +203,17 @@
     z-index: 45;
   }
 
-  .favorite-button:hover,
   .favorite-button.favorites-post {
     --icon-color: #3C589E;
     stroke: #3C589E;
+  }
+  
+  @media (min-width: 768px) {
+    
+  .favorite-button:hover{
+      --icon-color: #3C589E;
+      stroke: #3C589E;
+    }
   }
 
   @keyframes fadeInOut {

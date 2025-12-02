@@ -82,11 +82,12 @@ class Favorites {
   updateButtonState(button, postId) {
     const isFavorite = this.favorites.includes(postId.toString());
     
+    button.classList.remove('favorites-post');
+    
     if (isFavorite) {
       button.classList.add('favorites-post');
       button.setAttribute('aria-pressed', 'true');
     } else {
-      button.classList.remove('favorites-post');
       button.setAttribute('aria-pressed', 'false');
     }
   }
@@ -122,6 +123,7 @@ class Favorites {
         this.favorites = data.data.favorites || [];
         
         const allButtons = document.querySelectorAll(`button[data-post-id="${postId}"], [data-favorite-toggle="${postId}"]`);
+        console.log(allButtons);
         allButtons.forEach(btn => {
           this.updateButtonState(btn, postId);
         });
