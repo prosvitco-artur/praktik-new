@@ -131,7 +131,6 @@
             name="plot_area" 
             :nameFrom="'plot_area_from'" 
             :nameTo="'plot_area_to'" 
-            :text="__('m²', 'praktik')" 
           />
         </div>
       </div>

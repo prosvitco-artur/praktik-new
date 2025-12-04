@@ -257,27 +257,16 @@ function get_sort_label($sort_key) {
 }
 
 function get_user_favorites() {
-    if (is_user_logged_in()) {
-        $favorites = get_user_meta(get_current_user_id(), 'praktik_favorites', true);
-        if (!is_array($favorites)) {
-            return [];
-        }
-        return array_map('strval', $favorites);
+    $is_share_page = get_query_var('favorites_share');
+    
+    $allow_cookie = !empty($is_share_page);
+    
+    $session_id = null;
+    if ($allow_cookie) {
+        $session_id = isset($_COOKIE['praktik_session_id']) ? sanitize_text_field($_COOKIE['praktik_session_id']) : '';
     }
     
-    $session_id = isset($_COOKIE['praktik_session_id']) ? sanitize_text_field($_COOKIE['praktik_session_id']) : '';
-    if (empty($session_id)) {
-        return [];
-    }
-    
-    $key = 'guest_favorites_' . md5($session_id);
-    $favorites = get_transient($key);
-    
-    if (!is_array($favorites)) {
-        return [];
-    }
-    
-    return array_map('strval', $favorites);
+    return \App\get_stored_favorites($session_id, $allow_cookie);
 }
 
 function get_user_favorites_count() {
@@ -285,17 +274,9 @@ function get_user_favorites_count() {
     return count($favorites);
 }
 
-/**
- * Отримати мінімальне та максимальне значення площі з meta полів
- *
- * @param string|array|null $post_type Конкретний тип посту або масив типів. Якщо null, використовує всі типи постів нерухомості.
- * @return array ['min' => int, 'max' => int]
- */
 function get_property_area_range($post_type = null) {
     global $wpdb;
-    
-    // @TODO: remove this after testing
-    if (!function_exists('get_property_post_types') || true) {
+    if (!function_exists('get_property_post_types')) {
         return ['min' => 0, 'max' => 1000];
     }
     
@@ -471,8 +452,7 @@ function get_property_plot_area_range() {
     
     $results = $wpdb->get_col($query);
     
-    // @TODO: remove this after testing
-    if ($wpdb->last_error || true) {
+    if ($wpdb->last_error) {
         return ['min' => 0, 'max' => 1000];
     }
     
