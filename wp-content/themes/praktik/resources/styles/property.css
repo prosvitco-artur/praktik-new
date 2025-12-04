@@ -6,7 +6,7 @@
   }
 
   .property-card #addToFavorites {
-    
+
     --icon-width: 28px;
     --icon-height: 28px;
   }
@@ -27,9 +27,8 @@
     stroke: #0D131D;
   }
 
-  .bookmark-button:hover{
-    color: #ECB648;
-    stroke: #ECB648;
+  .bookmark-button:hover {
+    --icon-color: #0D131D;
   }
 
 
@@ -37,8 +36,8 @@
     @apply mb-1 flex gap-2 md:gap-4 items-start;
     line-height: 22px;
   }
-  
-  .property-detail > div:first-child {
+
+  .property-detail>div:first-child {
     white-space: nowrap;
   }
 
@@ -84,6 +83,7 @@
 
   /* Desktop styles */
   @media (min-width: 768px) {
+
     /* Show pagination on desktop */
     .property-gallery-main .swiper-pagination {
       display: block;
@@ -149,88 +149,112 @@
 
 }
 
-  .property-photo-counter {
-    font-weight: 900;
-  }
+.property-photo-counter {
+  font-weight: 900;
+}
 
-  /* Share button styles */
-  .property-share-button {
-    transition: opacity 0.2s;
-  }
+.review-title {
+  font-size: 14px;
+  line-height: 18px;
+}
 
-  .property-share-button:hover {
-    opacity: 0.7;
-  }
+.review-content p,
+.review-date {
+  font-size: 12px;
+  line-height: 16px;
+}
 
-  .property-share-button:active {
-    opacity: 0.5;
-  }
+.review-content p {
+  @apply md:mb-4;
+}
 
+@media (min-width: 768px) {
   .review-title {
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .review-content p,
-  .review-date {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 21px;
   }
 
   .review-content p {
-    @apply md:mb-4;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.property-share-button,
+.favorite-button {
+  @apply relative;
+  --icon-width: 24px;
+  --icon-height: 24px;
+  --icon-color: transparent;
+  stroke: #3C589E;
+  transition: stroke 0.3s, --icon-color 0.3s;
+  z-index: 45;
+}
+
+
+.property-share-button {
+  --icon-width: 30px;
+  --icon-height: 30px;
+}
+
+.favorite-button.favorites-post {
+  --icon-color: #3C589E;
+  stroke: #3C589E;
+}
+
+@media (min-width: 768px) {
+  .property-share-button:hover,
+  .favorite-button:not(.favorites-post):hover {
+    --icon-color: #DBE7FA;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
   }
 
-  @media (min-width: 768px) {
-    .review-title {
-      font-size: 16px;
-      line-height: 21px;
-    }
-
-    .review-content p {
-      font-size: 14px;
-      line-height: 18px;
-    }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
-  .favorite-button {
-    @apply relative;
-    --icon-width: 24px;
-    --icon-height: 24px;
-    --icon-color: transparent;
-    stroke: #3C589E;
-    transition: stroke 0.3s, --icon-color 0.3s;
-    z-index: 45;
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
-  .favorite-button.favorites-post {
-    --icon-color: #3C589E;
-    stroke: #3C589E;
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
   }
-  
-  @media (min-width: 768px) {
-    
-  .favorite-button:hover{
-      --icon-color: #3C589E;
-      stroke: #3C589E;
-    }
+}
+
+@keyframes borderPulse {
+  0% {
+    box-shadow: 0 0 0 0 #DBE7FA;
   }
 
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%) translateY(10px);
-    }
-    10% {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-    90% {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-50%) translateY(10px);
-    }
+  50% {
+    box-shadow: 0 0 0 10px #DBE7FA;
   }
+
+  58% {
+    box-shadow: 0 0 0 0 #DBE7FA;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 #DBE7FA;
+  }
+}
+
+.video-button-pulse {
+  width: calc(100% - 20px);
+  animation: borderPulse 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+.video-button-pulse:hover {
+  animation-play-state: paused;
+}

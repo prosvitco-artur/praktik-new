@@ -25,7 +25,7 @@
   </div>
   <div class="flex items-center gap-4 mb-8 px-5 md:px-0">
     <form method="GET" class="md:flex gap-[8px] w-full" action="{{ get_post_type_archive_link(get_post_type()) }}">
-      <div class="w-full relative">
+      <div class="w-full relative filter-input">
         <label for="review-search-input" class="sr-only">{{ __('Search', 'praktik') }}</label>
         <input type="search" id="review-search-input" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
           name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">

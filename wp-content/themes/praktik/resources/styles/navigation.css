@@ -35,7 +35,7 @@
   }
 
   .nav-primary .nav a {
-    @apply text-p1 text-neutral-900 hover:font-bold transition-colors no-underline;
+    @apply text-p1 text-neutral-900 hover:font-medium transition-colors no-underline;
   }
 
   .nav-primary .nav .current-menu-item > a,

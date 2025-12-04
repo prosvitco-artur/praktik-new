@@ -31,9 +31,9 @@
             <x-icon name="arrow-right" class="w-5 h-5 rotate-180" />{{ $prev_label }}
           </a>
         @else
-          <div class="btn cursor-not-allowed">
+          <div class="btn cursor-not-allowed text-neutral-400">
             <x-icon name="arrow-right" class="w-5 h-5 rotate-180" />
-            <span class="hidden md:block">{{ $prev_label }}</span>
+            <span class="hidden md:block font-bold">{{ $prev_label }}</span>
           </div>
         @endif
       </li>
@@ -57,8 +57,8 @@
             <x-icon name="arrow-right" class="w-5 h-5" />
           </a>
         @else
-          <div class="btn cursor-not-allowed">
-            <span class="hidden md:block">{{ $next_label }}</span>
+          <div class="btn cursor-not-allowed text-neutral-400">
+            <span class="hidden md:block font-bold">{{ $next_label }}</span>
             <x-icon name="arrow-right" class="w-5 h-5" />
           </div>
         @endif

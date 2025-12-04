@@ -130,14 +130,14 @@
               </div>
 
               <div class="md:gap-2 md:ml-4 hidden md:flex">
-                <button class="w-8 h-8 flex items-center justify-center property-share-button text-secondary-500"
+                <button class="flex items-center justify-center property-share-button text-secondary-500"
                   data-share-url="{{ get_permalink() }}" data-share-title="{{ get_the_title() }}"
                   aria-label="{{ __('Share', 'praktik') }}">
-                  <x-icon name="share" class="w-6 h-6" />
+                  <x-icon name="share" />
                 </button>
                 <button class="favorite-button {{ $is_favorite ? 'favorites-post' : '' }}"
                   data-post-id="{{ $post_id }}">
-                  <x-icon name="bookmark" class="w-6 h-6 " />
+                  <x-icon name="bookmark" />
                 </button>
               </div>
             </div>
@@ -181,7 +181,7 @@
               @endif
             </div>
             @if(!empty($property_video_link))
-              <div class="bg-secondary-50 hover:bg-secondary-100 transition-colors duration-200 mt-10">
+              <div class="bg-secondary-50 hover:bg-secondary-100 transition-colors duration-200 mt-10 mx-auto video-button-pulse">
                 <a href="{{ $property_video_link }}" class="text-secondary-500 flex justify-center gap-2 mx-auto py-5" target="_blank" aria-label="{{ __('Watch the video tour on Telegram', 'praktik') }}" rel="noopener noreferrer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path

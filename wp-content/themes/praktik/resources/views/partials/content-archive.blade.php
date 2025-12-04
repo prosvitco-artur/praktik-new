@@ -33,7 +33,7 @@ $is_favorite = in_array((string)$post_id, $favorites);
     </div>
 
     <div class="w-full md:flex-1 p-4 md:p-5 flex flex-col justify-between">
-      <div class="flex-1">
+      <div class="flex-1 flex flex-col">
         <div class="flex justify-between items-start mb-2">
           <h2 class="entry-title text-base md:text-xl flex-1 pr-4 line-clamp-2">
             <a href="{{ $post_permalink }}"
@@ -54,7 +54,7 @@ $is_favorite = in_array((string)$post_id, $favorites);
           <span class="text-p1 text-neutral-700 truncate">{{ $property_address }}</span>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between md:mt-auto md:mb-0">
           <div class="flex items-center gap-2 text-neutral-400">
             <x-icon name="qube-2" />
             <span class="text-p2">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</span>

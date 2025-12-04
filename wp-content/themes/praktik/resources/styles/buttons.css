@@ -73,12 +73,23 @@
   }
 
   .pagination .page-numbers {
-    @apply btn px-[10px];
+    @apply btn px-[10px] font-bold;
     height: 40px;
     width: 40px;
   }
   .pagination .page-numbers.current {
-    @apply font-bold;
+    @apply bg-secondary-500 text-white;
+  }
+
+  .pagination .page-numbers:not(.current):hover {
+    @apply bg-secondary-50;
+    border: 1px solid #3C589E;
+  }
+
+  /* add click effect */
+  .pagination .page-numbers:active {
+    @apply bg-secondary-100;
+    boreder: none;
   }
 }
 

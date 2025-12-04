@@ -35,7 +35,7 @@
                             ($is_house && (!empty($_GET['plot_area_from']) || !empty($_GET['plot_area_to'])));
     @endphp
     <form role="search" method="get" class="lg:flex gap-[8px]" action="{{ $archive_link }}">
-      <div class="w-full relative">
+      <div class="w-full relative filter-input">
         <label for="property-search-input" class="sr-only">{{ __('Search', 'praktik') }}</label>
         <input type="search" id="property-search-input" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
           name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none" aria-label="{{ __('Search', 'praktik') }}">
@@ -165,15 +165,15 @@
         <div class="hidden md:block">
           <div class="mb-2 text-sm text-neutral-600">{{ __('Total Area', 'praktik') }}</div>
           <div class="flex gap-2" role="group" aria-label="{{ __('Total Area', 'praktik') }}">
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="area-from-input" class="sr-only">{{ __('Total Area From', 'praktik') }}</label>
               @php
                 $area_from = isset($_GET['area_from']) ? intval($_GET['area_from']) : '';
               @endphp
               <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
-              <input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" />
+              <input type="number" id="area-from-input" name="area_from" value="{{ $area_from }}" class=" w-[70px] border-0 focus:outline-none" aria-label="{{ __('Total Area From', 'praktik') }}" />
             </div>
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="area-to-input" class="sr-only">{{ __('Total Area To', 'praktik') }}</label>
               @php
                 $area_to = isset($_GET['area_to']) ? intval($_GET['area_to']) : '';
@@ -187,7 +187,7 @@
         <div class="hidden md:block">
           <div class="mb-2 text-sm text-neutral-600">{{ __('Plot Area', 'praktik') }}</div>
           <div class="flex gap-2" role="group" aria-label="{{ __('Plot Area', 'praktik') }}">
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="plot-area-from-input" class="sr-only">{{ __('Plot Area From', 'praktik') }}</label>
               @php
                 $plot_area_from = isset($_GET['plot_area_from']) ? intval($_GET['plot_area_from']) : '';
@@ -195,7 +195,7 @@
               <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
               <input type="number" id="plot-area-from-input" name="plot_area_from" value="{{ $plot_area_from }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Plot Area From', 'praktik') }}" />
             </div>
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="plot-area-to-input" class="sr-only">{{ __('Plot Area To', 'praktik') }}</label>
               @php
                 $plot_area_to = isset($_GET['plot_area_to']) ? intval($_GET['plot_area_to']) : '';
@@ -213,12 +213,12 @@
               $price_from = isset($_GET['price_from']) ? intval($_GET['price_from']) : '';
               $price_to = isset($_GET['price_to']) ? intval($_GET['price_to']) : '';
             @endphp
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="price-from-input" class="sr-only">{{ __('Price From', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('From: ', 'praktik') }}</span>
               <input type="number" id="price-from-input" name="price_from" value="{{ $price_from }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Price From', 'praktik') }}" />
             </div>
-            <div class="bg-white px-4 py-3">
+            <div class="bg-white px-4 py-3 filter-input">
               <label for="price-to-input" class="sr-only">{{ __('Price To', 'praktik') }}</label>
               <span class="text-neutral-500">{{ __('To: ', 'praktik') }}</span>
               <input type="number" id="price-to-input" name="price_to" value="{{ $price_to }}" class="w-[70px] border-0 focus:outline-none" aria-label="{{ __('Price To', 'praktik') }}" />

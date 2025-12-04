@@ -46,7 +46,7 @@ export default async (app) => {
      * URI of the `public` directory
      * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
      */
-    .setPublicPath('/app/themes/praktik/public/')
+    .setPublicPath('/wp-content/themes/praktik/public/')
 
     /**
      * Generate WordPress `theme.json`

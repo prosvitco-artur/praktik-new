@@ -15,7 +15,7 @@ class DesktopMenuWalker extends Walker_Nav_Menu
         
         if ($depth === 0) {
             // First level submenu - dropdown
-            $output .= "\n$indent<ul class=\"dropdown-menu absolute top-full left-0 bg-white shadow-lg min-w-200px opacity-0 invisible transition-all duration-200 transform translate-y-2 z-50\">\n";
+            $output .= "\n$indent<ul class=\"dropdown-menu absolute top-full left-0 bg-white shadow-lg min-w-[115px] opacity-0 invisible transition-all duration-200 transform translate-y-2 z-50\">\n";
         } else {
             // Deeper levels
             $output .= "\n$indent<ul class=\"dropdown-submenu\">\n";

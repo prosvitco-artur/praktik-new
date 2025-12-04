@@ -7,6 +7,11 @@
     transition: transform 0.3s ease-in-out;
   }
 
+  .filter-input:hover,
+  .filter-dropdown:hover {  
+    outline: 1px solid #6986C4;
+  }
+
   /**
    * Universal dropdown styles
    * 
