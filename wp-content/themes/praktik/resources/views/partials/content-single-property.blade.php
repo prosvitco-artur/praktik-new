@@ -50,18 +50,18 @@
               @foreach($property_gallery as $index => $image)
                 <div class="swiper-slide">
                   <a href="{{ $image['url'] }}" data-fancybox="property-gallery"
-                    data-caption="{{ ($index + 1) . '/' . $total_images }}" class="block w-full h-full">
+                    data-caption="{{ ($index + 1) . '/' . $total_images }}" class="property-gallery-link block w-full h-full pointer-events-none">
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
-                      class="w-full h-full object-cover cursor-pointer">
+                      class="w-full h-full object-cover">
                   </a>
                 </div>
               @endforeach
             @elseif(has_post_thumbnail())
               <div class="swiper-slide">
                 <a href="{{ get_the_post_thumbnail_url($post_id, 'full') }}" data-fancybox="property-gallery"
-                  data-caption="1/1" class="block w-full h-full">
+                  data-caption="1/1" class="property-gallery-link block w-full h-full pointer-events-none">
                   <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
-                    class="w-full h-full object-cover cursor-pointer">
+                    class="w-full h-full object-cover">
                 </a>
               </div>
             @else
@@ -82,6 +82,14 @@
             {{ __('PHOTO', 'praktik') }} <span
               class="property-photo-counter">1/{{ $gallery_count ?: ($property_meta['photos_count'] ?? 1) }}</span>
           </div>
+
+          {{-- Gallery open button --}}
+          @if(!empty($property_gallery) || has_post_thumbnail())
+            <button type="button" class="property-gallery-open-btn absolute bottom-2 right-2 bg-white p-2 z-20" 
+              aria-label="{{ __('Open image gallery', 'praktik') }}">
+              <x-icon name="expand-solid" />
+            </button>
+          @endif
 
           {{-- Pagination --}}
           <div class="swiper-pagination"></div>

@@ -1,5 +1,7 @@
 :root {
   --box-shadow-first: 0px 3px 6px 0px #3339690F;
+  --swiper-navigation-sides-offset: 8px;
+
 }
 
 @layer base {
@@ -100,3 +102,21 @@
   }
 }
 
+.favorites-share-button {
+  --icon-width: 28px;
+  --icon-height: 28px;
+  --icon-color: transparent;
+  stroke: #3C589E;
+  transition: stroke 0.3s, --icon-color 0.3s;
+}
+
+@media (min-width: 768px) {
+  .favorites-share-button:hover {
+    outline: 1px solid #3C589E;
+    --icon-color: #EDF3FD;
+  }
+}
+
+.swiper-slide-thumb-active {
+  border: 2px solid #ECB648;
+}

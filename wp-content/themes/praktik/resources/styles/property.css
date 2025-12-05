@@ -70,15 +70,24 @@
     display: none !important;
   }
 
-  /* Enable Fancybox on mobile */
+  /* Disable click on image links */
   .property-gallery-main a[data-fancybox] {
     display: block;
-    cursor: pointer;
-    pointer-events: auto;
+    pointer-events: none;
   }
 
   .property-gallery-main a[data-fancybox] img {
     pointer-events: none;
+  }
+  
+  .property-gallery-open-btn {
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 
   /* Desktop styles */
@@ -101,6 +110,22 @@
       width: 40px;
       height: 80px;
       padding: 31px 16px;
+      transition: padding 0.3s ease;
+    }
+
+    .property-gallery-main .swiper-button-next::after,
+    .property-gallery-main .swiper-button-prev::after {
+      transition: transform 0.3s ease;
+    }
+
+    .property-gallery-main .swiper-button-next:hover,
+    .property-gallery-main .swiper-button-prev:hover {
+      padding: 26px 11px;
+    }
+
+    .property-gallery-main .swiper-button-next:hover::after,
+    .property-gallery-main .swiper-button-prev:hover::after {
+      transform: scale(1.3);
     }
 
     /* Show thumbnail gallery on desktop */
@@ -108,21 +133,34 @@
       display: block !important;
     }
 
-    /* Enable Fancybox on desktop */
+    /* Disable click on image links on desktop */
     .property-gallery-main a[data-fancybox] {
       display: block;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      position: relative;
-      pointer-events: auto;
-    }
-
-    .property-gallery-main a[data-fancybox]:hover {
-      opacity: 0.9;
+      pointer-events: none;
     }
 
     .property-gallery-main a[data-fancybox] img {
       pointer-events: none;
+    }
+    
+    .property-gallery-open-btn {
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      transition: 
+        --icon-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        --icon-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .property-gallery-open-btn:hover {
+      --icon-width: 32px;
+      --icon-height: 32px;
+      padding: 2px;
     }
   }
 

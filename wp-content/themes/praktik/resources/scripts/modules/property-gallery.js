@@ -71,6 +71,29 @@ class PropertyGallery {
 
     // Initialize Fancybox for all devices
     this.initFancybox();
+    
+    // Handle gallery open buttons
+    this.initGalleryButtons(mainInstance);
+  }
+
+  initGalleryButtons(swiperInstance) {
+    const galleryContainer = document.querySelector('.property-gallery');
+    if (!galleryContainer) return;
+
+    const openButton = galleryContainer.querySelector('.property-gallery-open-btn');
+    if (!openButton) return;
+    
+    openButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const currentIndex = swiperInstance ? swiperInstance.activeIndex : 0;
+      const links = galleryContainer.querySelectorAll('[data-fancybox="property-gallery"]');
+      
+      if (links[currentIndex]) {
+        links[currentIndex].click();
+      }
+    });
   }
 
   initFancybox() {
