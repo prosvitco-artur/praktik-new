@@ -16,7 +16,7 @@ function get_favorites_storage_key($session_id = null, $allow_cookie = false) {
         $session_id = isset($_POST['session_id']) ? sanitize_text_field($_POST['session_id']) : '';
     }
     if ($allow_cookie && empty($session_id)) {
-        $session_id = isset($_COOKIE['praktik_session_id']) ? sanitize_text_field($_COOKIE['praktik_session_id']) : '';
+        $session_id = isset($_COOKIE['praktik_favorites_session_id']) ? sanitize_text_field($_COOKIE['praktik_favorites_session_id']) : '';
     }
     
     if (empty($session_id)) {
@@ -127,8 +127,8 @@ function handle_toggle_favorite() {
         ]);
     }
     
-    if (!is_user_logged_in() && !empty($session_id) && !isset($_COOKIE['praktik_session_id'])) {
-        setcookie('praktik_session_id', $session_id, time() + (365 * 24 * 60 * 60), '/', '', is_ssl(), true);
+    if (!is_user_logged_in() && !empty($session_id) && !isset($_COOKIE['praktik_favorites_session_id'])) {
+        setcookie('praktik_favorites_session_id', $session_id, time() + (365 * 24 * 60 * 60), '/', '', is_ssl(), true);
     }
     
     $favorites = get_stored_favorites($session_id, true);
@@ -185,8 +185,8 @@ function handle_generate_favorites_share() {
     
     $session_id = isset($_POST['session_id']) ? sanitize_text_field($_POST['session_id']) : null;
     $allow_cookie = true;
-    if (!is_user_logged_in() && !empty($session_id) && !isset($_COOKIE['praktik_session_id'])) {
-        setcookie('praktik_session_id', $session_id, time() + (365 * 24 * 60 * 60), '/', '', is_ssl(), true);
+    if (!is_user_logged_in() && !empty($session_id) && !isset($_COOKIE['praktik_favorites_session_id'])) {
+        setcookie('praktik_favorites_session_id', $session_id, time() + (365 * 24 * 60 * 60), '/', '', is_ssl(), true);
     }
     
     $favorites = get_stored_favorites($session_id, $allow_cookie);

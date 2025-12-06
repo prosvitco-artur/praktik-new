@@ -264,7 +264,7 @@ function get_user_favorites() {
     
     $session_id = null;
     if ($allow_cookie) {
-        $session_id = isset($_COOKIE['praktik_session_id']) ? sanitize_text_field($_COOKIE['praktik_session_id']) : '';
+        $session_id = isset($_COOKIE['praktik_favorites_session_id']) ? sanitize_text_field($_COOKIE['praktik_favorites_session_id']) : '';
     }
     
     return \App\get_stored_favorites($session_id, $allow_cookie);

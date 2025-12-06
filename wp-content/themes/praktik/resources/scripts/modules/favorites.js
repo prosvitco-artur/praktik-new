@@ -9,10 +9,10 @@ class Favorites {
   }
 
   getSessionId() {
-    let sessionId = localStorage.getItem('praktik_session_id');
+    let sessionId = localStorage.getItem('praktik_favorites_session_id');
     if (!sessionId) {
       sessionId = this.generateUUID();
-      localStorage.setItem('praktik_session_id', sessionId);
+      localStorage.setItem('praktik_favorites_session_id', sessionId);
     }
     return sessionId;
   }

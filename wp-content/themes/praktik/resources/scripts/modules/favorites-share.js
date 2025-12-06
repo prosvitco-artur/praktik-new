@@ -98,7 +98,7 @@ class FavoritesShare {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
       const [name, value] = cookie.trim().split('=');
-      if (name === 'praktik_session_id') {
+      if (name === 'praktik_favorites_session_id') {
         return value;
       }
     }
