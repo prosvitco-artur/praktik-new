@@ -11,6 +11,7 @@ import PriceRangeSlider from './modules/price-range-slider.js';
 import ReviewGallery from './modules/review-gallery.js';
 import FavoritesShare from './modules/favorites-share.js';
 import ReviewFilters from './modules/review-filters.js';
+import BackToCatalog from './modules/back-to-catalog.js';
 
 domReady(async () => {
   new MobileMenu();
@@ -25,6 +26,7 @@ domReady(async () => {
   new ReviewGallery();
   new FavoritesShare();
   new ReviewFilters();
+  new BackToCatalog();
 });
 
 /**

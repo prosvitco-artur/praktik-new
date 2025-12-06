@@ -16,10 +16,10 @@
 
 <article @php(post_class('min-h-screen'))>
   <div class="hidden md:block container mx-auto py-4">
-    <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center gap-2" style="font-weight: 600;">
+    <button type="button" class="back-to-catalog-btn text-secondary-500 flex items-center gap-2 border-0 bg-transparent p-0 cursor-pointer" style="font-weight: 600;">
       <x-icon name="chevron-left" class="w-4 h-4" />
       {{ __('Back to catalog', 'praktik') }}
-    </a>
+    </button>
   </div>
 
 
@@ -27,9 +27,9 @@
     <div class="property-single">
       <div class="property-gallery relative">
         <div class="absolute top-3 left-3 z-40 md:hidden">
-          <a href="{{ $archive_url }}" class="text-secondary-500 flex items-center p-[10px] bg-white">
+          <button type="button" class="back-to-catalog-btn text-secondary-500 flex items-center p-[10px] bg-white border-0 cursor-pointer">
             <x-icon name="chevron-left" class="w-6 h-6" />
-          </a>
+          </button>
         </div>
         <div class="flex gap-2 ml-4 absolute top-3 right-3 z-40 md:hidden">
           <button class="p-[10px] bg-white flex items-center justify-center property-share-button text-secondary-500"
