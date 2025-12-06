@@ -142,6 +142,7 @@ function get_property_meta($post_id = null) {
         'street' => carbon_get_post_meta($post_id, 'property_street'),
         'rooms' => carbon_get_post_meta($post_id, 'property_rooms'),
         'area' => carbon_get_post_meta($post_id, 'property_area'),
+        'plot_area' => carbon_get_post_meta($post_id, 'property_plot_area'),
         'photos_count' => carbon_get_post_meta($post_id, 'property_photos_count') ?: 1,
         'floor' => carbon_get_post_meta($post_id, 'property_floor'),
         'total_floors' => carbon_get_post_meta($post_id, 'property_total_floors'),
@@ -344,7 +345,7 @@ function get_property_area_range($post_type = null) {
 
     
     return [
-        'min' => (int)$min,
+        'min' => 0,
         'max' => (int)$max
     ];
 }
@@ -425,7 +426,7 @@ function get_property_price_range($post_type = null) {
     }
     
     return [
-        'min' => (int)$min,
+        'min' => 0,
         'max' => (int)$max
     ];
 }
@@ -484,7 +485,7 @@ function get_property_plot_area_range() {
     }
     
     return [
-        'min' => (int)$min,
+        'min' => 0,
         'max' => (int)$max
     ];
 }

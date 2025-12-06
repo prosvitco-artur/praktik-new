@@ -187,6 +187,14 @@
                   <div class="text-neutral-950 flex-1">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
                 </div>
               @endif
+
+              @if($current_type === 'house' && !empty($property_meta['plot_area']))
+                <div class="property-detail">
+                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Plot Area', 'praktik') }}
+                  </div>
+                  <div class="text-neutral-950 flex-1">{{ $property_meta['plot_area'] }} {{ __('сот.', 'praktik') }}</div>
+                </div>
+              @endif
             </div>
             @if(!empty($property_video_link))
               <div class="bg-secondary-50 hover:bg-secondary-100 transition-colors duration-200 mt-10 mx-auto video-button-pulse">

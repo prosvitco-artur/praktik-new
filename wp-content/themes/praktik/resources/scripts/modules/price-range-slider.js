@@ -22,7 +22,7 @@ export default class PriceRangeSlider {
     const min = parseInt(fromSlider.min);
     const max = parseInt(toSlider.max);
 
-    const update = () => {
+    const update = (skipInputs = false) => {
       let from = parseInt(fromSlider.value);
       let to = parseInt(toSlider.value);
 
@@ -33,9 +33,15 @@ export default class PriceRangeSlider {
       if (fromValue) fromValue.textContent = from;
       if (toValue) toValue.textContent = to;
 
-      // Update input fields if they exist
-      if (fromInput) fromInput.value = from;
-      if (toInput) toInput.value = to;
+      // Update input fields if they exist and are not focused
+      if (!skipInputs) {
+        if (fromInput && document.activeElement !== fromInput) {
+          fromInput.value = from;
+        }
+        if (toInput && document.activeElement !== toInput) {
+          toInput.value = to;
+        }
+      }
 
       // Update visual gradient
       const fromPercent = ((from - min) / (max - min)) * 100;
@@ -55,6 +61,16 @@ export default class PriceRangeSlider {
         if (value > max) value = max;
         if (value > parseInt(toSlider.value)) value = parseInt(toSlider.value);
         fromSlider.value = value;
+        update(true);
+      });
+
+      fromInput.addEventListener('blur', () => {
+        let value = parseInt(fromInput.value) || min;
+        if (value < min) value = min;
+        if (value > max) value = max;
+        if (value > parseInt(toSlider.value)) value = parseInt(toSlider.value);
+        fromInput.value = value;
+        fromSlider.value = value;
         update();
       });
     }
@@ -66,6 +82,16 @@ export default class PriceRangeSlider {
         if (value < min) value = min;
         if (value > max) value = max;
         if (value < parseInt(fromSlider.value)) value = parseInt(fromSlider.value);
+        toSlider.value = value;
+        update(true);
+      });
+
+      toInput.addEventListener('blur', () => {
+        let value = parseInt(toInput.value) || max;
+        if (value < min) value = min;
+        if (value > max) value = max;
+        if (value < parseInt(fromSlider.value)) value = parseInt(fromSlider.value);
+        toInput.value = value;
         toSlider.value = value;
         update();
       });

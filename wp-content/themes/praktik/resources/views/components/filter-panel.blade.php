@@ -104,7 +104,7 @@
           <x-price-range-slider 
             :min="$area_range['min']" 
             :max="$area_range['max']" 
-            :from="$area_from !== '' ? $area_from : $area_range['min']" 
+            :from="$area_from !== '' ? $area_from : 0" 
             :to="$area_to !== '' ? $area_to : $area_range['max']" 
             name="area" 
             :nameFrom="'area_from'" 
@@ -126,7 +126,7 @@
           <x-price-range-slider 
             :min="$plot_area_range['min']" 
             :max="$plot_area_range['max']" 
-            :from="$plot_area_from !== '' ? $plot_area_from : $plot_area_range['min']" 
+            :from="$plot_area_from !== '' ? $plot_area_from : 0" 
             :to="$plot_area_to !== '' ? $plot_area_to : $plot_area_range['max']" 
             name="plot_area" 
             :nameFrom="'plot_area_from'" 
@@ -147,10 +147,10 @@
           <div class="flex gap-3 mb-4">
             <div class="flex-1">
               <label for="filter-price-from" class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
-              <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from !== '' ? $price_from : $price_range['min'] }}" 
-                placeholder="{{ $price_range['min'] }}" 
+              <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from !== '' ? $price_from : 0 }}" 
+                placeholder="0" 
                 class="w-full px-3 py-2 border border-neutral-300 rounded" 
-                min="{{ $price_range['min'] }}" 
+                min="0" 
                 max="{{ $price_range['max'] }}"
                 data-price-input="from">
             </div>
@@ -167,7 +167,7 @@
           <x-price-range-slider 
             :min="$price_range['min']" 
             :max="$price_range['max']" 
-            :from="$price_from !== '' ? $price_from : $price_range['min']" 
+            :from="$price_from !== '' ? $price_from : 0" 
             :to="$price_to !== '' ? $price_to : $price_range['max']" 
             name="price" 
             :nameFrom="'price_from'" 

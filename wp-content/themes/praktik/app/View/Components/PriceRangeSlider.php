@@ -27,7 +27,7 @@ class PriceRangeSlider extends Component
         $this->min = $min;
         $this->max = $max;
         $this->step = $step;
-        $this->from = $from ?? $min;
+        $this->from = $from ?? 0;
         $this->to = $to ?? $max;
         $this->name = $name;
         $this->nameFrom = $nameFrom ?? $name . '_from';

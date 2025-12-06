@@ -18,10 +18,8 @@ class PropertyGallery {
 
     const photoCounter = galleryContainer.querySelector('.property-photo-counter');
 
-    // Check if mobile device
     const isMobile = window.innerWidth < 768;
 
-    // Initialize thumbs swiper only on desktop
     let thumbsInstance = null;
     if (!isMobile && thumbsSwiper) {
       thumbsInstance = new Swiper(thumbsSwiper, {
@@ -41,7 +39,6 @@ class PropertyGallery {
       });
     }
 
-    // Initialize main swiper
     const swiperConfig = {
       modules: [Navigation],
       spaceBetween: 10,
@@ -51,12 +48,15 @@ class PropertyGallery {
       },
       on: {
         slideChange: (swiper) => {
-          this.updatePhotoCounter(swiper, photoCounter);
+          if (photoCounter) {
+            const current = swiper.activeIndex + 1;
+            const total = swiper.slides.length;
+            photoCounter.textContent = `${current}/${total}`;
+          }
         },
       },
     };
 
-    // Add Thumbs module only on desktop
     if (!isMobile && thumbsInstance) {
       swiperConfig.modules.push(Thumbs);
       swiperConfig.thumbs = {
@@ -66,17 +66,11 @@ class PropertyGallery {
 
     const mainInstance = new Swiper(mainSwiper, swiperConfig);
 
-    // Update photo counter on init
-    this.updatePhotoCounter(mainInstance, photoCounter);
-
-    // Initialize Fancybox for all devices
-    this.initFancybox();
-    
-    // Handle gallery open buttons
-    this.initGalleryButtons(mainInstance);
+    this.initFancybox(mainInstance);
+    this.initGalleryButtons();
   }
 
-  initGalleryButtons(swiperInstance) {
+  initGalleryButtons() {
     const galleryContainer = document.querySelector('.property-gallery');
     if (!galleryContainer) return;
 
@@ -87,16 +81,15 @@ class PropertyGallery {
       e.preventDefault();
       e.stopPropagation();
       
-      const currentIndex = swiperInstance ? swiperInstance.activeIndex : 0;
       const links = galleryContainer.querySelectorAll('[data-fancybox="property-gallery"]');
       
-      if (links[currentIndex]) {
-        links[currentIndex].click();
+      if (links.length > 0) {
+        links[0].click();
       }
     });
   }
 
-  initFancybox() {
+  initFancybox(mainInstance) {
     const galleryContainer = document.querySelector('.property-gallery');
     if (!galleryContainer) return;
 
@@ -126,21 +119,20 @@ class PropertyGallery {
       trapFocus: true,
       autoFocus: true,
       placeFocusBack: true,
+      on: {
+        close: () => {
+          if (mainInstance) {
+            setTimeout(() => {
+              mainInstance.updateSize();
+              if (mainInstance.navigation) {
+                mainInstance.navigation.update();
+              }
+            }, 100);
+          }
+        },
+      },
     });
-  }
-
-  isMobileDevice() {
-    return window.innerWidth < 768;
-  }
-
-  updatePhotoCounter(swiper, counter) {
-    if (counter && swiper) {
-      const current = swiper.activeIndex + 1;
-      const total = swiper.slides.length;
-      counter.textContent = `${current}/${total}`;
-    }
   }
 }
 
 export default PropertyGallery;
-
