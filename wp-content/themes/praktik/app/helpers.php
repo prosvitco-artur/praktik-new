@@ -260,7 +260,7 @@ function get_sort_label($sort_key) {
 function get_user_favorites() {
     $is_share_page = get_query_var('favorites_share');
     
-    $allow_cookie = !empty($is_share_page);
+    $allow_cookie = true;
     
     $session_id = null;
     if ($allow_cookie) {

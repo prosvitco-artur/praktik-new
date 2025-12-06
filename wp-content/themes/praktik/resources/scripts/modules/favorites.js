@@ -1,7 +1,7 @@
 class Favorites {
   constructor() {
     this.ajaxUrl = (window.praktikAjax && window.praktikAjax.ajaxurl) || '/wp-admin/admin-ajax.php';
-    this.nonce = (window.praktikAjax && window.praktikAjax.favoritesNonce) || '';
+    this.nonce = (window.praktikAjax && window.praktikAjax.nonce) || '';
     this.i18n = (window.praktikAjax && window.praktikAjax.i18n) || {};
     this.favorites = [];
     this.sessionId = this.getSessionId();
@@ -123,7 +123,6 @@ class Favorites {
         this.favorites = data.data.favorites || [];
         
         const allButtons = document.querySelectorAll(`button[data-post-id="${postId}"], [data-favorite-toggle="${postId}"]`);
-        console.log(allButtons);
         allButtons.forEach(btn => {
           this.updateButtonState(btn, postId);
         });
