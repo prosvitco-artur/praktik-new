@@ -27,14 +27,14 @@ add_action('wp_enqueue_scripts', function () {
         );
     }
     
-    // Enqueue Fancybox CSS
-    $fancybox_css = get_template_directory() . '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css';
-    if (file_exists($fancybox_css)) {
+    // Enqueue PhotoSwipe CSS
+    $photoswipe_css = get_template_directory() . '/node_modules/photoswipe/dist/photoswipe.css';
+    if (file_exists($photoswipe_css)) {
         wp_enqueue_style(
-            'fancybox',
-            get_template_directory_uri() . '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css',
+            'photoswipe',
+            get_template_directory_uri() . '/node_modules/photoswipe/dist/photoswipe.css',
             [],
-            filemtime($fancybox_css)
+            filemtime($photoswipe_css)
         );
     }
     

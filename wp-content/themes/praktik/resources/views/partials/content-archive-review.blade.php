@@ -3,8 +3,10 @@
     <div class="shrink-0 w-[31.5%] md:w-[16%]">
       @if (has_post_thumbnail())
         <a href="{{ get_the_post_thumbnail_url(get_the_ID(), 'full') }}" 
-           data-fancybox="review-{{ get_the_ID() }}" 
-           data-caption="{{ get_the_title() }}"
+           data-pswp-src="{{ get_the_post_thumbnail_url(get_the_ID(), 'full') }}"
+           data-pswp-width="{{ wp_get_attachment_image_src(get_the_ID(), 'full')[1] ?? 1920 }}"
+           data-pswp-height="{{ wp_get_attachment_image_src(get_the_ID(), 'full')[2] ?? 1080 }}"
+           data-pswp-alt="{{ get_the_title() }}"
            class="block">
           {!! get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy', 'decoding' => 'async']) !!}
         </a>
