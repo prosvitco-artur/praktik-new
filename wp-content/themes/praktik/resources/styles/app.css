@@ -10,6 +10,7 @@
 @import './buttons.css';
 @import './footer.css';
 @import './admin.css';
+@import './lightbox.css';
 
 
 ul.standard-list {
@@ -76,17 +77,6 @@ ul.standard-list {
   @apply mb-0;
 }
 
-.fancybox__image {
-  max-width: none !important;
-  max-height: none !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-.fancybox__content {
-  max-width: none !important;
-  max-height: none !important;
-}
 
 .entry-title .property-title::after {
   content: '';

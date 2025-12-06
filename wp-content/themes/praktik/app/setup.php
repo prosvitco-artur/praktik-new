@@ -27,16 +27,6 @@ add_action('wp_enqueue_scripts', function () {
         );
     }
     
-    // Enqueue PhotoSwipe CSS
-    $photoswipe_css = get_template_directory() . '/node_modules/photoswipe/dist/photoswipe.css';
-    if (file_exists($photoswipe_css)) {
-        wp_enqueue_style(
-            'photoswipe',
-            get_template_directory_uri() . '/node_modules/photoswipe/dist/photoswipe.css',
-            [],
-            filemtime($photoswipe_css)
-        );
-    }
     
     wp_localize_script('app', 'praktikAjax', [
         'ajaxurl' => admin_url('admin-ajax.php'),

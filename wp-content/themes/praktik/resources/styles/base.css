@@ -112,7 +112,6 @@
 
 @media (min-width: 768px) {
   .favorites-share-button:hover {
-    outline: 1px solid #3C589E;
     --icon-color: #EDF3FD;
   }
 }

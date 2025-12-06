@@ -49,9 +49,8 @@
             @if(!empty($property_gallery))
               @foreach($property_gallery as $index => $image)
                 <div class="swiper-slide">
-                  <a href="{{ $image['url'] }}" data-pswp-src="{{ $image['url'] }}"
-                    data-pswp-width="{{ $image['width'] ?? 1920 }}" data-pswp-height="{{ $image['height'] ?? 1080 }}"
-                    data-pswp-alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
+                  <a href="{{ $image['url'] }}" data-lightbox-src="{{ $image['url'] }}"
+                    data-title="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
                     class="property-gallery-link block w-full h-full pointer-events-none">
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] ?: $image['title'] ?: get_the_title() }}"
                       class="w-full h-full object-cover">
@@ -60,10 +59,8 @@
               @endforeach
             @elseif(has_post_thumbnail())
               <div class="swiper-slide">
-                <a href="{{ get_the_post_thumbnail_url($post_id, 'full') }}" data-pswp-src="{{ get_the_post_thumbnail_url($post_id, 'full') }}"
-                  data-pswp-width="{{ wp_get_attachment_image_src($post_id, 'full')[1] ?? 1920 }}"
-                  data-pswp-height="{{ wp_get_attachment_image_src($post_id, 'full')[2] ?? 1080 }}"
-                  data-pswp-alt="{{ get_the_title() }}"
+                <a href="{{ get_the_post_thumbnail_url($post_id, 'full') }}" data-lightbox-src="{{ get_the_post_thumbnail_url($post_id, 'full') }}"
+                  data-title="{{ get_the_title() }}"
                   class="property-gallery-link block w-full h-full pointer-events-none">
                   <img src="{{ get_the_post_thumbnail_url($post_id, 'large') }}" alt="{{ get_the_title() }}"
                     class="w-full h-full object-cover">
