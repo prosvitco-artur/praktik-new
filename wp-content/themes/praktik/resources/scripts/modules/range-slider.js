@@ -1,4 +1,4 @@
-export default class PriceRangeSlider {
+export default class RangeSlider {
   constructor(selector = '[data-slider]') {
     this.sliders = document.querySelectorAll(selector);
     this.sliders.forEach(slider => this.initSlider(slider));
@@ -12,37 +12,24 @@ export default class PriceRangeSlider {
 
     if (!fromSlider || !toSlider) return;
 
-    // Find associated input fields only within the filter panel (mobile)
+    // Find associated input fields
     const sliderContainer = slider.closest('.filter-content') || slider.closest('[data-filter-content]');
     
-    // Determine which type of input to look for based on slider name
+    // Extract base name from slider name (e.g., "price_from" -> "price", "area_from" -> "area", "plot_area_from" -> "plot-area")
     const fromSliderName = fromSlider.name || '';
-    const toSliderName = toSlider.name || '';
-    let fromInput, toInput;
+    const baseName = fromSliderName.replace(/_from$|_to$/, '');
     
-    // Try to find inputs based on slider name
-    if (fromSliderName.includes('price_from') || toSliderName.includes('price_to')) {
-      fromInput = sliderContainer?.querySelector('[data-price-input="from"]') || 
-                  sliderContainer?.querySelector('#filter-price-from') ||
-                  document.querySelector('#filter-price-from');
-      toInput = sliderContainer?.querySelector('[data-price-input="to"]') || 
-                sliderContainer?.querySelector('#filter-price-to') ||
-                document.querySelector('#filter-price-to');
-    } else if (fromSliderName.includes('area_from') || toSliderName.includes('area_to')) {
-      fromInput = sliderContainer?.querySelector('[data-area-input="from"]') || 
-                  sliderContainer?.querySelector('#filter-area-from') ||
-                  document.querySelector('#filter-area-from');
-      toInput = sliderContainer?.querySelector('[data-area-input="to"]') || 
-                sliderContainer?.querySelector('#filter-area-to') ||
-                document.querySelector('#filter-area-to');
-    } else if (fromSliderName.includes('plot_area_from') || toSliderName.includes('plot_area_to')) {
-      fromInput = sliderContainer?.querySelector('[data-plot-area-input="from"]') || 
-                  sliderContainer?.querySelector('#filter-plot-area-from') ||
-                  document.querySelector('#filter-plot-area-from');
-      toInput = sliderContainer?.querySelector('[data-plot-area-input="to"]') || 
-                sliderContainer?.querySelector('#filter-plot-area-to') ||
-                document.querySelector('#filter-plot-area-to');
-    }
+    // Build data attribute selector (e.g., "price" -> "price", "area" -> "area", "plot_area" -> "plot-area")
+    const dataAttrPrefix = baseName.replace(/_/g, '-');
+    
+    // Find input fields using data attributes or IDs
+    const fromInput = sliderContainer?.querySelector(`[data-${dataAttrPrefix}-input="from"]`) || 
+                     sliderContainer?.querySelector(`#filter-${dataAttrPrefix}-from`) ||
+                     document.querySelector(`#filter-${dataAttrPrefix}-from`);
+    
+    const toInput = sliderContainer?.querySelector(`[data-${dataAttrPrefix}-input="to"]`) || 
+                   sliderContainer?.querySelector(`#filter-${dataAttrPrefix}-to`) ||
+                   document.querySelector(`#filter-${dataAttrPrefix}-to`);
 
     const min = parseInt(fromSlider.min);
     const max = parseInt(toSlider.max);
@@ -141,3 +128,4 @@ export default class PriceRangeSlider {
     update();
   }
 }
+

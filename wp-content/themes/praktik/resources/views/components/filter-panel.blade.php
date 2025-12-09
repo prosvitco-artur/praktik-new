@@ -101,7 +101,16 @@
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="area">
         <div class="py-2 px-3">
-          <x-price-range-slider 
+          <x-range-inputs 
+            name="area" 
+            :nameFrom="'area_from'" 
+            :nameTo="'area_to'" 
+            :from="$area_from !== '' ? $area_from : 0" 
+            :to="$area_to !== '' ? $area_to : $area_range['max']" 
+            :min="$area_range['min']" 
+            :max="$area_range['max']" 
+          />
+          <x-range-slider 
             :min="$area_range['min']" 
             :max="$area_range['max']" 
             :from="$area_from !== '' ? $area_from : 0" 
@@ -123,7 +132,16 @@
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="plot-area">
         <div class="py-2 px-3">
-          <x-price-range-slider 
+          <x-range-inputs 
+            name="plot_area" 
+            :nameFrom="'plot_area_from'" 
+            :nameTo="'plot_area_to'" 
+            :from="$plot_area_from !== '' ? $plot_area_from : 0" 
+            :to="$plot_area_to !== '' ? $plot_area_to : $plot_area_range['max']" 
+            :min="$plot_area_range['min']" 
+            :max="$plot_area_range['max']" 
+          />
+          <x-range-slider 
             :min="$plot_area_range['min']" 
             :max="$plot_area_range['max']" 
             :from="$plot_area_from !== '' ? $plot_area_from : 0" 
@@ -144,27 +162,16 @@
       </button>
       <div class="filter-content hidden mb-2" data-filter-content="price">
         <div class="py-2 px-3">
-          <div class="flex gap-3 mb-4">
-            <div class="flex-1">
-              <label for="filter-price-from" class="block text-sm text-neutral-600 mb-1">{{ __('From', 'praktik') }}</label>
-              <input type="number" id="filter-price-from" name="price_from" value="{{ $price_from !== '' ? $price_from : 0 }}" 
-                placeholder="0" 
-                class="w-full px-3 py-2 border border-neutral-300 rounded" 
-                min="0" 
-                max="{{ $price_range['max'] }}"
-                data-price-input="from">
-            </div>
-            <div class="flex-1">
-              <label for="filter-price-to" class="block text-sm text-neutral-600 mb-1">{{ __('To', 'praktik') }}</label>
-              <input type="number" id="filter-price-to" name="price_to" value="{{ $price_to !== '' ? $price_to : $price_range['max'] }}" 
-                placeholder="{{ $price_range['max'] }}" 
-                class="w-full px-3 py-2 border border-neutral-300 rounded" 
-                min="{{ $price_range['min'] }}" 
-                max="{{ $price_range['max'] }}"
-                data-price-input="to">
-            </div>
-          </div>
-          <x-price-range-slider 
+          <x-range-inputs 
+            name="price" 
+            :nameFrom="'price_from'" 
+            :nameTo="'price_to'" 
+            :from="$price_from !== '' ? $price_from : 0" 
+            :to="$price_to !== '' ? $price_to : $price_range['max']" 
+            :min="$price_range['min']" 
+            :max="$price_range['max']" 
+          />
+          <x-range-slider 
             :min="$price_range['min']" 
             :max="$price_range['max']" 
             :from="$price_from !== '' ? $price_from : 0" 

@@ -7,7 +7,7 @@ import DesktopFilters from './modules/desktop-filters.js';
 import Favorites from './modules/favorites.js';
 import PropertyGallery from './modules/property-gallery.js';
 import Share from './modules/share.js';
-import PriceRangeSlider from './modules/price-range-slider.js';
+import RangeSlider from './modules/range-slider.js';
 import ReviewGallery from './modules/review-gallery.js';
 import FavoritesShare from './modules/favorites-share.js';
 import ReviewFilters from './modules/review-filters.js';
@@ -22,7 +22,7 @@ domReady(async () => {
   new Favorites();
   new PropertyGallery();
   new Share();
-  new PriceRangeSlider();
+  new RangeSlider();
   new ReviewGallery();
   new FavoritesShare();
   new ReviewFilters();

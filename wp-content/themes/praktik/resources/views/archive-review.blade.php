@@ -9,7 +9,7 @@
 @endphp
 
 <div class="archive-container container md:pb-0">
-  <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
+  <div class="block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
     {!! wp_get_attachment_image($review_archive_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
     <span aria-hidden="true"
       class="wp-block-cover__background has-secondary-500-background-color has-background-dim-70 has-background-dim">
