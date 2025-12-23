@@ -75,7 +75,7 @@
 
       <div class="realtor-bottom">
         @if(has_social_links())
-          <p class="mb-6 font-bold w-[150px] mx-auto text-center">
+          <p class="mb-6 font-bold w-[180px] mx-auto text-center">
             {{ __('Subscribe to Praktik Real Estate', "praktik") }}
           </p>
 

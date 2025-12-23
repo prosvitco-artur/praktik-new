@@ -18,7 +18,7 @@
       </div>
       <div class="footer-links">
         <a href="/privacy-policy" class="footer-link">{{ __('Privacy policy', 'praktik') }}</a>
-        <a href="/terms-of-use" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
+        <a href="/rules" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
     @endif
     <div class="footer-links-mobile">
       <a href="/privacy-policy" class="footer-link">{{ __('Privacy policy', 'praktik') }}</a>
-      <a href="/terms-of-use" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
+      <a href="/rules" class="footer-link">{{ __('Terms of use', 'praktik') }}</a>
     </div>
   </div>
 </footer>

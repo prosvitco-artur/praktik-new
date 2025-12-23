@@ -226,22 +226,22 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-3 md:hidden">
+        <div class="flex items-center gap-3 md:hidden mobile-filter-buttons">
           <button type="button"
-            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
+            class="w-[44px] h-[44px] justify-center items-center flex relative bg-white text-secondary-500"
             id="filter-button" data-filter-panel-toggle aria-expanded="false">
-            <x-icon name="filter" class="w-6 h-6" />
+            <x-icon name="filter" />
             @if($has_active_filters)
             <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
             @endif
           </button>
           <button
             type="button"
-            class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors bg-white p-2.5"
+            class="w-[44px] h-[44px] justify-center items-center flex relative bg-white text-secondary-500"
             id="sort-button-mobile"
             data-sort-panel-toggle
             aria-expanded="false">
-            <x-icon name="sort" class="w-6 h-6" />
+            <x-icon name="sort" />
           </button>
         </div>
       </div>

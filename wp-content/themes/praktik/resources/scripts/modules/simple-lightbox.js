@@ -13,6 +13,9 @@ class SimpleLightbox {
     this.translateX = 0;
     this.translateY = 0;
     this.onCloseCallback = null;
+    this.touchStartX = 0;
+    this.touchStartY = 0;
+    this.swipeThreshold = 50;
   }
 
   init(selector, options = {}) {
@@ -112,6 +115,12 @@ class SimpleLightbox {
       this.image.style.maxWidth = 'none';
     };
 
+    if (this.image) {
+      this.image.style.opacity = '1';
+      this.image.style.transition = '';
+      this.image.style.transform = '';
+    }
+
     this.resetZoom();
     this.updateNavigation();
     this.updateCursor();
@@ -134,6 +143,10 @@ class SimpleLightbox {
     this.zoomLevel = 1;
     this.translateX = 0;
     this.translateY = 0;
+    if (this.image) {
+      this.image.style.transition = '';
+      this.image.style.opacity = '1';
+    }
     this.updateTransform();
     this.updateCursor();
   }
@@ -306,9 +319,15 @@ class SimpleLightbox {
 
       let touchStartDistance = 0;
       let touchStartZoom = 1;
+      let isSwipeGesture = false;
 
       this.imageContainer.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 2) {
+        if (e.touches.length === 1 && this.zoomLevel === 1) {
+          this.touchStartX = e.touches[0].clientX;
+          this.touchStartY = e.touches[0].clientY;
+          isSwipeGesture = true;
+        } else if (e.touches.length === 2) {
+          isSwipeGesture = false;
           const touch1 = e.touches[0];
           const touch2 = e.touches[1];
           touchStartDistance = Math.hypot(
@@ -322,6 +341,7 @@ class SimpleLightbox {
       this.imageContainer.addEventListener('touchmove', (e) => {
         if (e.touches.length === 2) {
           e.preventDefault();
+          isSwipeGesture = false;
           const touch1 = e.touches[0];
           const touch2 = e.touches[1];
           const currentDistance = Math.hypot(
@@ -332,6 +352,51 @@ class SimpleLightbox {
           const scale = currentDistance / touchStartDistance;
           this.zoomLevel = Math.max(1, Math.min(3, touchStartZoom * scale));
           this.updateTransform();
+        } else if (e.touches.length === 1 && this.zoomLevel === 1 && isSwipeGesture) {
+          const touch = e.touches[0];
+          const deltaX = touch.clientX - this.touchStartX;
+          const deltaY = touch.clientY - this.touchStartY;
+          
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            e.preventDefault();
+            const opacity = Math.max(0, 1 - Math.abs(deltaX) / 300);
+            const translateX = deltaX * 0.5;
+            if (this.image) {
+              this.image.style.opacity = opacity;
+              this.image.style.transition = 'none';
+              this.image.style.transform = `translateX(${translateX}px)`;
+            }
+          }
+        }
+      });
+
+      this.imageContainer.addEventListener('touchend', (e) => {
+        if (isSwipeGesture && this.zoomLevel === 1 && e.changedTouches.length > 0) {
+          const touch = e.changedTouches[0];
+          const deltaX = touch.clientX - this.touchStartX;
+          const deltaY = touch.clientY - this.touchStartY;
+          
+          if (this.image) {
+            this.image.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            this.image.style.opacity = '1';
+            this.image.style.transform = 'translateX(0)';
+          }
+          
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.swipeThreshold) {
+            if (deltaX > 0) {
+              this.prev();
+            } else {
+              this.next();
+            }
+          } else {
+            setTimeout(() => {
+              if (this.image) {
+                this.image.style.transition = '';
+              }
+            }, 300);
+          }
+          
+          isSwipeGesture = false;
         }
       });
     }

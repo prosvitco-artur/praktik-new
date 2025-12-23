@@ -62,6 +62,62 @@ function is_attachment_used_in_other_posts($attachment_id, $exclude_post_id) {
     return false;
 }
 
+function delete_attachment_files($attachment_id) {
+    if (!$attachment_id) {
+        return false;
+    }
+
+    $attachment_id = (int) $attachment_id;
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    
+    $file_path = get_attached_file($attachment_id);
+    
+    if ($file_path && file_exists($file_path)) {
+        $upload_dir = wp_upload_dir();
+        $upload_basedir = $upload_dir['basedir'];
+        $real_file_path = realpath($file_path);
+        $real_upload_dir = realpath($upload_basedir);
+        
+        if ($real_file_path && $real_upload_dir && strpos($real_file_path, $real_upload_dir) === 0) {
+            @unlink($file_path);
+            
+            $meta = wp_get_attachment_metadata($attachment_id);
+            if ($meta && isset($meta['sizes']) && is_array($meta['sizes'])) {
+                $file_dir = dirname($file_path);
+                
+                foreach ($meta['sizes'] as $size => $size_data) {
+                    if (isset($size_data['file'])) {
+                        $thumb_file = $file_dir . '/' . $size_data['file'];
+                        if (file_exists($thumb_file)) {
+                            $real_thumb_path = realpath($thumb_file);
+                            if ($real_thumb_path && strpos($real_thumb_path, $real_upload_dir) === 0) {
+                                @unlink($thumb_file);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            $backup_sizes = get_post_meta($attachment_id, '_wp_attachment_backup_sizes', true);
+            if (is_array($backup_sizes)) {
+                foreach ($backup_sizes as $size_data) {
+                    if (isset($size_data['file'])) {
+                        $backup_file = $file_dir . '/' . $size_data['file'];
+                        if (file_exists($backup_file)) {
+                            $real_backup_path = realpath($backup_file);
+                            if ($real_backup_path && strpos($real_backup_path, $real_upload_dir) === 0) {
+                                @unlink($backup_file);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return wp_delete_attachment($attachment_id, true);
+}
+
 add_action('before_delete_post', function ($post_id) {
     $post = get_post($post_id);
     if (! $post || $post->post_type === 'attachment') {
@@ -72,7 +128,7 @@ add_action('before_delete_post', function ($post_id) {
     if ($thumbnail_id && !is_attachment_used_in_other_posts($thumbnail_id, $post_id)) {
         $attachment = get_post($thumbnail_id);
         if ($attachment && ($attachment->post_parent == $post_id || !$attachment->post_parent)) {
-            wp_delete_attachment($thumbnail_id, true);
+            delete_attachment_files($thumbnail_id);
         }
     }
 
@@ -86,7 +142,7 @@ add_action('before_delete_post', function ($post_id) {
     if (! empty($attachments)) {
         foreach ($attachments as $attachment_id) {
             if (!is_attachment_used_in_other_posts($attachment_id, $post_id)) {
-                wp_delete_attachment($attachment_id, true);
+                delete_attachment_files($attachment_id);
             }
         }
     }
@@ -109,7 +165,7 @@ add_action('before_delete_post', function ($post_id) {
             if ($attachment_id && !is_attachment_used_in_other_posts($attachment_id, $post_id)) {
                 $attachment = get_post((int) $attachment_id);
                 if ($attachment && ($attachment->post_parent == $post_id || !$attachment->post_parent)) {
-                    wp_delete_attachment((int) $attachment_id, true);
+                    delete_attachment_files((int) $attachment_id);
                 }
             }
         }

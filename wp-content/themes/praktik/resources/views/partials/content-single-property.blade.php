@@ -126,7 +126,7 @@
           <div class="md:bg-white md:p-10 md:mb-6 flex flex-col md:gap-5 gap-10">
             <div class="md:flex md:items-start md:justify-between ">
               <div class="flex-1">
-                <h1 class="text-2xl mb-2">
+                <h1 class="text-base md:text-2xl mb-2">
                   {!! get_the_title() ?: __('No Title', 'praktik') !!}
                 </h1>
                 <div class="text-xs text-neutral-600 mb-3">
@@ -154,28 +154,28 @@
             <div class="space-y-3">
               @if(!empty($property_meta['city']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('City', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">{{ __('City', 'praktik') }}</div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['city'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['district']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('District', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">{{ __('District', 'praktik') }}</div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['district'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['street']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Street', 'praktik') }}</div>
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">{{ __('Street', 'praktik') }}</div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['street'] }}</div>
                 </div>
               @endif
 
               @if(!empty($property_meta['rooms']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">
                     {{ __('Number of Rooms', 'praktik') }}
                   </div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['rooms'] }}</div>
@@ -184,7 +184,7 @@
 
               @if(!empty($property_meta['area']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">{{ __('Total Area', 'praktik') }}
                   </div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['area'] }} {{ __('m²', 'praktik') }}</div>
                 </div>
@@ -192,7 +192,7 @@
 
               @if($current_type === 'house' && !empty($property_meta['plot_area']))
                 <div class="property-detail">
-                  <div class="flex-shrink-0 w-[120px] md:w-[200px] text-neutral-600">{{ __('Plot Area', 'praktik') }}
+                  <div class="flex-shrink-0 w-[150px] md:w-[200px] text-neutral-600">{{ __('Plot Area', 'praktik') }}
                   </div>
                   <div class="text-neutral-950 flex-1">{{ $property_meta['plot_area'] }} {{ __('сот.', 'praktik') }}</div>
                 </div>
@@ -212,7 +212,8 @@
             @endif
           </div>
 
-          <x-agent-contact />
+          <x-agent-contact class="md:flex hidden" />
+
         </div>
         @if(get_the_content())
         <div class="md:hidden">
@@ -222,7 +223,9 @@
           </div>
         </div>
         @endif
+
       </div>
+      <x-agent-contact class="md:hidden" />
     </div>
   </div>
 </article>

@@ -9,16 +9,16 @@
 @endphp
 
 <div class="archive-container container md:pb-0">
-  <div class="block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
+  <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
     {!! wp_get_attachment_image($review_archive_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
     <span aria-hidden="true"
       class="wp-block-cover__background has-secondary-500-background-color has-background-dim-70 has-background-dim">
     </span>
     <div class="wp-block-cover__inner-container flex items-center gap-5">
-      <h1 class="m-0 text-4xl">
+      <h1 class="m-0 text-4xl text-white">
         <strong>{{ post_type_archive_title('', false) }}</strong>
       </h1>
-      <span class="text-2xl">
+      <span class="text-2xl text-white">
         {{ wp_count_posts('review')->publish }}
       </span>
     </div>
@@ -58,7 +58,7 @@
       <button type="button"
         class="flex items-center gap-2 text-info-600 hover:text-info-700 transition-colors relative bg-white p-2.5"
         id="filter-button" data-filter-panel-toggle aria-expanded="false">
-        <x-icon name="filter" class="w-6 h-6" />
+        <x-icon name="filter" />
         @php
           $has_active_review_filters = !empty($_GET['date_from']) || !empty($_GET['date_to']);
         @endphp

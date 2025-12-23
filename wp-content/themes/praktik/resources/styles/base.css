@@ -119,14 +119,3 @@
 .swiper-slide-thumb-active {
   border: 2px solid #ECB648;
 }
-
-.block-cover {
-  align-items: center;
-  background-position: 50%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  overflow: clip;
-  padding: 1em;
-  position: relative;
-}

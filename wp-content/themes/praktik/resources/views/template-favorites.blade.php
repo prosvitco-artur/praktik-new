@@ -4,7 +4,7 @@
   @if($has_favorites)
     <div class="container px-5">
 
-    <div class="sort-buttons mt-4 mb-4 flex items-center justify-between flex-wrap gap-3">
+    <div class="sort-buttons mt-4 mb-4 md:flex md:items-center md:justify-between md:flex-wrap md:gap-3">
       <div class="flex flex-wrap justify-between items-center gap-1">
         <div class="w-full md:w-auto">
           {!! 

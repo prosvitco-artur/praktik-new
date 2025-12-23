@@ -7,10 +7,11 @@ $phoneHref = $phone ? 'tel:' . preg_replace('/[^\d\+]/', '', $phone) : '';
 $telegram = $authorId ? (carbon_get_post_meta($authorId, 'realtor_telegram') ?: '') : '';
 $authorPhoto = $authorId ? (carbon_get_post_meta($authorId, 'realtor_photo') ?: '') : '';
 $telegramLabel = __('Write to Telegram', 'praktik');
+$class = isset($class) ? $class : '';
 @endphp
 
 @if($authorId && ($name || $phone || $telegram || $authorPhoto))
-  <div class="sticky bottom-0 mt-10 md:mt-0 left-0 right-0 w-screen -mx-4 md:w-auto md:mx-0 bg-white p-5 flex items-center justify-between md:p-10 md:static shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-1px_rgba(0,0,0,0.06)] md:shadow-none">
+  <div class="sticky bottom-0 left-0 right-0 md:w-auto md:mx-0 bg-white p-5 flex items-center justify-between md:p-10 md:static shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-1px_rgba(0,0,0,0.06)] md:shadow-none {{ $class }}">
     <div class="flex items-center gap-4">
       <div class="rounded-full h-12 w-12 overflow-hidden">
         @if($authorPhoto)

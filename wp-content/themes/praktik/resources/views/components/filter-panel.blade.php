@@ -4,17 +4,17 @@
 
 {{-- Filter Panel --}}
 <div
-  class="filter-panel p-5 fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg text-neutral-950 overflow-y-auto"
+  class="filter-panel fixed left-0 right-0 bottom-0 w-full max-h-[80vh] bg-white z-50 transform translate-y-full transition-transform duration-300 rounded-t-lg text-neutral-950 overflow-y-auto"
   data-filter-panel role="dialog" aria-modal="true" aria-label="{{ __('Filters', 'praktik') }}">
 
-  <div class="flex items-center justify-between mb-5">
+  <div class="p-5 flex items-center justify-between sticky top-0 bg-white z-50">
     <div class="font-bold">{{ __('Filter', 'praktik') }}</div>
     <button type="button" class="filter-panel-close" aria-label="{{ __('Close filters', 'praktik') }}" data-filter-panel-close>
       <x-icon name="close" class="w-4 h-4" />
     </button>
   </div>
 
-  <div class="filter-panel-content">
+  <div class="filter-panel-content px-5">
     @php
       $selected_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
       $selected_rooms = isset($_GET['rooms']) ? explode(',', sanitize_text_field($_GET['rooms'])) : [];
@@ -185,7 +185,7 @@
       </div>
     </div>
 
-    <div class="flex gap-5 pt-5">
+    <div class="flex gap-5 pt-5 sticky bottom-0 bg-white z-50 p-5">
       <button class="btn btn--second w-full font-bold" data-filter-clear>
         {{ __('Clear', 'praktik') }}
       </button>
