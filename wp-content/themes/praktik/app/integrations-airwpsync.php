@@ -1,5 +1,13 @@
 <?php
 
+add_filter('cron_schedules', function ($schedules) {
+    $schedules['airwpsync_twohours'] = [
+        'interval' => 7200,
+        'display' => __('Every 2 hours', 'praktik'),
+    ];
+    return $schedules;
+});
+
 add_filter('airwpsync/get_post_types', function ($post_types) {
     return array_map(function ($post_type) {
         $post_type['enabled'] = true;
@@ -51,7 +59,7 @@ add_action('airwpsync/import_record_after', function ($importer, $fields, $recor
 
     $thumbnail_meta_key = '_thumbnail_id';
     $thumbnail_raw = get_post_meta($post_id, $thumbnail_meta_key, true);
-    
+
     if (!empty($thumbnail_raw)) {
         if (is_object($thumbnail_raw) && isset($thumbnail_raw->url)) {
             $thumbnail_id = process_airtable_media($thumbnail_raw, $post_id);
@@ -62,10 +70,10 @@ add_action('airwpsync/import_record_after', function ($importer, $fields, $recor
 
     $meta_key = 'property_gallery';
     $raw = get_post_meta($post_id, $meta_key, true);
-    
+
     if (is_array($raw) && !empty($raw)) {
         $is_objects = isset($raw[0]) && is_object($raw[0]) && isset($raw[0]->url);
-        
+
         if ($is_objects) {
             foreach ($raw as $media) {
                 $attachment_id = process_airtable_media($media, $post_id);
@@ -97,16 +105,17 @@ add_action('airwpsync/import_record_after', function ($importer, $fields, $recor
         set_post_thumbnail($post_id, $thumbnail_id);
         update_post_meta($post_id, '_thumbnail_id', $thumbnail_id);
     }
-    
+
     $property_post_types = array_keys(\get_property_post_types());
     $post_type = get_post_type($post_id);
-    
+
     if (in_array($post_type, $property_post_types)) {
         assign_realtor_to_property($post_id);
     }
 }, 20, 4);
 
-function process_airtable_media($media, $post_id) {
+function process_airtable_media($media, $post_id)
+{
     $attachment_id = 0;
 
     if (isset($media->id)) {
@@ -115,10 +124,12 @@ function process_airtable_media($media, $post_id) {
             'post_type' => 'attachment',
             'post_status' => 'any',
             'posts_per_page' => 1,
-            'meta_query' => [[
-                'key' => '_air_wp_sync_record_id',
-                'value' => $media->id,
-            ]],
+            'meta_query' => [
+                [
+                    'key' => '_air_wp_sync_record_id',
+                    'value' => $media->id,
+                ]
+            ],
         ]);
         if (!empty($existing)) {
             $attachment_id = (int) $existing[0];
@@ -132,9 +143,9 @@ function process_airtable_media($media, $post_id) {
             if (empty(pathinfo($filename, PATHINFO_EXTENSION)) && !empty($media->type)) {
                 $map = apply_filters('getimagesize_mimes_to_exts', [
                     'image/jpeg' => 'jpg',
-                    'image/png'  => 'png',
-                    'image/gif'  => 'gif',
-                    'image/bmp'  => 'bmp',
+                    'image/png' => 'png',
+                    'image/gif' => 'gif',
+                    'image/bmp' => 'bmp',
                     'image/tiff' => 'tif',
                     'image/webp' => 'webp',
                 ]);
@@ -170,33 +181,34 @@ function process_airtable_media($media, $post_id) {
  * Призначити ріелтора до property під час імпорту
  * Шукає ріелтора по title в post type 'realtor'
  */
-function assign_realtor_to_property($post_id) {
+function assign_realtor_to_property($post_id)
+{
     $property_post_types = array_keys(\get_property_post_types());
     $post_type = get_post_type($post_id);
-    
+
     if (!in_array($post_type, $property_post_types)) {
         return;
     }
-    
+
     $realtor_meta_key = 'property_realtor';
     $realtor_raw = get_post_meta($post_id, $realtor_meta_key, true);
-    
+
     if (empty($realtor_raw)) {
         return;
     }
-    
+
     $realtor_id = null;
-    
+
     if (is_numeric($realtor_raw)) {
         $realtor_id = (int) $realtor_raw;
     } elseif (is_string($realtor_raw)) {
         $realtor_title = trim($realtor_raw);
-        
+
         if (!empty($realtor_title)) {
             global $wpdb;
-            
+
             $realtor_title_escaped = $wpdb->esc_like($realtor_title);
-            
+
             $realtor_post = $wpdb->get_row($wpdb->prepare(
                 "SELECT ID, post_title FROM {$wpdb->posts} 
                 WHERE post_type = 'realtor' 
@@ -205,7 +217,7 @@ function assign_realtor_to_property($post_id) {
                 LIMIT 1",
                 $realtor_title
             ));
-            
+
             if ($realtor_post) {
                 $realtor_id = (int) $realtor_post->ID;
             } else {
@@ -216,14 +228,16 @@ function assign_realtor_to_property($post_id) {
                     'orderby' => 'title',
                     'order' => 'ASC',
                 ]);
-                
+
                 foreach ($realtors_fuzzy as $realtor) {
                     $realtor_title_normalized = mb_strtolower(trim($realtor_title));
                     $realtor_post_title_normalized = mb_strtolower(trim($realtor->post_title));
-                    
-                    if ($realtor_title_normalized === $realtor_post_title_normalized ||
-                        stripos($realtor->post_title, $realtor_title) !== false || 
-                        stripos($realtor_title, $realtor->post_title) !== false) {
+
+                    if (
+                        $realtor_title_normalized === $realtor_post_title_normalized ||
+                        stripos($realtor->post_title, $realtor_title) !== false ||
+                        stripos($realtor_title, $realtor->post_title) !== false
+                    ) {
                         $realtor_id = (int) $realtor->ID;
                         break;
                     }
@@ -231,7 +245,7 @@ function assign_realtor_to_property($post_id) {
             }
         }
     }
-    
+
     if ($realtor_id) {
         if (function_exists('carbon_set_post_meta')) {
             carbon_set_post_meta($post_id, $realtor_meta_key, $realtor_id);
@@ -241,4 +255,73 @@ function assign_realtor_to_property($post_id) {
     }
 }
 
+add_action('init', function () {
+    if (!class_exists('Air_WP_Sync_Free\Air_WP_Sync')) {
+        return;
+    }
 
+    $importers = apply_filters('airwpsync/get_importers', []);
+
+    if (empty($importers)) {
+        return;
+    }
+
+    foreach ($importers as $importer) {
+        if (!is_object($importer) || !method_exists($importer, 'infos') || !method_exists($importer, 'cron') || !method_exists($importer, 'config')) {
+            continue;
+        }
+
+        $importer_id = $importer->infos()->get('id');
+        if (!$importer_id) {
+            continue;
+        }
+
+        $sync_type = $importer->config()->get('scheduled_sync.type');
+        $sync_recurrence = $importer->config()->get('scheduled_sync.recurrence');
+
+        $needs_update = false;
+        $post = get_post($importer_id);
+
+        if ($post && $post->post_type === 'airwpsync-connection') {
+            $config = json_decode($post->post_content, true);
+
+            if (!is_array($config)) {
+                $config = [];
+            }
+
+            if (!isset($config['scheduled_sync'])) {
+                $config['scheduled_sync'] = [];
+            }
+
+            if ($config['scheduled_sync']['type'] !== 'cron' || $config['scheduled_sync']['recurrence'] !== 'airwpsync_twohours') {
+                $config['scheduled_sync']['type'] = 'cron';
+                $config['scheduled_sync']['recurrence'] = 'airwpsync_twohours';
+                $needs_update = true;
+            }
+
+            if ($needs_update) {
+                wp_update_post([
+                    'ID' => $importer_id,
+                    'post_content' => wp_json_encode($config)
+                ]);
+            }
+        }
+
+        $schedule_slug = 'air_wp_sync_importer_' . $importer_id;
+        $next_scheduled = wp_next_scheduled($schedule_slug);
+
+        if (false === $next_scheduled || $needs_update) {
+            if ($next_scheduled) {
+                wp_clear_scheduled_hook($schedule_slug);
+            }
+
+            $callback = [$importer, 'cron'];
+
+            if (!has_action($schedule_slug, $callback)) {
+                add_action($schedule_slug, $callback);
+            }
+
+            wp_schedule_event(time(), 'airwpsync_twohours', $schedule_slug);
+        }
+    }
+}, 200);

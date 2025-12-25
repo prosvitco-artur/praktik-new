@@ -33,6 +33,8 @@ add_action('carbon_fields_register_fields', function() {
         ])
         ->add_tab( __('Banners', 'praktik'), [
                 Field::make('image', 'review_archive_banner', __('Review Archive Banner')),
+                Field::make('image', 'apartment_archive_banner', __('Apartment Archive Banner')),
+                Field::make('image', 'house_archive_banner', __('House Archive Banner')),
 
         ]);
 });

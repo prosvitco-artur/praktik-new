@@ -4,9 +4,9 @@
       @foreach($fields['steps'] as $key => $step)
         <div class="py-4">
           @if(!empty($step['step_title']))
-            <div class="font-bold mb-2">
+            <div class="font-bold mb-2 flex items-center gap-2">
               <span class="text-primary-500 text-xl">{{ $key + 1 }}.</span>
-              <span>{{ $step['step_title'] }}</span>
+              <h3 class="text-base">{{ $step['step_title'] }}</h3>
             </div>
           @endif
           

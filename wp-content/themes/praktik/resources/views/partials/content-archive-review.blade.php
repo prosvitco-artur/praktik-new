@@ -12,9 +12,9 @@
     </div>
     <div class="p-3 md:p-5">
       <div class="mb-3">
-        <p class="font-bold mb-1 review-title">
+        <h2 class="font-bold mb-1 review-title">
           {!! get_the_title() !!}
-        </p>
+        </h2>
         <p class="text-neutral-900 review-date">
           {{ get_the_date('d.m.Y') }}
         </p>

@@ -7,7 +7,7 @@
             {!! wp_get_attachment_image($client['client_logo'], 'full') !!}
             <div class="py-3">
               @if(!empty($client['client_name']))
-                <div class="font-bold mb-1">{{ $client['client_name'] }}</div>
+                <h3 class="font-bold mb-1 text-base">{{ $client['client_name'] }}</h3>
               @endif
               @if(!empty($client['client_text']))
                 <p class="client-text">{{ $client['client_text'] }}</p>

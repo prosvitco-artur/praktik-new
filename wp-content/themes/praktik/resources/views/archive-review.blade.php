@@ -9,28 +9,18 @@
 @endphp
 
 <div class="archive-container container md:pb-0">
-  <div class="wp-block-cover mb-8" style="min-height:160px;aspect-ratio:unset;">
-    {!! wp_get_attachment_image($review_archive_banner, 'full', false, ['class' => 'absolute inset-0 w-full h-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) !!}
-    <span aria-hidden="true"
-      class="wp-block-cover__background has-secondary-500-background-color has-background-dim-70 has-background-dim">
-    </span>
-    <div class="wp-block-cover__inner-container flex items-center gap-5">
-      <h1 class="m-0 text-4xl text-white">
-        <strong>{{ post_type_archive_title('', false) }}</strong>
-      </h1>
-      <span class="text-2xl text-white">
-        {{ wp_count_posts('review')->publish }}
-      </span>
-    </div>
-  </div>
+  <x-archive-banner :banner="$review_archive_banner" :title="get_the_archive_title()"
+    :count="wp_count_posts('review')->publish" />
   <div class="flex items-center gap-4 mb-8 px-5 md:px-0">
     <form method="GET" class="md:flex gap-[8px] w-full" action="{{ get_post_type_archive_link(get_post_type()) }}">
       <div class="w-full relative filter-input">
         <label for="review-search-input" class="sr-only">{{ __('Search', 'praktik') }}</label>
-        <input type="search" id="review-search-input" placeholder="{{ __('Search', 'praktik') }}" value="{{ $_GET['search'] ?? '' }}"
-          name="search" class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">
-        <button type="button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" aria-label="{{ __('Search', 'praktik') }}">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <input type="search" id="review-search-input" placeholder="{{ __('Search', 'praktik') }}"
+          value="{{ $_GET['search'] ?? '' }}" name="search"
+          class="w-full h-[44px] pr-4 pl-[44px] border-0 focus:outline-none">
+        <button type="button" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+          aria-label="{{ __('Search', 'praktik') }}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
@@ -63,31 +53,32 @@
           $has_active_review_filters = !empty($_GET['date_from']) || !empty($_GET['date_to']);
         @endphp
         @if($has_active_review_filters)
-        <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
+          <div class="absolute top-2.5 right-2.5 w-2 h-2 bg-warning-500 rounded-full border border-white"></div>
         @endif
       </button>
       @include('components.review-filter-panel', ['date_from' => $date_from, 'date_to' => $date_to])
     </div>
   </div>
 
-  @if (! have_posts())
+  @if (!have_posts())
     <section class="container mx-auto">
       <div class="px-5 min-h-screen lg:min-h-full flex flex-col items-center justify-center lg:pt-[140px]">
-        <img class="mb-10 w-full max-w-[280px] lg:max-w-[820px]" src="@asset('images/favorites/empty-favorites.svg')" alt="{{ __('No reviews found', 'praktik') }}">
+        <img class="mb-10 w-full max-w-[280px] lg:max-w-[820px]" src="@asset('images/favorites/empty-favorites.svg')"
+          alt="{{ __('No reviews found', 'praktik') }}">
       </div>
     </section>
   @else
-    <div class="mb-8 px-5 md:px-0">
-      @while(have_posts()) @php(the_post())
-      @include('partials.content-archive-review')
-      @endwhile
-    </div>
-    @php($pg = praktik_get_pagination_params([
-      'persist_keys' => ['search','date_from','date_to'],
-      'end_size' => 3,
-      'mid_size' => 1,
-    ]))
-    @include('components.pagination', $pg)
+  <div class="mb-8 px-5 md:px-0">
+    @while(have_posts()) @php(the_post())
+    @include('partials.content-archive-review')
+    @endwhile
+  </div>
+  @php($pg = praktik_get_pagination_params([
+    'persist_keys' => ['search', 'date_from', 'date_to'],
+    'end_size' => 3,
+    'mid_size' => 1,
+  ]))
+  @include('components.pagination', $pg)
   @endif
 </div>
 @endsection

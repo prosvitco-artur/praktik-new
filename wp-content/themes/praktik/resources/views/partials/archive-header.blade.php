@@ -1,5 +1,11 @@
+@php
+  $current_post_type = get_queried_object()->name;
+  $banner = carbon_get_theme_option($current_post_type . '_archive_banner');
+@endphp
+
 <header class="py-5">
   <div class="container px-5">
+  <x-archive-banner :banner="$banner" :title="get_the_archive_title()" />
     @php
       $current_post_type = get_post_type();
       if (!$current_post_type && is_post_type_archive()) {
